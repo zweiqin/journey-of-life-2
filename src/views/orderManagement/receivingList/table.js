@@ -65,6 +65,10 @@ export const columns = [
 		align: 'center',
 		field: 'orderChargeDetails',
 		title: '订单收费明细',
+		showOverflow: false,
+		slots: {
+			default: 'orderChargeDetails'
+		},
 		width: 150
 	},
 	{

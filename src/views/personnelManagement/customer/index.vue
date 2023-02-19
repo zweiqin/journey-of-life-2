@@ -30,23 +30,28 @@
 			:api-path="api.getCustomerList" :columns="columns" page-alias="pageNo" size-alias="pageSize"
 		>
 			<template #customerGender="{ row }">
-				<span>{{ row.customerGender }}</span>
+				<span v-if="row.customerGender === 1">男</span>
+				<span v-else-if="row.customerGender === 2">女</span>
+				<span v-else>--</span>
 			</template>
 			<template #customerLevel="{ row }">
-				<span>{{ row.customerLevel }}</span>
+				<span v-if="row.customerLevel === 1">潜在客户</span>
+				<span v-else-if="row.customerLevel === 2">开发中</span>
+				<span v-else-if="row.customerLevel === 3">VIP客户</span>
+				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">
 				<el-button
-					v-permission="[ `POST ${api.roleUpdate}` ]" size="mini"
-					@click="handleEdit(row)"
-				>
-					编辑
-				</el-button>
-				<el-button
-					v-permission="[ `POST ${api.getCustomerInfo}` ]" type="warning" size="mini"
+					v-permission="[ `POST ${api.getCustomerInfo}` ]" size="mini"
 					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)"
 				>
 					详情
+				</el-button>
+				<el-button
+					v-permission="[ `POST ${api.customerUpdateById}` ]" type="primary" size="mini"
+					@click="handleEdit(row)"
+				>
+					编辑
 				</el-button>
 				<el-button
 					v-permission="[ `POST ${api.customerDeleteById}` ]" type="danger" size="mini"

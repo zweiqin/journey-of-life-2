@@ -42,10 +42,10 @@
 				/>
 			</el-form-item>
 			<el-form-item label="客户等级" prop="customerLevel">
-				<el-input
+				<!-- <el-input
 					v-model="formData.customerLevel"
 					placeholder="请选择客户等级"
-				/>
+					/> -->
 				<el-select v-model="formData.customerLevel" prop="customerLevel" clearable class="filter-item" style="width: 200px;" placeholder="请选择客户等级">
 					<el-option label="潜在客户" :value="1" />
 					<el-option label="开发中" :value="2" />

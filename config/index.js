@@ -16,13 +16,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-			// '/dev': {
-			// 	target:'http://192.168.0.117:8790/samrtWorker',
-			// 	changeOrigin: true,
-			// 	pathRewrite: {
-			// 		'^dev': ''
-			// 	}
-			// }
+			'/dev': {
+				// target:'http://192.168.0.117:8790/samrtWorker',
+				target:'https://www.zhult.com/samrtWorker',
+				changeOrigin: true,
+				pathRewrite: {
+					'^dev': ''
+				}
+			}
 		},
     https: false,
     // Various Dev Server settings

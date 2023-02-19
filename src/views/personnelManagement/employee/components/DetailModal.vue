@@ -32,7 +32,10 @@
 				{{ formData.employeePassword || '--' }}
 			</el-form-item>
 			<el-form-item label="员工头像" prop="employeeHead">
-				{{ formData.employeeHead || '--' }}
+				<div v-if="formData.employeeHead">
+					<el-image :src="formData.employeeHead" style="width:80px; height:80px; margin-right: 10px;" fit="cover" :preview-src-list="[ formData.employeeHead ]" />
+				</div>
+				<span v-else>--</span>
 			</el-form-item>
 			<el-form-item label="员工职位" prop="employeePosition">
 				{{ formData.employeePosition || '--' }}

@@ -81,12 +81,20 @@ export const columns = [
 		align: 'center',
 		field: 'driverNoPath',
 		title: '驾驶证',
+		showOverflow: false,
+		slots: {
+			default: 'driverNoPath'
+		},
 		width: 150
 	},
 	{
 		align: 'center',
 		field: 'driverLicensePath',
 		title: '行驶证',
+		showOverflow: false,
+		slots: {
+			default: 'driverLicensePath'
+		},
 		width: 150
 	},
 	// {

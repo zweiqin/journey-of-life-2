@@ -29,8 +29,14 @@
 			ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="POST"
 			:api-path="api.getEmployeeList" :columns="columns" page-alias="pageNo" size-alias="pageSize"
 		>
+			<template #employeeGender="{ row }">
+				<span v-if="row.employeeGender === 1">男</span>
+				<span v-else-if="row.employeeGender === 2">女</span>
+				<span v-else>--</span>
+			</template>
 			<template #employeeHead="{ row }">
-				<span>{{ row.employeeHead }}</span>
+				<el-image v-if="row.employeeHead" :src="row.employeeHead" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.employeeHead ]" />
+				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">
 				<el-button

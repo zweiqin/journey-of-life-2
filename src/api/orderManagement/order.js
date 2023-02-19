@@ -5,7 +5,8 @@
 import request from '@/utils/request'
 
 export const api = {
-	orderPagelist: '/api/order/orderPagelist'
+	orderPagelist: '/api/order/orderPagelist',
+	getOrderInfo: '/api/order/getOrderInfo'
 }
 
 // // 订单管理列表
@@ -16,4 +17,13 @@ export const api = {
 // 		params
 // 	})
 // }
+
+// 订单详情
+export function getOrderInfo(data) {
+	return request({
+		url: api.getOrderInfo,
+		method: 'POST',
+		data
+	})
+}
 

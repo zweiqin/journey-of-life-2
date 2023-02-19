@@ -24,6 +24,10 @@ export const columns = [
 		align: 'center',
 		field: 'employeeGender',
 		title: '员工性别',
+		showOverflow: false,
+		slots: {
+			default: 'employeeGender'
+		},
 		width: 150
 	},
 	{

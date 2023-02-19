@@ -31,47 +31,103 @@
 			:api-path="api.orderPagelist" :columns="columns" page-alias="pageNo" size-alias="pageSize"
 		>
 			<template #createUserType="{ row }">
-				<span>{{ row.createUserType }}</span>
+				<span v-if="row.createUserType === 1">货主</span>
+				<span v-else-if="row.createUserType === 2">物流</span>
+				<span v-else-if="row.createUserType === 3">站长</span>
+				<span v-else>--</span>
 			</template>
 			<template #paymentMethod="{ row }">
-				<span>{{ row.paymentMethod }}</span>
+				<span v-if="row.paymentMethod === 1">现付</span>
+				<span v-else-if="row.paymentMethod === 2">到付</span>
+				<span v-else>--</span>
 			</template>
 			<template #deliveryType="{ row }">
-				<span>{{ row.deliveryType }}</span>
+				<span v-if="row.deliveryType === 1">送货安装</span>
+				<span v-else-if="row.deliveryType === 2">送货到家</span>
+				<span v-else-if="row.deliveryType === 3">送货到楼下</span>
+				<span v-else-if="row.deliveryType === 4">客户自提</span>
+				<span v-else>--</span>
+			</template>
+			<template #orderChargeDetails="{ row }">
+				<div v-if="row.orderChargeDetails">
+					<span>超距费：{{ JSON.parse(row.orderChargeDetails).exceedDistancePrice || '--' }}；</span>
+					<span>超方费：{{ JSON.parse(row.orderChargeDetails).exceedPartyPrice || '--' }}；</span>
+					<span>安装费用：{{ JSON.parse(row.orderChargeDetails).installAmount || '--' }}；</span>
+					<span>起步价：{{ JSON.parse(row.orderChargeDetails).startPrice || '--' }}；</span>
+					<span>订单总费用：{{ JSON.parse(row.orderChargeDetails).sumPrice || '--' }}；</span>
+					<span>会员价：{{ JSON.parse(row.orderChargeDetails).vipPrice || '--' }}；</span>
+					<span>上楼费：{{ JSON.parse(row.orderChargeDetails).upstairsPrice || '--' }}</span>
+				</div>
+				<span v-else>--</span>
 			</template>
 			<template #status="{ row }">
-				<span>{{ row.status }}</span>
+				<span v-if="row.status === 0">待支付</span>
+				<span v-else-if="row.status === 1">待接单</span>
+				<span v-else-if="row.status === 2">待报价</span>
+				<span v-else-if="row.status === 3">待分配</span>
+				<span v-else-if="row.status === 4">已分配</span>
+				<span v-else-if="row.status === 5">配送中</span>
+				<span v-else-if="row.status === 6">已完成</span>
+				<span v-else-if="row.status === 7">已取消</span>
+				<span v-else-if="row.status === 8">异常</span>
+				<span v-else>--</span>
 			</template>
 			<template #isHasElevator="{ row }">
-				<span>{{ row.isHasElevator }}</span>
+				<span v-if="row.isHasElevator === 0">无</span>
+				<span v-else-if="row.isHasElevator === 1">有</span>
+				<span v-else>--</span>
 			</template>
 			<template #isDelete="{ row }">
-				<span>{{ row.isDelete }}</span>
+				<span v-if="row.isDelete === 0">未删除</span>
+				<span v-else-if="row.isDelete === 1">已删除</span>
+				<span v-else>--</span>
 			</template>
 			<template #signUrl="{ row }">
-				<span>{{ row.signUrl }}</span>
+				<div v-if="row.signUrl && row.signUrl.split(',').length">
+					<el-image :src="row.signUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.signUrl.split(',')" />
+					<span v-if="row.signUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.signUrl.split(',').length }}</span>
+				</div>
+				<span v-else>--</span>
 			</template>
 			<template #signatureUrl="{ row }">
-				<span>{{ row.signatureUrl }}</span>
+				<div v-if="row.signatureUrl && row.signatureUrl.split(',').length">
+					<el-image :src="row.signatureUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.signatureUrl.split(',')" />
+					<span v-if="row.signatureUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.signatureUrl.split(',').length }}</span>
+				</div>
+				<span v-else>--</span>
 			</template>
 			<template #exceptionUrl="{ row }">
-				<span>{{ row.exceptionUrl }}</span>
+				<div v-if="row.exceptionUrl && row.exceptionUrl.split(',').length">
+					<el-image :src="row.exceptionUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.exceptionUrl.split(',')" />
+					<span v-if="row.exceptionUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.exceptionUrl.split(',').length }}</span>
+				</div>
+				<span v-else>--</span>
 			</template>
 			<template #orderType="{ row }">
-				<span>{{ row.orderType }}</span>
+				<span v-if="row.orderType === 1">常规单</span>
+				<span v-else-if="row.orderType === 2">加急单</span>
+				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">
 				<el-button
+					v-permission="[ `POST ${api.getOrderInfo}` ]" size="mini"
+					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)"
+				>
+					详情
+				</el-button>
+				<!-- <el-button
 					v-permission="[ `POST ${api.staffDelete}` ]" type="danger" size="mini"
 					@click="handleDelete(row)"
-				>
+					>
 					分配
-				</el-button>
+					</el-button> -->
 			</template>
 		</VxeTable>
 
 		<!-- 新增编辑 -->
 		<!-- <EditModal ref="EditModal" :list="statusList" @success="getList" /> -->
+		<!-- 查看详情 -->
+		<DetailModal ref="DetailModal" @success="getList" />
 	</div>
 </template>
 
@@ -82,13 +138,15 @@ import {
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
 // import EditModal from './components/EditModal'
+import DetailModal from './components/DetailModal'
 import { columns } from './table'
 
 export default {
 	name: 'OrderList',
 	components: {
 		VxeTable,
-		TableTools
+		TableTools,
+		DetailModal
 		// EditModal
 	},
 	filters: {},

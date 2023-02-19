@@ -22,31 +22,49 @@
 			:api-path="api.getMasterPageList" :columns="columns" page-alias="pageNo" size-alias="pageSize"
 		>
 			<template #gender="{ row }">
-				<span>{{ row.gender }}</span>
+				<span v-if="row.gender === 0">男</span>
+				<span v-else-if="row.gender === 1">女</span>
+				<span v-else>--</span>
 			</template>
 			<template #headUrl="{ row }">
-				<span>{{ row.headUrl }}</span>
+				<el-image v-if="row.headUrl" :src="row.headUrl" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.headUrl ]" />
+				<span v-else>--</span>
 			</template>
 			<template #certImg1="{ row }">
-				<span>{{ row.certImg1 }}</span>
+				<el-image v-if="row.certImg1" :src="row.certImg1" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg1 ]" />
+				<span v-else>--</span>
 			</template>
 			<template #certImg2="{ row }">
-				<span>{{ row.certImg2 }}</span>
+				<el-image v-if="row.certImg2" :src="row.certImg2" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg2 ]" />
+				<span v-else>--</span>
+			</template>
+			<template #driverNoPath="{ row }">
+				<el-image v-if="row.driverNoPath" :src="row.driverNoPath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverNoPath ]" />
+				<span v-else>--</span>
+			</template>
+			<template #driverLicensePath="{ row }">
+				<el-image v-if="row.driverLicensePath" :src="row.driverLicensePath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverLicensePath ]" />
+				<span v-else>--</span>
 			</template>
 			<template #skillList="{ row }">
 				<span>{{ row.skillList }}</span>
 			</template>
 			<template #workState="{ row }">
-				<span>{{ row.workState }}</span>
+				<span v-if="row.workState === 0">在职</span>
+				<span v-else-if="row.workState === 1">离职</span>
+				<span v-else>--</span>
 			</template>
 			<template #state="{ row }">
-				<span>{{ row.state }}</span>
+				<span v-if="row.state === 0">有效</span>
+				<span v-else-if="row.state === 1">无效</span>
+				<span v-else>--</span>
 			</template>
 			<template #typ="{ row }">
 				<span>{{ row.typ }}</span>
 			</template>
 			<template #carImg="{ row }">
-				<span>{{ row.carImg }}</span>
+				<el-image v-if="row.carImg" :src="row.carImg" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.carImg ]" />
+				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">
 				<el-button
