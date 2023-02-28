@@ -16,14 +16,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-			'/dev': {
-				// target:'http://192.168.0.117:8790/samrtWorker',
-				target:'https://www.zhult.com/samrtWorker',
-				changeOrigin: true,
-				pathRewrite: {
-					'^dev': ''
-				}
-			}
+			// '/dev': {
+			// 	// target:'http://192.168.0.117:8790/samrtWorker',
+			// 	target:'https://www.zhult.com/samrtWorker',
+			// 	changeOrigin: true,
+			// 	pathRewrite: {
+			// 		'^dev': ''
+			// 	}
+			// }
 		},
     https: false,
     // Various Dev Server settings
@@ -32,7 +32,7 @@ module.exports = {
     // if you want dev by ip, please set host: '0.0.0.0'
     host: 'localhost',
     // host: '192.168.0.33',
-    port: 80, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 81, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: false,

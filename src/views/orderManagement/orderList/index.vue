@@ -48,18 +48,18 @@
 				<span v-else-if="row.deliveryType === 4">客户自提</span>
 				<span v-else>--</span>
 			</template>
-			<template #orderChargeDetails="{ row }">
+			<!-- <template #orderChargeDetails="{ row }">
 				<div v-if="row.orderChargeDetails">
-					<span>超距费：{{ JSON.parse(row.orderChargeDetails).exceedDistancePrice || '--' }}；</span>
-					<span>超方费：{{ JSON.parse(row.orderChargeDetails).exceedPartyPrice || '--' }}；</span>
-					<span>安装费用：{{ JSON.parse(row.orderChargeDetails).installAmount || '--' }}；</span>
-					<span>起步价：{{ JSON.parse(row.orderChargeDetails).startPrice || '--' }}；</span>
-					<span>订单总费用：{{ JSON.parse(row.orderChargeDetails).sumPrice || '--' }}；</span>
-					<span>会员价：{{ JSON.parse(row.orderChargeDetails).vipPrice || '--' }}；</span>
-					<span>上楼费：{{ JSON.parse(row.orderChargeDetails).upstairsPrice || '--' }}</span>
+				<span>超距费：{{ JSON.parse(row.orderChargeDetails).exceedDistancePrice || '--' }}；</span>
+				<span>超方费：{{ JSON.parse(row.orderChargeDetails).exceedPartyPrice || '--' }}；</span>
+				<span>安装费用：{{ JSON.parse(row.orderChargeDetails).installAmount || '--' }}；</span>
+				<span>起步价：{{ JSON.parse(row.orderChargeDetails).startPrice || '--' }}；</span>
+				<span>订单总费用：{{ JSON.parse(row.orderChargeDetails).sumPrice || '--' }}；</span>
+				<span>会员价：{{ JSON.parse(row.orderChargeDetails).vipPrice || '--' }}；</span>
+				<span>上楼费：{{ JSON.parse(row.orderChargeDetails).upstairsPrice || '--' }}</span>
 				</div>
 				<span v-else>--</span>
-			</template>
+				</template> -->
 			<template #status="{ row }">
 				<span v-if="row.status === 0">待支付</span>
 				<span v-else-if="row.status === 1">待接单</span>
@@ -106,6 +106,7 @@
 			<template #orderType="{ row }">
 				<span v-if="row.orderType === 1">常规单</span>
 				<span v-else-if="row.orderType === 2">加急单</span>
+				<span v-else-if="row.orderType === 3">顺路单</span>
 				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">
@@ -115,17 +116,25 @@
 				>
 					详情
 				</el-button>
-				<!-- <el-button
-					v-permission="[ `POST ${api.staffDelete}` ]" type="danger" size="mini"
-					@click="handleDelete(row)"
-					>
+				<el-button
+					v-permission="[ `POST ${api.createOrderExtra}` ]" type="warning" size="mini" :disabled="row.status == 7 || row.status == 8"
+					@click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)"
+				>
+					追加金额
+				</el-button>
+				<el-button
+					v-permission="[ `POST ${api.updateByOrderNoStatus}` ]" type="danger" size="mini" :disabled="row.status != 3"
+					@click="$refs.Distribution && $refs.Distribution.handleOpen(row)"
+				>
 					分配
-					</el-button> -->
+				</el-button>
 			</template>
 		</VxeTable>
 
-		<!-- 新增编辑 -->
-		<!-- <EditModal ref="EditModal" :list="statusList" @success="getList" /> -->
+		<!-- 分配 -->
+		<Distribution ref="Distribution" @success="getList" />
+		<!-- 分配 -->
+		<AdditionalAmount ref="AdditionalAmount" @success="getList" />
 		<!-- 查看详情 -->
 		<DetailModal ref="DetailModal" @success="getList" />
 	</div>
@@ -137,7 +146,8 @@ import {
 } from '@/api/orderManagement/order'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
-// import EditModal from './components/EditModal'
+import Distribution from './components/Distribution'
+import AdditionalAmount from './components/AdditionalAmount'
 import DetailModal from './components/DetailModal'
 import { columns } from './table'
 
@@ -146,8 +156,9 @@ export default {
 	components: {
 		VxeTable,
 		TableTools,
-		DetailModal
-		// EditModal
+		DetailModal,
+		Distribution,
+		AdditionalAmount
 	},
 	filters: {},
 	data() {
@@ -180,16 +191,16 @@ export default {
 		},
 		handleStatusChange(status) {
 			this.listQuery = { ...this.listQuery, status }
-		},
-		async handleUpdate({ id, value, sortOrder }) {
-			this.$refs.EditModal && this.$refs.EditModal.handleOpen({ id, value, sortOrder })
-		},
-		async handleDelete({ id }) {
-			await this.$elConfirm('确认删除?')
-			await staffDelete({ id })
-			this.$elMessage('删除成功!')
-			this.getList()
 		}
+		// handleUpdate({ id, value, sortOrder }) {
+		// 	this.$refs.EditModal && this.$refs.EditModal.handleOpen({ id, value, sortOrder })
+		// }
+		// async handleDelete({ id }) {
+		// 	await this.$elConfirm('确认删除?')
+		// 	await staffDelete({ id })
+		// 	this.$elMessage('删除成功!')
+		// 	this.getList()
+		// }
 	}
 }
 </script>

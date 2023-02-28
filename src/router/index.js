@@ -61,13 +61,13 @@ export const constantRouterMap = [
 	{
 		path: '',
 		component: Layout,
-		redirect: 'dashboard',
+		redirect: 'homepage',
 		children: [
 			{
-				path: 'dashboard',
+				path: 'homepage',
 				component: () => import('@/views/homepage/index'),
-				name: 'Dashboard',
-				meta: { title: 'dashboard', icon: 'home', noCache: true }
+				name: 'Homepage',
+				meta: { title: 'homepage', icon: 'home', noCache: true }
 			}
 		]
 	}
@@ -80,73 +80,142 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-	// {
-	// 	path: '/receivingManagement',
-	// 	component: () => import('@/views/homepage/index'),
-	// 	name: 'OrderList',
-	// 	meta: {
-	// 		// perms: [ 'GET /admin/order/list' ],
-	// 		title: '订单列表',
-	// 		icon: 'order',
-	// 		noCache: true
-	// 	}
-	// },
 	{
-		path: '/orderManagement',
+		path: '/receivingManagement',
 		component: Layout,
 		alwaysShow: true,
 		redirect: 'noredirect',
 		meta: {
-			title: '工作台',
+			title: '接单管理',
 			icon: 'order',
 			noCache: true
 		},
 		children: [
 			{
 				path: 'ReceivingList',
-				component: () => import('@/views/orderManagement/receivingList'),
+				component: () => import('@/views/receivingManagement/receivingList'),
 				name: 'ReceivingList',
 				meta: {
 					// perms: [ 'GET /admin/order/list' ],
 					title: '接单管理',
 					noCache: true
 				}
-			},
+			}
+		]
+	},
+	{
+		path: '/orderManagement',
+		component: Layout,
+		alwaysShow: true,
+		redirect: 'noredirect',
+		meta: {
+			title: '订单管理',
+			icon: 'order',
+			noCache: true
+		},
+		children: [
 			{
 				path: 'orderList',
 				component: () => import('@/views/orderManagement/orderList'),
 				name: 'OrderList',
 				meta: {
-					title: '订单管理',
+					title: '订单列表',
 					noCache: true
 				}
 			}
+			// {
+			// 	path: 'abnormalOrder',
+			// 	component: () => import('@/views/orderManagement/abnormalOrder'),
+			// 	name: 'AbnormalOrder',
+			// 	meta: {
+			// 		title: '异常订单',
+			// 		noCache: true
+			// 	}
+			// },
+			// {
+			// 	path: 'amountOrder',
+			// 	component: () => import('@/views/orderManagement/amountOrder'),
+			// 	name: 'AmountOrder',
+			// 	meta: {
+			// 		title: '追加金额订单',
+			// 		noCache: true
+			// 	}
+			// }
 		]
 	},
 	{
-		path: '/personnelManagement',
+		path: '/enterprise',
 		component: Layout,
 		alwaysShow: true,
 		redirect: 'noredirect',
 		meta: {
-			title: '人员管理',
+			title: '企业管理',
 			icon: 'user',
 			noCache: true
 		},
 		children: [
 			{
-				path: 'master',
-				component: () => import('@/views/personnelManagement/master'),
-				name: 'Master',
+				path: 'baseInfo',
+				component: () => import('@/views/enterprise/baseInfo'),
+				name: 'BaseInfo',
 				meta: {
-					title: '师傅管理',
+					title: '站长信息',
 					noCache: true
 				}
 			},
 			{
+				path: 'wallet',
+				component: () => import('@/views/enterprise/wallet'),
+				name: 'Wallet',
+				meta: {
+					title: '钱包管理',
+					noCache: true
+				}
+			},
+			{
+				path: 'masterManagement',
+				alwaysShow: true,
+				component: () => import('@/views/children'),
+				redirect: 'noredirect',
+				name: 'Children',
+				meta: {
+					title: '师傅管理',
+					noCache: true
+				},
+				children: [
+					{
+						path: 'masterList',
+						component: () => import('@/views/enterprise/masterManagement/masterList'),
+						name: 'MasterList',
+						meta: {
+							title: '师傅列表',
+							noCache: true
+						}
+					},
+					{
+						path: 'cooperativeMaster',
+						component: () => import('@/views/enterprise/masterManagement/cooperativeMaster'),
+						name: 'CooperativeMaster',
+						meta: {
+							title: '已合作师傅',
+							noCache: true
+						}
+					},
+					{
+						path: 'blockMaster',
+						component: () => import('@/views/enterprise/masterManagement/blockMaster'),
+						name: 'BlockMaster',
+						meta: {
+							title: '已拉黑师傅',
+							noCache: true
+						}
+					}
+				]
+			},
+			{
 				path: 'customer',
-				component: () => import('@/views/personnelManagement/customer'),
-				name: 'customer',
+				component: () => import('@/views/enterprise/customer'),
+				name: 'Customer',
 				meta: {
 					title: '客户管理',
 					noCache: true
@@ -154,7 +223,7 @@ export const asyncRouterMap = [
 			},
 			{
 				path: 'employee',
-				component: () => import('@/views/personnelManagement/employee'),
+				component: () => import('@/views/enterprise/employee'),
 				name: 'Employee',
 				meta: {
 					title: '员工管理',

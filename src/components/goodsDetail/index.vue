@@ -127,7 +127,7 @@ export default {
 		formData: {
 			handler(newV, oldV) {
 				const texture = this.goodsTextureList.find((element) => element.id === newV.textureId)
-				texture ? this.goodsTexture = texture.value : this.goodsTexture = '未知'
+				texture ? this.goodsTexture = texture.materialName : this.goodsTexture = '未知'
 				const style = this.goodsStyleList.find((element) => element.id === newV.styleId)
 				style ? this.goodsStyle = style.value : this.goodsStyle = '未知'
 			},
@@ -149,6 +149,8 @@ export default {
 	display: inline-block;
 	border: 2px solid #000;
 	vertical-align: top;
+	box-sizing: content-box;
+	overflow: hidden;
 
 	.carousel-wrapper {
 		position: relative;
@@ -353,7 +355,7 @@ export default {
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
-		z-index: 10000000;
+		z-index: 1;
 
 		.icon-wrapper {
 			display: flex;

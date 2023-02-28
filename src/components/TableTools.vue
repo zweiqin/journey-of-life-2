@@ -7,10 +7,7 @@
 			<el-button v-if="refresh" icon="el-icon-refresh" @click="onRefresh">刷新</el-button>
 			<el-button v-if="download" icon="el-icon-download" @click="onDownload">导出</el-button>
 			<CustomColumn
-				v-if="customField"
-				ref="customColumn"
-				:is-request="false"
-				@update-fields="updateFields"
+				v-if="customField" ref="customColumn" :is-request="false" @update-fields="updateFields"
 				@submit="submitFields"
 			/>
 		</div>
@@ -50,6 +47,11 @@ export default {
 			})
 		}
 	},
+	data() {
+		return {
+			has_checkbox: false
+		}
+	},
 	mounted() {
 		this.customField && this.getFields()
 	},
@@ -66,14 +68,21 @@ export default {
 				// const { data } = await getFields()
 				const { columnsOptions, localKey, defaultFields = [] } = this.customColumnsConfig
 				const data = XEUtils.mapTree(XEUtils.clone(columnsOptions, true), (item) => {
-					item.system = !!item.fixed
+					// console.log(item)
+					if ([undefined, '$index', 'operate'].includes(item.field)) {
+						item.system = true
+					} else {
+						item.system = false
+					}
 					return item
 				})
+				const newData = cloneDeep(data.filter((v) => v.type !== 'checkbox'))
+				this.has_checkbox = newData.length !== data.length
 				const newFields = {
 					localKey,
-					columns: cloneDeep(data),
+					columns: cloneDeep(newData),
 					defaultFields: Array.isArray(defaultFields) && defaultFields.length ? defaultFields : columnsOptions.map((v) => v.field),
-					sourceColumns: cloneDeep(data)
+					sourceColumns: cloneDeep(newData)
 				}
 				this.$refs.customColumn.createFields(newFields)
 				resolve()
@@ -83,6 +92,15 @@ export default {
 		updateFields(newColumns) {
 			const { localKey } = this.customColumnsConfig
 			this.columns = resizableRegain(localKey, newColumns) // resizableRegain 会读取用户拖拽过表格的列宽的记录
+			if (this.has_checkbox) {
+				this.columns.unshift({
+					type: 'checkbox',
+					width: 50,
+					fixed: 'left',
+					align: 'right',
+					resizable: false
+				})
+			}
 			this.$emit('update-fields', this.columns)
 		},
 		// 提交自定义字段
@@ -94,28 +112,31 @@ export default {
 				type: 'success'
 			})
 		},
-		getCustomColumns() {}
+		getCustomColumns() { }
 	}
 }
 </script>
 
 <style lang="scss" scoped>
 .table-tools {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 8px;
-  &-left {
-    flex: 1;
-    padding-right: 12px;
-  }
-  &-right {
-    min-width: 200px;
-    display: flex;
-    justify-content: flex-end;
-    .el-button {
-      padding-left: 8px;
-    }
-  }
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 8px;
+
+	&-left {
+		flex: 1;
+		padding-right: 12px;
+	}
+
+	&-right {
+		min-width: 200px;
+		display: flex;
+		justify-content: flex-end;
+
+		.el-button {
+			padding-left: 8px;
+		}
+	}
 }
 </style>

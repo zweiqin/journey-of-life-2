@@ -1,79 +1,79 @@
-
-<!----------------------------------------------------------------------------------
-about：树选择
------------------------------------------------------------------------------------>
+<!-- --------------------------------------------------------------------------------
+	about：树选择
+	--------------------------------------------------------------------------------- -->
 <template>
-  <div class="jufeng-deep-box-wrap">
-    <div class="deep-box-no-children" v-for="item in fields.filter(item => !item.children.length)" :key="item.field">
-      <div class="check-item" :class="{ disabled: item.system }" :style="{color: colors[item.level - 2]}" @click.stop="item.system ? '' : checkChange(item)">
-        <span class="check-box-pointer" :class="{ checked: item.selectFlag === 2 }" />
-        {{ item.alias || item.title || item.label }}
-      </div>
-    </div>
-    <div class="deep-box-has-children" v-for="item in fields.filter(item => item.children.length)" :key="item.field">
-      <div class="check-item" :style="{color: colors[item.level - 1], fontWeight: item.level === 1 ? 'bold' : ''}" @click.stop="checkChange(item, true)">
-        <span class="check-box-pointer" :class="{ checked: item.selectFlag === 2, indeterminate: item.selectFlag === 3 }" />
-        {{ item.alias || item.title || item.label }}
-      </div>
-      <tree-selection :fields="item.children" :style="{ paddingLeft: 24 + 'px' }" @ochange="ochange(item)" @change="change"></tree-selection>
-    </div>
-  </div>
+	<div class="jufeng-deep-box-wrap">
+		<div v-for="item in fields.filter(item => !item.children.length)" :key="item.field" class="deep-box-no-children">
+			<div class="check-item" :class="{ disabled: item.system }" :style="{ color: colors[item.level - 2] }" @click.stop="item.system ? '' : checkChange(item)">
+				<span class="check-box-pointer" :class="{ checked: item.selectFlag === 2 }" />
+				{{ item.alias || item.title || item.label }}
+			</div>
+		</div>
+		<div v-for="item in fields.filter(item => item.children.length)" :key="item.field" class="deep-box-has-children">
+			<div class="check-item" :style="{ color: colors[item.level - 1], fontWeight: item.level === 1 ? 'bold' : '' }" @click.stop="checkChange(item, true)">
+				<span class="check-box-pointer" :class="{ checked: item.selectFlag === 2, indeterminate: item.selectFlag === 3 }" />
+				{{ item.alias || item.title || item.label }}
+			</div>
+			<tree-selection :fields="item.children" :style="{ paddingLeft: 24 + 'px' }" @ochange="ochange(item)" @change="change"></tree-selection>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
-  name: 'TreeSelection',
-  model: 'menu',
-  props: {
-    fields: {
-      type: Array,
-      default: () => []
-    },
-    isBtn: Boolean
-  },
-  data () {
-    return {
-      colors: ['rgba(0, 0, 0, 0.85)', '#333', '#555', '#555', '#555']
-    }
-  },
-  methods: {
-    /** @param  selectFlag 1 未选中 2选中 3 半选 */
-    checkChange (item, deep = false) {
-      const flag = item.selectFlag === 3 ? 2 : item.selectFlag === 1 ? 2 : 1
-      item.selectFlag = flag
-      if (deep) {
-        this.deepChange(item.children, flag)
-      }
-      this.$emit('ochange')
-      this.$emit('change', item)
-      setTimeout(() => {
-        this.$forceUpdate()
-      }, 0)
-    },
-    // 向下传递
-    deepChange (data, flag) {
-      for (const i of data) {
-        i.selectFlag = flag
-        if (i.children.length) {
-          this.deepChange(i.children, flag)
-        }
-      }
-    },
-    change (item) {
-      this.$emit('change', item)
-    },
-    // 向上传递
-    ochange (val) {
-      let count = 0
-      for (const i of val.children) {
-        if (i.selectFlag === 2) {
-          count += 1
-        }
-      }
-      val.selectFlag = count === val.children.length ? 2 : count ? 3 : 1
-      this.$emit('ochange')
-    }
-  }
+	name: 'TreeSelection',
+	model: 'menu',
+	props: {
+		fields: {
+			type: Array,
+			default: () => []
+		},
+		isBtn: Boolean
+	},
+	data() {
+		return {
+			colors: ['rgba(0, 0, 0, 0.85)', '#333', '#555', '#555', '#555']
+		}
+	},
+	methods: {
+		/** @param  selectFlag 1 未选中 2选中 3 半选 */
+
+		checkChange(item, deep = false) {
+			const flag = item.selectFlag === 3 ? 2 : item.selectFlag === 1 ? 2 : 1
+			item.selectFlag = flag
+			if (deep) {
+				this.deepChange(item.children, flag)
+			}
+			this.$emit('ochange')
+			this.$emit('change', item)
+			setTimeout(() => {
+				this.$forceUpdate()
+			}, 0)
+		},
+		// 向下传递
+		deepChange(data, flag) {
+			for (const i of data) {
+				i.selectFlag = flag
+				if (i.children.length) {
+					this.deepChange(i.children, flag)
+				}
+			}
+		},
+		change(item) {
+			this.$emit('change', item)
+		},
+		// 向上传递
+		ochange(val) {
+			let count = 0
+			for (const i of val.children) {
+				if (i.selectFlag === 2) {
+					count += 1
+				}
+			}
+			val.selectFlag = count === val.children.length ? 2 : count ? 3 : 1
+			this.$emit('ochange')
+		}
+	}
 }
 </script>
 

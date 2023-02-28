@@ -144,9 +144,9 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		page: {
-			type: Object,
-			default: () => ({})
+		pageTotal: {
+			type: Number,
+			default: 0
 		},
 		// 需要减去的高度
 		diffHeight: {
@@ -269,15 +269,25 @@ export default {
 
 				const { data } = res
 				this.$emit('fetch-data', res)
-				let postData = this.resAlias ? data[this.resAlias] : data.items
-				const page = this.searchParams[this.pageAlias]
-				const pageSize = this.searchParams[this.sizeAlias]
+				let postData
+				let page
+				let pageSize
+				if (this.isPager) {
+					postData = this.resAlias ? data[this.resAlias] : data.items
+					page = this.searchParams[this.pageAlias]
+					pageSize = this.searchParams[this.sizeAlias]
+					this.pagination.total = data.total
+				} else {
+					postData = data
+					page = this.searchParams[this.pageAlias] || 1
+					pageSize = this.searchParams[this.sizeAlias] || (data ? data.length : 0)
+					this.pagination.total = data ? data.length : 0
+				}
 				this.showIndex && (postData = postData.map((v, i) => ({
 					...v,
 					$index: (page - 1) * pageSize + (i + 1)
 				})))
 				this.postData = postData
-				this.pagination.total = data.total
 				this.$emit('post-data', cloneDeep(this.postData))
 				this.isDataLoading = false
 			} catch (e) {
@@ -286,24 +296,27 @@ export default {
 			}
 		},
 		onPageChange(val) {
-			console.log('onPageChange')
+			const params = {
+				[this.pageAlias]: val,
+				[this.sizeAlias]: this.searchParams[this.sizeAlias]
+			}
 			if (this.isRequest) {
-				this.$emit('update:searchParams', Object.assign(this.searchParams, { [this.pageAlias]: val }))
+				this.$emit('update:searchParams', Object.assign(this.searchParams, params))
 				this.getData()
 			} else {
-				this.$emit('pageChange', val)
+				this.$emit('pageChange', params)
 			}
 		},
 		onSizeChange(val) {
-			console.log('onSizeChange')
+			const params = {
+				[this.pageAlias]: 1,
+				[this.sizeAlias]: val
+			}
 			if (this.isRequest) {
-				this.$emit('update:searchParams', Object.assign(this.searchParams, {
-					[this.pageAlias]: 1,
-					[this.sizeAlias]: val
-				}))
+				this.$emit('update:searchParams', Object.assign(this.searchParams, params))
 				this.getData()
 			} else {
-				this.$emit('pageChange', val)
+				this.$emit('pageChange', params)
 			}
 		},
 		setTotal(total = 0) {
@@ -332,7 +345,7 @@ export default {
 		},
 		// 调用vxe-table方法
 		handleVxeTableMethod(method, ...params) {
-			this.$refs.erpVxeTable[method](...params)
+			return this.$refs.erpVxeTable[method](...params)
 		},
 		checkboxChange(...arg) {
 			this.$emit('select-change', ...arg)
@@ -349,7 +362,7 @@ export default {
 				const navbarHeight = 46
 				const tabsHeight = 62
 				const searchHeight = document.querySelector('.app-container>.filter-container') ? document.querySelector('.app-container>.filter-container').offsetHeight : 0
-				const pageHeight = this.isPager ? 55 : 20
+				const pageHeight = this.isPager ? 75 : 20
 				const otherHeight = document.querySelector('.app-container>.other-container') ? document.querySelector('.app-container>.other-container').offsetHeight : 0
 				const toolsHeight = document.querySelector('.app-container>.table-tools') ? document.querySelector('.app-container>.table-tools').offsetHeight : 0
 				const height = navbarHeight + tabsHeight + searchHeight + pageHeight + otherHeight + toolsHeight
@@ -390,19 +403,16 @@ export default {
 		const _this = this
 
 		// 添加序号
-		if (this.showIndex && columns.length && columns[0].field !== '$index') {
+		if (this.showIndex && columns.length && columns[0].field !== '$index' && columns[1].field !== '$index') {
 			columns.unshift({
-				align: 'left',
 				fixed: 'left',
 				field: '$index',
+				resizable: false,
 				title: '序号',
 				width: 50
 			})
 		}
 		XEUtils.eachTree(columns, function (column) {
-			// 添加边框className
-			const className = 'table-border-group'
-
 			// 内置表头
 			if (column.$titleHelp) {
 				const $titleHelp = column.$titleHelp
@@ -423,12 +433,12 @@ export default {
 			} else {
 				column.slots = column.slots || {}
 			}
-			Object.keys(column).forEach((key) => {
-				if (key.match(/[A-Z]/g)) {
-					column[key.replace(/([A-Z])/g, (p, m) => `-${m.toLowerCase()}`)] = column[key]
-					delete column[key]
-				}
-			})
+			// Object.keys(column).forEach((key) => {
+			// 	if (key.match(/[A-Z]/g)) {
+			// 		column[key.replace(/([A-Z])/g, (p, m) => `-${m.toLowerCase()}`)] = column[key]
+			// 		delete column[key]
+			// 	}
+			// })
 		})
 
 		const props = { height: option.height || tableHeight, columns, data, ...option }
@@ -448,7 +458,8 @@ export default {
 			props: {
 				currentPage: this.searchParams[this.pageAlias],
 				pageSize: this.searchParams[this.sizeAlias],
-				...pagination
+				...pagination,
+				total: this.pageTotal || pagination.total
 			},
 			on: {
 				'current-change': this.onPageChange,
@@ -476,7 +487,7 @@ export default {
 						'checkbox-change': this.checkboxChange,
 						'checkbox-all': this.checkboxAll
 					}
-				// directives: [ { name: 'tableHeight' } ]
+					// directives: [ { name: 'tableHeight' } ]
 				}, [ emptySlots ])
 			]),
 			h('div', { class: [ 'pagination-container' ] }, [

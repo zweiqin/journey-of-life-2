@@ -74,7 +74,7 @@ service.interceptors.response.use((response) => {
 		// 非5xx的错误属于业务错误，留给具体页面处理
 		return Promise.reject(response)
 	}
-	return response
+	return res
 }, (error) => {
 	console.log('err' + error)// for debug
 	Message({
