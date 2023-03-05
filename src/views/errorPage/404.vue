@@ -29,10 +29,10 @@
 					版权所有
 					<a
 						class="link-type"
-						href="https://wallstreetcn.com"
+						href="https://www.baidu.com/s?wd=后台"
 						target="_blank"
 					>
-						华尔街见闻
+						后台
 					</a>
 				</div>
 				<div class="bullshit__headline">{{ message }}</div>

@@ -2,36 +2,16 @@
 	<div class="app-container">
 
 		<!-- 查询和其他操作 -->
-		<div class="filter-container">
-			<el-radio-group v-model="listQuery.status" class="filter-item" size="mini" @input="handleStatusChange">
-				<el-radio-button :label="3">待分配</el-radio-button>
-				<el-radio-button :label="4">已分配</el-radio-button>
-				<el-radio-button :label="5">配送中</el-radio-button>
-				<el-radio-button :label="6">已完成</el-radio-button>
-				<el-radio-button :label="7">已取消</el-radio-button>
-				<!-- <el-radio-button :label="8">异常订单</el-radio-button> -->
-			</el-radio-group>
-			<!-- <el-button
-				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="primary"
-				icon="el-icon-search" style="margin-left:10px;" @click="getList"
-				>
-				查找
-				</el-button> -->
-		</div>
+		<!-- <div class="filter-container">
+			</div> -->
 
 		<TableTools
 			:custom-columns-config="customColumnsConfig" download custom-field @update-fields="updateFields"
-			@refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '订单管理')"
+			@refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '异常订单')"
 		>
-			<el-button
-				v-permission="[ `POST /admin${api.createOrder}` ]" size="mini" type="primary" icon="el-icon-plus"
-				@click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' })"
-			>
-				添加
-			</el-button>
 		</TableTools>
 
-		<!-- 订单管理列表 -->
+		<!-- 接单管理列表 -->
 		<VxeTable
 			ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="POST"
 			:api-path="api.orderPagelist" :columns="columns" page-alias="pageNo" size-alias="pageSize"
@@ -122,27 +102,9 @@
 				>
 					详情
 				</el-button>
-				<el-button
-					v-permission="[ `POST ${api.createOrderExtra}` ]" type="warning" size="mini" :disabled="row.status == 7 || row.status == 8"
-					@click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)"
-				>
-					追加金额
-				</el-button>
-				<el-button
-					v-permission="[ `POST ${api.updateByOrderNoStatus}` ]" type="danger" size="mini" :disabled="row.status != 3"
-					@click="$refs.Distribution && $refs.Distribution.handleOpen(row)"
-				>
-					分配
-				</el-button>
 			</template>
 		</VxeTable>
 
-		<!-- 新增编辑 -->
-		<EditModal ref="EditModal" @success="getList" />
-		<!-- 分配 -->
-		<Distribution ref="Distribution" @success="getList" />
-		<!-- 追加金额 -->
-		<AdditionalAmount ref="AdditionalAmount" @success="getList" />
 		<!-- 查看详情 -->
 		<DetailModal ref="DetailModal" @success="getList" />
 	</div>
@@ -154,21 +116,15 @@ import {
 } from '@/api/orderManagement/order'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
-import Distribution from './components/Distribution'
-import AdditionalAmount from './components/AdditionalAmount'
-import EditModal from './components/EditModal'
 import DetailModal from './components/DetailModal'
 import { columns } from './table'
 
 export default {
-	name: 'OrderList',
+	name: 'AbnormalOrder',
 	components: {
 		VxeTable,
 		TableTools,
-		EditModal,
-		DetailModal,
-		Distribution,
-		AdditionalAmount
+		DetailModal
 	},
 	filters: {},
 	data() {
@@ -176,14 +132,14 @@ export default {
 			api,
 			columns,
 			customColumnsConfig: {
-				localKey: 'orderList',
+				localKey: 'abnormalOrder',
 				columnsOptions: columns
 			},
 			listQuery: {
 				isZz: this.$store.state.user.typ,
 				pageNo: 1,
 				pageSize: 10,
-				status: 3
+				status: 8
 			}
 		}
 	},
@@ -198,19 +154,7 @@ export default {
 		},
 		getList(meaning) {
 			meaning === 'keepPage' ? this.listQuery = { ...this.listQuery } : this.listQuery = { ...this.listQuery, pageNo: 1 }
-		},
-		handleStatusChange(status) {
-			this.listQuery = { ...this.listQuery, status }
 		}
-		// handleUpdate({ id, value, sortOrder }) {
-		// 	this.$refs.EditModal && this.$refs.EditModal.handleOpen({ id, value, sortOrder })
-		// }
-		// async handleDelete({ id }) {
-		// 	await this.$elConfirm('确认删除?')
-		// 	await staffDelete({ id })
-		// 	this.$elMessage('删除成功!')
-		// 	this.getList()
-		// }
 	}
 }
 </script>

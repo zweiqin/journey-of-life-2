@@ -2,7 +2,7 @@
 	<el-dialog :visible.sync="visible" v-bind="modalOptions">
 		<el-form ref="formData" :model="formData" :rules="formRules" size="mini" label-suffix=":" label-width="100px">
 			<el-form-item label="追加金额" prop="extraAmount">
-				<el-input v-model.number="formData.extraAmount" maxlength="9" placeholder="请输入追加金额" />
+				<el-input v-model="formData.extraAmount" maxlength="9" placeholder="请输入追加金额" />
 			</el-form-item>
 			<el-form-item label="追加原因" prop="extraRemark">
 				<el-input

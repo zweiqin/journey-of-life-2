@@ -157,7 +157,7 @@ export default {
       align-items: center;
     }
     .breadcrumb-container {
-      height: 100%;
+      // height: 100%;
       width: 80%;
       // display: flex;
       // flex-direction: row;

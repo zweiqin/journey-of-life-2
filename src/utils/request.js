@@ -41,6 +41,16 @@ service.interceptors.response.use((response) => {
 			})
 		})
 		return Promise.reject('error')
+	} else if ((res.code === '20001' || res.code === '50002' || res.code === '20001') && res.msg.includes('登录')) {
+		MessageBox.alert('系统未登录，请重新登录', '错误', {
+			confirmButtonText: '确定',
+			type: 'error'
+		}).then(() => {
+			store.dispatch('FedLogOut').then(() => {
+				location.reload()
+			})
+		})
+		return Promise.reject('error')
 	} else if (res.code === '502') {
 		MessageBox.alert('系统内部错误，请联系管理员维护', '错误', {
 			confirmButtonText: '确定',

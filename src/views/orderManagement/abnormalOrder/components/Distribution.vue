@@ -1,15 +1,10 @@
 <template>
 	<el-dialog :visible.sync="visible" v-bind="modalOptions">
 		<el-form ref="formData" :model="formData" :rules="formRules" size="mini" label-suffix=":" label-width="100px">
-			<el-form-item label="追加金额" prop="extraAmount">
-				<el-input v-model.number="formData.extraAmount" maxlength="9" placeholder="请输入追加金额" />
-			</el-form-item>
-			<el-form-item label="追加原因" prop="extraRemark">
-				<el-input
-					v-model="formData.extraRemark" type="textarea" placeholder="请输入追加原因" maxlength="520"
-					:rows="3"
-					show-word-limit
-				/>
+			<el-form-item label="分配师傅" prop="sfUserId">
+				<el-select v-model="formData.sfUserId" placeholder="请选择师傅">
+					<el-option v-for="item in masterList" :key="item.id" :label="`${item.name}${item.mobile ? ' ' + item.mobile : ''}`" :value="item.id" />
+				</el-select>
 			</el-form-item>
 		</el-form>
 		<span slot="footer" class="dialog-footer">
@@ -21,10 +16,11 @@
 
 <script>
 // import MyUpload from '@/components/MyUpload'
-import { createOrderExtra } from '@/api/orderManagement/order'
+import { getMasterPageList } from '@/api/enterprise/master'
+import { updateByOrderNoStatus } from '@/api/orderManagement/order'
 
 export default {
-	name: 'AdditionalAmount',
+	name: 'Distribution',
 	// components: {
 	// 	MyUpload
 	// },
@@ -44,17 +40,15 @@ export default {
 			visible: false,
 			formData: {
 				orderNo: '',
-				extraAmount: '',
-				extraRemark: ''
+				sfUserId: '',
+				status: 4
 			},
 			formRules: {
-				extraAmount: [
-					{ required: true, message: '请输入追加金额' }
-				],
-				extraRemark: [
-					{ required: true, message: '请输入追加原因' }
+				sfUserId: [
+					{ required: true, message: '请选择师傅' }
 				]
-			}
+			},
+			masterList: [] // 角色列表
 		}
 	},
 	methods: {
@@ -62,19 +56,27 @@ export default {
 			this.visible = false
 		},
 		handleOpen(params = {}) {
-			this.modalOptions.title = '订单追加金额'
+			this.getMasterList()
+			this.modalOptions.title = '分配师傅'
 			this.visible = true
 			this.formData.orderNo = params.orderNo || ''
 			this.$refs.formData && this.$refs.formData.resetFields()
+		},
+		async getMasterList() {
+			const res = await getMasterPageList({
+				userId: this.$store.state.user.userId,
+				isCooperationOrisBlacklist: 1
+			})
+			this.masterList = res.data
 		},
 		async handleSubmit() {
 			if (!this.formData.orderNo) return this.$elMessage('获取订单信息失败', 'warning')
 			await this.$validatorForm('formData')
 			const loading = this.$elLoading()
 			try {
-				const res = await createOrderExtra(this.formData)
+				const res = await updateByOrderNoStatus(this.formData)
 				loading.close()
-				this.$elMessage(`追加金额成功!`)
+				this.$elMessage(`分配成功!`)
 				this.$emit('success')
 				this.visible = false
 			} catch (e) {
