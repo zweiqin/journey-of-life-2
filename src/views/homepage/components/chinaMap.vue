@@ -1,40 +1,86 @@
 <template>
-	<div class="echarts">
+	<div style="display: flex;height: 100%;">
 		<div ref="myEchart" :style="{ height, width }"></div>
+		<div class="card-panel-content" style="width: 50%;overflow: auto;">
+			<div>
+				<div>
+					<el-collapse v-model="listActiveName" accordion>
+						<el-collapse-item
+							v-for="(item, index) in serverCityAll"
+							:key="index" :title="`${item[0].province}（${item.length}）`" :name="index"
+						>
+							<div style="display: flex;flex-direction: column;">
+								<div>
+									<table cellspacing="0" style="width: 100%;">
+										<thead>
+											<tr>
+												<th class="is-leaf">
+													<div class="cell">市区</div>
+												</th>
+												<th class="is-leaf">
+													<div class="cell">城区</div>
+												</th>
+												<th class="is-leaf">
+													<div class="cell">师傅数量</div>
+												</th>
+												<th class="is-leaf">
+													<div class="cell">订单数量</div>
+												</th>
+											</tr>
+										</thead>
+										<tbody v-if="item.length">
+											<tr v-for="(element, count) in item" :key="count">
+												<td>
+													<div class="cell">
+														{{ (element.city.includes('市辖区') || element.city.includes('省直辖') ||
+															element.city === '县' ? element.province : element.city) || '--' }}
+													</div>
+												</td>
+												<td>
+													<div class="cell">{{ element.area || '--' }}</div>
+												</td>
+												<td>
+													<div class="cell">{{ element.workerCount || '--' }}</div>
+												</td>
+												<td>
+													<div class="cell">{{ element.orderSum || '--' }}</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</el-collapse-item>
+					</el-collapse>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 // import { getWorldMapData } from '@/api/common/home'
-import echarts from 'echarts' // 引入组件
-import 'echarts/map/js/world.js' // 引入组件
+import * as echarts from 'echarts' // 引入组件
+// import '@/../static/echartsMaps/js/province/guangdong.js' // 引入组件
+import request2 from '@/utils/request2'
 
 export default {
 	name: 'ChinaMap',
 	props: {
-		width: { type: String, default: '100%' },
-		height: { type: String, default: '600px' },
-		mapColor: { type: String, default: 1 }
+		serverCityAll: {
+			type: Array,
+			default() {
+				return []
+			}
+		}
 	},
 	data() {
 		return {
+			listActiveName: 0,
 			chart: null,
+			width: '50%',
+			height: '100%',
 			data: [],
-			nameMap: [],
-			color1: [
-				'#ccc',
-				'#a1c2f0',
-				'#90b7ed',
-				'#91b8ed',
-				'#4386e0',
-				'#fdd4d5',
-				'#fcb2b5',
-				'#fbadb0',
-				'#fcb1b4'
-			],
-			color2: ['#7CF9D0', '#7CC0FE', '#DEF6FF'],
-			color3: ['orangered', 'yellow', 'lightskyblue'],
-			color4: ['#e6f7ff', '#1890FF', '#0050b3'],
 			color5: ['#f6efa6', '#bf444c', '#da8575']
 		}
 	},
@@ -46,16 +92,12 @@ export default {
 		// })
 	},
 	methods: {
-		changeColor(color) {
-			this.chart.setOption({
-				visualMap: {
-					inRange: {
-						color: this['color' + color]
-					}
-				}
+		async initChart() {
+			const geoJson = await request2({
+				url: 'http://localhost:81/static/echartsMaps/100000.geoJson',
+				method: 'GET'
 			})
-		},
-		initChart() {
+			echarts.registerMap('china', { geoJSON: geoJson })
 			this.chart = echarts.init(this.$refs.myEchart)
 			window.onresize = echarts.init(this.$refs.myEchart).resize
 			// 把配置和数据放这里
@@ -63,40 +105,11 @@ export default {
 				backgroundColor: '#fff',
 				title: {
 					// 地图显示标题
-					text: '全球国家面积图',
-					subtext: 'Global logistics quotation channel quantity map',
+					text: '地图',
 					sublink: '',
 					top: '0px',
 					left: 'center',
 					textStyle: { color: '#000' }
-				},
-				visualMap: {
-					// 图列显示柱
-					type: 'continuous',
-					min: 0,
-					left: 20,
-					max: 2000,
-					text: ['2000', '0'],
-					realtime: true,
-					calculable: true,
-					showLabel: true,
-					inRange: {
-						color: this['color' + this.mapColor]
-					}
-				},
-				toolbox: {
-					// 工具栏
-					show: true,
-					orient: 'vertical',
-					left: 'right',
-					top: 50,
-					itemGap: 20,
-					left: 30,
-					feature: {
-						dataView: { readOnly: false },
-						restore: {},
-						saveAsImage: {}
-					}
 				},
 				tooltip: {
 					// 提示框组件
@@ -105,17 +118,14 @@ export default {
 				},
 				series: [
 					{
-						name: '国家面积',
 						type: 'map',
-						mapType: 'world',
+						map: 'china',
 						roam: false,
-						mapLocation: { y: 100 },
 						data: this.data, // 绑定数据
-						nameMap: this.nameMap,
-						symbolSize: 12,
+						nameMap: {},
 						label: {
-							normal: { show: false },
-							emphasis: { show: false }
+							// normal: { show: true },
+							emphasis: { show: true }
 						},
 						itemStyle: {
 							emphasis: {
@@ -130,3 +140,10 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.cell {
+	text-align: left;
+	white-space: nowrap;
+}
+</style>

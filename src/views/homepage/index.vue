@@ -1,6 +1,6 @@
 <template>
 	<div class="dashboard-editor-container">
-		<el-row :gutter="12" style="flex: 2;margin-bottom:15px;">
+		<el-row :gutter="12" style="margin-bottom:15px;">
 			<el-col :span="18">
 				<el-card class="box-card" style="padding: 8px;">
 					<div slot="header" class="clearfix">
@@ -130,9 +130,10 @@
 			</el-col>
 			</el-row> -->
 
-		<el-row style="flex: 3;overflow-y: auto;">
-			<el-col :span="24">
-				<el-card class="box-card">
+		<!-- <el-row style="flex: 3;overflow-y: auto;"> -->
+		<el-row style="flex: 1;overflow: hidden;">
+			<el-col :span="24" style="height: 100%;">
+				<el-card class="box-map-card" style="height: 100%;">
 					<div slot="header" class="clearfix">
 						<div
 							style="clip-path: polygon(0px 0px, 60% 0, 100% 50%, 60% 100%, 0px 100%);width: 16px;height: 16px;display: inline-block;background: linear-gradient(270deg, #2E70AF 0%, #071A2C 100%)"
@@ -148,66 +149,116 @@
 							</div>
 						</div>
 					</div>
-					<div>
-						<div v-if="showType === 'map'">
-							<ChinaMap ref="ChinaMapRef" :map-color="mapColor" />
+					<div style="height: 100%;">
+						<div v-if="showType === 'map'" style="height: 100%;">
+							<ChinaMap ref="ChinaMapRef" :server-city-all="serverCityAll" />
 						</div>
-						<div v-else>
-							<el-row style="flex: 3;overflow-y: auto;">
-								<el-col :span="24" class="" style="">
-									<el-card style="padding: 8px;">
-										<div slot="header">
-											<span>站长服务区域</span>
-										</div>
-										<div class="el-table el-table--enable-row-hover el-table--medium" style="">
-											<div style="">
-												<table cellspacing="0" style="width: 100%;">
-													<thead>
-														<tr>
-															<th class="is-leaf">
-																<div class="cell">省</div>
-															</th>
-															<th class="is-leaf">
-																<div class="cell">市</div>
-															</th>
-															<th class="is-leaf">
-																<div class="cell">区</div>
-															</th>
-															<th class="is-leaf">
-																<div class="cell">师傅数量</div>
-															</th>
-															<th class="is-leaf">
-																<div class="cell">订单数量</div>
-															</th>
-														</tr>
-													</thead>
-													<tbody v-if="information.serverCityList.length">
-														<tr v-for="(item, index) in information.serverCityList" :key="index">
-															<td>
-																<div class="cell">{{ item.province || '--' }}</div>
-															</td>
-															<td>
-																<div class="cell">{{ item.city || '--' }}</div>
-															</td>
-															<td>
-																<div class="cell">{{ item.area || '--' }}</div>
-															</td>
-															<td>
-																<div class="cell">{{ item.workerCount || '--' }}</div>
-															</td>
-															<td>
-																<div class="cell">{{ item.orderSum || '--' }}</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
+						<div v-else class="card-panel-content">
+							<div style="display: flex;">
+								<div style="width: 50%;">
+									<el-collapse v-model="listActiveName" accordion>
+										<el-collapse-item
+											v-for="(item, index) in serverCityAll" v-if="index <= (serverCityAll.length / 2)"
+											:key="index" :title="`${item[0].province}（${item.length}）`" :name="index"
+										>
+											<div style="display: flex;flex-direction: column;">
+												<div>
+													<table cellspacing="0" style="width: 100%;">
+														<thead>
+															<tr>
+																<th class="is-leaf">
+																	<div class="cell">市区</div>
+																</th>
+																<th class="is-leaf">
+																	<div class="cell">城区</div>
+																</th>
+																<th class="is-leaf">
+																	<div class="cell">师傅数量</div>
+																</th>
+																<th class="is-leaf">
+																	<div class="cell">订单数量</div>
+																</th>
+															</tr>
+														</thead>
+														<tbody v-if="item.length">
+															<tr v-for="(element, count) in item" :key="count">
+																<td>
+																	<div class="cell">
+																		{{ (element.city.includes('市辖区') || element.city.includes('省直辖') ||
+																			element.city === '县' ? element.province : element.city) || '--' }}
+																	</div>
+																</td>
+																<td>
+																	<div class="cell">{{ element.area || '--' }}</div>
+																</td>
+																<td>
+																	<div class="cell">{{ element.workerCount || '--' }}</div>
+																</td>
+																<td>
+																	<div class="cell">{{ element.orderSum || '--' }}</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
 											</div>
-										</div>
-									</el-card>
-								</el-col>
-							</el-row>
+										</el-collapse-item>
+									</el-collapse>
+								</div>
+								<div style="width: 50%;">
+									<el-collapse v-model="listActiveName" accordion>
+										<el-collapse-item
+											v-for="(item, index) in serverCityAll" v-if="index > (serverCityAll.length / 2)"
+											:key="index" :title="`${item[0].province}（${item.length}）`" :name="index"
+										>
+											<div style="display: flex;flex-direction: column;">
+												<div>
+													<table cellspacing="0" style="width: 100%;">
+														<thead>
+															<tr>
+																<th class="is-leaf">
+																	<div class="cell">市区</div>
+																</th>
+																<th class="is-leaf">
+																	<div class="cell">城区</div>
+																</th>
+																<th class="is-leaf">
+																	<div class="cell">师傅数量</div>
+																</th>
+																<th class="is-leaf">
+																	<div class="cell">订单数量</div>
+																</th>
+															</tr>
+														</thead>
+														<tbody v-if="item.length">
+															<tr v-for="(element, count) in item" :key="count">
+																<td>
+																	<div class="cell">
+																		{{ (element.city.includes('市辖区') || element.city.includes('省直辖') ||
+																			element.city === '县' ? element.province : element.city) || '--' }}
+																	</div>
+																</td>
+																<td>
+																	<div class="cell">{{ element.area || '--' }}</div>
+																</td>
+																<td>
+																	<div class="cell">{{ element.workerCount || '--' }}</div>
+																</td>
+																<td>
+																	<div class="cell">{{ element.orderSum || '--' }}</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</el-collapse-item>
+									</el-collapse>
+								</div>
+							</div>
 						</div>
 					</div>
+
 				</el-card>
 			</el-col>
 		</el-row>
@@ -240,10 +291,12 @@ export default {
 				exceptionNum: '',
 				serverCityList: []
 			},
+			provinceAll: [],
+			serverCityAll: [],
 			statisticalInformation: [],
 			noticeList: [],
 			showType: 'list',
-			mapColor: '5'
+			listActiveName: 0
 		}
 	},
 	created() {
@@ -265,6 +318,9 @@ export default {
 				exceptionNum: res.data.exceptionNum || 0,
 				serverCityList: res.data.serverCityList || []
 			})
+			this.provinceAll = this.information.serverCityList.filter((item, index) => this.information.serverCityList.findIndex((element) => element.province === item.province) === index).map((item) => item.province)
+			this.serverCityAll = this.provinceAll.map((item) => this.information.serverCityList.filter((element) => element.province === item))
+			// console.log(this.provinceAll, this.serverCityAll)
 			this.statisticalInformation = [{
 				icon: 'h-sumPrice',
 				name: '总余额',
@@ -329,6 +385,31 @@ export default {
 
 	.chart-wrapper {
 		background: #fff;
+	}
+
+	// .card-panel-content{
+	// 		.el-collapse{
+	// 			display: flex;
+	// 		}
+	// }
+	/deep/ .box-map-card .el-card__body {
+		height: calc(100% - 62px);
+		overflow-y: auto;
+
+		.el-collapse {
+			border-top: 0;
+		}
+
+		.el-collapse-item__header {
+			border-bottom: 0;
+			.el-collapse-item__arrow{
+				margin: 0 58px 0 auto;
+			}
+		}
+
+		.el-collapse-item__wrap {
+			border-bottom: 0;
+		}
 	}
 }
 
@@ -417,8 +498,8 @@ export default {
 	}
 }
 
-	.cell {
-		text-align: center;
-		white-space: nowrap;
-	}
+.cell {
+	text-align: left;
+	white-space: nowrap;
+}
 </style>
