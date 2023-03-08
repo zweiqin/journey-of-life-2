@@ -1,5 +1,8 @@
 export const columns = [
 	{
+		type: 'checkbox'
+	},
+	{
 		align: 'center',
 		fixed: 'left',
 		field: 'id',
@@ -38,7 +41,7 @@ export const columns = [
 	{
 		align: 'center',
 		field: 'headUrl',
-		title: '身份证图片',
+		title: '头像图片',
 		showOverflow: 'tooltip',
 		slots: {
 			default: 'headUrl'

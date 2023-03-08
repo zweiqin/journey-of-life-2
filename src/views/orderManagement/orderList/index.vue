@@ -3,20 +3,27 @@
 
 		<!-- 查询和其他操作 -->
 		<div class="filter-container">
-			<el-radio-group v-model="listQuery.status" class="filter-item" size="mini" @input="handleStatusChange">
-				<el-radio-button :label="3">待分配</el-radio-button>
-				<el-radio-button :label="4">已分配</el-radio-button>
-				<el-radio-button :label="5">配送中</el-radio-button>
-				<el-radio-button :label="6">已完成</el-radio-button>
-				<el-radio-button :label="7">已取消</el-radio-button>
-				<!-- <el-radio-button :label="8">异常订单</el-radio-button> -->
-			</el-radio-group>
-			<!-- <el-button
+			<el-input
+				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
+				placeholder="输入订单号码、订单费用、订单备注等" @keyup.enter.native="getList"
+			/>
+			<el-select
+				v-model="listQuery.status" clearable class="filter-item"
+				style="width: 200px;"
+				placeholder="选择订单状态"
+			>
+				<el-option label="待分配" :value="3" />
+				<el-option label="已分配" :value="4" />
+				<el-option label="配送中" :value="5" />
+				<el-option label="已完成" :value="6" />
+				<el-option label="已取消" :value="7" />
+			</el-select>
+			<el-button
 				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="primary"
 				icon="el-icon-search" style="margin-left:10px;" @click="getList"
-				>
+			>
 				查找
-				</el-button> -->
+			</el-button>
 		</div>
 
 		<TableTools
@@ -183,7 +190,8 @@ export default {
 				isZz: this.$store.state.user.typ,
 				pageNo: 1,
 				pageSize: 10,
-				status: 3
+				status: 3,
+				search: ''
 			}
 		}
 	},

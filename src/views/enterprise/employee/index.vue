@@ -3,7 +3,7 @@
 
 		<!-- 查询和其他操作 -->
 		<div class="filter-container">
-			<el-input v-model="listQuery.search" clearable class="filter-item" style="width: 200px;" placeholder="请输入客户姓名、电话或地址" />
+			<el-input v-model="listQuery.search" clearable class="filter-item" style="width: 400px;" placeholder="请输入员工姓名、电话或地址" />
 			<el-button
 				v-permission="[ `POST ${api.getEmployeeList}` ]" size="mini" class="filter-item" type="primary"
 				icon="el-icon-search" style="margin-left:10px;" @click="getList"

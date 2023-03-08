@@ -267,15 +267,13 @@
 
 <script>
 import NoticePanel from './components/NoticePanel'
-import OperateLog from './components/OperateLog'
 import ChinaMap from './components/ChinaMap'
 import { zhanzhangStatistics } from '@/api/homepage/homepage'
 export default {
 	name: 'Homepage',
 	components: {
 		ChinaMap,
-		NoticePanel,
-		OperateLog
+		NoticePanel
 	},
 	data() {
 		return {

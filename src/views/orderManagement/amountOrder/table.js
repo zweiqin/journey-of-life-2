@@ -1,11 +1,14 @@
 export const columns = [
 	{
-		align: 'center',
-		fixed: 'left',
-		field: 'id',
-		title: '订单ID',
-		width: 100
+		type: 'checkbox'
 	},
+	// {
+	// 	align: 'center',
+	// 	fixed: 'left',
+	// 	field: 'id',
+	// 	title: '订单ID',
+	// 	width: 100
+	// },
 	{
 		align: 'center',
 		fixed: 'left',

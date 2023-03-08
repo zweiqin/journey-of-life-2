@@ -15,6 +15,14 @@
 
 		<div class="right-menu">
 			<template v-if="isAdminRole">
+				<el-button
+					size="mini" type="primary"
+					@click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' })"
+				>
+					快速建单
+				</el-button>
+			</template>
+			<template v-if="isAdminRole">
 				<el-tooltip content="站长" placement="bottom">
 					<i class="el-icon-s-custom right-menu-icon right-menu-item"></i>
 				</el-tooltip>
@@ -78,6 +86,9 @@
 				</el-dropdown-menu>
 			</el-dropdown>
 		</div>
+
+		<!-- 新增编辑 -->
+		<EditModal ref="EditModal" />
 	</div>
 </template>
 
@@ -89,15 +100,17 @@ import Screenfull from '@/components/Screenfull'
 // import SizeSelect from '@/components/SizeSelect'
 // import LangSelect from '@/components/LangSelect'
 // import ThemePicker from '@/components/ThemePicker'
+import EditModal from '../../orderManagement/orderList/components/EditModal'
 
 export default {
 	components: {
 		Breadcrumb,
 		Hamburger,
-		Screenfull
+		Screenfull,
 		// SizeSelect,
 		// LangSelect
 		// ThemePicker
+		EditModal
 	},
 	data() {
 		return {

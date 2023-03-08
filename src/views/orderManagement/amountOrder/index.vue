@@ -5,7 +5,7 @@
 		<div class="filter-container">
 			<el-input
 				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
-				placeholder="追加订单号，平台订单号、追加原因、审核备注" @keyup.enter.native="getList"
+				placeholder="输入追加订单号，平台订单号、追加原因、审核备注" @keyup.enter.native="getList"
 			/>
 			<el-select v-model="listQuery.status" size="mini" class="filter-item" clearable placeholder="请选择审核状态">
 				<el-option label="待审核" :value="0" />

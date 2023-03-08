@@ -2,13 +2,18 @@
 	<div class="app-container">
 
 		<!-- 查询和其他操作 -->
-		<!-- <div class="filter-container">
-			<el-radio-group v-model="listQuery.isCooperationOrisBlacklist" class="filter-item" size="mini" @input="handleStatusChange">
-			<el-radio-button :label="null">全部</el-radio-button>
-			<el-radio-button :label="1">合作中</el-radio-button>
-			<el-radio-button :label="2">已拉黑</el-radio-button>
-			</el-radio-group>
-			</div> -->
+		<div class="filter-container">
+			<el-input
+				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
+				placeholder="输入师傅姓名、师傅身份证号、师傅手机号等" @keyup.enter.native="getList"
+			/>
+			<el-button
+				v-permission="[ `GET ${api.getMasterPageList}` ]" size="mini" class="filter-item" type="primary"
+				icon="el-icon-search" style="margin-left:10px;" @click="getList"
+			>
+				查找
+			</el-button>
+		</div>
 
 		<TableTools
 			:custom-columns-config="customColumnsConfig" download custom-field @update-fields="updateFields"
@@ -28,23 +33,48 @@
 				<span v-else>--</span>
 			</template>
 			<template #headUrl="{ row }">
-				<el-image v-if="row.headUrl" lazy :src="row.headUrl" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.headUrl ]" />
+				<el-popover v-if="row.headUrl" placement="top-start" width="150" trigger="click">
+					<div style="height:79px;overflow: auto;">
+						<el-image lazy :src="row.headUrl" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.headUrl ]" />
+					</div>
+					<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
 				<span v-else>--</span>
 			</template>
 			<template #certImg1="{ row }">
-				<el-image v-if="row.certImg1" lazy :src="row.certImg1" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg1 ]" />
+				<el-popover v-if="row.certImg1" placement="top-start" width="150" trigger="click">
+					<div style="height:79px;overflow: auto;">
+						<el-image lazy :src="row.certImg1" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg1 ]" />
+					</div>
+					<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
 				<span v-else>--</span>
 			</template>
 			<template #certImg2="{ row }">
-				<el-image v-if="row.certImg2" lazy :src="row.certImg2" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg2 ]" />
+				<el-popover v-if="row.certImg2" placement="top-start" width="150" trigger="click">
+					<div style="height:79px;overflow: auto;">
+						<el-image lazy :src="row.certImg2" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg2 ]" />
+					</div>
+					<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
 				<span v-else>--</span>
 			</template>
 			<template #driverNoPath="{ row }">
-				<el-image v-if="row.driverNoPath" lazy :src="row.driverNoPath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverNoPath ]" />
+				<el-popover v-if="row.driverNoPath" placement="top-start" width="150" trigger="click">
+					<div style="height:79px;overflow: auto;">
+						<el-image lazy :src="row.driverNoPath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverNoPath ]" />
+					</div>
+					<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
 				<span v-else>--</span>
 			</template>
 			<template #driverLicensePath="{ row }">
-				<el-image v-if="row.driverLicensePath" lazy :src="row.driverLicensePath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverLicensePath ]" />
+				<el-popover v-if="row.driverLicensePath" placement="top-start" width="150" trigger="click">
+					<div style="height:79px;overflow: auto;">
+						<el-image lazy :src="row.driverLicensePath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverLicensePath ]" />
+					</div>
+					<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
 				<span v-else>--</span>
 			</template>
 			<template #skillList="{ row }">
@@ -130,7 +160,8 @@ export default {
 				pageNo: 1,
 				pageSize: 10,
 				userId: this.$store.state.user.userId,
-				isCooperationOrisBlacklist: 2
+				isCooperationOrisBlacklist: 2,
+				search: ''
 			}
 		}
 	},
@@ -159,6 +190,19 @@ export default {
 			})
 			this.$elMessage()
 			this.getList('keepPage')
+		},
+		handlePopClick(e) {
+			let attributes
+			e.target.nodeName === 'SPAN' ? attributes = e.target.parentElement.attributes : attributes = e.target.attributes
+			for (const key in attributes) {
+				if (attributes[key].name === 'aria-describedby') {
+					const container = document.getElementById(attributes[key].nodeValue).children[0]
+					setTimeout(() => {
+						container.dispatchEvent(new Event('scroll'))
+					}, 200)
+					break
+				}
+			}
 		}
 	}
 }

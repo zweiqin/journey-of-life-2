@@ -1,5 +1,8 @@
 export const columns = [
 	{
+		type: 'checkbox'
+	},
+	{
 		align: 'center',
 		fixed: 'left',
 		field: 'id',
@@ -62,8 +65,8 @@ export const columns = [
 		field: 'operate',
 		fixed: 'right',
 		title: '操作',
-    className: 'small-padding fixed-width',
-    showOverflow: 'tooltip',
+		className: 'small-padding fixed-width',
+		showOverflow: 'tooltip',
 		slots: {
 			default: 'operate'
 		},

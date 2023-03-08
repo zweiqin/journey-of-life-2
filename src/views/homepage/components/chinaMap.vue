@@ -94,7 +94,7 @@ export default {
 	methods: {
 		async initChart() {
 			const geoJson = await request2({
-				url: 'http://localhost:81/static/echartsMaps/100000.geoJson',
+				url: '/static/echartsMaps/100000.geoJson',
 				method: 'GET'
 			})
 			echarts.registerMap('china', { geoJSON: geoJson })

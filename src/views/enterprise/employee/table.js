@@ -1,5 +1,8 @@
 export const columns = [
 	{
+		type: 'checkbox'
+	},
+	{
 		align: 'center',
 		fixed: 'left',
 		field: 'id',

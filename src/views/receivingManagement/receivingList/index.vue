@@ -3,26 +3,40 @@
 
 		<!-- 查询和其他操作 -->
 		<div class="filter-container">
-			<el-radio-group v-model="listQuery.status" class="filter-item" size="mini" @input="handleStatusChange">
-				<!-- <el-radio-button label="待支付" :value="0"></el-radio-button>
-					<el-radio-button label="待接单" :value="1"></el-radio-button>
-					<el-radio-button label="待报价" :value="2"></el-radio-button>
-					<el-radio-button label="待分配" :value="3"></el-radio-button> -->
-				<!-- <el-radio-button :label="0" value="待支付"></el-radio-button>
-					<el-radio-button :label="1" value="待接单"></el-radio-button>
-					<el-radio-button :label="2" value="待报价"></el-radio-button>
-					<el-radio-button :label="3" value="待分配"></el-radio-button> -->
-				<el-radio-button :label="0">待支付</el-radio-button>
+			<!-- <el-radio-group v-model="listQuery.status" class="filter-item" size="mini" @input="handleStatusChange"> -->
+			<!-- 错误的<el-radio-button label="待支付" :value="0"></el-radio-button>
+				<el-radio-button label="待接单" :value="1"></el-radio-button>
+				<el-radio-button label="待报价" :value="2"></el-radio-button>
+				<el-radio-button label="待分配" :value="3"></el-radio-button> -->
+			<!-- 错误的<el-radio-button :label="0" value="待支付"></el-radio-button>
+				<el-radio-button :label="1" value="待接单"></el-radio-button>
+				<el-radio-button :label="2" value="待报价"></el-radio-button>
+				<el-radio-button :label="3" value="待分配"></el-radio-button> -->
+			<!-- <el-radio-button :label="0">待支付</el-radio-button>
 				<el-radio-button :label="1">待接单</el-radio-button>
 				<el-radio-button :label="2">待报价</el-radio-button>
 				<el-radio-button :label="3">待分配</el-radio-button>
-			</el-radio-group>
-			<!-- <el-button
+				</el-radio-group> -->
+			<el-input
+				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
+				placeholder="输入订单号码、订单费用、订单备注等" @keyup.enter.native="getList"
+			/>
+			<el-select
+				v-model="listQuery.status" clearable class="filter-item"
+				style="width: 200px;"
+				placeholder="选择订单状态"
+			>
+				<el-option label="待支付" :value="0" />
+				<el-option label="待接单" :value="1" />
+				<el-option label="待报价" :value="2" />
+				<el-option label="待分配" :value="3" />
+			</el-select>
+			<el-button
 				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="primary"
 				icon="el-icon-search" style="margin-left:10px;" @click="getList"
-				>
+			>
 				查找
-				</el-button> -->
+			</el-button>
 		</div>
 
 		<TableTools
@@ -182,7 +196,8 @@ export default {
 				isZz: this.$store.state.user.typ,
 				pageNo: 1,
 				pageSize: 10,
-				status: 0
+				status: 0,
+				search: ''
 			}
 		}
 	},

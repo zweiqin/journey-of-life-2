@@ -2,8 +2,18 @@
 	<div class="app-container">
 
 		<!-- 查询和其他操作 -->
-		<!-- <div class="filter-container">
-			</div> -->
+		<div class="filter-container">
+			<el-input
+				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
+				placeholder="输入订单号码、订单费用、订单备注等" @keyup.enter.native="getList"
+			/>
+			<el-button
+				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="primary"
+				icon="el-icon-search" style="margin-left:10px;" @click="getList"
+			>
+				查找
+			</el-button>
+		</div>
 
 		<TableTools
 			:custom-columns-config="customColumnsConfig" download custom-field @update-fields="updateFields"
@@ -139,7 +149,8 @@ export default {
 				isZz: this.$store.state.user.typ,
 				pageNo: 1,
 				pageSize: 10,
-				status: 8
+				status: 8,
+				search: ''
 			}
 		}
 	},

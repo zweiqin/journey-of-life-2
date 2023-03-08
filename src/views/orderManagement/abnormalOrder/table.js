@@ -1,11 +1,14 @@
 export const columns = [
 	{
-		align: 'center',
-		fixed: 'left',
-		field: 'id',
-		title: 'ID',
-		width: 100
+		type: 'checkbox'
 	},
+	// {
+	// 	align: 'center',
+	// 	fixed: 'left',
+	// 	field: 'id',
+	// 	title: 'ID',
+	// 	width: 100
+	// },
 	{
 		align: 'center',
 		fixed: 'left',
@@ -13,12 +16,12 @@ export const columns = [
 		title: '创建时间',
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'createUserId',
-		title: '下单用户Id',
-		width: 150
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'createUserId',
+	// 	title: '下单用户Id',
+	// 	width: 150
+	// },
 	{
 		align: 'center',
 		field: 'orderNo',
