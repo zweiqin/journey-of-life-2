@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<router-view />
+		<audio id="eventAudio" ref="audio" muted hidden src></audio>
 	</div>
 </template>
 

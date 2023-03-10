@@ -14,7 +14,7 @@
 				</router-link>
 			</ScrollPane>
 		</div>
-		<i class="el-icon-circle-close" style="position: absolute;font-size: 24px;color: burlywood;top: 3px;right: 6px;cursor: pointer;" @click="closeAllTags"></i>
+		<i v-if="visitedViews.length" class="el-icon-circle-close" style="position: absolute;font-size: 24px;color: burlywood;top: 3px;right: 6px;cursor: pointer;" @click="closeAllTags"></i>
 		<ul
 			v-show="visible" :style="{
 				fontSize: 12 * $root.dw + 'px',

@@ -23,6 +23,18 @@ export default {
 		TagsView
 	},
 	mixins: [ ResizeMixin ],
+	data() {
+		return {
+			chatDialogData: {
+				dialogVisible: true
+			},
+			// path: process.env.VUE_APP_WS_API,
+			path: process.env.BASE_WS_API,
+			tipsPath: process.env.BASE_TIPS_WS_API,
+			socket: '',
+			socketTips: ''
+		}
+	},
 	computed: {
 		sidebar() {
 			return this.$store.state.app.sidebar
@@ -39,9 +51,50 @@ export default {
 			}
 		}
 	},
+	mounted() {
+		this.chatDialogData.dialogVisible = false
+		if (typeof WebSocket === 'undefined') {
+			alert('您的浏览器不支持socket')
+		} else {
+			this.initOrderTipsSocket()
+			// 实例化socket
+			// this.socket = new WebSocket(this.path, [ this.$store.getters.token ])
+			// this.$refs.chat.init(this.socket)
+			// this.$refs.chat.init(this.path)
+		}
+	},
 	methods: {
 		handleClickOutside() {
 			this.$store.dispatch('closeSideBar', { withoutAnimation: false })
+		},
+		initOrderTipsSocket() {
+			this.socketTips = new WebSocket(`${this.tipsPath}`)
+			this.socketTips.onopen = this.openTips
+			this.socketTips.onerror = this.errorTips
+			this.socketTips.onmessage = this.onmessageTips
+			this.socketTips.onclose = this.closeTips
+		},
+		openTips() {
+			console.log('openTips')
+			// this.handlePlayAudio('order-prompt.mp3')
+		},
+		errorTips() {
+			console.log('errorTips')
+		},
+		onmessageTips(msg) {
+			console.log('onmessageTips', msg)
+			msg.data.noticeInfo === '开始播报' ? this.handlePlayAudio('order-prompt.mp3') : ''
+		},
+		closeTips() {
+			console.log('closeTips连接关闭, 正在重连...')
+			setTimeout(() => {
+				this.initOrderTipsSocket()
+			}, 2000)
+		},
+		handlePlayAudio(messageToneType) {
+			const buttonAudio = document.getElementById('eventAudio')
+			buttonAudio.setAttribute('src', '/static/audio/' + messageToneType)
+			buttonAudio.play()
 		}
 	}
 }

@@ -168,7 +168,7 @@ export default {
 			uploadPath, // 上传的路径
 			// 设置请求头部
 			headers: {
-				'TK-token': getToken()
+				'X-Dts-Admin-Token': getToken()
 			},
 			dialogImageUrl: '', // 预览图片
 			dialogVisible: false, // 预览状态
@@ -193,7 +193,7 @@ export default {
 							}
 						]
 					}
-				} else if (value.length > 0) {
+				} else if (value && value.length > 0) {
 					this.fileList = value.map((item, i) => {
 						if (typeof item === 'string') {
 							return {
@@ -311,11 +311,11 @@ export default {
 			console.log('fileList', fileList)
 			const newFileList = fileList.filter((item) => {
 				if (item.response) {
-					if (item.response.code === '0') {
+					if (item.response.errno === 0) {
 						item.resData = item.response.data.url
 						return item
 					}
-					this.$message.error(item.response.msg || '上传失败')
+					this.$message.error(item.response.errmsg || '上传失败')
 				} else if (!item.response) {
 					return item
 				}
