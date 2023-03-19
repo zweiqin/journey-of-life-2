@@ -8,6 +8,7 @@ export const api = {
 	getOrderInfo: '/api/order/getOrderInfo',
 	orderPagelist: '/api/order/orderPagelist',
 	updateByOrderNoStatus: '/api/order/updateByOrderNoStatus',
+	orderOfferSuccess: '/api/order/orderOfferSuccess',
 	createOrderExtra: '/api/order/createOrderExtra',
 	queryExtraList: '/api/extra/queryExtraList',
 	getOrderExtraInfo: '/api/extra/getOrderExtraInfo',
@@ -36,6 +37,15 @@ export function getOrderInfo(data) {
 export function updateByOrderNoStatus(data) {
 	return request({
 		url: api.updateByOrderNoStatus,
+		method: 'POST',
+		data
+	})
+}
+
+// 订单报价
+export function orderOfferSuccess(data) {
+	return request({
+		url: api.orderOfferSuccess,
 		method: 'POST',
 		data
 	})

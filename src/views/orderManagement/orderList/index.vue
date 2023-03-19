@@ -12,6 +12,7 @@
 				style="width: 200px;"
 				placeholder="选择订单状态"
 			>
+				<el-option label="全部" :value="null" />
 				<el-option label="待分配" :value="3" />
 				<el-option label="已分配" :value="4" />
 				<el-option label="配送中" :value="5" />
@@ -189,8 +190,8 @@ export default {
 			listQuery: {
 				isZz: this.$store.state.user.typ,
 				pageNo: 1,
-				pageSize: 10,
-				status: 3,
+				pageSize: 20,
+				status: null,
 				search: ''
 			}
 		}

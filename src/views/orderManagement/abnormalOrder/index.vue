@@ -148,7 +148,7 @@ export default {
 			listQuery: {
 				isZz: this.$store.state.user.typ,
 				pageNo: 1,
-				pageSize: 10,
+				pageSize: 20,
 				status: 8,
 				search: ''
 			}

@@ -1,5 +1,5 @@
 <template>
-	<el-card class="box-card" shadow="never" style="padding: 8px;;height: 100%;">
+	<el-card class="box-card" shadow="never" style="padding: 8px;height: 100%;">
 		<div slot="header" class="clearfix">
 			<div
 				style="clip-path: polygon(0px 0px, 60% 0, 100% 50%, 60% 100%, 0px 100%);width: 16px;height: 16px;display: inline-block;background: linear-gradient(270deg, #2E70AF 0%, #071A2C 100%)"

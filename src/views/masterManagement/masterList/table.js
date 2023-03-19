@@ -22,12 +22,12 @@ export const columns = [
 		title: '用户姓名',
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'ident',
-		title: '身份证号',
-		width: 150
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'ident',
+	// 	title: '身份证号',
+	// 	width: 150
+	// },
 	{
 		align: 'center',
 		field: 'gender',
@@ -38,36 +38,36 @@ export const columns = [
 		},
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'headUrl',
-		title: '头像图片',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'headUrl'
-		},
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'certImg1',
-		title: '身份证图片正面',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'certImg1'
-		},
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'certImg2',
-		title: '身份证图片反面',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'certImg2'
-		},
-		width: 150
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'headUrl',
+	// 	title: '头像图片',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'headUrl'
+	// 	},
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'certImg1',
+	// 	title: '身份证图片正面',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'certImg1'
+	// 	},
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'certImg2',
+	// 	title: '身份证图片反面',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'certImg2'
+	// 	},
+	// 	width: 150
+	// },
 	{
 		align: 'center',
 		field: 'birth',
@@ -80,26 +80,26 @@ export const columns = [
 		title: '邮箱',
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'driverNoPath',
-		title: '驾驶证',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'driverNoPath'
-		},
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'driverLicensePath',
-		title: '行驶证',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'driverLicensePath'
-		},
-		width: 150
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'driverNoPath',
+	// 	title: '驾驶证',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'driverNoPath'
+	// 	},
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'driverLicensePath',
+	// 	title: '行驶证',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'driverLicensePath'
+	// 	},
+	// 	width: 150
+	// },
 	// {
 	// 	align: 'center',
 	// 	field: 'skillType',
@@ -238,6 +238,6 @@ export const columns = [
 		slots: {
 			default: 'operate'
 		},
-		width: 200
+		width: 240
 	}
 ]

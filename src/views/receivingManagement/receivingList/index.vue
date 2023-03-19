@@ -3,34 +3,24 @@
 
 		<!-- 查询和其他操作 -->
 		<div class="filter-container">
-			<!-- <el-radio-group v-model="listQuery.status" class="filter-item" size="mini" @input="handleStatusChange"> -->
-			<!-- 错误的<el-radio-button label="待支付" :value="0"></el-radio-button>
-				<el-radio-button label="待接单" :value="1"></el-radio-button>
-				<el-radio-button label="待报价" :value="2"></el-radio-button>
-				<el-radio-button label="待分配" :value="3"></el-radio-button> -->
-			<!-- 错误的<el-radio-button :label="0" value="待支付"></el-radio-button>
-				<el-radio-button :label="1" value="待接单"></el-radio-button>
-				<el-radio-button :label="2" value="待报价"></el-radio-button>
-				<el-radio-button :label="3" value="待分配"></el-radio-button> -->
-			<!-- <el-radio-button :label="0">待支付</el-radio-button>
-				<el-radio-button :label="1">待接单</el-radio-button>
-				<el-radio-button :label="2">待报价</el-radio-button>
-				<el-radio-button :label="3">待分配</el-radio-button>
-				</el-radio-group> -->
 			<el-input
 				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
 				placeholder="输入订单号码、订单费用、订单备注等" @keyup.enter.native="getList"
 			/>
-			<el-select
-				v-model="listQuery.status" clearable class="filter-item"
-				style="width: 200px;"
-				placeholder="选择订单状态"
-			>
-				<el-option label="待支付" :value="0" />
-				<el-option label="待接单" :value="1" />
-				<el-option label="待报价" :value="2" />
-				<el-option label="待分配" :value="3" />
-			</el-select>
+			<el-radio-group v-model="listQuery.status" class="filter-item" size="mini" @input="getList">
+				<!-- 错误的<el-radio-button label="待支付" :value="0"></el-radio-button>
+					<el-radio-button label="待接单" :value="1"></el-radio-button>
+					<el-radio-button label="待报价" :value="2"></el-radio-button>
+					<el-radio-button label="待分配" :value="3"></el-radio-button> -->
+				<!-- 错误的<el-radio-button :label="0" value="待支付"></el-radio-button>
+					<el-radio-button :label="1" value="待接单"></el-radio-button>
+					<el-radio-button :label="2" value="待报价"></el-radio-button>
+					<el-radio-button :label="3" value="待分配"></el-radio-button> -->
+				<el-radio-button :label="null">全部</el-radio-button>
+				<el-radio-button :label="0">待支付</el-radio-button>
+				<el-radio-button :label="1">待接单</el-radio-button>
+				<el-radio-button :label="2">待报价</el-radio-button>
+			</el-radio-group>
 			<el-button
 				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="primary"
 				icon="el-icon-search" style="margin-left:10px;" @click="getList"
@@ -136,15 +126,15 @@
 				>
 					详情
 				</el-button>
-				<!-- <el-button
-					v-permission="[ `POST ${api.staffUpdate}` ]" size="mini" type="primary"
-					@click="handleUpdate(row)"
-					>
-					报价
-					</el-button> -->
 				<el-button
-					v-permission="[ `POST ${api.updateByOrderNoStatus}` ]" type="warning" size="mini"
-					:disabled="row.status != 1" @click="handleUpdate(row)"
+					v-if="row.status == 2" v-permission="[ `POST ${api.orderOfferSuccess}` ]" size="mini"
+					type="primary" @click="$refs.OrderOffer && $refs.OrderOffer.handleOpen(row)"
+				>
+					报价
+				</el-button>
+				<el-button
+					v-if="row.status == 1" v-permission="[ `POST ${api.updateByOrderNoStatus}` ]" type="warning"
+					size="mini" @click="handleUpdate(row)"
 				>
 					接单
 				</el-button>
@@ -159,6 +149,8 @@
 
 		<!-- 新增编辑 -->
 		<!-- <EditModal ref="EditModal" :list="statusList" @success="getList" /> -->
+		<!-- 报价 -->
+		<OrderOffer ref="OrderOffer" @success="getList" />
 		<!-- 查看详情 -->
 		<DetailModal ref="DetailModal" @success="getList" />
 	</div>
@@ -171,6 +163,7 @@ import {
 } from '@/api/orderManagement/order'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
+import OrderOffer from './components/OrderOffer'
 // import EditModal from './components/EditModal'
 import DetailModal from './components/DetailModal'
 import { columns } from './table'
@@ -180,6 +173,7 @@ export default {
 	components: {
 		VxeTable,
 		TableTools,
+		OrderOffer,
 		DetailModal
 		// EditModal
 	},
@@ -195,7 +189,7 @@ export default {
 			listQuery: {
 				isZz: this.$store.state.user.typ,
 				pageNo: 1,
-				pageSize: 10,
+				pageSize: 20,
 				status: 0,
 				search: ''
 			}
@@ -212,9 +206,6 @@ export default {
 		},
 		getList(meaning) {
 			meaning === 'keepPage' ? this.listQuery = { ...this.listQuery } : this.listQuery = { ...this.listQuery, pageNo: 1 }
-		},
-		handleStatusChange(status) {
-			this.listQuery = { ...this.listQuery, status }
 		},
 		async handleUpdate({ orderNo }) {
 			await this.$elConfirm(`确认接单？`)

@@ -96,7 +96,7 @@ export default {
 			},
 			listQuery: {
 				pageNo: 1,
-				pageSize: 10,
+				pageSize: 20,
 				search: '',
 				status: 0
 			}

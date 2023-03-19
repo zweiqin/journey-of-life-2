@@ -83,7 +83,19 @@ export default {
 		},
 		onmessageTips(msg) {
 			console.log('onmessageTips', msg)
-			msg.data.noticeInfo === '开始播报' ? this.handlePlayAudio('order-prompt.mp3') : ''
+			const tempObj = JSON.parse(msg.data)
+			if (tempObj.id.includes(this.$store.getters.userId)) {
+				if (tempObj.noticeInfo === '开始播报') {
+					this.handlePlayAudio('order-prompt.mp3')
+					this.$notify.warning({
+						title: '你有一条新的订单',
+						duration: 2000,
+						position: 'bottom-right',
+						offset: 100,
+						message: '来自订单提醒'
+					})
+				}
+			}
 		},
 		closeTips() {
 			console.log('closeTips连接关闭, 正在重连...')
@@ -93,7 +105,7 @@ export default {
 		},
 		handlePlayAudio(messageToneType) {
 			const buttonAudio = document.getElementById('eventAudio')
-			buttonAudio.setAttribute('src', '/static/audio/' + messageToneType)
+			buttonAudio.setAttribute('src', './static/audio/' + messageToneType)
 			buttonAudio.play()
 		}
 	}
