@@ -5,7 +5,7 @@
 		<div class="filter-container">
 			<el-input
 				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
-				placeholder="输入追加订单号，平台订单号、追加原因、审核备注" @keyup.enter.native="getList"
+				placeholder="输入追加订单号，平台订单号、追加原因、需求说明" @keyup.enter.native="getList"
 			/>
 			<el-select v-model="listQuery.status" size="mini" class="filter-item" clearable placeholder="请选择审核状态">
 				<el-option label="待审核" :value="0" />
@@ -32,15 +32,15 @@
 			:api-path="api.queryExtraList" :columns="columns" page-alias="pageNo" size-alias="pageSize"
 		>
 			<template #status="{ row }">
-				<span v-if="row.status === 0">待支付</span>
-				<span v-else-if="row.status === 1">待接单</span>
-				<span v-else-if="row.status === 2">待报价</span>
-				<span v-else-if="row.status === 3">待分配</span>
-				<span v-else-if="row.status === 4">已分配</span>
-				<span v-else-if="row.status === 5">配送中</span>
-				<span v-else-if="row.status === 6">已完成</span>
-				<span v-else-if="row.status === 7">已取消</span>
-				<span v-else-if="row.status === 8">异常</span>
+				<el-tag v-if="row.status === 0">待付款</el-tag>
+				<el-tag v-else-if="row.status === 1">待接单</el-tag>
+				<el-tag v-else-if="row.status === 2" type="success">待报价</el-tag>
+				<el-tag v-else-if="row.status === 3">待分配</el-tag>
+				<el-tag v-else-if="row.status === 4" type="success">已分配</el-tag>
+				<el-tag v-else-if="row.status === 5" type="success">配送中</el-tag>
+				<el-tag v-else-if="row.status === 6" type="info">已完成</el-tag>
+				<el-tag v-else-if="row.status === 7" type="info">已取消</el-tag>
+				<el-tag v-else-if="row.status === 8" type="danger">异常</el-tag>
 				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">

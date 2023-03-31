@@ -359,10 +359,10 @@ export default {
 			this.$nextTick(() => {
 				// const tableTop = document.querySelector('.jufeng-vxe-table') && document.querySelector('.jufeng-vxe-table').getBoundingClientRect().top
 				// this.tableHeight = window.innerHeight - tableTop - pagerHeight - qiankunHeight - this.diffHeight
-				const navbarHeight = 46
-				const tabsHeight = 62
+				const navbarHeight = 50 * (document.documentElement.clientWidth / 1920) + 10
+				const tabsHeight = 50
 				const searchHeight = document.querySelector('.app-container>.filter-container') ? document.querySelector('.app-container>.filter-container').offsetHeight : 0
-				const pageHeight = this.isPager ? 75 : 20
+				const pageHeight = this.isPager ? 62 : 20
 				const otherHeight = document.querySelector('.app-container>.other-container') ? document.querySelector('.app-container>.other-container').offsetHeight : 0
 				const toolsHeight = document.querySelector('.app-container>.table-tools') ? document.querySelector('.app-container>.table-tools').offsetHeight : 0
 				const height = navbarHeight + tabsHeight + searchHeight + pageHeight + otherHeight + toolsHeight
@@ -531,10 +531,33 @@ export default {
 	.pagination-container {
 		position: relative;
 		// height: 25px;
-		padding: 20px 20px 0 20px !important;
+		padding: 10px 20px 0 0 !important;
 		// margin-bottom: 10px;
 		// margin-top: 15px;
 		background: #fff;
+		/deep/ .el-pagination {
+			span:nth-child(1) {
+				float: left;
+				color: #999999;
+			}
+			.el-pager {
+				.number {
+					color: #999999;
+					background-color: transparent;
+					border: 1px solid #E1E1E1;
+				}
+				.number:hover {
+					color: #1890ff;
+				}
+				.active {
+					color: #FFFFFF;
+					background-color: #1890ff;
+				}
+				.active:hover {
+					color: #FFFFFF;
+				}
+			}
+		}
 	}
 
 	.el-pagination {

@@ -5,10 +5,10 @@
 				<el-card class="box-card" shadow="never" style="padding: 8px;">
 					<div slot="header" class="clearfix">
 						<div
-							style="clip-path: polygon(0px 0px, 60% 0, 100% 50%, 60% 100%, 0px 100%);width: 16px;height: 16px;display: inline-block;background: linear-gradient(270deg, #2E70AF 0%, #071A2C 100%)"
+							style="clip-path: polygon(0px 0px, 60% 0, 100% 50%, 60% 100%, 0px 100%);width: 16px;height: 16px;display: inline-block;background: linear-gradient(270deg, #3CA1FF 0%, #2E70AF 40%, #071A2C 100%);"
 						>
 						</div>
-						<span>统计信息</span>
+						<span style="font-weight: bold;">统计信息</span>
 					</div>
 					<div>
 						<el-row :gutter="20" class="panel-group">
@@ -80,7 +80,7 @@
 			<el-col :span="24" class="" style="">
 			<el-card style="padding: 8px;">
 			<div slot="header">
-			<span>站长服务区域</span>
+			<span style="font-weight: bold;">站长服务区域</span>
 			</div>
 			<div class="el-table el-table--enable-row-hover el-table--medium" style="">
 			<div style="">
@@ -136,10 +136,10 @@
 				<el-card class="box-map-card" style="height: 100%;">
 					<div slot="header" class="clearfix">
 						<div
-							style="clip-path: polygon(0px 0px, 60% 0, 100% 50%, 60% 100%, 0px 100%);width: 16px;height: 16px;display: inline-block;background: linear-gradient(270deg, #2E70AF 0%, #071A2C 100%)"
+							style="clip-path: polygon(0px 0px, 60% 0, 100% 50%, 60% 100%, 0px 100%);width: 16px;height: 16px;display: inline-block;background: linear-gradient(270deg, #3CA1FF 0%, #2E70AF 40%, #071A2C 100%);"
 						>
 						</div>
-						<span style="font-size:17px;line-height:40px">站长服务区域</span>
+						<span style="font-size:17px;font-weight: bold;line-height:40px">站长服务区域</span>
 						<div class="card-panel-map" style="float:right;margin-top: 18px;">
 							<div style="display: flex;cursor: pointer;" @click="changeMapPanel">
 								<div style="width: 16px;height: 16px;">
@@ -301,7 +301,7 @@ export default {
 			},
 			serverCityAll: [],
 			statisticalInformation: [],
-			noticeList: [],
+			noticeList: [ '' ],
 			showType: 'list',
 			listActiveName: 0
 		}
@@ -518,6 +518,9 @@ export default {
 		}
 	}
 }
+	/deep/ .el-card__header{
+		border-bottom: 0;
+	}
 
 .panel-group {
 	.card-panel-col {

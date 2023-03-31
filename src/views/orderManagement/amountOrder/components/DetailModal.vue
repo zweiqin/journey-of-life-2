@@ -30,18 +30,18 @@
 				{{ formData.extraRemark || '--' }}
 			</el-form-item>
 			<el-form-item label="订单状态" prop="status">
-				<span v-if="formData.status === 0">待支付</span>
-				<span v-else-if="formData.status === 1">待接单</span>
-				<span v-else-if="formData.status === 2">待报价</span>
-				<span v-else-if="formData.status === 3">待分配</span>
-				<span v-else-if="formData.status === 4">已分配</span>
-				<span v-else-if="formData.status === 5">配送中</span>
-				<span v-else-if="formData.status === 6">已完成</span>
-				<span v-else-if="formData.status === 7">已取消</span>
-				<span v-else-if="formData.status === 8">异常</span>
+				<el-tag v-if="formData.status === 0">待付款</el-tag>
+				<el-tag v-else-if="formData.status === 1">待接单</el-tag>
+				<el-tag v-else-if="formData.status === 2" type="success">待报价</el-tag>
+				<el-tag v-else-if="formData.status === 3">待分配</el-tag>
+				<el-tag v-else-if="formData.status === 4" type="success">已分配</el-tag>
+				<el-tag v-else-if="formData.status === 5" type="success">配送中</el-tag>
+				<el-tag v-else-if="formData.status === 6" type="info">已完成</el-tag>
+				<el-tag v-else-if="formData.status === 7" type="info">已取消</el-tag>
+				<el-tag v-else-if="formData.status === 8" type="danger">异常</el-tag>
 				<span v-else>--</span>
 			</el-form-item>
-			<el-form-item label="订单备注" prop="remarks">
+			<el-form-item label="需求说明" prop="remarks">
 				{{ formData.remarks || '--' }}
 			</el-form-item>
 			<el-form-item label="创建时间" prop="createTime">

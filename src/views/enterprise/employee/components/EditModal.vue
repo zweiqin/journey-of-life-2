@@ -39,7 +39,7 @@
 					placeholder="请输入员工密码"
 				/>
 			</el-form-item>
-			<el-form-item label="员工头像" prop="idcardProsUrl">
+			<el-form-item label="员工头像" prop="employeeHead">
 				<MyUpload v-model="formData.employeeHead" />
 			</el-form-item>
 			<el-form-item label="员工职位" prop="employeePosition">

@@ -2,20 +2,20 @@ export const columns = [
 	{
 		type: 'checkbox'
 	},
-	{
-		align: 'center',
-		fixed: 'left',
-		field: 'id',
-		title: '员工ID',
-		width: 100
-	},
-	{
-		align: 'center',
-		fixed: 'left',
-		field: 'userId',
-		title: '账号登录用户ID',
-		width: 100
-	},
+	// {
+	// 	align: 'center',
+	// 	fixed: 'left',
+	// 	field: 'id',
+	// 	title: '员工ID',
+	// 	width: 100
+	// },
+	// {
+	// 	align: 'center',
+	// 	fixed: 'left',
+	// 	field: 'userId',
+	// 	title: '账号登录用户ID',
+	// 	width: 100
+	// },
 	{
 		align: 'center',
 		fixed: 'left',

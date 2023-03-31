@@ -23,7 +23,7 @@
 						:active="formData.status == 2 ? 0 : formData.status == 0 ? 1 : formData.status == 1 ? 2 : Number(formData.status)"
 						finish-status="success" align-center
 					>
-						<el-step title="待报价">
+						<el-step title="待报价" :class="{ 'is-ok': formData.status == 0 || formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 0 }">
 							<template #description>
 								<el-input v-if="formData.status == 2" v-model="orderOffer" placeholder="填报价">
 									<el-button
@@ -36,11 +36,11 @@
 								</el-input>
 							</template>
 						</el-step>
-						<el-step title="待付款"></el-step>
-						<el-step title="待接单"></el-step>
-						<el-step title="待分配"></el-step>
-						<el-step title="已分配"></el-step>
-						<el-step title="配送中"></el-step>
+						<el-step title="待付款" :class="{ 'is-ok': formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 1 }"></el-step>
+						<el-step title="待接单" :class="{ 'is-ok': Number(formData.status) >= 3, 'is-on': formData.status == 3 }"></el-step>
+						<el-step title="待分配" :class="{ 'is-ok': Number(formData.status) >= 4, 'is-on': formData.status == 4 }"></el-step>
+						<el-step title="已分配" :class="{ 'is-ok': Number(formData.status) >= 5, 'is-on': formData.status == 5 }"></el-step>
+						<el-step title="配送中" :class="{ 'is-ok': Number(formData.status) >= 6, 'is-on': formData.status == 6 }"></el-step>
 						<el-step title="已完成"></el-step>
 					</el-steps>
 				</div>
@@ -48,15 +48,15 @@
 			<div style="margin-top: 25px;width: 100%;">
 				<el-form ref="formData" :model="formData" label-position="left" label-width="135px" label-suffix="" size="mini">
 					<!-- <el-form-item label="订单状态" prop="status">
-						<span v-if="formData.status === 2">待报价</span>
-						<span v-else-if="formData.status === 0">待付款</span>
-						<span v-else-if="formData.status === 1">待接单</span>
-						<span v-else-if="formData.status === 3">待分配</span>
-						<span v-else-if="formData.status === 4">已分配</span>
-						<span v-else-if="formData.status === 5">配送中</span>
-						<span v-else-if="formData.status === 6">已完成</span>
-						<span v-else-if="formData.status === 7">已取消</span>
-						<span v-else-if="formData.status === 8">异常</span>
+						<el-tag v-if="row.status === 0">待付款</el-tag>
+						<el-tag v-else-if="row.status === 1">待接单</el-tag>
+						<el-tag v-else-if="row.status === 2" type="success">待报价</el-tag>
+						<el-tag v-else-if="row.status === 3">待分配</el-tag>
+						<el-tag v-else-if="row.status === 4" type="success">已分配</el-tag>
+						<el-tag v-else-if="row.status === 5" type="success">配送中</el-tag>
+						<el-tag v-else-if="row.status === 6" type="info">已完成</el-tag>
+						<el-tag v-else-if="row.status === 7" type="info">已取消</el-tag>
+						<el-tag v-else-if="row.status === 8" type="danger">异常</el-tag>
 						<span v-else>--</span>
 						</el-form-item> -->
 					<!-- 订单信息 -->
@@ -64,7 +64,7 @@
 						<div style="width: 40%;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 5px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+									style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 								>
 								</div>
 								<span>客户信息</span>
@@ -105,7 +105,7 @@
 						<div v-if="formData.deliveryType !== 4" style="width: 50%;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 5px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+									style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 								>
 								</div>
 								<span>发货人信息</span>
@@ -137,7 +137,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 5px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
 							<span>订单信息</span>
@@ -157,7 +157,7 @@
 									<span v-else-if="formData.deliveryType === 4">客户自提</span>
 									<span v-else>--</span>
 									</el-form-item> -->
-								<el-form-item label="订单备注" prop="remarks">
+								<el-form-item label="需求说明" prop="remarks">
 									{{ formData.remarks || '--' }}
 								</el-form-item>
 								<el-form-item label="下单用户类型" prop="createUserType">
@@ -186,7 +186,7 @@
 									<span v-else-if="formData.orderType === 3">顺路单</span>
 									<span v-else>--</span>
 								</el-form-item>
-								<el-form-item label="服务需求" prop="dictName">
+								<el-form-item label="服务类型" prop="dictName">
 									{{ formData.dictName || '--' }}
 								</el-form-item>
 								<!-- <el-form-item label="订单Id" prop="id">
@@ -201,7 +201,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 5px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
 							<span>结算信息</span>
@@ -273,7 +273,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 5px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
 							<span>订单状况</span>
@@ -477,11 +477,70 @@ export default {
 }
 
 /deep/ .el-dialog {
-	.el-step__description {
-		padding: 2px;
+	.el-steps {
+		.el-step {
+			.el-step__head {
+				.el-step__line {
+					i {
+						display: none;
+					}
+				}
+			}
+			.el-step__head.is-process, .el-step__head.is-wait {
+				.el-step__line {
+					top: 6px;
+					height: 12px;
+					background: #EBECED;
+				}
+			}
+			.el-step__head.is-process {
+				.el-step__icon {
+					color: #FFFFFF;
+					background: #3CA1FF;
+					border-color: #FFFFFF;
+				}
+			}
+			.el-step__main {
+				.el-step__title.is-success {
+					color: #303133;
+				}
+			}
+			.el-step__description {
+				padding: 2px;
 
-		.el-input-group__append {
-			padding: 0 13px;
+				.el-input-group__append {
+					padding: 0 13px;
+				}
+			}
+		}
+		.el-step.is-ok:not(.is-on) {
+		// .el-step.is-ok:nth-of-type(n) {
+			.el-step__head.is-success {
+				.el-step__line {
+					top: 6px;
+					height: 12px;
+					background: #071A2C;
+				}
+				.el-step__icon {
+					color: #FFFFFF;
+					background: #071A2C;
+					border-color: #FFFFFF;
+				}
+			}
+		}
+		.el-step.is-ok.is-on {
+			.el-step__head.is-success {
+				.el-step__line {
+					top: 6px;
+					height: 12px;
+					background: linear-gradient(90deg, #071A2C 0%, #2E6FAE 64%, #3CA1FF 100%);
+				}
+				.el-step__icon {
+					color: #FFFFFF;
+					background: #071A2C;
+					border-color: #FFFFFF;
+				}
+			}
 		}
 	}
 

@@ -2,24 +2,24 @@ export const columns = [
 	{
 		type: 'checkbox'
 	},
-	{
-		align: 'center',
-		fixed: 'left',
-		field: 'id',
-		title: 'ID',
-		width: 100
-	},
-	{
-		align: 'center',
-		fixed: 'left',
-		field: 'userId',
-		title: '用户id',
-		width: 100
-	},
+	// {
+	// 	align: 'center',
+	// 	fixed: 'left',
+	// 	field: 'id',
+	// 	title: 'ID',
+	// 	width: 100
+	// },
+	// {
+	// 	align: 'center',
+	// 	fixed: 'left',
+	// 	field: 'userId',
+	// 	title: '用户id',
+	// 	width: 100
+	// },
 	{
 		align: 'center',
 		field: 'name',
-		title: '用户姓名',
+		title: '姓名',
 		width: 150
 	},
 	// {
@@ -36,6 +36,58 @@ export const columns = [
 		slots: {
 			default: 'gender'
 		},
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'birth',
+		title: '生日',
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'email',
+		title: '邮箱',
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'mobile',
+		title: '手机号',
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'workYear',
+		title: '工作年限',
+		width: 150
+	},
+	// {
+	// 	align: 'center',
+	// 	field: 'skillType',
+	// 	title: '技能专长',
+	// 	width: 150
+	// },
+	{
+		align: 'center',
+		field: 'skillList',
+		title: '技能专长',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'skillList'
+		},
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'workCity',
+		title: '主营区域',
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'serverCity',
+		title: '服务区域',
 		width: 150
 	},
 	// {
@@ -68,18 +120,6 @@ export const columns = [
 	// 	},
 	// 	width: 150
 	// },
-	{
-		align: 'center',
-		field: 'birth',
-		title: '生日',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'email',
-		title: '邮箱',
-		width: 150
-	},
 	// {
 	// 	align: 'center',
 	// 	field: 'driverNoPath',
@@ -100,34 +140,6 @@ export const columns = [
 	// 	},
 	// 	width: 150
 	// },
-	// {
-	// 	align: 'center',
-	// 	field: 'skillType',
-	// 	title: '技能专长',
-	// 	width: 150
-	// },
-	{
-		align: 'center',
-		field: 'skillList',
-		title: '技能专长',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'skillList'
-		},
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'workCity',
-		title: '主营区域',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'workYear',
-		title: '工作年限',
-		width: 150
-	},
 	{
 		align: 'center',
 		field: 'workState',
@@ -136,12 +148,6 @@ export const columns = [
 		slots: {
 			default: 'workState'
 		},
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'serverCity',
-		title: '服务区域',
 		width: 150
 	},
 	{
@@ -166,68 +172,62 @@ export const columns = [
 		title: '添加人',
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'updateUser',
-		title: '更新人',
-		width: 150
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'updateUser',
+	// 	title: '更新人',
+	// 	width: 150
+	// },
 	{
 		align: 'center',
 		field: 'createTime',
-		title: '插入时间',
+		title: '创建时间',
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'updateTime',
-		title: '更新时间',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'mobile',
-		title: '手机号',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'specification',
-		title: '车辆规格',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'typ',
-		title: '车辆类型',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'typ'
-		},
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'brand',
-		title: '品牌型号',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'carNo',
-		title: '车辆号码',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'carImg',
-		title: '车辆图片',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'carImg'
-		},
-		width: 150
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'updateTime',
+	// 	title: '更新时间',
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'specification',
+	// 	title: '车辆规格',
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'typ',
+	// 	title: '车辆类型',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'typ'
+	// 	},
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'brand',
+	// 	title: '品牌型号',
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'carNo',
+	// 	title: '车辆号码',
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'carImg',
+	// 	title: '车辆图片',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'carImg'
+	// 	},
+	// 	width: 150
+	// },
 	{
 		align: 'left',
 		field: 'operate',

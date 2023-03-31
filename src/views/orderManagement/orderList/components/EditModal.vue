@@ -23,9 +23,9 @@
 								placeholder="请选择安装日期"
 							/>
 						</el-form-item>
-						<el-form-item label="备注" prop="remarks">
+						<el-form-item label="需求说明" prop="remarks">
 							<el-input
-								v-model="formData.remarks" type="textarea" placeholder="请填写您要备注的订单信息" maxlength="520"
+								v-model="formData.remarks" type="textarea" placeholder="请填写您的需求说明" maxlength="520"
 								:rows="3"
 								show-word-limit
 							/>
@@ -42,13 +42,12 @@
 								:rows="1" show-word-limit
 								/> -->
 						</el-form-item>
-						<el-form-item label="服务需求" prop="dictName">
-							<el-input
-								v-model="formData.dictName" type="textarea" placeholder="请填写有哪些服务需求" maxlength="520"
-								:rows="3"
-								show-word-limit
-							/>
+						<el-form-item label="服务类型" prop="dictName">
+							<el-input v-model="formData.dictName" placeholder="请选择服务类型" maxlength="30" />
 						</el-form-item>
+						<!-- <el-form-item label="服务图片" prop="service">
+							<MyUpload v-model="formData.service" />
+							</el-form-item> -->
 					</div>
 				</div>
 				<div v-show="step === 2">
@@ -79,24 +78,21 @@
 									<el-option label="个人报价" :value="2" />
 								</el-select>
 							</el-form-item>
-							<el-form-item label="派送类型" prop="deliveryType">
+							<!-- <el-form-item label="派送类型" prop="deliveryType">
 								<el-select
-									v-model="formData.deliveryType" disabled placeholder="请选择" filterable
-									clearable
-									style="width: 220px;"
+								v-model="formData.deliveryType" disabled placeholder="请选择" filterable
+								clearable
+								style="width: 220px;"
 								>
-									<el-option label="送货安装" :value="1" />
-									<el-option label="送货到家" :value="2" />
-									<el-option label="送货到楼下" :value="3" />
-									<el-option label="客户自提" :value="4" />
+								<el-option label="送货安装" :value="1" />
+								<el-option label="送货到家" :value="2" />
+								<el-option label="送货到楼下" :value="3" />
+								<el-option label="客户自提" :value="4" />
 								</el-select>
-							</el-form-item>
+								</el-form-item> -->
 						</div>
 					</div>
 					<div style="width: 100%;display: flex;justify-content: space-between;">
-						<el-form-item label="会员价" prop="orderPriceVo.vipPrice">
-							<el-input v-model="formData.orderPriceVo.vipPrice" placeholder="请填写会员价" maxlength="30" />
-						</el-form-item>
 						<el-form-item label="起步价" prop="orderPriceVo.startPrice">
 							<el-input v-model="formData.orderPriceVo.startPrice" placeholder="请填写起步价" maxlength="30" />
 						</el-form-item>
@@ -114,17 +110,22 @@
 						</el-form-item>
 					</div>
 					<div style="width: 100%;display: flex;justify-content: space-between;">
-						<div style="width: 33%;">
+						<div style="width: 25%;">
 							<el-form-item label="总价" prop="orderPriceVo.sumPrice">
 								<el-input v-model="formData.orderPriceVo.sumPrice" disabled placeholder="请输入总价" maxlength="30" />
 							</el-form-item>
 						</div>
-						<div style="width: 33%;">
-							<el-form-item label="订单费用" prop="price">
-								<el-input v-model="formData.price" placeholder="请输入订单费用" maxlength="30" />
+						<div style="width: 25%;">
+							<el-form-item label="会员价" prop="orderPriceVo.vipPrice">
+								<el-input v-model="formData.orderPriceVo.vipPrice" placeholder="请填写会员价" maxlength="30" />
 							</el-form-item>
 						</div>
-						<div style="width: 33%;">
+						<div style="width: 25%;">
+							<el-form-item label="订单费用" prop="price">
+								<el-input v-model="formData.price" disabled placeholder="请输入订单费用" maxlength="30" />
+							</el-form-item>
+						</div>
+						<div style="width: 25%;">
 							<el-form-item label="订单实付费用" prop="actualPrice">
 								<el-input v-model="formData.actualPrice" placeholder="请输入订单实付费用" maxlength="30" />
 							</el-form-item>
@@ -210,9 +211,9 @@ export default {
 				'paymentMethod': [
 					{ required: false, message: '请选择付款方式' }
 				],
-				'deliveryType': [
-					{ required: false, message: '请选择派送类型' }
-				],
+				// 'deliveryType': [
+				// 	{ required: false, message: '请选择派送类型' }
+				// ],
 				'price': [
 					{ required: false, message: '请输入订单费用' }
 				],
@@ -253,7 +254,7 @@ export default {
 					{ required: true, message: '请输入客户详细地址' }
 				],
 				'remarks': [
-					{ required: false, message: '请输入订单备注' }
+					{ required: false, message: '请输入需求说明' }
 				],
 				'installDate': [
 					{ required: true, message: '选择安装日期' }
@@ -273,9 +274,10 @@ export default {
 	watch: {
 		'formData.orderPriceVo': {
 			handler(newV, oldV) {
-				if (!Number(newV.vipPrice) || !Number(newV.startPrice) || !Number(newV.exceedDistancePrice) || !Number(newV.exceedPartyPrice) || !Number(newV.upstairsPrice) || !Number(newV.installAmount)) return
-				if (Number(newV.sumPrice) === Number(newV.vipPrice) + Number(newV.startPrice) + Number(newV.exceedDistancePrice) + Number(newV.exceedPartyPrice) + Number(newV.upstairsPrice) + Number(newV.installAmount)) return
+				if (!Number(newV.startPrice) || !Number(newV.exceedDistancePrice) || !Number(newV.exceedPartyPrice) || !Number(newV.upstairsPrice) || !Number(newV.installAmount)) return
+				if (Number(newV.sumPrice) === Number(newV.startPrice) + Number(newV.exceedDistancePrice) + Number(newV.exceedPartyPrice) + Number(newV.upstairsPrice) + Number(newV.installAmount)) return
 				this.formData.orderPriceVo.sumPrice = Number(newV.vipPrice) + Number(newV.startPrice) + Number(newV.exceedDistancePrice) + Number(newV.exceedPartyPrice) + Number(newV.upstairsPrice) + Number(newV.installAmount)
+				this.formData.price = this.formData.orderPriceVo.sumPrice
 			},
 			deep: true,
 			immediate: true

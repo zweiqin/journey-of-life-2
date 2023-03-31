@@ -2,13 +2,13 @@ export const columns = [
 	{
 		type: 'checkbox'
 	},
-	{
-		align: 'center',
-		fixed: 'left',
-		field: 'id',
-		title: '客户ID',
-		width: 100
-	},
+	// {
+	// 	align: 'center',
+	// 	fixed: 'left',
+	// 	field: 'id',
+	// 	title: '客户ID',
+	// 	width: 100
+	// },
 	{
 		align: 'center',
 		fixed: 'left',

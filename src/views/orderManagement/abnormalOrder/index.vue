@@ -5,13 +5,19 @@
 		<div class="filter-container">
 			<el-input
 				v-model="listQuery.search" clearable class="filter-item" style="width: 400px;"
-				placeholder="输入订单号码、订单费用、订单备注等" @keyup.enter.native="getList"
+				placeholder="输入订单号码、订单费用、需求说明等" @keyup.enter.native="getList"
 			/>
 			<el-button
 				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="primary"
 				icon="el-icon-search" style="margin-left:10px;" @click="getList"
 			>
 				查找
+			</el-button>
+			<el-button
+				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="info"
+				plain style="margin-left:10px;" @click="(listQuery.search = '') || getList()"
+			>
+				重置
 			</el-button>
 		</div>
 
@@ -25,18 +31,23 @@
 		<VxeTable
 			ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="POST"
 			:api-path="api.orderPagelist" :columns="columns" page-alias="pageNo" size-alias="pageSize"
+			:grid-options="{ rowConfig: { height: 60 }, tooltipConfig: { showAll: true, enterDelay: 800 } }"
 		>
-			<template #createUserType="{ row }">
+			<template #consigneeName="{ row }">
+				<div>{{ row.consigneeName }}</div>
+				<div>{{ row.consigneeMobile }}</div>
+			</template>
+			<!-- <template #createUserType="{ row }">
 				<span v-if="row.createUserType === 1">货主</span>
 				<span v-else-if="row.createUserType === 2">物流</span>
 				<span v-else-if="row.createUserType === 3">站长</span>
 				<span v-else>--</span>
-			</template>
-			<template #paymentMethod="{ row }">
+				</template>
+				<template #paymentMethod="{ row }">
 				<span v-if="row.paymentMethod === 1">现付</span>
 				<span v-else-if="row.paymentMethod === 2">到付</span>
 				<span v-else>--</span>
-			</template>
+				</template> -->
 			<template #deliveryType="{ row }">
 				<span v-if="row.deliveryType === 1">送货安装</span>
 				<span v-else-if="row.deliveryType === 2">送货到家</span>
@@ -57,48 +68,48 @@
 				<span v-else>--</span>
 				</template> -->
 			<template #status="{ row }">
-				<span v-if="row.status === 0">待支付</span>
-				<span v-else-if="row.status === 1">待接单</span>
-				<span v-else-if="row.status === 2">待报价</span>
-				<span v-else-if="row.status === 3">待分配</span>
-				<span v-else-if="row.status === 4">已分配</span>
-				<span v-else-if="row.status === 5">配送中</span>
-				<span v-else-if="row.status === 6">已完成</span>
-				<span v-else-if="row.status === 7">已取消</span>
-				<span v-else-if="row.status === 8">异常</span>
+				<el-tag v-if="row.status === 0">待付款</el-tag>
+				<el-tag v-else-if="row.status === 1">待接单</el-tag>
+				<el-tag v-else-if="row.status === 2" type="success">待报价</el-tag>
+				<el-tag v-else-if="row.status === 3">待分配</el-tag>
+				<el-tag v-else-if="row.status === 4" type="success">已分配</el-tag>
+				<el-tag v-else-if="row.status === 5" type="success">配送中</el-tag>
+				<el-tag v-else-if="row.status === 6" type="info">已完成</el-tag>
+				<el-tag v-else-if="row.status === 7" type="info">已取消</el-tag>
+				<el-tag v-else-if="row.status === 8" type="danger">异常</el-tag>
 				<span v-else>--</span>
 			</template>
-			<template #isHasElevator="{ row }">
+			<!-- <template #isHasElevator="{ row }">
 				<span v-if="row.isHasElevator === 0">无</span>
 				<span v-else-if="row.isHasElevator === 1">有</span>
 				<span v-else>--</span>
-			</template>
-			<template #isDelete="{ row }">
+				</template>
+				<template #isDelete="{ row }">
 				<span v-if="row.isDelete === 0">未删除</span>
 				<span v-else-if="row.isDelete === 1">已删除</span>
 				<span v-else>--</span>
-			</template>
-			<template #signUrl="{ row }">
+				</template>
+				<template #signUrl="{ row }">
 				<div v-if="row.signUrl && row.signUrl.split(',').length">
-					<el-image :src="row.signUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.signUrl.split(',')" />
-					<span v-if="row.signUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.signUrl.split(',').length }}</span>
+				<el-image :src="row.signUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.signUrl.split(',')" />
+				<span v-if="row.signUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.signUrl.split(',').length }}</span>
 				</div>
 				<span v-else>--</span>
-			</template>
-			<template #signatureUrl="{ row }">
+				</template>
+				<template #signatureUrl="{ row }">
 				<div v-if="row.signatureUrl && row.signatureUrl.split(',').length">
-					<el-image :src="row.signatureUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.signatureUrl.split(',')" />
-					<span v-if="row.signatureUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.signatureUrl.split(',').length }}</span>
+				<el-image :src="row.signatureUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.signatureUrl.split(',')" />
+				<span v-if="row.signatureUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.signatureUrl.split(',').length }}</span>
 				</div>
 				<span v-else>--</span>
-			</template>
-			<template #exceptionUrl="{ row }">
+				</template>
+				<template #exceptionUrl="{ row }">
 				<div v-if="row.exceptionUrl && row.exceptionUrl.split(',').length">
-					<el-image :src="row.exceptionUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.exceptionUrl.split(',')" />
-					<span v-if="row.exceptionUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.exceptionUrl.split(',').length }}</span>
+				<el-image :src="row.exceptionUrl.split(',')[0]" style="width:40px; height:40px" fit="cover" :preview-src-list="row.exceptionUrl.split(',')" />
+				<span v-if="row.exceptionUrl.split(',').length > 1" style="margin-left:8px;">+{{ row.exceptionUrl.split(',').length }}</span>
 				</div>
 				<span v-else>--</span>
-			</template>
+				</template> -->
 			<template #orderType="{ row }">
 				<span v-if="row.orderType === 1">常规单</span>
 				<span v-else-if="row.orderType === 2">加急单</span>
@@ -107,7 +118,7 @@
 			</template>
 			<template #operate="{ row }">
 				<el-button
-					v-permission="[ `POST ${api.getOrderInfo}` ]" size="mini"
+					v-permission="[ `POST ${api.getOrderInfo}` ]" size="mini" type="text"
 					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)"
 				>
 					详情
@@ -169,3 +180,24 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.el-tag {
+	height: auto;
+	padding: 8px 10px;
+	line-height: normal;
+	border: 0;
+}
+/deep/ .vxe-cell-two-row {
+	.vxe-cell {
+		color: #666666;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		word-break: break-all;
+		white-space: normal!important;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+}
+</style>

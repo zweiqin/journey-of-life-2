@@ -93,10 +93,10 @@
 			<template #typ="{ row }">
 				<span>{{ row.typ }}</span>
 			</template>
-			<template #carImg="{ row }">
+			<!-- <template #carImg="{ row }">
 				<el-image v-if="row.carImg" lazy :src="row.carImg" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.carImg ]" />
 				<span v-else>--</span>
-			</template>
+				</template> -->
 			<template #operate="{ row }">
 				<el-button
 					v-permission="[ `POST ${api.saveOrDeleteWorker}` ]" size="mini"

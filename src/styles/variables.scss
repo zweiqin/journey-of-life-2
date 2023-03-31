@@ -13,11 +13,16 @@ $menuText:#bfcbd9;
 $menuActiveText:#409EFF;
 $subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
 
-$menuBg:#304156;
-$menuHover:#263445;
+// $menuBg:#304156;
+$menuBg:#071A2C;
+// $menuHover:#263445;
+$menuHover:#001325;
+$menuFocus:#001325;
 
-$subMenuBg:#1f2d3d;
-$subMenuHover:#001528;
+// $subMenuBg:#1f2d3d;
+$subMenuBg:#071A2C;
+// $subMenuHover:#001528;
+$subMenuHover:#001325;
 
 $sideBarWidth: 200px;
 
@@ -31,5 +36,6 @@ $sideBarWidth: 200px;
   menuHover: $menuHover;
   subMenuBg: $subMenuBg;
   subMenuHover: $subMenuHover;
+  menuFocus: $menuFocus;
   sideBarWidth: $sideBarWidth;
 }
