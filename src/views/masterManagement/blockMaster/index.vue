@@ -80,6 +80,12 @@
 			<template #skillList="{ row }">
 				<span>{{ row.skillList }}</span>
 			</template>
+			<template #workCity="{ row }">
+				<span>{{ row.workCity.replaceAll(',', '，\n') }}</span>
+			</template>
+			<template #serverCity="{ row }">
+				<span>{{ row.serverCity ? JSON.parse(row.serverCity).map(item => item.join(' ')).join('，\n') : '--' }}</span>
+			</template>
 			<template #workState="{ row }">
 				<span v-if="row.workState === 0">在职</span>
 				<span v-else-if="row.workState === 1">离职</span>

@@ -1,15 +1,9 @@
 <template>
 	<div class="login">
-		<div class="introduce-container">
-			<div style="font-size: 18px;">一样的生活 不一样的享受</div>
-			<div style="margin-top: 20px;margin-bottom: 15px;font-size: 40px;font-weight: 700;">团蜂服务&nbsp;&nbsp;走进千家万户</div>
-			<div style="font-size: 15px;">BEE GROUP</div>
-		</div>
 		<div class="login-container">
-			<div class="login-header">
-				<h2 class="login-title">欢迎登录团蜂社区服务中心系统</h2>
-				<hr>
-				<h4>Welcome To The Bee Community Service Center System</h4>
+			<div>
+				<!-- <h3 class="title">巨蜂科技管理系统</h3> -->
+				<h2 class="login-title">团蜂社区服务中心系统</h2>
 			</div>
 			<div class="login-card">
 
@@ -25,7 +19,7 @@
 					</div>
 					</div>
 					</div> -->
-				<el-card shadow="never" :body-style="{ padding: '0px' }" style="border: 0;background-color: transparent;">
+				<el-card>
 					<div v-if="activeName === 'third'">
 						<div class="login-box">
 
@@ -52,20 +46,16 @@
 					<div class="login-box login-tab-box">
 						<el-form ref="loginForm" :model="loginForm" :rules="loginRules">
 							<el-form-item prop="username">
-								<el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="请输入账号">
-									<div slot="prefix" style="width: 100%;height: 100%;background-color: #073E8E;">
-										<svg-icon icon-class="user" class="el-input__icon input-icon" />
-									</div>
+								<el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
+									<svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
 								</el-input>
 							</el-form-item>
 							<el-form-item prop="password">
 								<el-input
-									v-model="loginForm.password" type="password" auto-complete="off" placeholder="请输入密码"
+									v-model="loginForm.password" type="password" auto-complete="off" placeholder="密码"
 									show-password @keyup.enter.native="handleLogin"
 								>
-									<div slot="prefix" style="width: 100%;height: 100%;background-color: #073E8E;">
-										<svg-icon icon-class="password" class="el-input__icon input-icon" />
-									</div>
+									<svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
 								</el-input>
 							</el-form-item>
 							<el-form-item prop="code">
@@ -73,15 +63,13 @@
 									v-model="loginForm.code" auto-complete="off" placeholder="验证码" style="width: 63%"
 									@keyup.enter.native="handleLogin"
 								>
-									<div slot="prefix" style="width: 100%;height: 100%;background-color: #073E8E;">
-										<svg-icon icon-class="validCode" class="el-input__icon input-icon" />
-									</div>
+									<svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
 								</el-input>
 								<div class="login-code">
-									<img width="100%" height="100%" :src="codeUrl" @click="getCode">
+									<img :src="codeUrl" @click="getCode">
 								</div>
 							</el-form-item>
-							<el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;color: rgba(0, 0, 0, 0.85);">
+							<el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">
 								记住密码
 							</el-checkbox>
 							<el-form-item style="width:100%;">
@@ -95,14 +83,51 @@
 							</el-form-item>
 						</el-form>
 					</div>
+					<!-- </el-tab-pane> -->
+					<!-- <el-tab-pane label="短信登录" name="second">
+						<div class="login-box login-tab-box">
+						<el-form ref="validationForm" :model="validationForm" :rules="validationRules" class="login-form">
+						<el-form-item prop="phone">
+						<el-input v-model="validationForm.phone" type="text" auto-complete="off" placeholder="请输入手机号">
+						<i slot="prefix" class="el-icon-phone el-input__icon input-icon"></i>
+						</el-input>
+						</el-form-item>
+						<el-form-item prop="code">
+						<el-input
+						v-model="validationForm.code" placeholder="请输入验证码" type="text" auto-complete="off"
+						@keyup.enter.native="handleLogin"
+						>
+						<i slot="prefix" class="el-icon-tickets el-input__icon input-icon"></i>
+						<div slot="append">
+						<el-button :disabled="validationDisabled" @click="sendCode">
+						{{
+						validationText
+						}}
+						</el-button>
+						</div>
+						</el-input>
+						</el-form-item>
+						<el-form-item style="width:100%;">
+						<el-button
+						:loading="loading" size="medium" type="primary" style="width:100%;"
+						@click.native.prevent="handleLogin"
+						>
+						<span v-if="!loading">登 录</span>
+						<span v-else>登 录 中...</span>
+						</el-button>
+						</el-form-item>
+						</el-form>
+						</div>
+						</el-tab-pane> -->
+					<!-- </el-tabs> -->
 
 				</el-card>
 			</div>
 		</div>
 		<!--  底部  -->
-		<!-- <div class="el-login-footer">
+		<div class="el-login-footer">
 			<span>Copyright © 2020-2030 团蜂科技版权所有.</span>
-			</div> -->
+		</div>
 	</div>
 </template>
 
@@ -271,62 +296,23 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss">
 .login {
-	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 100%;
 	background-image: url('~@/assets/image/login-background.jpg');
-	// background-size: contain;
-	background-repeat:no-repeat;
-	background-position: center;
-
-	.introduce-container {
-		position: absolute;
-		left: 10%;
-		top: 50%;
-		transform: translateY(-50%);
-		color: #ffffff;
-	}
+	background-size: cover;
 
 	.login-container {
-		position: absolute;
-		right: 8%;
-		top: 50%;
-		transform: translateY(-50%);
-		padding: 30px 60px;
-		background: rgba(195, 212, 228, .8);
+		padding: 20px;
+		margin-bottom: 150px;
+		background: #ffffff;
 		border-radius: 15px;
-		box-shadow: 0px 0px 15px 3px #FFFFFF;
 
-		.login-header {
-			color: #000000;
-
-			.login-title {
-				// width: 100%;
-				height: 1.5em;
-				text-align: justify;
-			}
-
-			.login-title:after {
-				display: inline-block;
-				width: 100%;
-				content: '';
-			}
-
-			hr {
-				margin: 4px 0;
-			border-color: rgba(0, 0, 0, 0.85);
-			}
-
-			h4 {
-				// width: 100%;
-				height: 1.5em;
-				text-align: justify;
-			}
-
-			h4:after {
-				display: inline-block;
-				width: 100%;
-				content: '';
-			}
+		.login-title {
+			margin: 0px auto 30px auto;
+			text-align: center;
+			color: #2e2c2c;
 		}
 
 		.login-card {
@@ -336,145 +322,146 @@ export default {
 				background-color: transparent;
 			}
 
-			// .login-changein {
-			// 	position: absolute;
-			// 	right: 2px;
-			// 	top: 2px;
-			// 	z-index: 2;
-			// 	width: 50%;
-			// 	height: 44px;
-			// 	margin: 0 auto;
+			.login-changein {
+				position: absolute;
+				right: 2px;
+				top: 2px;
+				z-index: 2;
+				width: 50%;
+				height: 44px;
+				margin: 0 auto;
 
-			// 	.code-img {
-			// 		position: absolute;
-			// 		top: 2px;
-			// 		right: 2px;
+				.code-img {
+					position: absolute;
+					top: 2px;
+					right: 2px;
 
-			// 		// z-index: 1;
-			// 		.code-icon {
-			// 			color: #111;
-			// 			cursor: pointer;
-			// 		}
-
-			// 		.code-icon-computer {
-			// 			font-size: 50px;
-			// 		}
-
-			// 		.code-icon-qr {
-			// 			font-size: 60px;
-			// 		}
-			// 	}
-
-			// 	.login-tip {
-			// 		position: absolute;
-			// 		top: 10px;
-			// 		right: 61px;
-
-			// 		.poptip {
-			// 			position: relative;
-			// 			// z-index: 3;
-			// 			border-radius: 6px;
-			// 			background-color: rgba(61, 127, 255, .1);
-			// 			border: none;
-			// 			height: 30px;
-			// 			line-height: 30px;
-			// 			padding: 0 10px;
-
-			// 			.poptip-arrow {
-			// 				position: absolute;
-			// 				// z-index: 2;
-			// 				top: 9px;
-			// 				right: 0;
-
-			// 				// em {
-			// 				// 	position: absolute;
-			// 				// 	top: 0;
-			// 				// 	left: 1px;
-			// 				// 	width: 0;
-			// 				// 	height: 0;
-			// 				// 	border: none;
-			// 				// }
-
-			// 				span {
-			// 					position: absolute;
-			// 					top: 0;
-			// 					left: 0;
-			// 					width: 0;
-			// 					height: 0;
-			// 					border-style: solid;
-			// 					border-color: #fff0;
-			// 					border-width: 6px 0 6px 6px;
-			// 					border-left-color: rgba(61, 127, 255, .1);
-			// 					overflow: hidden;
-			// 				}
-
-			// 			}
-
-			// 			.poptip-content {
-			// 				font-size: 14px;
-			// 				font-weight: 400;
-			// 				color: rgba(61, 127, 255, 1);
-			// 			}
-			// 		}
-			// 	}
-			// }
-
-			.login-box {
-				// width: 500px;
-				height: 350px;
-				padding: 25px 25px 5px 25px;
-				border-radius: 6px;
-				.login-content {
-					.master-login-title {
-						padding-top: 10px;
-						font-weight: lighter;
-						font-size: 20px;
-						text-align: center;
-						font-family: PingFangSC-Regular;
+					// z-index: 1;
+					.code-icon {
 						color: #111;
+						cursor: pointer;
 					}
 
-					.qrcode-login {
-						.qrcode-img {
-							width: 100%;
-							height: 260px;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							box-shadow: 0 0;
+					.code-icon-computer {
+						font-size: 50px;
+					}
+
+					.code-icon-qr {
+						font-size: 60px;
+					}
+				}
+
+				.login-tip {
+					position: absolute;
+					top: 10px;
+					right: 61px;
+
+					.poptip {
+						position: relative;
+						// z-index: 3;
+						border-radius: 6px;
+						background-color: rgba(61, 127, 255, .1);
+						border: none;
+						height: 30px;
+						line-height: 30px;
+						padding: 0 10px;
+
+						.poptip-arrow {
+							position: absolute;
+							// z-index: 2;
+							top: 9px;
+							right: 0;
+
+							// em {
+							// 	position: absolute;
+							// 	top: 0;
+							// 	left: 1px;
+							// 	width: 0;
+							// 	height: 0;
+							// 	border: none;
+							// }
+
+							span {
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 0;
+								height: 0;
+								border-style: solid;
+								border-color: #fff0;
+								border-width: 6px 0 6px 6px;
+								border-left-color: rgba(61, 127, 255, .1);
+								overflow: hidden;
+							}
+
 						}
 
-						.qrcode-desc {
-							width: 100%;
-							margin: 0 auto;
+						.poptip-content {
+							font-size: 14px;
+							font-weight: 400;
+							color: rgba(61, 127, 255, 1);
+						}
+					}
+				}
+			}
 
-							p {
-								text-align: center;
-								font-size: 20px;
-								color: #111;
-								font-family: PingFangSC-Regular;
-							}
+			.login-box {
+				width: 500px;
+				height: 350px;
+				padding: 25px 25px 5px 25px;
+				background: #ffffff;
+				border-radius: 6px;
+			}
+
+			.login-content {
+				.master-login-title {
+					padding-top: 10px;
+					font-weight: lighter;
+					font-size: 20px;
+					text-align: center;
+					font-family: PingFangSC-Regular;
+					color: #111;
+				}
+
+				.qrcode-login {
+					.qrcode-img {
+						width: 100%;
+						height: 260px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						box-shadow: 0 0;
+					}
+
+					.qrcode-desc {
+						width: 100%;
+						margin: 0 auto;
+
+						p {
+							text-align: center;
+							font-size: 20px;
+							color: #111;
+							font-family: PingFangSC-Regular;
 						}
 					}
 				}
 			}
 
 			.login-tab-box {
-				height: 290px;
-				padding: 30px 5px 0;
+				height: 310px;
+
+				.login-form {
+					display: flex;
+					flex-direction: column;
+					justify-content: space-around;
+					height: 100%;
+				}
 
 				.el-input {
 					height: 38px;
-					box-shadow: 0px 0px 10px 0px rgba(153, 153, 153, 0.8);
 
 					input {
 						height: 38px;
-						padding-left: 50px;
-					}
-
-					.el-input__prefix {
-						left: 0;
-						width: 38px;
 					}
 				}
 
@@ -501,34 +488,22 @@ export default {
 					}
 				}
 
-				.el-button--primary {
-					background-color: #073E8E;
-					border-color: #073E8E;
-					box-shadow: 0px 0px 10px 0px rgba(153, 153, 153, 0.8);
-				}
-				.el-button--primary:active {
-    background: #1682e6;
-    border-color: #1682e6;
-    color: #FFFFFF;
-    outline: none;
-}
-
 			}
 		}
 	}
 
-	// .el-login-footer {
-	// 	height: 40px;
-	// 	line-height: 40px;
-	// 	position: fixed;
-	// 	bottom: 0;
-	// 	width: 100%;
-	// 	text-align: center;
-	// 	color: #fff;
-	// 	font-family: Arial;
-	// 	font-size: 12px;
-	// 	letter-spacing: 1px;
-	// }
+	.el-login-footer {
+		height: 40px;
+		line-height: 40px;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		text-align: center;
+		color: #fff;
+		font-family: Arial;
+		font-size: 12px;
+		letter-spacing: 1px;
+	}
 }
 </style>
 

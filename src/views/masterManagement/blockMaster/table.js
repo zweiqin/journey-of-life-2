@@ -82,13 +82,19 @@ export const columns = [
 		align: 'center',
 		field: 'workCity',
 		title: '主营区域',
-		width: 150
+		width: 150,
+		slots: {
+			default: 'workCity'
+		}
 	},
 	{
 		align: 'center',
 		field: 'serverCity',
 		title: '服务区域',
-		width: 150
+		width: 150,
+		slots: {
+			default: 'serverCity'
+		}
 	},
 	// {
 	// 	align: 'center',

@@ -38,7 +38,13 @@
 							<span v-else>--</span>
 						</el-form-item>
 						<el-form-item label="服务区域" prop="serverCity">
-							{{ formData.serverCity || '--' }}
+							<!-- {{ formData.serverCity ? JSON.parse(formData.serverCity).map(item => item.join(' ')).join('，<\n>') : '--' }} -->
+							<div v-if="formData.serverCity">
+								<div v-for="i in JSON.parse(formData.serverCity).map(item => item.join(' '))" :key="i">
+									<span>{{ i }}</span>
+								</div>
+							</div>
+							<div v-else>--</div>
 						</el-form-item>
 						<el-form-item label="添加人" prop="createUser">
 							{{ formData.createUser || '--' }}
@@ -63,7 +69,13 @@
 							{{ formData.workYear || '--' }}
 						</el-form-item>
 						<el-form-item label="主营区域" prop="workCity">
-							{{ formData.workCity || '--' }}
+							<!-- {{ formData.workCity ? formData.workCity.replaceAll(',', '，\n') : '--' }} -->
+							<div v-if="formData.workCity">
+								<div v-for="i in formData.workCity.split(',')" :key="i">
+									<span>{{ i }}</span>
+								</div>
+							</div>
+							<div v-else>--</div>
 						</el-form-item>
 						<el-form-item label="门店地址" prop="shopCity">
 							{{ formData.shopCity || '--' }}
