@@ -56,25 +56,29 @@ export const columns = [
 		title: '手机号',
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'workYear',
-		title: '工作年限',
-		width: 150
-	},
 	// {
 	// 	align: 'center',
 	// 	field: 'skillType',
 	// 	title: '技能专长',
 	// 	width: 150
 	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'skillList',
+	// 	title: '技能专长',
+	// 	showOverflow: 'tooltip',
+	// 	slots: {
+	// 		default: 'skillList'
+	// 	},
+	// 	width: 150
+	// },
 	{
 		align: 'center',
-		field: 'skillList',
+		field: 'skillTypeNameList',
 		title: '技能专长',
 		showOverflow: 'tooltip',
 		slots: {
-			default: 'skillList'
+			default: 'skillTypeNameList'
 		},
 		width: 150
 	},
@@ -154,6 +158,12 @@ export const columns = [
 		slots: {
 			default: 'workState'
 		},
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'workYear',
+		title: '工作年限',
 		width: 150
 	},
 	{

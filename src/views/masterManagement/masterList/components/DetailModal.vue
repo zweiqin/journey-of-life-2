@@ -52,8 +52,8 @@
 						<el-form-item label="更新人" prop="updateUser">
 							{{ formData.updateUser || '--' }}
 						</el-form-item>
-						<el-form-item label="技能专长" prop="skillList">
-							{{ formData.skillList || '--' }}
+						<el-form-item label="技能专长" prop="skillTypeNameList">
+							{{ formData.skillTypeNameList.length ? formData.skillTypeNameList.join('，\n') : '--' }}
 						</el-form-item>
 					</div>
 					<div style="width: 50%;">
@@ -155,7 +155,7 @@ export default {
 				gender: '',
 				birth: '',
 				email: '',
-				skillList: '',
+				skillTypeNameList: '',
 				workCity: '',
 				workYear: '',
 				workState: '',
@@ -197,7 +197,7 @@ export default {
 					gender: res.data.gender || '',
 					birth: res.data.birth || '',
 					email: res.data.email || '',
-					skillList: res.data.skillList || '',
+					skillTypeNameList: res.data.skillTypeNameList || '',
 					workCity: res.data.workCity || '',
 					workYear: res.data.workYear || '',
 					workState: res.data.workState || '',

@@ -23,7 +23,7 @@
 				</el-button>
 			</template>
 			<template v-if="isAdminRole">
-				<el-tooltip content="站长" placement="bottom">
+				<el-tooltip content="店长" placement="bottom">
 					<i class="el-icon-s-custom right-menu-icon right-menu-item"></i>
 				</el-tooltip>
 			</template>
@@ -127,7 +127,7 @@ export default {
 			'device'
 		]),
 		isAdminRole() {
-			return this.roles.includes('站长')
+			return this.roles.includes('店长')
 		},
 		isShopRole() {
 			return this.roles.includes('师傅')

@@ -86,7 +86,7 @@
 							</el-checkbox>
 							<el-form-item style="width:100%;">
 								<el-button
-									:loading="loading" size="medium" type="primary" style="width:100%;"
+									:loading="loading" size="medium" type="primary" style="width:100%;height: 50px;"
 									@click.native.prevent="handleLogin"
 								>
 									<span v-if="!loading">登 录</span>
@@ -460,7 +460,7 @@ export default {
 			}
 
 			.login-tab-box {
-				height: 290px;
+				height: 312px;
 				padding: 30px 5px 0;
 
 				.el-input {

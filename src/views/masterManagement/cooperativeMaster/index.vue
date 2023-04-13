@@ -77,8 +77,8 @@
 				</el-popover>
 				<span v-else>--</span>
 				</template> -->
-			<template #skillList="{ row }">
-				<span>{{ row.skillList }}</span>
+			<template #skillTypeNameList="{ row }">
+				<span>{{ row.skillTypeNameList.length ? row.skillTypeNameList.join('，\n') : '--' }}</span>
 			</template>
 			<template #workCity="{ row }">
 				<span>{{ row.workCity ? row.workCity.replaceAll(',', '，\n') : '--' }}</span>
@@ -170,7 +170,8 @@ export default {
 			columns,
 			customColumnsConfig: {
 				localKey: 'cooperativeMaster',
-				columnsOptions: columns
+				columnsOptions: columns,
+				defaultFields: ['$index', ...columns.filter((v) => v.field && !['gender', 'birth', 'email'].includes(v.field)).map((item) => item.field)]
 			},
 			listQuery: {
 				pageNo: 1,
@@ -200,7 +201,7 @@ export default {
 			await this.$elConfirm(`确认${text}？`)
 			await saveOrDeleteWorker({
 				zzuserId: this.$store.state.user.userId,
-				sfuserId: row.id,
+				sfuserId: row.userId,
 				isHz,
 				status
 			})

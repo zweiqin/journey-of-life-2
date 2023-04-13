@@ -16,7 +16,7 @@
 							<tbody>
 
 								<tr style="display: flex;justify-content: center;">
-									<td><div class="cell">站长余额：</div></td>
+									<td><div class="cell">店长余额：</div></td>
 									<td>
 										<div v-if="information.data !== ''" class="cell" style="color: brown;font-weight: 700;">{{ information.data }}</div>
 										<span v-else>--</span>

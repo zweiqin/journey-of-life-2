@@ -40,7 +40,7 @@
 			<!-- <template #createUserType="{ row }">
 				<span v-if="row.createUserType === 1">货主</span>
 				<span v-else-if="row.createUserType === 2">物流</span>
-				<span v-else-if="row.createUserType === 3">站长</span>
+				<span v-else-if="row.createUserType === 3">店长</span>
 				<span v-else>--</span>
 				</template>
 				<template #paymentMethod="{ row }">

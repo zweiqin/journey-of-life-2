@@ -78,7 +78,7 @@ export function getOrderExtraInfo(data) {
 	})
 }
 
-// 自建单（站长创建订单）
+// 自建单（店长创建订单）
 export function createOrder(data) {
 	return request({
 		url: api.createOrder,

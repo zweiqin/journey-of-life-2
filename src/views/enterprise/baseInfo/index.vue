@@ -8,7 +8,7 @@
 						style="clip-path: polygon(0px 0px, 60% 0, 100% 50%, 60% 100%, 0px 100%);width: 16px;height: 16px;display: inline-block;background: linear-gradient(270deg, #3CA1FF 0%, #2E70AF 40%, #071A2C 100%);"
 						>
 						</div>
-						<span style="font-weight: bold;color: #333333; ">站长信息</span>
+						<span style="font-weight: bold;color: #333333; ">店长信息</span>
 						</div> -->
 					<div class="el-table el-table--enable-row-hover el-table--medium">
 						<table cellspacing="0" style="width: 100%;">
@@ -32,13 +32,13 @@
 								</tr>
 
 								<tr>
-									<td><div class="cell">站长性别：</div></td>
+									<td><div class="cell">店长性别：</div></td>
 									<td>
 										<span v-if="information.gender === 0" class="cell" style="font-weight: 700;">男</span>
 										<span v-else-if="information.gender === 1" class="cell" style="font-weight: 700;">女</span>
 										<span v-else>--</span>
 									</td>
-									<td><div class="cell">站长的用户ID：</div></td>
+									<td><div class="cell">店长的用户ID：</div></td>
 									<td>
 										<div v-if="information.userId !== ''" class="cell" style="font-weight: 700;">{{ information.userId }}</div>
 										<span v-else>--</span>
@@ -46,7 +46,7 @@
 								</tr>
 
 								<tr>
-									<td><div class="cell">站长生日：</div></td>
+									<td><div class="cell">店长生日：</div></td>
 									<td>
 										<div v-if="information.birth !== ''" class="cell" style="font-weight: 700;">{{ information.birth }}</div>
 										<span v-else>--</span>
@@ -78,7 +78,7 @@
 										<div v-if="information.skillList !== ''" class="cell" style="font-weight: 700;">{{ information.skillList }}</div>
 										<span v-else>--</span>
 									</td>
-									<td><div class="cell">站长邮箱：</div></td>
+									<td><div class="cell">店长邮箱：</div></td>
 									<td>
 										<div v-if="information.email !== ''" class="cell" style="font-weight: 700;">{{ information.email }}</div>
 										<span v-else>--</span>
@@ -200,7 +200,7 @@
 			<el-col :span="24" style="height: 100%;">
 				<el-card class="box-map-card" style="height: 100%;">
 					<div slot="header">
-						<span style="font-weight: bold;">站长服务区域</span>
+						<span style="font-weight: bold;">店长服务区域</span>
 					</div>
 					<div class="table-region el-table el-table--enable-row-hover el-table--medium" style="overflow-y: auto;">
 						<table cellspacing="0" style="width: 100%;">

@@ -133,8 +133,8 @@
 					</div>
 					<div style="width: 100%;display: flex;justify-content: space-between;">
 						<div style="width: 48%;">
-							<el-form-item label="站长所得佣金" prop="zzBrokerage">
-								<el-input v-model="formData.zzBrokerage" placeholder="请输入站长所得佣金" maxlength="30" />
+							<el-form-item label="店长所得佣金" prop="zzBrokerage">
+								<el-input v-model="formData.zzBrokerage" placeholder="请输入店长所得佣金" maxlength="30" />
 							</el-form-item>
 						</div>
 						<div style="width: 48%;">
@@ -263,7 +263,7 @@ export default {
 					{ required: false, message: '请输入服务需求' }
 				],
 				'zzBrokerage': [
-					{ required: false, message: '请输入站长所得佣金' }
+					{ required: false, message: '请输入店长所得佣金' }
 				],
 				'sfarrivalPrice': [
 					{ required: false, message: '请输入师傅到账金额' }

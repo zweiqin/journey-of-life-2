@@ -46,12 +46,12 @@ export const columns = [
 		formatter: ({ row }) => row.consigneeAddress + ' ' + row.consigneeAddressDetail,
 		width: 200
 	},
-	{
-		align: 'center',
-		field: 'serverCode',
-		title: '服务码',
-		width: 80
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'serverCode',
+	// 	title: '服务码',
+	// 	width: 80
+	// },
 	{
 		align: 'center',
 		field: 'subscribeTime',
@@ -99,7 +99,7 @@ export const columns = [
 	{
 		align: 'center',
 		field: 'brokerage',
-		title: '站长所得佣金',
+		title: '店长所得佣金',
 		width: 150
 	},
 	{

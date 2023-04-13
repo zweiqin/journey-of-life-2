@@ -5,7 +5,7 @@ export const api = {
 	getWithdrawRecordList: '/api/commonworker/getWithdrawRecordList'
 }
 
-// 站长余额
+// 店长余额
 export function getUserBalance(data) {
 	return request({
 		url: api.getUserBalance,

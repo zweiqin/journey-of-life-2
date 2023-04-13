@@ -163,17 +163,17 @@
 								<el-form-item label="下单用户类型" prop="createUserType">
 									<span v-if="formData.createUserType === 1">货主</span>
 									<span v-else-if="formData.createUserType === 2">物流</span>
-									<span v-else-if="formData.createUserType === 3">站长</span>
+									<span v-else-if="formData.createUserType === 3">店长</span>
 									<span v-else>--</span>
 								</el-form-item>
-								<el-form-item label="订单所属站长id" prop="belongsToZzUserId">
+								<el-form-item label="订单所属店长id" prop="belongsToZzUserId">
 									{{ formData.belongsToZzUserId || '--' }}
 								</el-form-item>
 							</div>
 							<div style="width: 50%;">
-								<el-form-item label="服务码" prop="serverCode">
+								<!-- <el-form-item label="服务码" prop="serverCode">
 									{{ formData.serverCode || '--' }}
-								</el-form-item>
+									</el-form-item> -->
 								<el-form-item label="预约时间" prop="subscribeTime">
 									{{ formData.subscribeTime || '--' }}
 								</el-form-item>
@@ -258,7 +258,7 @@
 							</div>
 							<div style="display: flex;justify-content: space-between;">
 								<div style="width: 40%;">
-									<el-form-item label="站长所得佣金" prop="brokerage">
+									<el-form-item label="店长所得佣金" prop="brokerage">
 										{{ formData.brokerage || '--' }}
 									</el-form-item>
 								</div>

@@ -69,7 +69,7 @@ const user = {
 					const token = response.data.password
 					commit('SET_TOKEN', token)
 
-					commit('SET_ROLES', response.data.typ === 0 ? '站长' : '师傅')
+					commit('SET_ROLES', response.data.typ === 0 ? '店长' : '师傅')
 					commit('SET_ROLES_TYPE', response.data.typ)
 					// commit('SET_PERMS', response.data.typ === 0 ? [ '*' ] : [])
 					commit('SET_NAME', response.data.account)
@@ -77,7 +77,7 @@ const user = {
 					commit('SET_USERID', response.data.id)
 					commit('SET_INTRODUCTION', response.data.status === 1 ? '启用' : '禁用')
 					Vue.ls.set('user_information', {
-						roles: response.data.typ === 0 ? '站长' : '师傅',
+						roles: response.data.typ === 0 ? '店长' : '师傅',
 						perms: response.data.typ === 0 ? [ '*' ] : null,
 						name: response.data.account,
 						typ: response.data.typ,

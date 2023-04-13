@@ -152,7 +152,7 @@ export const asyncRouterMap = [
 		alwaysShow: true,
 		redirect: 'noredirect',
 		meta: {
-			title: '企业管理',
+			title: '网点管理',
 			icon: 'enterprise',
 			noCache: true
 		},
@@ -162,7 +162,7 @@ export const asyncRouterMap = [
 				component: () => import('@/views/enterprise/baseInfo'),
 				name: 'BaseInfo',
 				meta: {
-					title: '站长信息',
+					title: '店长信息',
 					noCache: true
 				}
 			},
