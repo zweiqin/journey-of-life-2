@@ -24,7 +24,7 @@
 				<div style="display: flex;justify-content: space-between;">
 					<div style="width: 40%;">
 						<el-form-item label="用户姓名" prop="name">
-							{{ formData.name || '--' }}
+							{{ formData.name || '--' }}<span v-if="formData.certification === 1"> （已认证）</span><span v-else-if="formData.certification === 0"> （未认证）</span>
 						</el-form-item>
 						<el-form-item label="生日" prop="birth">
 							{{ formData.birth || '--' }}
@@ -171,7 +171,8 @@ export default {
 				typ: '',
 				brand: '',
 				carNo: '',
-				carImg: ''
+				carImg: '',
+				certification: ''
 			}
 		}
 	},
@@ -213,7 +214,8 @@ export default {
 					typ: res.data.typ || '',
 					brand: res.data.brand || '',
 					carNo: res.data.carNo || '',
-					carImg: res.data.carImg || ''
+					carImg: res.data.carImg || '',
+					certification: res.data.certification || ''
 				})
 			} finally {
 				loading.close()

@@ -137,7 +137,7 @@ import {
 } from '@/api/orderManagement/order'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
-import DetailModal from './components/DetailModal'
+import DetailModal from '../../receivingManagement/receivingList/components/DetailModal'
 import { columns } from './table'
 
 export default {

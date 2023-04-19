@@ -112,25 +112,25 @@
 				</el-button>
 				<el-button
 					v-if="(listQuery.isCooperationOrisBlacklist == null)" v-permission="[ `POST ${api.saveOrDeleteWorker}` ]" type="primary"
-					size="mini" @click="handleUpdate(row, 1, 1, '进行合作')"
+					:disabled="row.certification !== 1" size="mini" @click="handleUpdate(row, 1, 1, '进行合作')"
 				>
 					进行合作
 				</el-button>
 				<el-button
 					v-if="(listQuery.isCooperationOrisBlacklist == 1)" v-permission="[ `POST ${api.saveOrDeleteWorker}` ]" type="danger"
-					size="mini" @click="handleUpdate(row, 2, 1, '进行拉黑')"
+					:disabled="row.certification !== 1" size="mini" @click="handleUpdate(row, 2, 1, '进行拉黑')"
 				>
 					进行拉黑
 				</el-button>
 				<el-button
 					v-if="(listQuery.isCooperationOrisBlacklist == 1)" v-permission="[ `POST ${api.saveOrDeleteWorker}` ]" type="danger"
-					size="mini" @click="handleUpdate(row, 1, 0, '取消合作')"
+					:disabled="row.certification !== 1" size="mini" @click="handleUpdate(row, 1, 0, '取消合作')"
 				>
 					取消合作
 				</el-button>
 				<el-button
 					v-if="(listQuery.isCooperationOrisBlacklist == 2)" v-permission="[ `POST ${api.saveOrDeleteWorker}` ]" type="warning"
-					size="mini" @click="handleUpdate(row, 2, 0, '取消拉黑')"
+					:disabled="row.certification !== 1" size="mini" @click="handleUpdate(row, 2, 0, '取消拉黑')"
 				>
 					取消拉黑
 				</el-button>
@@ -152,7 +152,7 @@ import {
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
 // import EditModal from './components/EditModal'
-import DetailModal from './components/DetailModal'
+import DetailModal from '../masterList/components/DetailModal'
 import { columns } from './table'
 
 export default {

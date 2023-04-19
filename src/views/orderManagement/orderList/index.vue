@@ -184,7 +184,7 @@ import TableTools from '@/components/TableTools'
 import Distribution from './components/Distribution'
 import AdditionalAmount from './components/AdditionalAmount'
 import EditModal from './components/EditModal'
-import DetailModal from './components/DetailModal'
+import DetailModal from '../../receivingManagement/receivingList/components/DetailModal'
 import { columns } from './table'
 
 export default {
