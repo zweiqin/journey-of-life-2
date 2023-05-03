@@ -471,7 +471,7 @@ export default {
 		const emptySlots = this.showEmptyImage ? h('div', { class: 'table-empty', slot: 'empty' }, [h('img', { attrs: { src: empty } }), h('div', '暂无数据')]) : undefined
 		// vxe-table
 		const el = h('div', { class: [ 'flexColumnPageWrap ' + className ] }, [
-			h('div', { }, [
+			h('div', {}, [
 				h('vxe-grid', {
 					style: { 'z-index': 50 },
 					ref: 'erpVxeTable',
@@ -535,29 +535,6 @@ export default {
 		// margin-bottom: 10px;
 		// margin-top: 15px;
 		background: #fff;
-		/deep/ .el-pagination {
-			span:nth-child(1) {
-				float: left;
-				color: #999999;
-			}
-			.el-pager {
-				.number {
-					color: #999999;
-					background-color: transparent;
-					border: 1px solid #E1E1E1;
-				}
-				.number:hover {
-					color: #1890ff;
-				}
-				.active {
-					color: #FFFFFF;
-					background-color: #1890ff;
-				}
-				.active:hover {
-					color: #FFFFFF;
-				}
-			}
-		}
 	}
 
 	.el-pagination {
@@ -566,5 +543,196 @@ export default {
 		// right: 0;
 		// position: absolute;
 	}
+
+	// 加上的
+	/deep/ .flexColumnPageWrap {
+		.jufeng-vxe-table {
+			.vxe-table {
+				.vxe-table--render-wrapper {
+
+					// 主框
+					.vxe-table--main-wrapper {
+						.vxe-table--header-wrapper {
+							background-color: #f8fbfd;
+
+							.vxe-body--x-space {
+								height: 0;
+							}
+
+							table {
+								thead {
+									.vxe-header--row {
+										.vxe-header--column {
+											background-image: none;
+										}
+									}
+								}
+							}
+
+							.vxe-table--header-border-line {
+								border: 0;
+							}
+						}
+
+						.vxe-table--body-wrapper {
+							.vxe-body--x-space {
+								height: 0;
+							}
+
+							table {
+								tbody {
+									.vxe-body--row {
+										.vxe-body--column {
+											background-image: none;
+										}
+									}
+								}
+							}
+						}
+					}
+
+					.vxe-table--fixed-wrapper {
+
+						// 左框
+						.vxe-table--fixed-left-wrapper {
+							.vxe-table--header-wrapper {
+								background-color: #f8fbfd;
+
+								table {
+									tbody {
+										.vxe-body--row {
+											.vxe-body--column {
+												background-image: none;
+											}
+										}
+									}
+								}
+
+								.vxe-table--header-border-line {
+									border: 0;
+								}
+							}
+
+							.vxe-table--body-wrapper {
+								table {
+									tbody {
+										.vxe-body--row {
+											.vxe-body--column {
+												background-image: none;
+											}
+										}
+									}
+								}
+							}
+						}
+
+						// 右框
+						.vxe-table--fixed-right-wrapper {
+							.vxe-table--header-wrapper {
+								background-color: #f8fbfd;
+
+								table {
+									tbody {
+										.vxe-body--row {
+											.vxe-body--column {
+												background-image: none;
+											}
+										}
+									}
+								}
+
+								.vxe-table--header-border-line {
+									border: 0;
+								}
+							}
+
+							.vxe-table--body-wrapper {
+								table {
+									tbody {
+										.vxe-body--row {
+											.vxe-body--column {
+												background-image: none;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				.vxe-table--border-line {
+					border: 0;
+				}
+			}
+		}
+
+		.pagination-container {
+			.el-pagination {
+				.el-pagination__total {
+					color: #64748B;
+				}
+				span:nth-child(2) {
+					float: left;
+					color: #999999;
+				}
+				.btn-prev {
+					background-color: transparent;
+					border-radius: 4px;
+					border: 1px solid #64748B;
+				}
+
+				.el-pager {
+					.number {
+						color: #999999;
+						background-color: transparent;
+						border-radius: 4px;
+						border: 1px solid #64748B;
+					}
+
+					.number:hover {
+						color: #1890ff;
+					}
+
+					.active {
+						color: #FFFFFF;
+						background-color: #0519d4;
+						border: 0;
+					}
+
+					.active:hover {
+						color: #FFFFFF;
+					}
+					.btn-quicknext {
+						background-color: transparent;
+						border-radius: 4px;
+						border: 1px solid #64748B;
+					}
+				}
+				.btn-next {
+					background-color: transparent;
+					border: 1px solid #64748B;
+					border-radius: 4px;
+				}
+				.el-pagination__jump {
+					position: relative;
+					&::before {
+						content: '跳至';
+						position: absolute;
+						top: 0;
+						left: 0;
+						background-color: #ffffff;
+					}
+					.el-input {
+						input {
+							border: 1px solid #64748B;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 加上的
 }
 </style>

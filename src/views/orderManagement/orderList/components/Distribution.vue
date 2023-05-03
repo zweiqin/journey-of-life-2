@@ -2,8 +2,8 @@
 	<el-dialog :visible.sync="visible" v-bind="modalOptions">
 		<el-form ref="formData" :model="formData" :rules="formRules" size="mini" label-suffix=":" label-width="100px">
 			<el-form-item label="分配师傅" prop="sfUserId">
-				<el-select v-model="formData.sfUserId" placeholder="请选择师傅">
-					<el-option v-for="item in masterList" :key="item.id" :label="`${item.name}${item.mobile ? ' ' + item.mobile : ''}`" :value="item.id" />
+				<el-select v-model="formData.sfUserId" placeholder="请选择师傅" filterable>
+					<el-option v-for="item in masterList" :key="item.userId" :label="`${item.name}${item.mobile ? ' ' + item.mobile : ''}`" :value="item.userId" />
 				</el-select>
 			</el-form-item>
 		</el-form>

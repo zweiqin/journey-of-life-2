@@ -3,7 +3,7 @@
 		<div
 			style="position: relative;display: flex;flex-direction: column;justify-content: start;align-items: center;width: 100%;"
 		>
-			<div style="position: sticky;top: 0;z-index: 1;width: 100%;padding-top: 25px;;background-color: #ffffff;">
+			<div style="position: sticky;top: 0;z-index: 1;width: 100%;padding-top: 25px;background-color: #ffffff;">
 				<div style="width: 88%;margin: 0 auto;">
 					<el-steps
 						v-if="formData.status === 7" :space="200" :active="1" finish-status="error"
@@ -40,7 +40,7 @@
 						<el-step title="待接单" :class="{ 'is-ok': Number(formData.status) >= 3, 'is-on': formData.status == 3 }"></el-step>
 						<el-step title="待分配" :class="{ 'is-ok': Number(formData.status) >= 4, 'is-on': formData.status == 4 }"></el-step>
 						<el-step title="已分配" :class="{ 'is-ok': Number(formData.status) >= 5, 'is-on': formData.status == 5 }"></el-step>
-						<el-step title="配送中" :class="{ 'is-ok': Number(formData.status) >= 6, 'is-on': formData.status == 6 }"></el-step>
+						<el-step title="服务中" :class="{ 'is-ok': Number(formData.status) >= 6, 'is-on': formData.status == 6 }"></el-step>
 						<el-step title="已完成"></el-step>
 					</el-steps>
 				</div>
@@ -53,7 +53,7 @@
 						<el-tag v-else-if="row.status === 2" type="success">待报价</el-tag>
 						<el-tag v-else-if="row.status === 3">待分配</el-tag>
 						<el-tag v-else-if="row.status === 4" type="success">已分配</el-tag>
-						<el-tag v-else-if="row.status === 5" type="success">配送中</el-tag>
+						<el-tag v-else-if="row.status === 5" type="success">服务中</el-tag>
 						<el-tag v-else-if="row.status === 6" type="info">已完成</el-tag>
 						<el-tag v-else-if="row.status === 7" type="info">已取消</el-tag>
 						<el-tag v-else-if="row.status === 8" type="danger">异常</el-tag>
@@ -64,7 +64,7 @@
 						<div style="width: 40%;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 								>
 								</div>
 								<span>客户信息</span>
@@ -105,7 +105,7 @@
 						<div v-if="formData.deliveryType !== 4" style="width: 50%;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 								>
 								</div>
 								<span>发货人信息</span>
@@ -137,7 +137,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
 							<span>订单信息</span>
@@ -201,7 +201,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
 							<span>结算信息</span>
@@ -273,7 +273,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
 							<span>订单状况</span>

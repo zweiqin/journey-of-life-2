@@ -20,6 +20,9 @@ export const columns = [
 		align: 'center',
 		field: 'orderNo',
 		title: '订单号码',
+		slots: {
+			default: 'orderNo'
+		},
 		width: 150
 	},
 	{
@@ -30,8 +33,20 @@ export const columns = [
 	},
 	{
 		align: 'center',
+		field: 'createTime',
+		title: '创建时间',
+		slots: {
+			default: 'createTime'
+		},
+		width: 150
+	},
+	{
+		align: 'center',
 		field: 'extraPrice',
-		title: '追加金额',
+		title: '追加费用',
+		slots: {
+			default: 'extraPrice'
+		},
 		width: 150
 	},
 	{
@@ -42,25 +57,9 @@ export const columns = [
 	},
 	{
 		align: 'center',
-		field: 'status',
-		title: '订单状态',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'status'
-		},
-		width: 150
-	},
-	{
-		align: 'center',
 		field: 'remarks',
 		title: '需求说明',
 		width: 200
-	},
-	{
-		align: 'center',
-		field: 'createTime',
-		title: '创建时间',
-		width: 150
 	},
 	{
 		align: 'center',
@@ -69,7 +68,18 @@ export const columns = [
 		width: 150
 	},
 	{
-		align: 'left',
+		align: 'center',
+		field: 'status',
+		fixed: 'right',
+		title: '订单状态',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'status'
+		},
+		width: 100
+	},
+	{
+		align: 'center',
 		field: 'operate',
 		fixed: 'right',
 		title: '操作',
@@ -78,6 +88,6 @@ export const columns = [
 		slots: {
 			default: 'operate'
 		},
-		width: 150
+		width: 90
 	}
 ]

@@ -1,0 +1,131 @@
+<template>
+	<el-dialog
+		:visible.sync="visible"
+		v-bind="modalOptions"
+		center
+	>
+		<el-form
+			ref="formData"
+			:model="formData"
+			label-position="left"
+			label-width="100px"
+			label-suffix=""
+			size="mini"
+		>
+			<div style="margin-top: 35px;">
+				<el-form-item label="提现类型" prop="bankChannel">
+					<span v-if="formData.bankChannel === 1">手动打款</span>
+					<span v-else-if="formData.bankChannel === 2">通联</span>
+					<span v-else>--</span>
+				</el-form-item>
+				<el-form-item label="账号" prop="receiverAccount">
+					{{ formData.receiverAccount || '--' }}
+				</el-form-item>
+				<el-form-item label="状态" prop="orderStatus">
+					<span v-if="formData.orderStatus === 0">未审核</span>
+					<span v-else-if="formData.orderStatus === 1">通过</span>
+					<span v-else-if="formData.orderStatus === 2">不通过</span>
+					<span v-else-if="formData.orderStatus === 3" style="color: #3BB900;">已提现</span>
+					<span v-else-if="formData.orderStatus === 4" style="color: #FC4023;">提现失败</span>
+					<span v-else style="color: #cccccc;">--</span>
+				</el-form-item>
+				<el-form-item label="提交时间" prop="createTime">
+					{{ formData.createTime || '--' }}
+				</el-form-item>
+				<el-form-item label="提现金额" prop="amount">
+					<span :style="{ color: formData.orderStatus === 4 ? '#FC4023' : formData.orderStatus === 3 ? '#3BB900' : '#cccccc' }">￥ {{ formData.amount || formData.amount === 0 ? formData.amount : '--' }}</span>
+				</el-form-item>
+			</div>
+		</el-form>
+	</el-dialog>
+</template>
+
+<script>
+// import { getOrderInfo } from '@/api/enterprise/master'
+
+export default {
+	name: 'DetailModal',
+	data() {
+		return {
+			modalOptions: {
+				closeOnClickModal: false,
+				width: '500px',
+				title: '提现详情'
+			},
+			visible: false,
+			formData: {
+				createTime: '',
+				amount: '',
+				receiverAccount: '',
+				bankChannel: '',
+				orderStatus: ''
+			}
+		}
+	},
+	methods: {
+		handleClose() {
+			this.visible = false
+		},
+		handleOpen(params = {}) {
+			this.formData = Object.assign(this.$options.data().formData, params)
+			if (params.userId) {
+				// this.getInfo(params.userId)
+			}
+			this.visible = true
+		},
+		async getInfo(userId) {
+			const loading = this.$elLoading('加载中')
+			try {
+				const res = await getOrderInfo({ userId })
+				this.formData = Object.assign(this.$options.data().formData, res.data, {
+					createTime: res.data.createTime || '',
+					amount: res.data.amount || '',
+					receiverAccount: res.data.receiverAccount || '',
+					bankChannel: res.data.bankChannel || '',
+					orderStatus: res.data.orderStatus || ''
+				})
+			} finally {
+				loading.close()
+			}
+		}
+	}
+}
+</script>
+
+<style lang="scss" scoped>
+.dialog-section-title {
+	font-size: 16px;
+	color: #333333;
+}
+
+.form-item-line {
+	/deep/ .el-form-item__content {
+		line-height: 16px;
+	}
+}
+
+/deep/ .el-dialog {
+
+	.el-dialog__header {
+		font-size: 18px;
+		font-weight: bold;
+		color: #333333;
+	}
+
+	.el-dialog__body {
+		padding: 0 25px 30px;
+
+		.el-form-item {
+			margin-bottom: 6px;
+
+			label {
+				color: #9E9E9E;
+			}
+
+			.el-form-item__content {
+				color: #333333;
+			}
+		}
+	}
+}
+</style>

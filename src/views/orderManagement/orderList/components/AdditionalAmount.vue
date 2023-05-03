@@ -1,20 +1,24 @@
 <template>
 	<el-dialog :visible.sync="visible" v-bind="modalOptions">
 		<el-form ref="formData" :model="formData" :rules="formRules" size="mini" label-suffix=":" label-width="100px">
-			<el-form-item label="追加金额" prop="extraAmount">
-				<el-input v-model.number="formData.extraAmount" maxlength="9" placeholder="请输入追加金额" />
-			</el-form-item>
+			<div class="form-price">
+				<el-form-item label="追加金额" prop="extraAmount">
+					<el-input v-model.number="formData.extraAmount" maxlength="9" placeholder="请输入追加金额">
+						<template #suffix>（元）</template>
+					</el-input>
+				</el-form-item>
+			</div>
 			<el-form-item label="追加原因" prop="extraRemark">
 				<el-input
-					v-model="formData.extraRemark" type="textarea" placeholder="请输入追加原因" maxlength="520"
-					:rows="3"
+					v-model="formData.extraRemark" type="textarea" placeholder="请输入追加原因" maxlength="150"
+					:rows="8"
 					show-word-limit
 				/>
 			</el-form-item>
 		</el-form>
 		<span slot="footer" class="dialog-footer">
-			<el-button size="mini" @click="handleClose">取 消</el-button>
-			<el-button type="primary" size="mini" @click="handleSubmit">确 定</el-button>
+			<!-- <el-button size="mini" @click="handleClose">取 消</el-button> -->
+			<el-button style="padding: 10px 32px;" type="primary" size="mini" @click="handleSubmit">确 定</el-button>
 		</span>
 	</el-dialog>
 </template>
@@ -84,4 +88,58 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+/deep/ .el-dialog {
+
+	.el-dialog__header {
+		position: relative;
+		margin-top: 10px;
+		margin-left: 20px;
+		font-weight: bold;
+		color: #333333;
+	}
+
+	.el-dialog__body {
+		padding: 15px 50px 5px 30px;
+
+		.form-price {
+			.el-form-item {
+				.el-form-item__content {
+					.el-input {
+						// .el-input__prefix {
+						// 	top: 2px;
+						// 	left: 15px;
+						// 	color: #000000;
+						// }
+
+						.el-input__suffix {
+							right: 10px;
+							color: #FF5917;
+						}
+
+						.el-input-group__append {
+							// padding: 0;
+						}
+					}
+				}
+			}
+		}
+
+		.el-form-item {
+			margin-top: 2px;
+			margin-bottom: 18px;
+
+			label {
+				color: #000000;
+			}
+
+			.el-form-item__content {
+				// margin-left: 0!important;
+				color: #333333;
+			}
+		}
+	}
+}
+</style>
 

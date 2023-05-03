@@ -18,16 +18,20 @@ export const columns = [
 	// },
 	{
 		align: 'center',
+		field: 'headUrl',
+		title: '头像',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'headUrl'
+		},
+		width: 80
+	},
+	{
+		align: 'center',
 		field: 'name',
 		title: '姓名',
-		width: 150
+		width: 80
 	},
-	// {
-	// 	align: 'center',
-	// 	field: 'ident',
-	// 	title: '身份证号',
-	// 	width: 150
-	// },
 	{
 		align: 'center',
 		field: 'gender',
@@ -36,6 +40,22 @@ export const columns = [
 		slots: {
 			default: 'gender'
 		},
+		width: 60
+	},
+	{
+		align: 'center',
+		field: 'workState',
+		title: '状态',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'workState'
+		},
+		width: 80
+	},
+	{
+		align: 'center',
+		field: 'mobile',
+		title: '手机号',
 		width: 150
 	},
 	{
@@ -50,12 +70,12 @@ export const columns = [
 		title: '邮箱',
 		width: 150
 	},
-	{
-		align: 'center',
-		field: 'mobile',
-		title: '手机号',
-		width: 150
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'ident',
+	// 	title: '身份证号',
+	// 	width: 150
+	// },
 	// {
 	// 	align: 'center',
 	// 	field: 'skillType',
@@ -83,9 +103,11 @@ export const columns = [
 		width: 150
 	},
 	{
-		align: 'center',
+		align: 'left',
 		field: 'workCity',
 		title: '主营区域',
+		// className: 'vxe-cell-two-row',
+		showOverflow: 'tooltip',
 		width: 150,
 		slots: {
 			default: 'workCity'
@@ -100,16 +122,6 @@ export const columns = [
 			default: 'serverCity'
 		}
 	},
-	// {
-	// 	align: 'center',
-	// 	field: 'headUrl',
-	// 	title: '头像图片',
-	// 	showOverflow: 'tooltip',
-	// 	slots: {
-	// 		default: 'headUrl'
-	// 	},
-	// 	width: 150
-	// },
 	// {
 	// 	align: 'center',
 	// 	field: 'certImg1',
@@ -150,16 +162,6 @@ export const columns = [
 	// 	},
 	// 	width: 150
 	// },
-	{
-		align: 'center',
-		field: 'workState',
-		title: '在职状态',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'workState'
-		},
-		width: 150
-	},
 	{
 		align: 'center',
 		field: 'workYear',
@@ -245,6 +247,17 @@ export const columns = [
 	// 	width: 150
 	// },
 	{
+		align: 'center',
+		fixed: 'right',
+		field: 'certification',
+		title: '认证状态',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'certification'
+		},
+		width: 80
+	},
+	{
 		align: 'left',
 		field: 'operate',
 		fixed: 'right',
@@ -254,6 +267,6 @@ export const columns = [
 		slots: {
 			default: 'operate'
 		},
-		width: 240
+		width: 140
 	}
 ]

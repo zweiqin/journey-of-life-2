@@ -18,59 +18,57 @@ export const columns = [
 	// },
 	{
 		align: 'center',
-		fixed: 'left',
-		field: 'employeeName',
-		title: '员工姓名',
-		width: 100
-	},
-	{
-		align: 'center',
-		field: 'employeeGender',
-		title: '员工性别',
-		showOverflow: 'tooltip',
-		slots: {
-			default: 'employeeGender'
-		},
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'employeeTel',
-		title: '员工电话',
-		width: 150
-	},
-	{
-		align: 'center',
-		field: 'employeePassword',
-		title: '密码',
-		width: 150
-	},
-	{
-		align: 'center',
 		field: 'employeeHead',
 		title: '头像',
 		showOverflow: 'tooltip',
 		slots: {
 			default: 'employeeHead'
 		},
-		width: 150
+		width: 80
+	},
+	{
+		align: 'center',
+		fixed: 'left',
+		field: 'employeeName',
+		title: '姓名',
+		width: 80
+	},
+	{
+		align: 'center',
+		field: 'employeeGender',
+		title: '性别',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'employeeGender'
+		},
+		width: 60
 	},
 	{
 		align: 'center',
 		field: 'employeePosition',
 		title: '员工职位',
-		width: 150
+		width: 80
 	},
 	{
 		align: 'center',
-		field: 'employeeAddress',
-		title: '员工地址',
+		field: 'employeeTel',
+		title: '手机号',
 		width: 150
 	},
 	{
 		align: 'center',
 		field: 'employeeEmail',
-		title: '员工邮箱',
+		title: '邮箱',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'employeeEmail'
+		},
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'employeeAddress',
+		title: '地址',
 		width: 150
 	},
 	{
@@ -82,13 +80,19 @@ export const columns = [
 	{
 		align: 'center',
 		field: 'createTime',
-		title: '创建时间',
+		title: '注册时间',
 		width: 150
 	},
 	{
 		align: 'center',
 		field: 'updateTime',
 		title: '更新时间',
+		width: 150
+	},
+	{
+		align: 'center',
+		field: 'employeePassword',
+		title: '密码',
 		width: 150
 	},
 	{
@@ -101,6 +105,6 @@ export const columns = [
 		slots: {
 			default: 'operate'
 		},
-		width: 150
+		width: 220
 	}
 ]

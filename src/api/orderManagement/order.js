@@ -12,7 +12,8 @@ export const api = {
 	createOrderExtra: '/api/order/createOrderExtra',
 	queryExtraList: '/api/extra/queryExtraList',
 	getOrderExtraInfo: '/api/extra/getOrderExtraInfo',
-	createOrder: '/api/zhanzhang/createOrder'
+	createOrder: '/api/zhanzhang/createOrder',
+	replaceMaster: '/api/commonworker/replaceMaster'
 }
 
 // // 订单管理列表
@@ -82,6 +83,15 @@ export function getOrderExtraInfo(data) {
 export function createOrder(data) {
 	return request({
 		url: api.createOrder,
+		method: 'POST',
+		data
+	})
+}
+
+// 更换师傅
+export function replaceMaster(data) {
+	return request({
+		url: api.replaceMaster,
 		method: 'POST',
 		data
 	})

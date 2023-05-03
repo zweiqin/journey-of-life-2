@@ -1,63 +1,82 @@
 <template>
 	<el-dialog :visible.sync="visible" v-bind="modalOptions" center>
-		<div style="margin-top: 25px;width: 100%;">
-			<el-form ref="formData" :model="formData" :rules="formRules" label-position="left" label-width="135px" label-suffix="" size="mini">
-				<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
-					<div
-						style="width: 5px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-					>
-					</div>
-					<span>{{ step === 1 ? '用户' : '订单' }}信息</span>
+		<div slot="title">
+			<div style="display: flex;font-size: 20px;">
+				<div
+					style="width: 4px;height: 18px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
+				>
 				</div>
-				<div v-show="step === 1" style="display: flex;justify-content: space-between;">
-					<div style="width: 48%;">
-						<el-form-item label="名称" prop="consigneeName">
-							<el-input v-model="formData.consigneeName" placeholder="请用户姓名" maxlength="30" />
+				<div>创建订单</div>
+			</div>
+		</div>
+		<div style="margin-top: 20px;width: 100%;">
+			<el-form
+				ref="formData" :model="formData" :rules="formRules" label-position="left"
+				label-width="90px"
+				label-suffix="" size="mini"
+			>
+				<div
+					class="dialog-section-title"
+					style="margin-left: 10px;margin-bottom: 15px;font-size: 16px;font-weight: bold;color: #000000;"
+				>
+					<span>服务信息</span>
+				</div>
+				<div style="display: flex;justify-content: space-between;">
+					<div style="width: 33%;">
+						<el-form-item label="联系人" prop="consigneeName">
+							<el-input v-model="formData.consigneeName" placeholder="请联系人姓名" maxlength="30" />
 						</el-form-item>
-						<el-form-item label="地址" prop="consigneeAddress">
-							<el-input v-model="formData.consigneeAddress" placeholder="请选择省市区/县" maxlength="30" />
-						</el-form-item>
-						<el-form-item label="安装日期" prop="installDate">
-							<el-date-picker
-								v-model="formData.installDate" type="date" value-format="yyyy-MM-dd HH:mm:ss"
-								placeholder="请选择安装日期"
-							/>
-						</el-form-item>
-						<el-form-item label="需求说明" prop="remarks">
-							<el-input
-								v-model="formData.remarks" type="textarea" placeholder="请填写您的需求说明" maxlength="520"
-								:rows="3"
-								show-word-limit
-							/>
-						</el-form-item>
-					</div>
-					<div style="width: 48%;">
 						<el-form-item label="联系电话" prop="consigneeMobile">
 							<el-input v-model="formData.consigneeMobile" placeholder="请填写联系电话" maxlength="30" />
 						</el-form-item>
-						<el-form-item label="详细地址" prop="consigneeAddressDetail">
-							<el-input v-model="formData.consigneeAddressDetail" placeholder="请填写详细地址（如：街道、小区、乡镇、村等，门牌号信息）" maxlength="50" />
+					</div>
+					<div style="width: 63%;">
+						<el-form-item label="服务类型" prop="dictName">
+							<el-input v-model="formData.dictName" placeholder="请选择服务类型" maxlength="30" />
+						</el-form-item>
+						<el-form-item label="服务图片" prop="servicePic">
+							<MyUpload
+								v-model="formData.servicePic" :limit="3" multiple :width="64"
+								:height="64"
+								:show-tips-message="false" name="pictureFile" res-errno="code" res-msg="msg"
+							/>
+						</el-form-item>
+					</div>
+				</div>
+				<div>
+					<div style="display: flex;">
+						<el-form-item label="上门地址" prop="consigneeAddress">
+							<el-input v-model="formData.consigneeAddress" placeholder="请选择省市区/县" maxlength="30" />
+						</el-form-item>
+						<el-form-item label="" prop="consigneeAddressDetail" label-width="0">
+							<el-input
+								v-model="formData.consigneeAddressDetail" style="width: 400px;"
+								placeholder="请填写详细地址（如：街道、小区、乡镇、村等，门牌号信息）" maxlength="50"
+							/>
 							<!-- <el-input
 								v-model="formData.consigneeAddressDetail" type="textarea" placeholder="请填写详细地址（如：街道、小区、乡镇、村等，门牌号信息）" maxlength="520"
 								:rows="1" show-word-limit
 								/> -->
 						</el-form-item>
-						<el-form-item label="服务类型" prop="dictName">
-							<el-input v-model="formData.dictName" placeholder="请选择服务类型" maxlength="30" />
-						</el-form-item>
-						<!-- <el-form-item label="服务图片" prop="service">
-							<MyUpload v-model="formData.service" />
-							</el-form-item> -->
 					</div>
-				</div>
-				<div v-show="step === 2">
-					<div style="width: 100%;"></div>
+					<div>
+						<el-form-item label="上门时间" prop="installDate">
+							<el-date-picker
+								v-model="formData.installDate" type="date" value-format="yyyy-MM-dd HH:mm:ss"
+								placeholder="请选择上门时间"
+							/>
+						</el-form-item>
+					</div>
 					<div style="display: flex;justify-content: space-between;">
-						<div style="width: 48%;">
-							<el-form-item label="订单类型" prop="orderType">
-								<el-select v-model="formData.orderType" placeholder="请选择" filterable clearable style="width: 220px;">
-									<el-option label="常规单" :value="1" />
-									<el-option label="加急单" :value="2" />
+						<div style="width: 45%;">
+							<el-form-item label="报价类型" prop="pricingType">
+								<el-select
+									v-model="formData.pricingType" disabled placeholder="请选择" filterable
+									clearable
+									style="width: 220px;"
+								>
+									<el-option label="系统计价" :value="1" />
+									<el-option label="人工报价" :value="2" />
 								</el-select>
 							</el-form-item>
 							<el-form-item label="付款方式" prop="paymentMethod">
@@ -67,105 +86,170 @@
 								</el-select>
 							</el-form-item>
 						</div>
-						<div style="width: 48%;">
-							<el-form-item label="定价类型" prop="pricingType">
-								<el-select
-									v-model="formData.pricingType" disabled placeholder="请选择" filterable
-									clearable
-									style="width: 220px;"
-								>
-									<el-option label="系统计价" :value="1" />
-									<el-option label="个人报价" :value="2" />
+						<div style="width: 45%;">
+							<el-form-item label="订单类型" prop="orderType">
+								<el-select v-model="formData.orderType" placeholder="请选择" filterable clearable style="width: 220px;">
+									<el-option label="常规单" :value="1" />
+									<el-option label="加急单" :value="2" />
 								</el-select>
 							</el-form-item>
-							<!-- <el-form-item label="派送类型" prop="deliveryType">
-								<el-select
-								v-model="formData.deliveryType" disabled placeholder="请选择" filterable
-								clearable
-								style="width: 220px;"
+						</div>
+					</div>
+					<div>
+						<el-form-item label="需求说明" prop="remarks">
+							<el-input v-model="formData.remarks" placeholder="请填写您的需求说明" maxlength="520" />
+						</el-form-item>
+					</div>
+					<!-- <el-form-item label="派送类型" prop="deliveryType">
+						<el-select
+						v-model="formData.deliveryType" disabled placeholder="请选择" filterable
+						clearable
+						style="width: 220px;"
+						>
+						<el-option label="送货安装" :value="1" />
+						<el-option label="送货到家" :value="2" />
+						<el-option label="送货到楼下" :value="3" />
+						<el-option label="客户自提" :value="4" />
+						</el-select>
+						</el-form-item> -->
+					<div style="width: 100%;display: flex;justify-content: space-between;">
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="起步费用" prop="orderPriceVo.startPrice">
+								<el-input
+									v-model="formData.orderPriceVo.startPrice" style="width: 150px;" placeholder="请填写"
+									maxlength="30"
 								>
-								<el-option label="送货安装" :value="1" />
-								<el-option label="送货到家" :value="2" />
-								<el-option label="送货到楼下" :value="3" />
-								<el-option label="客户自提" :value="4" />
-								</el-select>
-								</el-form-item> -->
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
+							</el-form-item>
+						</div>
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="超距费" prop="orderPriceVo.exceedDistancePrice" label-width="60px">
+								<el-input
+									v-model="formData.orderPriceVo.exceedDistancePrice" style="width: 150px;" placeholder="请填写"
+									maxlength="30"
+								>
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
+							</el-form-item>
+						</div>
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="超方费" prop="orderPriceVo.exceedPartyPrice" label-width="60px">
+								<el-input
+									v-model="formData.orderPriceVo.exceedPartyPrice" style="width: 150px;" placeholder="请填写"
+									maxlength="30"
+								>
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
+							</el-form-item>
 						</div>
 					</div>
 					<div style="width: 100%;display: flex;justify-content: space-between;">
-						<el-form-item label="起步价" prop="orderPriceVo.startPrice">
-							<el-input v-model="formData.orderPriceVo.startPrice" placeholder="请填写起步价" maxlength="30" />
-						</el-form-item>
-						<el-form-item label="超距费" prop="orderPriceVo.exceedDistancePrice">
-							<el-input v-model="formData.orderPriceVo.exceedDistancePrice" placeholder="请填写超距费" maxlength="30" />
-						</el-form-item>
-						<el-form-item label="超方费" prop="orderPriceVo.exceedPartyPrice">
-							<el-input v-model="formData.orderPriceVo.exceedPartyPrice" placeholder="请填写超方费" maxlength="30" />
-						</el-form-item>
-						<el-form-item label="上楼费" prop="orderPriceVo.upstairsPrice">
-							<el-input v-model="formData.orderPriceVo.upstairsPrice" placeholder="请填写上楼费" maxlength="30" />
-						</el-form-item>
-						<el-form-item label="安装费" prop="orderPriceVo.installAmount">
-							<el-input v-model="formData.orderPriceVo.installAmount" placeholder="请填写安装费" maxlength="30" />
-						</el-form-item>
-					</div>
-					<div style="width: 100%;display: flex;justify-content: space-between;">
-						<div style="width: 25%;">
-							<el-form-item label="总价" prop="orderPriceVo.sumPrice">
-								<el-input v-model="formData.orderPriceVo.sumPrice" disabled placeholder="请输入总价" maxlength="30" />
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="上楼费" prop="orderPriceVo.upstairsPrice">
+								<el-input
+									v-model="formData.orderPriceVo.upstairsPrice" style="width: 150px;" placeholder="请填写"
+									maxlength="30"
+								>
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
 							</el-form-item>
 						</div>
-						<div style="width: 25%;">
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="安装费" prop="orderPriceVo.installAmount" label-width="60px">
+								<el-input
+									v-model="formData.orderPriceVo.installAmount" style="width: 150px;" placeholder="请填写"
+									maxlength="30"
+								>
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
+							</el-form-item>
+						</div>
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="总价" prop="orderPriceVo.sumPrice" label-width="60px">
+								<el-input
+									v-model="formData.orderPriceVo.sumPrice" style="width: 150px;" disabled placeholder="请填写"
+									maxlength="30"
+								>
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
+							</el-form-item>
+						</div>
+					</div>
+					<div style="width: 100%;display: flex;justify-content: space-between;">
+						<div style="width: fit-content;" class="form-price">
 							<el-form-item label="会员价" prop="orderPriceVo.vipPrice">
-								<el-input v-model="formData.orderPriceVo.vipPrice" placeholder="请填写会员价" maxlength="30" />
+								<el-input v-model="formData.orderPriceVo.vipPrice" style="width: 150px;" placeholder="请填写" maxlength="30">
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
 							</el-form-item>
 						</div>
-						<div style="width: 25%;">
-							<el-form-item label="订单费用" prop="price">
-								<el-input v-model="formData.price" disabled placeholder="请输入订单费用" maxlength="30" />
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="店长佣金" prop="zzBrokerage" label-width="75px">
+								<el-input v-model="formData.zzBrokerage" style="width: 150px;" placeholder="请输入" maxlength="30">
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
 							</el-form-item>
 						</div>
-						<div style="width: 25%;">
-							<el-form-item label="订单实付费用" prop="actualPrice">
-								<el-input v-model="formData.actualPrice" placeholder="请输入订单实付费用" maxlength="30" />
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="师傅佣金" prop="sfarrivalPrice" label-width="75px">
+								<el-input v-model="formData.sfarrivalPrice" style="width: 150px;" placeholder="请输入" maxlength="30">
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
 							</el-form-item>
 						</div>
 					</div>
 					<div style="width: 100%;display: flex;justify-content: space-between;">
-						<div style="width: 48%;">
-							<el-form-item label="店长所得佣金" prop="zzBrokerage">
-								<el-input v-model="formData.zzBrokerage" placeholder="请输入店长所得佣金" maxlength="30" />
+						<div style="width: fit-content;" class="form-price">
+							<el-form-item label="订单费用" prop="price">
+								<el-input v-model="formData.price" style="width: 150px;" disabled placeholder="订单费用" maxlength="30">
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
 							</el-form-item>
 						</div>
-						<div style="width: 48%;">
-							<el-form-item label="师傅到账金额" prop="sfarrivalPrice">
-								<el-input v-model="formData.sfarrivalPrice" placeholder="请输入师傅到账金额" maxlength="30" />
+						<div style="width: fit-content;" class="form-actualPrice form-price">
+							<el-form-item label="实际费用" prop="actualPrice">
+								<el-input v-model="formData.actualPrice" style="width: 150px;" placeholder="实际费用" maxlength="30">
+									<template #prefix>￥</template>
+									<template #suffix>(元)</template>
+								</el-input>
 							</el-form-item>
 						</div>
+						<div style="width: 240px;"></div>
 					</div>
 				</div>
 			</el-form>
 		</div>
-		<!-- <span slot="footer" class="dialog-footer"> -->
-		<div style="margin-top: 20px;">
-			<el-button v-show="step === 1" type="primary" size="medium" @click="step = 2">下一步</el-button>
-			<el-button v-show="step === 2" type="primary" size="medium" @click="handleSubmit">确认发布</el-button>
-			<el-button v-show="step === 2" type="info" plain size="medium" @click="step = 1">上一步</el-button>
+		<div slot="footer" class="dialog-footer">
+			<div style="margin-top: 20px;">
+				<!-- <el-button type="danger" size="medium">修改</el-button> -->
+				<el-button style="padding: 10px 32px;" type="primary" size="medium" @click="handleSubmit">确定</el-button>
+			</div>
 		</div>
-		<!-- </span> -->
 	</el-dialog>
 </template>
 
 <script>
+import MyUpload from '@/components/MyUpload'
 // import { mapGetters } from 'vuex'
 import { createOrder, getOrderInfo } from '@/api/orderManagement/order'
 // import XeUtils from 'xe-utils'
 
 export default {
 	name: 'EditModal',
-	// components: {
-	// 	MyUpload
-	// },
+	components: {
+		MyUpload
+	},
 	data() {
 		return {
 			modalOptions: {
@@ -174,7 +258,6 @@ export default {
 				title: ''
 			},
 			visible: false,
-			step: 1,
 			formData: {
 				orderType: '',
 				pricingType: 2,
@@ -199,7 +282,8 @@ export default {
 					exceedPartyPrice: '',
 					upstairsPrice: '',
 					installAmount: ''
-				}
+				},
+				servicePic: []
 			},
 			formRules: {
 				'orderType': [
@@ -218,7 +302,7 @@ export default {
 					{ required: false, message: '请输入订单费用' }
 				],
 				'actualPrice': [
-					{ required: false, message: '请输入订单实付费用' }
+					{ required: true, message: '请输入订单实付费用' }
 				],
 				'orderPriceVo.sumPrice': [
 					{ required: false, message: '请输入总价' }
@@ -260,7 +344,7 @@ export default {
 					{ required: true, message: '选择安装日期' }
 				],
 				'dictName': [
-					{ required: false, message: '请输入服务需求' }
+					{ required: true, message: '请输入服务需求' }
 				],
 				'zzBrokerage': [
 					{ required: false, message: '请输入店长所得佣金' }
@@ -341,11 +425,11 @@ export default {
 			await this.$validatorForm('formData')
 			const loading = this.$elLoading()
 			try {
-				const { region_arr, picUrls, ...opts } = this.formData
+				const { region_arr, servicePic, ...opts } = this.formData
 				const params = {
-					...opts
-				// regionCode: region_arr[region_arr.length - 1],
-				// picUrls: picUrls.map((pic) => (typeof pic === 'string' ? pic : pic.resData))
+					...opts,
+					// regionCode: region_arr[region_arr.length - 1],
+					servicePic: servicePic.map((pic) => (typeof pic === 'string' ? pic : pic.resData))
 				}
 				this.formData.id ? await updateOrder(params) : await createOrder(params)
 				loading.close()
@@ -363,49 +447,96 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dialog-section-title {
-	font-weight: bold;
-	font-size: 16px;
-	color: #333333;
-}
-
-.form-item-line {
-	/deep/ .el-form-item__content {
-		line-height: 16px;
-	}
-}
-
 /deep/ .el-dialog {
-	.el-step__description {
-		padding: 2px;
-
-		.el-input-group__append {
-			padding: 0 13px;
-		}
-	}
 
 	.el-dialog__header {
-		font-size: 18px;
+		position: relative;
+		margin-top: 20px;
+		margin-left: 20px;
 		font-weight: bold;
 		color: #333333;
 	}
 
 	.el-dialog__body {
-		// padding: 0 25px 30px;
+		padding: 0 40px 30px;
 
 		.el-form-item {
-			margin-top: 20px;
-			margin-bottom: 6px;
+			margin-top: 2px;
+			margin-bottom: 18px;
 
 			label {
-				color: #333333;
+				color: #64748B;
 			}
 
 			.el-form-item__content {
-				margin-left: 0!important;
+				// margin-left: 0!important;
 				color: #333333;
-				.el-select, .el-date-editor {
-					width: 100%!important;
+
+				.el-select,
+				.el-date-editor {
+					width: 100% !important;
+				}
+
+				.my-upload-wrap {
+					.my-upload {
+						.el-upload {
+							background-color: #f1f1f1;
+							width: 66px;
+							height: 66px;
+							line-height: 74px;
+						}
+
+						.el-upload-list {
+							li {
+								background-color: #f1f1f1;
+								width: 66px;
+								height: 66px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.form-price {
+			.el-form-item {
+				.el-form-item__content {
+					.el-input {
+						.el-input__prefix {
+							top: 2px;
+							left: 15px;
+							color: #000000;
+						}
+
+						.el-input__suffix {
+							right: 15px;
+							color: #000000;
+						}
+
+						.el-input-group__append {
+							// padding: 0;
+						}
+					}
+				}
+			}
+		}
+
+		.form-actualPrice {
+			.el-form-item {
+				label {
+					color: #0519d4;
+				}
+
+				.el-form-item__content {
+					.el-input {
+						input {
+							color: #FC4023;
+						}
+
+						.el-input__prefix {
+							color: #FC4023;
+						}
+					}
 				}
 			}
 		}

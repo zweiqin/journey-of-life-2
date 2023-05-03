@@ -116,11 +116,20 @@ export const asyncRouterMap = [
 		},
 		children: [
 			{
+				path: 'urbanDistribution',
+				component: () => import('@/views/orderManagement/urbanDistribution'),
+				name: 'UrbanDistribution',
+				meta: {
+					title: '城市配送',
+					noCache: true
+				}
+			},
+			{
 				path: 'orderList',
 				component: () => import('@/views/orderManagement/orderList'),
 				name: 'OrderList',
 				meta: {
-					title: '订单列表',
+					title: '维保订单',
 					noCache: true
 				}
 			},

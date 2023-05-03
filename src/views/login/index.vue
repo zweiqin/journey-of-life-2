@@ -275,7 +275,7 @@ export default {
 	height: 100%;
 	background-image: url('~@/assets/image/login-background.jpg');
 	// background-size: contain;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 	background-position: center;
 
 	.introduce-container {
@@ -313,7 +313,7 @@ export default {
 
 			hr {
 				margin: 4px 0;
-			border-color: rgba(0, 0, 0, 0.85);
+				border-color: rgba(0, 0, 0, 0.85);
 			}
 
 			h4 {
@@ -424,6 +424,7 @@ export default {
 				height: 350px;
 				padding: 25px 25px 5px 25px;
 				border-radius: 6px;
+
 				.login-content {
 					.master-login-title {
 						padding-top: 10px;
@@ -506,12 +507,13 @@ export default {
 					border-color: #073E8E;
 					box-shadow: 0px 0px 10px 0px rgba(153, 153, 153, 0.8);
 				}
+
 				.el-button--primary:active {
-    background: #1682e6;
-    border-color: #1682e6;
-    color: #FFFFFF;
-    outline: none;
-}
+					background: #1682e6;
+					border-color: #1682e6;
+					color: #FFFFFF;
+					outline: none;
+				}
 
 			}
 		}

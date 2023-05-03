@@ -14,6 +14,9 @@ export const columns = [
 		fixed: 'left',
 		field: 'orderNo',
 		title: '订单号码',
+		slots: {
+			default: 'orderNo'
+		},
 		width: 150
 	},
 	{
@@ -56,12 +59,18 @@ export const columns = [
 		align: 'center',
 		field: 'subscribeTime',
 		title: '预约时间',
+		slots: {
+			default: 'subscribeTime'
+		},
 		width: 150
 	},
 	{
 		align: 'center',
 		field: 'installDate',
 		title: '安装日期',
+		slots: {
+			default: 'installDate'
+		},
 		width: 150
 	},
 	{
@@ -94,18 +103,27 @@ export const columns = [
 		align: 'center',
 		field: 'price',
 		title: '订单费用',
+		slots: {
+			default: 'price'
+		},
 		width: 150
 	},
 	{
 		align: 'center',
 		field: 'brokerage',
-		title: '店长所得佣金',
+		title: '店长佣金',
+		slots: {
+			default: 'brokerage'
+		},
 		width: 150
 	},
 	{
 		align: 'center',
 		field: 'arrivalPrice',
-		title: '师傅实际到账',
+		title: '师傅佣金',
+		slots: {
+			default: 'arrivalPrice'
+		},
 		width: 150
 	},
 	{
@@ -336,6 +354,6 @@ export const columns = [
 		slots: {
 			default: 'operate'
 		},
-		width: 200
+		width: 100
 	}
 ]

@@ -11,10 +11,20 @@ export const columns = [
 	// },
 	{
 		align: 'center',
+		field: 'headUrl',
+		title: '头像',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'headUrl'
+		},
+		width: 80
+	},
+	{
+		align: 'center',
 		fixed: 'left',
 		field: 'customerName',
-		title: '客户姓名',
-		width: 100
+		title: '姓名',
+		width: 60
 	},
 	{
 		align: 'center',
@@ -24,19 +34,17 @@ export const columns = [
 		slots: {
 			default: 'customerGender'
 		},
-		width: 150
+		width: 80
 	},
 	{
 		align: 'center',
-		field: 'customerTel',
-		title: '电话',
-		minWidth: 150
-	},
-	{
-		align: 'center',
-		field: 'customerAddress',
-		title: '地址',
-		minWidth: 150
+		field: 'customerType',
+		title: '客户类型',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'customerType'
+		},
+		width: 100
 	},
 	{
 		align: 'center',
@@ -50,8 +58,28 @@ export const columns = [
 	},
 	{
 		align: 'center',
+		field: 'customerTel',
+		title: '手机号',
+		minWidth: 150
+	},
+	{
+		align: 'center',
+		field: 'customerAddress',
+		title: '地址',
+		className: 'vxe-cell-two-row',
+		showOverflow: 'tooltip',
+		minWidth: 180
+	},
+	{
+		align: 'center',
+		field: 'serviceNum',
+		title: '服务记录',
+		minWidth: 100
+	},
+	{
+		align: 'center',
 		field: 'createTime',
-		title: '创建时间',
+		title: '注册时间',
 		minWidth: 150
 	},
 	{
