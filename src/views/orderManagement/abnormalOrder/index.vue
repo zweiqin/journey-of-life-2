@@ -52,6 +52,10 @@
 			<template #orderNo="{ row }">
 				<span style="color: #0519D4;">{{ row.orderNo || '--' }}</span>
 			</template>
+			<template #senderName="{ row }">
+				<div>{{ row.senderName || '--' }}</div>
+				<div>{{ row.senderMobile || '--' }}</div>
+			</template>
 			<template #consigneeName="{ row }">
 				<div>{{ row.consigneeName || '--' }}</div>
 				<div>{{ row.consigneeMobile || '--' }}</div>

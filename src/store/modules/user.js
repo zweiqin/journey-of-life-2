@@ -9,6 +9,7 @@ const user = {
 		code: '',
 		token: getToken(),
 		name: '',
+		account: '',
 		avatar: '',
 		userId: '',
 		introduction: '',
@@ -38,6 +39,9 @@ const user = {
 		},
 		SET_NAME: (state, name) => {
 			state.name = name
+		},
+		SET_ACCOUNT: (state, account) => {
+			state.account = account
 		},
 		SET_AVATAR: (state, avatar) => {
 			state.avatar = avatar
@@ -72,14 +76,16 @@ const user = {
 					commit('SET_ROLES', response.data.typ === 0 ? '店长' : '师傅')
 					commit('SET_ROLES_TYPE', response.data.typ)
 					// commit('SET_PERMS', response.data.typ === 0 ? [ '*' ] : [])
-					commit('SET_NAME', response.data.account)
+					commit('SET_NAME', response.data.name)
+					commit('SET_ACCOUNT', response.data.account)
 					commit('SET_AVATAR', response.data.headUrl)
 					commit('SET_USERID', response.data.id)
 					commit('SET_INTRODUCTION', response.data.status === 1 ? '启用' : '禁用')
 					Vue.ls.set('user_information', {
 						roles: response.data.typ === 0 ? '店长' : '师傅',
 						perms: response.data.typ === 0 ? [ '*' ] : null,
-						name: response.data.account,
+						name: response.data.name,
+						account: response.data.account,
 						typ: response.data.typ,
 						avatar: response.data.headUrl,
 						userId: response.data.id,

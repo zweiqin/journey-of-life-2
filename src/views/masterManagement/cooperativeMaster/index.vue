@@ -107,7 +107,7 @@
 				<span v-else>--</span>
 				</template> -->
 			<template #skillTypeNameList="{ row }">
-				<span>{{ row.skillTypeNameList.length ? row.skillTypeNameList.join('，\n') : '--' }}</span>
+				<span>{{ row.skillTypeNameList && row.skillTypeNameList.length ? row.skillTypeNameList.join('，\n') : '--' }}</span>
 			</template>
 			<template #workCity="{ row }">
 				<span

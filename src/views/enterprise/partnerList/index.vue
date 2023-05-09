@@ -7,7 +7,7 @@
 					style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
 				>
 				</div>
-				<div>客户列表</div>
+				<div>合伙人列表</div>
 			</div>
 		</div>
 		<!-- 查询和其他操作 -->
@@ -17,17 +17,17 @@
 		>
 			<el-input
 				v-model="listQuery.search" clearable class="filter-item"
-				style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入客户姓名/号码"
+				style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入合伙人名称/号码"
 				@keyup.enter.native="getList"
 			/>
 			<el-button
-				v-permission="[ `POST ${api.getCustomerList}` ]" size="mini" class="filter-item" type="primary"
-				style="margin-left:10px;padding: 7px 22px;" @click="getList"
+				v-permission="[ `POST ${api.getPartnerList}` ]" size="mini" class="filter-item" type="primary"
+				icon="el-icon-search" style="margin-left:10px;" @click="getList"
 			>
 				查询
 			</el-button>
 			<el-button
-				v-permission="[ `POST ${api.getCustomerList}` ]" size="mini" class="filter-item" type="info"
+				v-permission="[ `POST ${api.getPartnerList}` ]" size="mini" class="filter-item" type="info"
 				plain
 				style="margin-left:10px;padding: 7px 22px;border: 0;" @click="(listQuery.search = '') || getList()"
 			>
@@ -38,69 +38,56 @@
 		<TableTools
 			:custom-columns-config="customColumnsConfig" download custom-field
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;"
-			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '客户管理')"
+			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '合伙人列表')"
 		>
 			<el-button
-				v-permission="[ `POST ${api.customerSave}` ]" size="mini" type="info" plain
+				v-permission="[ `POST ${api.savePartner}` ]" size="mini" type="info" plain
 				icon="el-icon-plus" style="border: 0;"
 				@click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' })"
 			>
-				添加客户
+				添加合伙人
 			</el-button>
 		</TableTools>
 
 		<!-- 客户管理列表 -->
 		<VxeTable
 			ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="POST"
-			:api-path="api.getCustomerList" :columns="columns" page-alias="pageNo" size-alias="pageSize"
+			:api-path="api.getPartnerList" :columns="columns" page-alias="pageNo" size-alias="pageSize"
 			:grid-options="{ rowConfig: { height: 60 } }"
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);"
 		>
-			<template #headUrl="{ row }">
-				<div v-if="row.headUrl" style="">
-					<el-image
-						lazy :src="row.headUrl" style="width:40px; height:40px;border-radius: 50% 50%;" fit="cover"
-						:preview-src-list="[ row.headUrl ]"
-					/>
-				</div>
+			<template #status="{ row }">
+				<el-tag v-if="row.status === 1" type="warning">已申请</el-tag>
+				<el-tag v-else-if="row.status === 2">开始审核</el-tag>
+				<el-tag v-else-if="row.status === 3" type="success">审核通过</el-tag>
+				<el-tag v-else-if="row.status === 4" type="danger">审核不通过</el-tag>
 				<span v-else>--</span>
 			</template>
-			<template #customerGender="{ row }">
-				<span v-if="row.customerGender === 1">男</span>
-				<span v-else-if="row.customerGender === 2">女</span>
+			<template #sfUserWorkCity="{ row }">
+				<span v-if="row.sfUserWorkCity" style="position: relative;display: inline-block;height: 39px;overflow: hidden;text-overflow: ellipsis;word-break: break-all;white-space: normal !important;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					<span v-if="row.sfUserWorkCity.split(',').length > 1">
+						<span>{{ row.sfUserWorkCity.match(/^[^,]*(?=,)/)[0] }}</span>
+						<div style="position: absolute;top: 52%;right: 10px;width: fit-content;color: #6956E5;background-color: #ffffff;cursor: pointer;" @click="$refs.DetailModalWC && $refs.DetailModalWC.handleOpen(row, 'area')">更多</div>
+					</span>
+					<span v-else>{{ row.sfUserWorkCity }}</span>
+				</span>
 				<span v-else>--</span>
 			</template>
-			<template #customerType="{ row }">
-				<el-tag v-if="row.customerType === 0" type="success">个人</el-tag>
-				<el-tag v-else-if="row.customerType === 1">商户</el-tag>
-				<el-tag v-else-if="row.customerType === 2" type="warning">工程</el-tag>
-				<el-tag v-else-if="row.customerType === 3" type="danger">平台</el-tag>
-				<span v-else>--</span>
-			</template>
-			<template #customerLevel="{ row }">
-				<span v-if="row.customerLevel === 1">潜在客户</span>
-				<span v-else-if="row.customerLevel === 2">开发中</span>
-				<span v-else-if="row.customerLevel === 3">VIP客户</span>
-				<span v-else>--</span>
+			<template #zzUserServerCity="{ row }">
+				<span>{{ row.zzUserServerCity ? JSON.parse(row.zzUserServerCity).map(item => item.join(' ')).join('，\n') : '--' }}</span>
 			</template>
 			<template #operate="{ row }">
 				<el-button
-					v-permission="[ `POST ${api.getCustomerInfo}` ]" size="mini" type="text" style="color: #2E8982;"
+					v-permission="[ `GET ${api.getPartnerInfo}` ]" size="mini" type="text" style="color: #2E8982;"
 					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)"
 				>
 					详情
 				</el-button>
 				<el-button
-					v-permission="[ `POST ${api.customerUpdateById}` ]" type="primary" size="mini"
-					@click="handleEdit(row)"
-				>
-					编辑
-				</el-button>
-				<el-button
-					v-permission="[ `POST ${api.customerDeleteById}` ]" type="danger" size="mini"
+					v-permission="[ `DELETE ${api.deleteByPartner}` ]" type="danger" size="mini"
 					@click="handleDelete(row)"
 				>
-					删除
+					取消指定
 				</el-button>
 			</template>
 		</VxeTable>
@@ -109,34 +96,38 @@
 		<EditModal ref="EditModal" @success="getList" />
 		<!-- 查看详情 -->
 		<DetailModal ref="DetailModal" @success="getList" />
+		<!-- 主营区域 -->
+		<DetailModalWC ref="DetailModalWC" @success="getList" />
 	</div>
 </template>
 
 <script>
 import {
 	api,
-	customerDeleteById
-} from '@/api/enterprise/customer'
+	deleteByPartner
+} from '@/api/enterprise/partnerList'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
 import EditModal from './components/EditModal'
 import DetailModal from './components/DetailModal'
+import DetailModalWC from '../../masterManagement/masterList/components/DetailModal'
 import { columns } from './table'
 
 export default {
-	name: 'Customer',
+	name: 'PartnerList',
 	components: {
 		VxeTable,
 		TableTools,
 		EditModal,
-		DetailModal
+		DetailModal,
+		DetailModalWC
 	},
 	data() {
 		return {
 			api,
 			columns,
 			customColumnsConfig: {
-				localKey: 'customer',
+				localKey: 'partnerList',
 				columnsOptions: columns
 			},
 			listQuery: {
@@ -156,12 +147,12 @@ export default {
 		getList(meaning) {
 			meaning === 'keepPage' ? this.listQuery = { ...this.listQuery } : this.listQuery = { ...this.listQuery, page: 1 }
 		},
-		handleEdit(row) {
-			this.$refs.EditModal && this.$refs.EditModal.handleOpen(row)
-		},
+		// handleEdit(row) {
+		// 	this.$refs.EditModal && this.$refs.EditModal.handleOpen(row)
+		// },
 		async handleDelete({ id }) {
 			await this.$elConfirm('确认删除?')
-			await customerDeleteById({ ids: [ id ] })
+			await deleteByPartner({ ids: [ id ].join(',') })
 			this.$elMessage('删除成功!')
 			this.getList()
 		}
@@ -181,19 +172,6 @@ export default {
 	padding: 8px 10px;
 	line-height: normal;
 	border: 0;
-}
-
-/deep/ .vxe-cell-two-row {
-	.vxe-cell {
-		color: #666666;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		word-break: break-all;
-		white-space: normal !important;
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-	}
 }
 
 /deep/ .el-button--primary {

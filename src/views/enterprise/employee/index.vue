@@ -55,22 +55,108 @@
 			:is-pager="false" :grid-options="{ rowConfig: { height: 60 } }"
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);"
 		>
-			<template #employeeHead="{ row }">
+			<!-- <template #employeeHead="{ row }">
 				<div v-if="row.employeeHead" style="">
-					<el-image
-						lazy :src="row.employeeHead" style="width:40px; height:40px;border-radius: 50% 50%;" fit="cover"
-						:preview-src-list="[ row.employeeHead ]"
-					/>
+				<el-image
+				lazy :src="row.employeeHead" style="width:40px; height:40px;border-radius: 50% 50%;" fit="cover"
+				:preview-src-list="[ row.employeeHead ]"
+				/>
 				</div>
 				<span v-else>--</span>
-			</template>
-			<template #employeeGender="{ row }">
+				</template>
+				<template #employeeGender="{ row }">
 				<span v-if="row.employeeGender === 1">男</span>
 				<span v-else-if="row.employeeGender === 2">女</span>
 				<span v-else>--</span>
-			</template>
-			<template #employeeEmail="{ row }">
+				</template>
+				<template #employeeEmail="{ row }">
 				<span style="color: #0519d4;">{{ row.employeeEmail || '--' }}</span>
+				</template> -->
+			<template #gender="{ row }">
+				<span v-if="row.gender === 0">男</span>
+				<span v-else-if="row.gender === 1">女</span>
+				<span v-else>--</span>
+			</template>
+			<template #headUrl="{ row }">
+				<div v-if="row.headUrl" style="">
+					<el-image lazy :src="row.headUrl" style="width:40px; height:40px;border-radius: 50% 50%;" fit="cover" :preview-src-list="[ row.headUrl ]" />
+				</div>
+				<span v-else>--</span>
+			</template>
+			<template #workState="{ row }">
+				<el-tag v-if="row.workState === 0" style="color: #F17850;background-color: #fff6dc;">在职</el-tag>
+				<el-tag v-else-if="row.workState === 1" style="color: #999999;background-color: #0D2E50;">离职</el-tag>
+				<span v-else>--</span>
+			</template>
+			<!-- <template #certImg1="{ row }">
+				<el-popover v-if="row.certImg1" placement="top-start" width="150" trigger="click">
+				<div style="height:79px;overflow: auto;">
+				<el-image lazy :src="row.certImg1" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg1 ]" />
+				</div>
+				<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
+				<span v-else>--</span>
+				</template>
+				<template #certImg2="{ row }">
+				<el-popover v-if="row.certImg2" placement="top-start" width="150" trigger="click">
+				<div style="height:79px;overflow: auto;">
+				<el-image lazy :src="row.certImg2" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.certImg2 ]" />
+				</div>
+				<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
+				<span v-else>--</span>
+				</template>
+				<template #driverNoPath="{ row }">
+				<el-popover v-if="row.driverNoPath" placement="top-start" width="150" trigger="click">
+				<div style="height:79px;overflow: auto;">
+				<el-image lazy :src="row.driverNoPath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverNoPath ]" />
+				</div>
+				<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
+				<span v-else>--</span>
+				</template>
+				<template #driverLicensePath="{ row }">
+				<el-popover v-if="row.driverLicensePath" placement="top-start" width="150" trigger="click">
+				<div style="height:79px;overflow: auto;">
+				<el-image lazy :src="row.driverLicensePath" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.driverLicensePath ]" />
+				</div>
+				<el-button slot="reference" @click="handlePopClick">查看</el-button>
+				</el-popover>
+				<span v-else>--</span>
+				</template> -->
+			<template #skillTypeNameList="{ row }">
+				<span>{{ row.skillTypeNameList && row.skillTypeNameList.length ? row.skillTypeNameList.join('，\n') : '--' }}</span>
+			</template>
+			<template #workCity="{ row }">
+				<span v-if="row.workCity" style="position: relative;display: inline-block;height: 39px;overflow: hidden;text-overflow: ellipsis;word-break: break-all;white-space: normal !important;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					<span v-if="row.workCity.split(',').length > 1">
+						<span>{{ row.workCity.match(/^[^,]*(?=,)/)[0] }}</span>
+						<div style="position: absolute;top: 52%;right: 10px;width: fit-content;color: #6956E5;background-color: #ffffff;cursor: pointer;" @click="$refs.DetailModal && $refs.DetailModal.handleOpen(row, 'area')">更多</div>
+					</span>
+					<span v-else>{{ row.workCity }}</span>
+				</span>
+				<span v-else>--</span>
+				<!-- <span>{{ row.workCity.replaceAll(',', '，\n') }}</span> -->
+			</template>
+			<template #serverCity="{ row }">
+				<span>{{ row.serverCity ? JSON.parse(row.serverCity).map(item => item.join(' ')).join('，\n') : '--' }}</span>
+			</template>
+			<template #state="{ row }">
+				<span v-if="row.state === 0">有效</span>
+				<span v-else-if="row.state === 1">无效</span>
+				<span v-else>--</span>
+			</template>
+			<template #typ="{ row }">
+				<span>{{ row.typ }}</span>
+			</template>
+			<!-- <template #carImg="{ row }">
+				<el-image v-if="row.carImg" lazy :src="row.carImg" style="width:80px; height:80px" fit="cover" :preview-src-list="[ row.carImg ]" />
+				<span v-else>--</span>
+				</template> -->
+			<template #certification="{ row }">
+				<el-tag v-if="row.certification === 0" type="danger">未认证</el-tag>
+				<el-tag v-else-if="row.certification === 1" type="success">已认证</el-tag>
+				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">
 				<el-button

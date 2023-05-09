@@ -63,7 +63,7 @@
 			</el-radio-group>
 			<el-button
 				v-permission="[ `POST /admin${api.createOrder}` ]" size="mini" type="success" icon="el-icon-plus"
-				@click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' })"
+				@click="$refs.EditModal && $refs.EditModal.handleOpen({ orderNo: '' }, 2)"
 			>
 				创建
 			</el-button>
@@ -78,6 +78,10 @@
 		>
 			<template #orderNo="{ row }">
 				<span style="color: #0519D4;">{{ row.orderNo || '--' }}</span>
+			</template>
+			<template #senderName="{ row }">
+				<div>{{ row.senderName || '--' }}</div>
+				<div>{{ row.senderMobile || '--' }}</div>
 			</template>
 			<template #consigneeName="{ row }">
 				<div>{{ row.consigneeName || '--' }}</div>
@@ -200,8 +204,9 @@
 					报价
 				</el-button>
 				<el-button
-					v-if="!(row.status == 2 || row.status == 7 || row.status == 8)" v-permission="[ `POST ${api.createOrderExtra}` ]"
-					type="warning" size="mini" @click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)"
+					v-if="!(row.status == 2 || row.status == 7 || row.status == 8)"
+					v-permission="[ `POST ${api.createOrderExtra}` ]" type="warning" size="mini"
+					@click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)"
 				>
 					追加金额
 				</el-button>
@@ -289,6 +294,7 @@ export default {
 	},
 	computed: {},
 	created() {
+		this.$route.query.search ? this.handleChangeQuery({ search: this.$route.query.search }) : ''
 	},
 	mounted() { },
 	methods: {
@@ -310,13 +316,16 @@ export default {
 			})
 			this.$elMessage()
 			this.getList()
-		}
+		},
 		// async handleDelete({ id }) {
 		// 	await this.$elConfirm('确认删除?')
 		// 	await staffDelete({ id })
 		// 	this.$elMessage('删除成功!')
 		// 	this.getList()
 		// }
+		handleChangeQuery({ search }) {
+			this.listQuery = { ...this.listQuery, pageNo: 1, search }
+		}
 	}
 }
 </script>
@@ -402,18 +411,20 @@ export default {
 	color: #FFFFFF;
 }
 
-/deep/ .el-radio-group {
-	label {
-		.el-radio-button__inner {
-			border: 0;
+/deep/ .table-tools {
+	.el-radio-group {
+		label {
+			.el-radio-button__inner {
+				border: 0;
+			}
 		}
-	}
 
-	label.is-active {
-		.el-radio-button__inner {
-			color: #4D70FF;
-			background-color: #f1f4ff;
-			box-shadow: none;
+		label.is-active {
+			.el-radio-button__inner {
+				color: #4D70FF;
+				background-color: #f1f4ff;
+				box-shadow: none;
+			}
 		}
 	}
 }

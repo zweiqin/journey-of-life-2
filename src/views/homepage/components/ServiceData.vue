@@ -41,7 +41,7 @@
 				<div style="font-weight: bold;">师傅列表</div>
 				<div>
 					<el-input
-						v-model="listQuery.search" clearable class="filter-item"
+						v-model="listQuery.search" clearable class=""
 						:style="{ width: listQuery.search ? '250px' : '150px' }" placeholder="快速查找" size="medium"
 						style="border: 1px solid #CCCEDD;border-radius: 4px;" @keyup.enter.native="getList"
 					>
@@ -74,13 +74,13 @@
 					<template #mobile="{ row }">
 						<div v-if="row.mobile">
 							<div>{{ row.mobile.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') }}</div>
-							<div style="display: flex;align-items: center;">
+							<!-- <div style="display: flex;align-items: center;">
 								<div
-									style="display: inline-block;width: 12px;height: 12px;margin-right: 4px;background-color: #cccccc;border-radius: 50%;"
+								style="display: inline-block;width: 12px;height: 12px;margin-right: 4px;background-color: #cccccc;border-radius: 50%;"
 								>
 								</div>
 								<span style="color: #787486;">未知在线状态</span>
-							</div>
+								</div> -->
 						</div>
 						<span v-else>--</span>
 					</template>

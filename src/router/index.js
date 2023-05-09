@@ -212,6 +212,15 @@ export const asyncRouterMap = [
 					title: '员工管理',
 					noCache: true
 				}
+			},
+			{
+				path: 'partnerList',
+				component: () => import('@/views/enterprise/partnerList'),
+				name: 'PartnerList',
+				meta: {
+					title: '合伙人列表',
+					noCache: true
+				}
 			}
 		]
 	},

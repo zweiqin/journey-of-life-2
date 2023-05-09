@@ -20,9 +20,45 @@ export const columns = [
 		width: 150
 	},
 	{
+		align: 'center',
+		field: 'senderName',
+		title: '发货人姓名',
+		slots: {
+			default: 'senderName'
+		},
+		width: 150
+	},
+	// {
+	// 	align: 'center',
+	// 	field: 'senderName',
+	// 	title: '发货人姓名',
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'senderMobile',
+	// 	title: '发货人手机',
+	// 	width: 150
+	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'senderAddress',
+	// 	title: '发货地',
+	// 	width: 150
+	// },
+	{
+		align: 'center',
+		field: 'senderAddressDetail',
+		title: '发货人地址',
+		className: 'vxe-cell-two-row',
+		showOverflow: 'tooltip',
+		formatter: ({ row }) => row.senderAddress + ' ' + row.senderAddressDetail,
+		width: 200
+	},
+	{
 		align: 'left',
 		field: 'consigneeName',
-		title: '收货人',
+		title: '客户信息',
 		slots: {
 			default: 'consigneeName'
 		},
@@ -40,10 +76,16 @@ export const columns = [
 	// 	title: '收货人手机',
 	// 	width: 150
 	// },
+	// {
+	// 	align: 'center',
+	// 	field: 'consigneeAddress',
+	// 	title: '收货地',
+	// 	width: 150
+	// },
 	{
 		align: 'left',
 		field: 'consigneeAddressDetail',
-		title: '地址',
+		title: '客户地址',
 		className: 'vxe-cell-two-row',
 		showOverflow: 'tooltip',
 		formatter: ({ row }) => row.consigneeAddress + ' ' + row.consigneeAddressDetail,
@@ -232,12 +274,6 @@ export const columns = [
 	// },
 	// {
 	// 	align: 'center',
-	// 	field: 'consigneeAddress',
-	// 	title: '收货地',
-	// 	width: 150
-	// },
-	// {
-	// 	align: 'center',
 	// 	field: 'consigneeAddressDetail',
 	// 	title: '收货地详细地址',
 	// 	width: 150
@@ -318,30 +354,6 @@ export const columns = [
 	// 	slots: {
 	// 		default: 'orderChargeDetails'
 	// 	},
-	// 	width: 150
-	// },
-	// {
-	// 	align: 'center',
-	// 	field: 'senderName',
-	// 	title: '发货人姓名',
-	// 	width: 150
-	// },
-	// {
-	// 	align: 'center',
-	// 	field: 'senderMobile',
-	// 	title: '发货人手机',
-	// 	width: 150
-	// },
-	// {
-	// 	align: 'center',
-	// 	field: 'senderAddress',
-	// 	title: '发货地',
-	// 	width: 150
-	// },
-	// {
-	// 	align: 'center',
-	// 	field: 'senderAddressDetail',
-	// 	title: '发货地详细地址',
 	// 	width: 150
 	// },
 	{

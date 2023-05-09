@@ -67,6 +67,10 @@
 			<template #orderNo="{ row }">
 				<span style="color: #0519D4;">{{ row.orderNo || '--' }}</span>
 			</template>
+			<template #senderName="{ row }">
+				<div>{{ row.senderName || '--' }}</div>
+				<div>{{ row.senderMobile || '--' }}</div>
+			</template>
 			<template #consigneeName="{ row }">
 				<div>{{ row.consigneeName || '--' }}</div>
 				<div>{{ row.consigneeMobile || '--' }}</div>
@@ -327,18 +331,20 @@ export default {
 	color: #FFFFFF;
 }
 
-/deep/ .el-radio-group {
-	label {
-		.el-radio-button__inner {
-			border: 0;
+/deep/ .table-tools {
+	.el-radio-group {
+		label {
+			.el-radio-button__inner {
+				border: 0;
+			}
 		}
-	}
 
-	label.is-active {
-		.el-radio-button__inner {
-			color: #4D70FF;
-			background-color: #f1f4ff;
-			box-shadow: none;
+		label.is-active {
+			.el-radio-button__inner {
+				color: #4D70FF;
+				background-color: #f1f4ff;
+				box-shadow: none;
+			}
 		}
 	}
 }
