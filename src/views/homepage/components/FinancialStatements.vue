@@ -5,15 +5,15 @@
 				<div style="display: flex;flex-direction: column;justify-content: space-around;padding: 0 25px;text-align: center;">
 					<div style="color: #64748B;">今日收益（元）</div>
 					<div>
-						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 9999</span>
-						<span :style="{ 'color': '#FA4423' }"><i class="el-icon-caret-top"></i> +99%</span>
+						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 3287</span>
+						<span :style="{ 'color': '#FA4423' }"><i class="el-icon-caret-top"></i> +12%</span>
 					</div>
 				</div>
 				<div style="width: 1px;background-color: #C7D2FE;"></div>
 				<div style="display: flex;flex-direction: column;justify-content: space-around;padding: 0 25px;text-align: center;">
 					<div style="color: #64748B;">余额（元）</div>
 					<div>
-						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 8888</span>
+						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 14201</span>
 						<!-- <span :style="{ 'color': '#10B981' }"><i class="el-icon-caret-bottom"></i> -88%</span> -->
 					</div>
 				</div>
@@ -21,7 +21,7 @@
 				<div style="display: flex;flex-direction: column;justify-content: space-around;padding: 0 25px;text-align: center;">
 					<div style="color: #64748B;">累计收益（元）</div>
 					<div>
-						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 6666</span>
+						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 36411</span>
 						<!-- <span :style="{ 'color': '#FA4423' }"><i class="el-icon-caret-top"></i> +88%</span> -->
 					</div>
 				</div>
@@ -29,15 +29,15 @@
 				<div style="display: flex;flex-direction: column;justify-content: space-around;padding: 0 25px;text-align: center;">
 					<div style="color: #64748B;">今日支出（元）</div>
 					<div>
-						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 4444</span>
-						<span :style="{ 'color': '#10B981' }"><i class="el-icon-caret-bottom"></i> -44%</span>
+						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 2433</span>
+						<span :style="{ 'color': '#10B981' }"><i class="el-icon-caret-bottom"></i> -8%</span>
 					</div>
 				</div>
 				<div style="width: 1px;background-color: #C7D2FE;"></div>
 				<div style="display: flex;flex-direction: column;justify-content: space-around;padding: 0 25px;text-align: center;">
 					<div style="color: #64748B;">累计支出（元）</div>
 					<div>
-						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 1111</span>
+						<span style="font-size: 24px;font-weight: bold;vertical-align: middle;">￥ 6477</span>
 						<!-- <span :style="{ 'color': '#FA4423' }"><i class="el-icon-caret-top"></i> +11%</span> -->
 					</div>
 				</div>

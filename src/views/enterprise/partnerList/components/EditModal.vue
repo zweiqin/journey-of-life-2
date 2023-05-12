@@ -1,7 +1,7 @@
 <template>
 	<el-dialog :visible.sync="visible" v-bind="modalOptions">
 		<el-form ref="formData" :model="formData" :rules="formRules" size="mini" label-suffix=":" label-width="100px">
-			<el-form-item label="合伙人来源" prop="masterType">
+			<el-form-item :label="formData.type === 1 ? '合伙人来源' : formData.type === 2 ? '团长来源' : '---'" prop="masterType">
 				<el-radio-group v-model="formData.masterType" size="mini" :disabled="isMasterListRequest" @input="getMasterList">
 					<el-radio-button :label="1">已合作师傅</el-radio-button>
 					<el-radio-button :label="2">已拉黑师傅</el-radio-button>
@@ -45,6 +45,7 @@ export default {
 			visible: false,
 			isMasterListRequest: false,
 			formData: {
+				type: '',
 				masterType: 1,
 				sfUserId: ''
 			},
@@ -60,9 +61,10 @@ export default {
 		handleClose() {
 			this.visible = false
 		},
-		handleOpen(params = {}) {
+		handleOpen(params = {}, type) {
+			this.formData.type = type || ''
 			this.getMasterList()
-			this.modalOptions.title = '添加合伙人'
+			this.modalOptions.title = type === 1 ? '添加合伙人' : type === 2 ? '添加团长' : '---'
 			this.visible = true
 			if (params.id) {
 				// this.getInfo(params.id)
@@ -81,6 +83,7 @@ export default {
 			this.masterList = res.data
 		},
 		async handleSubmit() {
+			if (!this.formData.type) return this.$elMessage('指定类型错误！', 'warning')
 			await this.$validatorForm('formData')
 			const loading = this.$elLoading()
 			try {

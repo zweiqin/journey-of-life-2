@@ -11,7 +11,7 @@
 						</div>
 						<span style="color: #787486;">师傅数据</span>
 					</div>
-					<div style="margin-top: 5px;font-size: 24px;font-weight: bold;">9999</div>
+					<div style="margin-top: 5px;font-size: 24px;font-weight: bold;">154</div>
 				</div>
 				<div style="text-align: center;">
 					<div style="display: flex;align-items: center;">
@@ -21,7 +21,7 @@
 						</div>
 						<span style="color: #787486;">合作中</span>
 					</div>
-					<div style="margin-top: 5px;font-size: 24px;font-weight: bold;">888</div>
+					<div style="margin-top: 5px;font-size: 24px;font-weight: bold;">11</div>
 				</div>
 				<div style="text-align: center;">
 					<div style="display: flex;align-items: center;">
@@ -31,7 +31,7 @@
 						</div>
 						<span style="color: #787486;">拉黑</span>
 					</div>
-					<div style="margin-top: 5px;font-size: 24px;font-weight: bold;">66</div>
+					<div style="margin-top: 5px;font-size: 24px;font-weight: bold;">4</div>
 				</div>
 			</div>
 			<div ref="refServiceData" style="height: calc(100% - 108px);"></div>
@@ -172,7 +172,7 @@ export default {
 		this.chart = echarts.init(this.$refs.refServiceData)
 		this.chart.on('click', this.echartsMapClick)
 		window.onresize = echarts.init(this.$refs.refServiceData).resize
-		this.initChart(9999, 888, 66)
+		this.initChart(154, 11, 4)
 		this.getList()
 	},
 	methods: {

@@ -781,7 +781,7 @@ export default {
 			this.visible = false
 		},
 		handleOpen(params = {}, type) {
-			this.orderMode = type
+			this.orderMode = type || ''
 			this.modalOptions.title = params.orderNo ? '编辑订单' : '创建订单'
 			this.visible = true
 			this.getDictList()

@@ -7,7 +7,7 @@
 					style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
 				>
 				</div>
-				<div>合伙人列表</div>
+				<div>团长列表</div>
 			</div>
 		</div>
 		<!-- 查询和其他操作 -->
@@ -17,7 +17,7 @@
 		>
 			<el-input
 				v-model="listQuery.search" clearable class="filter-item"
-				style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入合伙人名称/号码"
+				style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入团长名称/号码"
 				@keyup.enter.native="getList"
 			/>
 			<el-button
@@ -38,14 +38,14 @@
 		<TableTools
 			:custom-columns-config="customColumnsConfig" download custom-field
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;"
-			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '合伙人列表')"
+			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '团长列表')"
 		>
 			<el-button
 				v-permission="[ `POST ${api.savePartner}` ]" size="mini" type="info" plain
 				icon="el-icon-plus" style="border: 0;"
-				@click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' }, 1)"
+				@click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' }, 2)"
 			>
-				添加合伙人
+				添加团长
 			</el-button>
 		</TableTools>
 
@@ -108,13 +108,13 @@ import {
 } from '@/api/enterprise/partnerList'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
-import EditModal from './components/EditModal'
-import DetailModal from './components/DetailModal'
+import EditModal from '../partnerList/components/EditModal'
+import DetailModal from '../partnerList/components/DetailModal'
 import DetailModalWC from '../../masterManagement/masterList/components/DetailModal'
 import { columns } from './table'
 
 export default {
-	name: 'PartnerList',
+	name: 'CommanderList',
 	components: {
 		VxeTable,
 		TableTools,
@@ -127,13 +127,13 @@ export default {
 			api,
 			columns,
 			customColumnsConfig: {
-				localKey: 'partnerList',
+				localKey: 'commanderList',
 				columnsOptions: columns
 			},
 			listQuery: {
 				pageNo: 1,
 				pageSize: 20,
-				type: 1,
+				type: 2,
 				search: ''
 			}
 		}
