@@ -79,7 +79,7 @@
 			<template #operate="{ row }">
 				<el-button
 					v-permission="[ `GET ${api.getPartnerInfo}` ]" size="mini" type="text" style="color: #2E8982;"
-					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)"
+					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row, 2)"
 				>
 					详情
 				</el-button>
@@ -105,12 +105,12 @@
 import {
 	api,
 	deleteByPartner
-} from '@/api/enterprise/partnerList'
+} from '@/api/enterprise/communityMember'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
 import EditModal from '../partnerList/components/EditModal'
 import DetailModal from '../partnerList/components/DetailModal'
-import DetailModalWC from '../../masterManagement/masterList/components/DetailModal'
+import DetailModalWC from '../partnerList/components/DetailModalWC'
 import { columns } from './table'
 
 export default {

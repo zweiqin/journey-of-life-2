@@ -250,7 +250,37 @@
 			</div>
 		</div>
 
-		<el-dialog :visible.sync="serviceAreaVisible" v-bind="{ closeOnClickModal: false, width: '1000px', title: '服务区域' }">
+		<el-dialog
+			:visible.sync="serviceAreaVisible"
+			v-bind="{ closeOnClickModal: false, width: '1000px', title: '服务区域', modal: true, showClose: false }"
+			custom-class="master-dialog-area"
+		>
+			<div slot="title" style="padding-bottom: 10px;border-bottom: 1px solid #eaeaea;">
+				<div style="display: flex;font-size: 18px;">
+					<div>服务区域（{{ information.serverCity.length }}个）</div>
+				</div>
+			</div>
+			<el-form ref="information" :model="information" label-position="left" label-width="0px" label-suffix="" size="mini">
+				<div style="margin-top: 5px;">
+					<el-form-item label="" prop="serverCity">
+						<div v-if="information.serverCity">
+							<div v-for="i in JSON.parse(information.serverCity).map(item => item.join(' '))" :key="i" style="margin-bottom: 1px;">
+								<span>{{ i }}</span>
+							</div>
+						</div>
+						<div v-else>--</div>
+					</el-form-item>
+				</div>
+			</el-form>
+			<div slot="footer" style="text-align: center;">
+				<el-button style="padding: 10px 32px;" type="danger" size="medium" @click="serviceAreaVisible = false">关闭</el-button>
+			</div>
+		</el-dialog>
+
+		<el-dialog
+			:visible.sync="serviceAreaVisible" v-bind="{ closeOnClickModal: false, width: '1000px', title: '服务区域（区）', modal: false }"
+			class="master-dialog-sarea" custom-class="master-dialog-sa"
+		>
 			<div>
 				<div style="height: 500px;">
 					<ServiceArea :server-city-all="serverCityAll" @map-change="handleMapChange"></ServiceArea>
@@ -262,6 +292,7 @@
 				</div>
 			</div>
 		</el-dialog>
+
 	</div>
 </template>
 
@@ -298,7 +329,6 @@ export default {
 				workYear: '',
 				workState: '',
 				serverCity: '',
-				serverCityArr: [],
 				shopCity: '',
 				state: '',
 				createUser: '',
@@ -342,7 +372,6 @@ export default {
 				workYear: res.data.workYear || '',
 				workState: res.data.workState || '',
 				serverCity: res.data.serverCity || '',
-				serverCityArr: JSON.parse(res.data.serverCity),
 				shopCity: res.data.shopCity || '',
 				state: res.data.state || '',
 				createUser: res.data.createUser || '',
@@ -402,6 +431,7 @@ export default {
 									orderSum: ele.orderSum
 								})
 							} else { // 判断2，还没有某市（的名称的）数据
+								// console.log(ele[level1], ele[level2], ele[level3])
 								const levelOneVal = tempLevel1 && tempLevel1.code
 								const levelTwoVal = tempLevel1 && tempLevel1.children.find((item) => item.name === ele[level2]).code
 								const levelThreeVal = tempLevel2 && tempLevel2.children.find((item) => item.name === ele[level3]).code
@@ -533,5 +563,25 @@ export default {
 	background: #46a6ff;
 	border-color: #46a6ff;
 	color: #FFFFFF;
+}
+
+/deep/ .master-dialog-sarea {
+	top: calc(99vh - 660px); // （+顶5vh）（+387.xx）（+底5vh）
+}
+
+/deep/ .el-dialog {
+	&.master-dialog-area {
+		margin-top: 3vh !important;
+		margin-bottom: 3vh !important;
+		max-height: calc(93vh - 660px); // 100-（10vh + 387px）-（底5vh）
+		.el-dialog__body {
+			padding: 5px 20px;
+		}
+	}
+
+	&.master-dialog-sa {
+		margin-top: 0vh !important;
+		margin-bottom: 1vh !important;
+	}
 }
 </style>

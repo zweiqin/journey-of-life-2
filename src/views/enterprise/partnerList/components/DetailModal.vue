@@ -8,7 +8,7 @@
 			ref="formData"
 			:model="formData"
 			label-position="left"
-			label-width="100px"
+			label-width="120px"
 			label-suffix=""
 			size="mini"
 		>
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { getPartnerInfo } from '@/api/enterprise/partnerList'
+import { getPartnerInfo } from '@/api/enterprise/communityMember'
 
 export default {
 	name: 'DetailModal',
@@ -94,7 +94,7 @@ export default {
 			modalOptions: {
 				closeOnClickModal: false,
 				width: '900px',
-				title: '合伙人详情'
+				title: ''
 			},
 			visible: false,
 			formData: {
@@ -119,7 +119,8 @@ export default {
 		handleClose() {
 			this.visible = false
 		},
-		handleOpen(params = {}) {
+		handleOpen(params = {}, type) {
+			this.modalOptions.title = type === 1 ? '合伙人详情' : type === 2 ? '团长详情' : '--'
 			this.formData = Object.assign(this.$options.data().formData, params)
 			if (params.id) {
 				this.getInfo(params.id)

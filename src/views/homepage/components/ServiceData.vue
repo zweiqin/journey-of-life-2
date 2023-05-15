@@ -334,7 +334,7 @@ export default {
 				this.gridOptions.loading = false
 				this.gridOptions.data = res.data
 			} catch (e) {
-				this.$elMessage(`获取师傅列表失败！`)
+				this.$elMessage(`获取师傅列表失败！`, 'error')
 			}
 		}
 	}

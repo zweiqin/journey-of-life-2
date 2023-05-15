@@ -24,7 +24,7 @@
 <script>
 // import MyUpload from '@/components/MyUpload'
 import { getMasterPageList } from '@/api/enterprise/master'
-import { savePartner } from '@/api/enterprise/partnerList'
+import { savePartner } from '@/api/enterprise/communityMember'
 
 export default {
 	name: 'EditModal',

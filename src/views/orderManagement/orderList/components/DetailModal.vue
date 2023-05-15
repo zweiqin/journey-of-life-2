@@ -204,6 +204,62 @@
 								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
+							<span>订单状况</span>
+						</div>
+						<div style="display: flex;justify-content: space-between;">
+							<div style="width: 40%;">
+								<el-form-item label="签收图片" prop="signUrl">
+									<div v-if="formData.signUrl && formData.signUrl.split(',').length">
+										<el-image
+											v-for="(item, index) in formData.signUrl.split(',')" :key="index" :src="item"
+											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
+											:preview-src-list="[ formData.signUrl.split(',') ]"
+										/>
+									</div>
+									<span v-else>--</span>
+								</el-form-item>
+								<el-form-item label="客户签名图片" prop="exceptionUrl">
+									<div v-if="formData.exceptionUrl && formData.exceptionUrl.split(',').length">
+										<el-image
+											v-for="(item, index) in formData.exceptionUrl.split(',')" :key="index" :src="item"
+											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
+											:preview-src-list="[ formData.exceptionUrl.split(',') ]"
+										/>
+									</div>
+									<span v-else>--</span>
+								</el-form-item>
+								<el-form-item label="订单取消原因" prop="cancelRemark">
+									{{ formData.cancelRemark || '--' }}
+								</el-form-item>
+							</div>
+							<div style="width: 50%;">
+								<el-form-item label="异常图片" prop="exceptionRemark">
+									<div v-if="formData.exceptionRemark && formData.exceptionRemark.split(',').length">
+										<el-image
+											v-for="(item, index) in formData.exceptionRemark.split(',')" :key="index" :src="item"
+											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
+											:preview-src-list="[ formData.exceptionRemark.split(',') ]"
+										/>
+									</div>
+									<span v-else>--</span>
+								</el-form-item>
+								<el-form-item label="异常说明" prop="exceptionRemark">
+									{{ formData.exceptionRemark || '--' }}
+								</el-form-item>
+							</div>
+							<!-- <el-form-item label="是否删除" prop="isDelete">
+								<span v-if="formData.isDelete === 0">未删除</span>
+								<span v-else-if="formData.isDelete === 1">已删除</span>
+								<span v-else>--</span>
+								</el-form-item> -->
+						</div>
+					</div>
+					<div style="margin-top: 35px;">
+						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
+							<div
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+							>
+							</div>
 							<span>结算信息</span>
 						</div>
 						<div>
@@ -268,62 +324,6 @@
 									</el-form-item>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div style="margin-top: 35px;">
-						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
-							<div
-								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-							>
-							</div>
-							<span>订单状况</span>
-						</div>
-						<div style="display: flex;justify-content: space-between;">
-							<div style="width: 40%;">
-								<el-form-item label="签收图片" prop="signUrl">
-									<div v-if="formData.signUrl && formData.signUrl.split(',').length">
-										<el-image
-											v-for="(item, index) in formData.signUrl.split(',')" :key="index" :src="item"
-											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
-											:preview-src-list="[ formData.signUrl.split(',') ]"
-										/>
-									</div>
-									<span v-else>--</span>
-								</el-form-item>
-								<el-form-item label="客户签名图片" prop="exceptionUrl">
-									<div v-if="formData.exceptionUrl && formData.exceptionUrl.split(',').length">
-										<el-image
-											v-for="(item, index) in formData.exceptionUrl.split(',')" :key="index" :src="item"
-											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
-											:preview-src-list="[ formData.exceptionUrl.split(',') ]"
-										/>
-									</div>
-									<span v-else>--</span>
-								</el-form-item>
-								<el-form-item label="订单取消原因" prop="cancelRemark">
-									{{ formData.cancelRemark || '--' }}
-								</el-form-item>
-							</div>
-							<div style="width: 50%;">
-								<el-form-item label="异常图片" prop="exceptionRemark">
-									<div v-if="formData.exceptionRemark && formData.exceptionRemark.split(',').length">
-										<el-image
-											v-for="(item, index) in formData.exceptionRemark.split(',')" :key="index" :src="item"
-											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
-											:preview-src-list="[ formData.exceptionRemark.split(',') ]"
-										/>
-									</div>
-									<span v-else>--</span>
-								</el-form-item>
-								<el-form-item label="异常说明" prop="exceptionRemark">
-									{{ formData.exceptionRemark || '--' }}
-								</el-form-item>
-							</div>
-							<!-- <el-form-item label="是否删除" prop="isDelete">
-								<span v-if="formData.isDelete === 0">未删除</span>
-								<span v-else-if="formData.isDelete === 1">已删除</span>
-								<span v-else>--</span>
-								</el-form-item> -->
 						</div>
 					</div>
 				</el-form>

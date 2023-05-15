@@ -184,6 +184,15 @@ export const asyncRouterMap = [
 					noCache: true
 				}
 			},
+			{
+				path: 'accountFlow',
+				component: () => import('@/views/enterprise/accountFlow'),
+				name: 'AccountFlow',
+				meta: {
+					title: '账户流水',
+					noCache: true
+				}
+			},
 			// {
 			// 	path: 'masterManagement',
 			// 	alwaysShow: true,
