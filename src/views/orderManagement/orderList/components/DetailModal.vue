@@ -174,10 +174,10 @@
 								<!-- <el-form-item label="服务码" prop="serverCode">
 									{{ formData.serverCode || '--' }}
 									</el-form-item> -->
-								<el-form-item label="预约时间" prop="subscribeTime">
+								<el-form-item label="上门时间" prop="subscribeTime">
 									{{ formData.subscribeTime || '--' }}
 								</el-form-item>
-								<el-form-item label="安装日期" prop="installDate">
+								<el-form-item label="预约时间" prop="installDate">
 									{{ formData.installDate || '--' }}
 								</el-form-item>
 								<el-form-item label="紧急程度" prop="orderType">

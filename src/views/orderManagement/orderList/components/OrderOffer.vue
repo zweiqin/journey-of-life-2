@@ -13,7 +13,7 @@
 						<el-input v-model.number="formData.payAmount" maxlength="9" placeholder="请输入报价金额">
 							<template #suffix>（元）</template>
 						</el-input>
-						<div style="position: absolute;right: 0;font-size: 12px;color: #64748B;line-height: 22px;">（了解报价可查看报价明细）</div>
+						<!-- <div style="position: absolute;right: 0;font-size: 12px;color: #64748B;line-height: 22px;">（了解报价可查看报价明细）</div> -->
 					</div>
 				</el-form-item>
 			</div>

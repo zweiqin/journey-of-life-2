@@ -42,21 +42,21 @@
 		>
 		</TableTools>
 
-		<!-- 客户管理列表 -->
+		<!-- 账户流水列表 -->
 		<VxeTable
 			ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="POST"
 			:api-path="api.queryAccountFlowingWater" :columns="columns" page-alias="pageNo" size-alias="pageSize"
-			:grid-options="{ rowConfig: { height: 60 } }"
+			:is-pager="false"
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);"
 		>
 			<template #logType="{ row }">
-				<el-tag v-if="row.logType === 1" type="warning">支出</el-tag>
-				<el-tag v-else-if="row.logType === 2">收入</el-tag>
+				<el-tag v-if="row.logType === 0" type="warning">支出</el-tag>
+				<el-tag v-else-if="row.logType === 1">收入</el-tag>
 				<span v-else>--</span>
 			</template>
 			<template #operate="{ row }">
 				<el-button
-					v-permission="[ `POST ${api.getCustomerInfo}` ]" size="mini" type="text" style="color: #2E8982;"
+					v-permission="[ `POST ${api.queryAccountFlowingWater}` ]" size="mini" type="text" style="color: #2E8982;"
 					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)"
 				>
 					详情
@@ -71,9 +71,8 @@
 
 <script>
 import {
-	api,
-	customerDeleteById
-} from '@/api/enterprise/customer'
+	api
+} from '@/api/enterprise/accountFlow'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
 import DetailModal from './components/DetailModal'
@@ -110,16 +109,10 @@ export default {
 		},
 		getList(meaning) {
 			meaning === 'keepPage' ? this.listQuery = { ...this.listQuery } : this.listQuery = { ...this.listQuery, page: 1 }
-		},
+		}
 		// handleEdit(row) {
 		// 	this.$refs.EditModal && this.$refs.EditModal.handleOpen(row)
 		// },
-		async handleDelete({ id }) {
-			await this.$elConfirm('确认删除?')
-			await customerDeleteById({ ids: [ id ] })
-			this.$elMessage('删除成功!')
-			this.getList()
-		}
 	}
 }
 </script>

@@ -20,9 +20,12 @@
 			<el-form-item label="交易后金额" prop="changeBalance">
 				{{ formData.changeBalance || '--' }}
 			</el-form-item>
+			<el-form-item label="交易时间" prop="createTime">
+				{{ formData.createTime || '--' }}
+			</el-form-item>
 			<el-form-item label="流水类型" prop="logType">
-				<el-tag v-if="formData.logType === 1" type="warning">支出</el-tag>
-				<el-tag v-else-if="formData.logType === 2">收入</el-tag>
+				<el-tag v-if="formData.logType === 0" type="warning">支出</el-tag>
+				<el-tag v-else-if="formData.logType === 1">收入</el-tag>
 				<span v-else>--</span>
 			</el-form-item>
 			<el-form-item label="流水信息" prop="logRemarks">
@@ -52,6 +55,7 @@ export default {
 				tradeNo: '',
 				amount: '',
 				changeBalance: '',
+				createTime: '',
 				logType: '',
 				logRemarks: '',
 				remarks: ''

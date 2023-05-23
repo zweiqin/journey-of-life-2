@@ -8,6 +8,7 @@ export const api = {
 	getOrderInfo: '/api/order/getOrderInfo',
 	orderPagelist: '/api/order/orderPagelist',
 	updateByOrderNoStatus: '/api/order/updateByOrderNoStatus',
+	zzReceiveAnOrder: '/api/zhanzhang/zzReceiveAnOrder',
 	orderOfferSuccess: '/api/order/orderOfferSuccess',
 	createOrderExtra: '/api/order/createOrderExtra',
 	queryExtraList: '/api/extra/queryExtraList',
@@ -38,6 +39,15 @@ export function getOrderInfo(data) {
 export function updateByOrderNoStatus(data) {
 	return request({
 		url: api.updateByOrderNoStatus,
+		method: 'POST',
+		data
+	})
+}
+
+// 接单
+export function zzReceiveAnOrder(data) {
+	return request({
+		url: api.zzReceiveAnOrder,
 		method: 'POST',
 		data
 	})

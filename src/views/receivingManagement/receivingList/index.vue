@@ -218,7 +218,7 @@
 <script>
 import {
 	api,
-	updateByOrderNoStatus
+	zzReceiveAnOrder
 } from '@/api/orderManagement/order'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
@@ -269,9 +269,9 @@ export default {
 		},
 		async handleUpdate({ orderNo }) {
 			await this.$elConfirm(`确认接单？`)
-			await updateByOrderNoStatus({
-				orderNo,
-				status: 3
+			await zzReceiveAnOrder({
+				orderNo
+				// status: 3
 			})
 			this.$elMessage()
 			this.getList()

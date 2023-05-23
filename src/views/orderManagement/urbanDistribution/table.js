@@ -100,7 +100,7 @@ export const columns = [
 	{
 		align: 'center',
 		field: 'subscribeTime',
-		title: '预约时间',
+		title: '上门时间',
 		slots: {
 			default: 'subscribeTime'
 		},
@@ -109,7 +109,7 @@ export const columns = [
 	{
 		align: 'center',
 		field: 'installDate',
-		title: '安装日期',
+		title: '预约时间',
 		slots: {
 			default: 'installDate'
 		},

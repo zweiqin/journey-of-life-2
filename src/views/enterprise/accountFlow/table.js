@@ -14,7 +14,7 @@ export const columns = [
 		fixed: 'left',
 		field: 'tradeNo',
 		title: '流水号',
-		width: 100
+		width: 150
 	},
 	{
 		align: 'center',
@@ -28,6 +28,12 @@ export const columns = [
 		field: 'changeBalance',
 		title: '交易后金额',
 		width: 140
+	},
+	{
+		align: 'center',
+		field: 'createTime',
+		title: '交易时间',
+		width: 150
 	},
 	{
 		align: 'center',

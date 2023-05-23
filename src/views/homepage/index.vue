@@ -219,8 +219,8 @@ export default {
 			// const res = { data: {} }
 			// this.provinceAll = this.information.serverCityList.filter((item, index) => this.information.serverCityList.findIndex((element) => element.province === item.province) === index).map((item) => item.province) // 一维数组，所有省级
 			// this.serverCityAll = this.provinceAll.map((item) => this.information.serverCityList.filter((element) => element.province === item)) // 二维数组：[ [省1[区一],[区二]]，[省2[区三],[区四]] ]
-			this.serverCityAll = this.arrConversion(this.information.serverCityList, { province: '', city: '', area: '' }, pcaCode)
-			console.log(this.serverCityAll)
+			// this.serverCityAll = this.arrConversion(this.information.serverCityList, { province: '', city: '', area: '' }, pcaCode)
+			// console.log(this.serverCityAll)
 			// console.log(this.information)
 		},
 		async handleMapChange(address) {
