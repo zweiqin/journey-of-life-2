@@ -28,7 +28,8 @@
 				<el-option label="全部" :value="null" />
 				<el-option label="待分配" :value="3" />
 				<el-option label="已分配" :value="4" />
-				<el-option label="服务中" :value="5" />
+				<el-option label="待到场" :value="5" />
+				<el-option label="待完成" :value="31" />
 				<el-option label="已完成" :value="6" />
 				<el-option label="已取消" :value="7" />
 				</el-select> -->
@@ -57,7 +58,8 @@
 				<el-radio-button :label="null">全部</el-radio-button>
 				<el-radio-button :label="3">待分配</el-radio-button>
 				<el-radio-button :label="4">已分配</el-radio-button>
-				<el-radio-button :label="5">服务中</el-radio-button>
+				<el-radio-button :label="5">待到场</el-radio-button>
+				<el-radio-button :label="31">待完成</el-radio-button>
 				<el-radio-button :label="6">已完成</el-radio-button>
 				<el-radio-button :label="7">已取消</el-radio-button>
 			</el-radio-group>
@@ -153,7 +155,8 @@
 				<el-tag v-else-if="row.status === 2">待报价</el-tag>
 				<el-tag v-else-if="row.status === 3">待分配</el-tag>
 				<el-tag v-else-if="row.status === 4" type="success">已分配</el-tag>
-				<el-tag v-else-if="row.status === 5" type="success">服务中</el-tag>
+				<el-tag v-else-if="row.status === 5" type="success">待到场</el-tag>
+				<el-tag v-else-if="row.status === 31" type="success">待完成</el-tag>
 				<el-tag v-else-if="row.status === 6" type="info">已完成</el-tag>
 				<el-tag v-else-if="row.status === 7" type="info">已取消</el-tag>
 				<el-tag v-else-if="row.status === 8" type="danger">异常</el-tag>

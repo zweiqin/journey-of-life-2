@@ -97,7 +97,7 @@ export default {
 				to: 'ReceivingList'
 			}, {
 				icon: 'h-homePage4',
-				name: '服务中',
+				name: '待到场',
 				count: 0
 			}, {
 				icon: 'h-homePage5',

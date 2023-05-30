@@ -35,7 +35,8 @@
 				<el-tag v-else-if="formData.status === 2" type="success">待报价</el-tag>
 				<el-tag v-else-if="formData.status === 3">待分配</el-tag>
 				<el-tag v-else-if="formData.status === 4" type="success">已分配</el-tag>
-				<el-tag v-else-if="formData.status === 5" type="success">服务中</el-tag>
+				<el-tag v-else-if="formData.status === 5" type="success">待到场</el-tag>
+				<el-tag v-else-if="formData.status === 31" type="success">待完成</el-tag>
 				<el-tag v-else-if="formData.status === 6" type="info">已完成</el-tag>
 				<el-tag v-else-if="formData.status === 7" type="info">已取消</el-tag>
 				<el-tag v-else-if="formData.status === 8" type="danger">异常</el-tag>

@@ -40,7 +40,8 @@
 						<el-step title="待接单" :class="{ 'is-ok': Number(formData.status) >= 3, 'is-on': formData.status == 3 }"></el-step>
 						<el-step title="待分配" :class="{ 'is-ok': Number(formData.status) >= 4, 'is-on': formData.status == 4 }"></el-step>
 						<el-step title="已分配" :class="{ 'is-ok': Number(formData.status) >= 5, 'is-on': formData.status == 5 }"></el-step>
-						<el-step title="服务中" :class="{ 'is-ok': Number(formData.status) >= 6, 'is-on': formData.status == 6 }"></el-step>
+						<el-step title="待到场" :class="{ 'is-ok': Number(formData.status) == 31 || Number(formData.status) == 6, 'is-on': formData.status == 31 }"></el-step>
+						<el-step title="待完成" :class="{ 'is-ok': Number(formData.status) == 6, 'is-on': formData.status == 6 }"></el-step>
 						<el-step title="已完成"></el-step>
 					</el-steps>
 				</div>
@@ -53,7 +54,8 @@
 						<el-tag v-else-if="row.status === 2" type="success">待报价</el-tag>
 						<el-tag v-else-if="row.status === 3">待分配</el-tag>
 						<el-tag v-else-if="row.status === 4" type="success">已分配</el-tag>
-						<el-tag v-else-if="row.status === 5" type="success">服务中</el-tag>
+						<el-tag v-else-if="row.status === 5" type="success">待到场</el-tag>
+						<el-tag v-else-if="row.status === 31" type="success">待完成</el-tag>
 						<el-tag v-else-if="row.status === 6" type="info">已完成</el-tag>
 						<el-tag v-else-if="row.status === 7" type="info">已取消</el-tag>
 						<el-tag v-else-if="row.status === 8" type="danger">异常</el-tag>
@@ -174,6 +176,12 @@
 								<!-- <el-form-item label="服务码" prop="serverCode">
 									{{ formData.serverCode || '--' }}
 									</el-form-item> -->
+								<el-form-item label="师傅姓名" prop="masterName">
+									{{ formData.masterName || '--' }}
+								</el-form-item>
+								<el-form-item label="师傅电话" prop="masterTel">
+									{{ formData.masterTel || '--' }}
+								</el-form-item>
 								<el-form-item label="上门时间" prop="subscribeTime">
 									{{ formData.subscribeTime || '--' }}
 								</el-form-item>
@@ -371,6 +379,8 @@ export default {
 				exceptionUrl: '',
 				isDelete: '',
 				isHasElevator: '',
+				masterName: '',
+				masterTel: '',
 				orderChargeDetails: '',
 				orderGoodsList: '',
 				orderNo: '',
@@ -431,6 +441,8 @@ export default {
 					exceptionUrl: res.data.exceptionUrl || '',
 					isDelete: res.data.isDelete || '',
 					isHasElevator: res.data.isHasElevator || '',
+					masterName: res.data.masterName || '',
+					masterTel: res.data.masterTel || '',
 					orderChargeDetails: res.data.orderChargeDetails || '',
 					orderGoodsList: res.data.orderGoodsList || '',
 					orderNo: res.data.orderNo || '',

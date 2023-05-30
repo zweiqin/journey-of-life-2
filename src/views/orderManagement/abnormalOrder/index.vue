@@ -126,7 +126,8 @@
 				<el-tag v-else-if="row.status === 2">待报价</el-tag>
 				<el-tag v-else-if="row.status === 3">待分配</el-tag>
 				<el-tag v-else-if="row.status === 4" type="success">已分配</el-tag>
-				<el-tag v-else-if="row.status === 5" type="success">服务中</el-tag>
+				<el-tag v-else-if="row.status === 5" type="success">待到场</el-tag>
+				<el-tag v-else-if="row.status === 31" type="success">待完成</el-tag>
 				<el-tag v-else-if="row.status === 6" type="info">已完成</el-tag>
 				<el-tag v-else-if="row.status === 7" type="info">已取消</el-tag>
 				<el-tag v-else-if="row.status === 8" type="danger">异常</el-tag>
