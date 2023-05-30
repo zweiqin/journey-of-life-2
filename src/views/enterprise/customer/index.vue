@@ -41,7 +41,7 @@
 			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '客户管理')"
 		>
 			<el-button
-				v-permission="[ `POST ${api.customerSave}` ]" size="mini" type="info" plain
+				v-permission="[ `POST ${api.customerSave}` ]" size="mini" type="success"
 				icon="el-icon-plus" style="border: 0;"
 				@click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' })"
 			>
@@ -211,6 +211,24 @@ export default {
 /deep/ .el-button--primary:hover {
 	background: #46a6ff;
 	border-color: #46a6ff;
+	color: #FFFFFF;
+}
+
+/deep/ .el-button--success {
+	background-color: #2e8982;
+	border-color: #2e8982;
+}
+
+/deep/ .el-button--success:active {
+	background: #11b95c;
+	border-color: #11b95c;
+	color: #FFFFFF;
+	outline: none;
+}
+
+/deep/ .el-button--success:hover {
+	background: #42d885;
+	border-color: #42d885;
 	color: #FFFFFF;
 }
 </style>

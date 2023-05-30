@@ -40,7 +40,7 @@
 			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '员工管理')"
 		>
 			<el-button
-				v-permission="[ `POST ${api.correlationSave}` ]" size="mini" type="info" plain
+				v-permission="[ `POST ${api.correlationSave}` ]" size="mini" type="success"
 				icon="el-icon-plus"
 				style="border: 0;" @click="$refs.Correlation && $refs.Correlation.handleOpen({ id: '' })"
 			>
@@ -298,6 +298,24 @@ export default {
 	color: #FFFFFF;
 	background-color: #a0cfff;
 	border-color: #a0cfff;
+}
+
+/deep/ .el-button--success {
+	background-color: #2e8982;
+	border-color: #2e8982;
+}
+
+/deep/ .el-button--success:active {
+	background: #11b95c;
+	border-color: #11b95c;
+	color: #FFFFFF;
+	outline: none;
+}
+
+/deep/ .el-button--success:hover {
+	background: #42d885;
+	border-color: #42d885;
+	color: #FFFFFF;
 }
 
 .row-block {
