@@ -485,8 +485,8 @@ export default {
 		// table-empty
 		const emptySlots = this.showEmptyImage ? h('div', { class: 'table-empty', slot: 'empty' }, [h('img', { attrs: { src: empty } }), h('div', '暂无数据')]) : undefined
 		// vxe-table
-		const el = h('div', { class: [ 'flexColumnPageWrap ' + className ] }, [
-			h('div', { }, [
+		const el = h('div', { style: { 'height': '100%' }, class: [ 'flexColumnPageWrap ' + className ] }, [
+			h('div', { style: { 'height': '100%' } }, [
 				h('vxe-grid', {
 					style: { 'z-index': 50 },
 					ref: 'erpVxeTable',

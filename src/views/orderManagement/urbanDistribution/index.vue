@@ -207,8 +207,9 @@
 					报价
 				</el-button>
 				<el-button
-					v-if="!(row.status == 2 || row.status == 7 || row.status == 8)" v-permission="[ `POST ${api.createOrderExtra}` ]"
-					type="warning" size="mini" @click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)"
+					v-if="!(row.status == 2 || row.status == 0 || row.status == 1 || row.status == 3 || row.status == 7 || row.status == 8)"
+					v-permission="[ `POST ${api.createOrderExtra}` ]" type="warning" size="mini"
+					@click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)"
 				>
 					追加金额
 				</el-button>

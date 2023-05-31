@@ -49,7 +49,8 @@ export default {
 			formData: {
 				orderNo: '',
 				extraAmount: '',
-				extraRemark: ''
+				extraRemark: '',
+				sourceType: this.$store.state.user.typ
 			},
 			formRules: {
 				extraAmount: [
