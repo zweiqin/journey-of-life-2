@@ -149,7 +149,7 @@
 								<el-form-item label="订单号码" prop="orderNo">
 									{{ formData.orderNo || '--' }}
 								</el-form-item>
-								<el-form-item label="创建时间" prop="createTime">
+								<el-form-item label="下单时间" prop="createTime">
 									{{ formData.createTime || '--' }}
 								</el-form-item>
 								<!-- <el-form-item label="派送类型" prop="deliveryType">

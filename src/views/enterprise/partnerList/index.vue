@@ -7,7 +7,7 @@
 					style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
 				>
 				</div>
-				<div>合伙人列表</div>
+				<div>师傅合伙人</div>
 			</div>
 		</div>
 		<!-- 查询和其他操作 -->
@@ -38,7 +38,7 @@
 		<TableTools
 			:custom-columns-config="customColumnsConfig" download custom-field
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;"
-			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '合伙人列表')"
+			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '师傅合伙人')"
 		>
 			<el-button
 				v-permission="[ `POST ${api.savePartner}` ]" size="mini" type="success"

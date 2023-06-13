@@ -227,7 +227,7 @@ export const asyncRouterMap = [
 				component: () => import('@/views/enterprise/partnerList'),
 				name: 'PartnerList',
 				meta: {
-					title: '合伙人列表',
+					title: '师傅合伙人',
 					noCache: true
 				}
 			},

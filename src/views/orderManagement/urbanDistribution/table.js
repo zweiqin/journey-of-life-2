@@ -99,6 +99,12 @@ export const columns = [
 	// },
 	{
 		align: 'center',
+		field: 'createTime',
+		title: '下单时间',
+		width: 150
+	},
+	{
+		align: 'center',
 		field: 'subscribeTime',
 		title: '上门时间',
 		slots: {
@@ -191,12 +197,6 @@ export const columns = [
 		},
 		width: 100
 	},
-	// {
-	// 	align: 'center',
-	// 	field: 'createTime',
-	// 	title: '创建时间',
-	// 	width: 150
-	// },
 	// {
 	// 	align: 'center',
 	// 	field: 'createUserId',

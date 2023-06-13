@@ -125,7 +125,11 @@
 				<span v-else>--</span>
 				</template> -->
 			<template #skillTypeNameList="{ row }">
-				<span>{{ row.skillTypeNameList && row.skillTypeNameList.length ? row.skillTypeNameList.join('，\n') : '--' }}</span>
+				<span v-if="row.skillExpertise">{{ row.skillExpertise.replaceAll(',', '，\n') }}</span>
+				<span v-else-if="row.skillTypeNameList && row.skillTypeNameList.length">{{ row.skillTypeNameList.join('，\n') }}</span>
+				<span v-else>--</span>
+				<div v-if="row.skillExpertise" style="width: fit-content;color: #6956E5;background-color: #ffffff;cursor: pointer;" @click="$refs.SkillShow && $refs.SkillShow.handleOpen(row.skillExpertise.split(','))">显示</div>
+				<div v-else-if="row.skillTypeNameList && row.skillTypeNameList.length" style="width: fit-content;color: #6956E5;background-color: #ffffff;cursor: pointer;" @click="$refs.SkillShow && $refs.SkillShow.handleOpen(row.skillTypeNameList)">显示</div>
 			</template>
 			<template #workCity="{ row }">
 				<span v-if="row.workCity" style="position: relative;display: inline-block;height: 39px;overflow: hidden;text-overflow: ellipsis;word-break: break-all;white-space: normal !important;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
@@ -184,6 +188,8 @@
 		<Correlation ref="Correlation" @success="getList" />
 		<!-- 查看详情 -->
 		<DetailModal ref="DetailModal" @success="getList" />
+		<!-- 查看技能详情 -->
+		<SkillShow ref="SkillShow" />
 		<!-- 权限配置 -->
 		<PermissionModal ref="PermissionModal" @success="getList" />
 	</div>
@@ -198,6 +204,7 @@ import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
 import Correlation from './components/Correlation'
 import DetailModal from './components/DetailModal'
+import SkillShow from '../../masterManagement/masterList/components/SkillShow'
 import PermissionModal from './components/PermissionModal'
 import { columns } from './table'
 
@@ -208,6 +215,7 @@ export default {
 		TableTools,
 		Correlation,
 		DetailModal,
+		SkillShow,
 		PermissionModal
 	},
 	data() {
