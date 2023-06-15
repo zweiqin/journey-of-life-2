@@ -154,7 +154,7 @@ export default {
 			this.columns = columns
 		},
 		getList(meaning) {
-			meaning === 'keepPage' ? this.listQuery = { ...this.listQuery } : this.listQuery = { ...this.listQuery, page: 1 }
+			meaning === 'keepPage' ? this.listQuery = { ...this.listQuery } : this.listQuery = { ...this.listQuery, pageNo: 1 }
 		},
 		handleEdit(row) {
 			this.$refs.EditModal && this.$refs.EditModal.handleOpen(row)

@@ -8,9 +8,9 @@
 					>
 						<svg-icon style="width: 36;height: 36;" icon-class="h-jin" class-name="card-panel-icon" />
 					</div>
-					<div style="margin-top: 12px;color: #64748B;">今日收益</div>
+					<div style="margin-top: 12px;color: #64748B;">今日订单金额</div>
 					<div style="margin-top: 14px;font-weight: bold;">
-						<span style="font-size: 24px;">999</span><span
+						<span style="font-size: 24px;">{{ data1 }}</span><span
 							style="font-size: 15px;"
 						>
 							元
@@ -24,9 +24,9 @@
 					>
 						<svg-icon style="width: 36;height: 36;" icon-class="h-zong" class-name="card-panel-icon" />
 					</div>
-					<div style="margin-top: 12px;color: #64748B;">累计收益</div>
+					<div style="margin-top: 12px;color: #64748B;">累计订单金额</div>
 					<div style="margin-top: 14px;font-weight: bold;">
-						<span style="font-size: 24px;">6666</span><span
+						<span style="font-size: 24px;">{{ data2 }}</span><span
 							style="font-size: 15px;"
 						>
 							元
@@ -42,7 +42,7 @@
 					</div>
 					<div style="margin-top: 12px;color: #64748B;">余额</div>
 					<div style="margin-top: 14px;font-weight: bold;">
-						<span style="font-size: 24px;">999</span><span
+						<span style="font-size: 24px;">{{ information.data }}</span><span
 							style="font-size: 15px;"
 						>
 							元
@@ -56,9 +56,9 @@
 					>
 						<svg-icon style="width: 36;height: 36;" icon-class="h-ti" class-name="card-panel-icon" />
 					</div>
-					<div style="margin-top: 12px;color: #64748B;">可提现<i class="el-icon-arrow-right"></i></div>
+					<div style="margin-top: 12px;color: #64748B;">可提现余额<i class="el-icon-arrow-right"></i></div>
 					<div style="margin-top: 14px;font-weight: bold;">
-						<span style="font-size: 24px;">999</span><span
+						<span style="font-size: 24px;">{{ information.data }}</span><span
 							style="font-size: 15px;"
 						>
 							元
@@ -72,6 +72,8 @@
 
 <script>
 import { getUserBalance } from '@/api/wallet/wallet'
+import { getCommissionStatistics } from '@/api/enterprise/commissionManagement'
+import { zhanzhangStatistics } from '@/api/homepage/homepage'
 
 export default {
 	name: 'MyWallet',
@@ -79,7 +81,9 @@ export default {
 		return {
 			information: {
 				data: '--'
-			}
+			},
+			data1: '--',
+			data2: '--'
 		}
 	},
 	created() {
@@ -91,6 +95,10 @@ export default {
 			this.information = Object.assign(this.$options.data().information, res.data, {
 				data: res.data
 			})
+			const res1 = await getCommissionStatistics({ })
+			this.data1 = res1.data.toDayOrderPriceSum
+			const res2 = await zhanzhangStatistics({ })
+			this.data2 = res2.data.sumPrice
 		}
 	}
 }

@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export const api = {
 	getUserBalance: '/api/commonworker/getUserBalance',
-	getWithdrawRecordList: '/api/commonworker/getWithdrawRecordList'
+	queryAccountFlowingWater: '/api/commonworker/queryAccountFlowingWater'
 }
 
 // 店长余额
@@ -14,10 +14,10 @@ export function getUserBalance(data) {
 	})
 }
 
-// 提现记录列表
-export function getWithdrawRecordList(data) {
+// 查询账户流水信息
+export function queryAccountFlowingWater(data) {
 	return request({
-		url: api.getWithdrawRecordList,
+		url: api.queryAccountFlowingWater,
 		method: 'POST',
 		data
 	})

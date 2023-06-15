@@ -40,26 +40,26 @@
 			</div>
 		</div>
 
-		<div style="display: flex;justify-content: space-between;margin-top: 24px;">
+		<!-- <div style="display: flex;justify-content: space-between;margin-top: 24px;">
 			<div style="width: 100%">
-				<div>
-					<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
-						<div
-							style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
-						>
-						</div>
-						<div>财务报表</div>
-					</div>
-					<div>
-						<el-card class="" style="border-radius: 8px;border: 1px solid #E2E8F0;">
-							<div :style="{ height: '400px' }">
-								<FinancialStatements></FinancialStatements>
-							</div>
-						</el-card>
-					</div>
-				</div>
+			<div>
+			<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
+			<div
+			style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
+			>
 			</div>
-		</div>
+			<div>财务报表</div>
+			</div>
+			<div>
+			<el-card class="" style="border-radius: 8px;border: 1px solid #E2E8F0;">
+			<div :style="{ height: '400px' }">
+			<FinancialStatements></FinancialStatements>
+			</div>
+			</el-card>
+			</div>
+			</div>
+			</div>
+			</div> -->
 
 		<div style="display: flex;justify-content: space-between;margin-top: 24px;">
 			<div style="width: 100%">
@@ -82,44 +82,44 @@
 			</div>
 		</div>
 
-		<div style="display: flex;justify-content: space-between;margin-top: 24px;">
+		<!-- <div style="display: flex;justify-content: space-between;margin-top: 24px;">
 			<div style="width: 54%;">
-				<div>
-					<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
-						<div
-							style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
-						>
-						</div>
-						<div>区域数据</div>
-					</div>
-					<div>
-						<el-card class="" style="border-radius: 8px;border: 1px solid #E2E8F0;">
-							<div :style="{ height: '460px' }">
-								<RegionData></RegionData>
-							</div>
-						</el-card>
-					</div>
-				</div>
+			<div>
+			<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
+			<div
+			style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
+			>
+			</div>
+			<div>区域数据</div>
+			</div>
+			<div>
+			<el-card class="" style="border-radius: 8px;border: 1px solid #E2E8F0;">
+			<div :style="{ height: '460px' }">
+			<RegionData></RegionData>
+			</div>
+			</el-card>
+			</div>
+			</div>
 			</div>
 			<div style="width: 44%">
-				<div>
-					<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
-						<div
-							style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
-						>
-						</div>
-						<div>公告栏</div>
-					</div>
-					<div>
-						<el-card class="" style="border-radius: 8px;border: 1px solid #E2E8F0;">
-							<div :style="{ height: '460px' }">
-								<NoticePanel :notice-list="noticeList"></NoticePanel>
-							</div>
-						</el-card>
-					</div>
-				</div>
+			<div>
+			<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
+			<div
+			style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
+			>
 			</div>
-		</div>
+			<div>公告栏</div>
+			</div>
+			<div>
+			<el-card class="" style="border-radius: 8px;border: 1px solid #E2E8F0;">
+			<div :style="{ height: '460px' }">
+			<NoticePanel :notice-list="noticeList"></NoticePanel>
+			</div>
+			</el-card>
+			</div>
+			</div>
+			</div>
+			</div> -->
 
 		<!-- <ServiceArea :server-city-all="serverCityAll" @map-change="handleMapChange"></ServiceArea> -->
 	</div>

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// import { accountFlow } from '@/api/enterprise/accountFlow'
+// import { xxx } from '@/api/xxx/xxx'
 
 export default {
 	name: 'SkillShow',
@@ -55,7 +55,7 @@ export default {
 		// async getInfo(id) {
 		// 	const loading = this.$elLoading('加载中')
 		// 	try {
-		// 		const res = await accountFlow({ id })
+		// 		const res = await xxx({ id })
 		// 		this.formData = Object.assign(this.$options.data().formData, res.data, {
 		// 			tradeNo: res.data.tradeNo || ''
 		// 		})

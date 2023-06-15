@@ -185,11 +185,20 @@ export const asyncRouterMap = [
 				}
 			},
 			{
-				path: 'accountFlow',
-				component: () => import('@/views/enterprise/accountFlow'),
-				name: 'AccountFlow',
+				path: 'withdrawRecord',
+				component: () => import('@/views/enterprise/withdrawRecord'),
+				name: 'WithdrawRecord',
 				meta: {
-					title: '账户流水',
+					title: '提现记录',
+					noCache: true
+				}
+			},
+			{
+				path: 'commissionManagement',
+				component: () => import('@/views/enterprise/commissionManagement'),
+				name: 'CommissionManagement',
+				meta: {
+					title: '佣金记录',
 					noCache: true
 				}
 			},

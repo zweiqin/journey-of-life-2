@@ -6,56 +6,54 @@ export const columns = [
 	// 	align: 'center',
 	// 	fixed: 'left',
 	// 	field: 'id',
-	// 	title: '客户ID',
+	// 	title: 'ID',
 	// 	width: 100
 	// },
 	{
 		align: 'center',
-		fixed: 'left',
-		field: 'tradeNo',
-		title: '流水号',
-		width: 150
+		field: 'createTime',
+		title: '提交时间',
+		minWidth: 150
 	},
 	{
 		align: 'center',
-		fixed: 'left',
 		field: 'amount',
-		title: '交易金额',
+		title: '提现金额',
+		slots: {
+			default: 'amount'
+		},
 		width: 100
 	},
 	{
 		align: 'center',
-		field: 'changeBalance',
-		title: '交易后金额',
-		width: 140
+		field: 'outTradeNo',
+		title: '余额',
+		width: 100
 	},
 	{
 		align: 'center',
-		field: 'createTime',
-		title: '交易时间',
-		width: 150
+		field: 'receiverAccount',
+		title: '账号',
+		minWidth: 150
 	},
 	{
 		align: 'center',
-		field: 'logType',
-		title: '流水类型',
-		showOverflow: 'tooltip',
+		field: 'bankChannel',
+		title: '提现类型',
 		slots: {
-			default: 'logType'
+			default: 'bankChannel'
+		},
+		width: 120
+	},
+	{
+		align: 'center',
+		fixed: 'right',
+		field: 'orderStatus',
+		title: '状态',
+		slots: {
+			default: 'orderStatus'
 		},
 		width: 80
-	},
-	{
-		align: 'center',
-		field: 'logRemarks',
-		title: '流水信息',
-		minWidth: 150
-	},
-	{
-		align: 'center',
-		field: 'remarks',
-		title: '备注',
-		minWidth: 150
 	},
 	{
 		align: 'center',
@@ -67,6 +65,6 @@ export const columns = [
 		slots: {
 			default: 'operate'
 		},
-		width: 100
+		width: 130
 	}
 ]
