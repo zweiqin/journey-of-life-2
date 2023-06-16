@@ -50,13 +50,13 @@
 					</div>
 				</div>
 				<div style="width: 1px;height: 70px;background-color: #D8D8D8;"></div>
-				<div style="text-align: center;">
+				<div style="text-align: center;cursor: pointer;" @click="$refs.AccumulatedMembership && $refs.AccumulatedMembership.handleOpen()">
 					<div
 						style="width: 84px;height: 84px;line-height: 104px;background-color: #0519d4;border-radius: 50%;box-shadow: 0px 0px 10px -3px #0B1579;"
 					>
 						<svg-icon style="width: 36;height: 36;" icon-class="h-zong-vip" class-name="card-panel-icon" />
 					</div>
-					<div style="margin-top: 12px;color: #64748B;">累计会员（个）</div>
+					<div style="margin-top: 12px;color: #2497f5;">累计会员 →</div>
 					<div style="margin-top: 14px;font-weight: bold;">
 						<span style="font-size: 24px;">{{ information.memberSum }}</span><span
 							style="font-size: 15px;"
@@ -115,14 +115,21 @@
 				</div>
 			</div>
 		</el-card>
+
+		<!-- 查看累计会员 -->
+		<AccumulatedMembership ref="AccumulatedMembership" />
 	</div>
 </template>
 
 <script>
 import { getCommissionStatistics } from '@/api/enterprise/commissionManagement'
+import AccumulatedMembership from './AccumulatedMembership'
 
 export default {
 	name: 'MyCommission',
+	components: {
+		AccumulatedMembership
+	},
 	data() {
 		return {
 			information: {
