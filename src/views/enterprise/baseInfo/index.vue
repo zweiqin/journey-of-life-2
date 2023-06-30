@@ -31,7 +31,9 @@
 							<div style="display: flex;justify-content: space-between;align-items: center;">
 								<div style="font-weight: bold;">
 									{{ information.name }} | {{ information.gender === 0 ? '男'
-										: information.gender === 1 ? '女' : '--' }} | ID {{ information.userId || '--' }} | 生日： {{
+										: information.gender === 1 ? '女' : '--' }}
+									<!-- | ID {{ information.userId || '--' }} -->
+									| 生日： {{
 										information.birth ||
 											'--' }} | 工作年限： {{ information.workYear || '--' }} | <span
 										style="padding: 3px;color: #FC4023;background-color: #FFFBED;"

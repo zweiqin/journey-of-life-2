@@ -116,7 +116,7 @@ import DetailModal from './components/DetailModal'
 import { columns } from './table'
 
 export default {
-	name: 'AccountFlow',
+	name: 'WithdrawRecord',
 	components: {
 		VxeTable,
 		TableTools,
@@ -127,7 +127,7 @@ export default {
 			api,
 			columns,
 			customColumnsConfig: {
-				localKey: 'accountFlow',
+				localKey: 'withdrawRecord',
 				columnsOptions: columns
 			},
 			listQuery: {

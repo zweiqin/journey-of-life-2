@@ -160,6 +160,13 @@
 					详情
 				</el-button>
 				<el-button
+					v-if="(listQuery.isCooperationOrisBlacklist == 1)"
+					v-permission="[ `POST ${api.saveOrDeleteWorker}` ]" type="warning"
+					size="mini" @click="$refs.MasterAccountFlow && $refs.MasterAccountFlow.handleOpen(row)"
+				>
+					流水
+				</el-button>
+				<el-button
 					v-if="(listQuery.isCooperationOrisBlacklist == null)"
 					v-permission="[ `POST ${api.saveOrDeleteWorker}` ]" type="primary" :disabled="row.certification !== 1"
 					size="mini" @click="handleUpdate(row, 1, 1, '确认与该师傅进行合作')"
@@ -194,6 +201,8 @@
 		<DetailModal ref="DetailModal" @success="getList" />
 		<!-- 查看技能详情 -->
 		<SkillShow ref="SkillShow" />
+		<!-- 查看指定师傅流水 -->
+		<MasterAccountFlow ref="MasterAccountFlow" />
 	</div>
 </template>
 
@@ -207,6 +216,7 @@ import TableTools from '@/components/TableTools'
 // import EditModal from './components/EditModal'
 import DetailModal from '../masterList/components/DetailModal'
 import SkillShow from '../masterList/components/SkillShow'
+import MasterAccountFlow from '../masterList/components/MasterAccountFlow'
 import { columns } from './table'
 
 export default {
@@ -215,7 +225,8 @@ export default {
 		VxeTable,
 		TableTools,
 		DetailModal,
-		SkillShow
+		SkillShow,
+		MasterAccountFlow
 		// EditModal
 	},
 	filters: {},

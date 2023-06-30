@@ -13,13 +13,52 @@
 			size="mini"
 		>
 			<div style="margin-top: 35px;">
+				<el-form-item label="提现单号" prop="orderNo">
+					{{ formData.orderNo || '--' }}
+				</el-form-item>
+				<el-form-item label="提交时间" prop="createTime">
+					{{ formData.createTime || '--' }}
+				</el-form-item>
+				<el-form-item label="提现金额" prop="amount">
+					<span :style="{ color: formData.orderStatus === 4 ? '#FC4023' : formData.orderStatus === 3 ? '#3BB900' : '#cccccc' }">￥ {{ formData.amount || formData.amount === 0 ? formData.amount : '--' }}</span>
+				</el-form-item>
+				<el-form-item label="实际到账金额" prop="realAmount">
+					{{ formData.realAmount || '--' }}
+				</el-form-item>
+				<el-form-item label="手续费" prop="fee">
+					{{ formData.fee || '--' }}
+				</el-form-item>
+				<el-form-item label="第三方手续费" prop="outFee">
+					{{ formData.outFee || '--' }}
+				</el-form-item>
+				<el-form-item label="第三方错误码" prop="errorCode">
+					{{ formData.errorCode || '--' }}
+				</el-form-item>
+				<el-form-item label="第三方流水号" prop="outTradeNo">
+					{{ formData.outTradeNo || '--' }}
+				</el-form-item>
+				<el-form-item label="银行卡ID" prop="accountBankId">
+					{{ formData.accountBankId || '--' }}
+				</el-form-item>
+				<el-form-item label="开户银行名称" prop="bankName">
+					{{ formData.bankName || '--' }}
+				</el-form-item>
+				<el-form-item label="持卡人" prop="receiverName">
+					{{ formData.receiverName || '--' }}
+				</el-form-item>
+				<el-form-item label="审核时间" prop="auditTime">
+					{{ formData.auditTime || '--' }}
+				</el-form-item>
+				<el-form-item label="到账时间" prop="arrivaTime">
+					{{ formData.arrivaTime || '--' }}
+				</el-form-item>
+				<el-form-item label="账号" prop="receiverAccount">
+					{{ formData.receiverAccount || '--' }}
+				</el-form-item>
 				<el-form-item label="提现类型" prop="bankChannel">
 					<span v-if="formData.bankChannel === 1">手动打款</span>
 					<span v-else-if="formData.bankChannel === 2">通联</span>
 					<span v-else>--</span>
-				</el-form-item>
-				<el-form-item label="账号" prop="receiverAccount">
-					{{ formData.receiverAccount || '--' }}
 				</el-form-item>
 				<el-form-item label="状态" prop="orderStatus">
 					<span v-if="formData.orderStatus === 0">未审核</span>
@@ -29,19 +68,13 @@
 					<span v-else-if="formData.orderStatus === 4" style="color: #FC4023;">提现失败</span>
 					<span v-else style="color: #cccccc;">--</span>
 				</el-form-item>
-				<el-form-item label="提交时间" prop="createTime">
-					{{ formData.createTime || '--' }}
-				</el-form-item>
-				<el-form-item label="提现金额" prop="amount">
-					<span :style="{ color: formData.orderStatus === 4 ? '#FC4023' : formData.orderStatus === 3 ? '#3BB900' : '#cccccc' }">￥ {{ formData.amount || formData.amount === 0 ? formData.amount : '--' }}</span>
-				</el-form-item>
 			</div>
 		</el-form>
 	</el-dialog>
 </template>
 
 <script>
-// import { getOrderInfo } from '@/api/enterprise/master'
+// import { getxxxInfo } from '@/api/xxx/xxx'
 
 export default {
 	name: 'DetailModal',
@@ -54,8 +87,19 @@ export default {
 			},
 			visible: false,
 			formData: {
+				orderNo: '',
 				createTime: '',
 				amount: '',
+				realAmount: '',
+				fee: '',
+				outFee: '',
+				errorCode: '',
+				outTradeNo: '',
+				accountBankId: '',
+				bankName: '',
+				receiverName: '',
+				auditTime: '',
+				arrivaTime: '',
 				receiverAccount: '',
 				bankChannel: '',
 				orderStatus: ''
@@ -76,13 +120,24 @@ export default {
 		async getInfo(userId) {
 			const loading = this.$elLoading('加载中')
 			try {
-				const res = await getOrderInfo({ userId })
+				const res = await getxxxInfo({ userId })
 				this.formData = Object.assign(this.$options.data().formData, res.data, {
+					orderNo: res.data.orderNo || '',
 					createTime: res.data.createTime || '',
 					amount: res.data.amount || '',
+					realAmount: res.data.realAmount || '',
+					fee: res.data.fee || '',
+					outFee: res.data.outFee || '',
+					errorCode: res.data.errorCode || '',
+					outTradeNo: res.data.outTradeNo || '',
+					accountBankId: res.data.accountBankId || '',
+					bankName: res.data.bankName || '',
+					receiverName: res.data.receiverName || '',
+					auditTime: res.data.auditTime || '',
+					arrivaTime: res.data.arrivaTime || '',
 					receiverAccount: res.data.receiverAccount || '',
-					bankChannel: res.data.bankChannel || '',
-					orderStatus: res.data.orderStatus || ''
+					bankChannel: res.data.bankChannel,
+					orderStatus: res.data.orderStatus
 				})
 			} finally {
 				loading.close()

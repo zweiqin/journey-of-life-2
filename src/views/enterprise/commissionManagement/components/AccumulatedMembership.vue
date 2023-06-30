@@ -12,8 +12,7 @@
 			<VxeTable
 				ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="GET"
 				:api-path="api.getByMenmberIdList" :columns="columns" page-alias="pageNo" size-alias="pageSize"
-				:is-pager="false" :grid-options="{ rowConfig: { height: 60 } }"
-				style="height: 600px;"
+				:is-pager="false" :grid-options="{ rowConfig: { height: 60 }, height: '600px' }"
 			>
 				<template #avatar="{ row }">
 					<div v-if="row.avatar" style="">

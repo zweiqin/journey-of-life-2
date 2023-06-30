@@ -26,7 +26,9 @@
 							>
 								（未认证）
 							</span> | {{ formData.gender === 0 ? '男'
-								: formData.gender === 1 ? '女' : '--' }} | ID {{ formData.userId || '--' }} | 生日： {{
+								: formData.gender === 1 ? '女' : '--' }}
+							<!-- | ID {{ formData.userId || '--' }} -->
+							| 生日： {{
 								formData.birth ||
 									'--' }} | 工作年限： {{ formData.workYear ? formData.workYear + 'Y' : '--' }} | <span
 								style="padding: 3px;color: #FC4023;background-color: #FFFBED;"
