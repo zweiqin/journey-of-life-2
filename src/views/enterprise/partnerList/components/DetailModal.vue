@@ -23,9 +23,9 @@
 				</div>
 				<div style="display: flex;justify-content: space-between;">
 					<div style="width: 40%;">
-						<el-form-item label="师傅用户ID" prop="sfUserId">
+						<!-- <el-form-item label="师傅用户ID" prop="sfUserId">
 							{{ formData.sfUserId || '--' }}
-						</el-form-item>
+						</el-form-item> -->
 						<el-form-item label="师傅用户名称" prop="sfUserName">
 							{{ formData.sfUserName || '--' }}
 						</el-form-item>
@@ -50,9 +50,9 @@
 						</el-form-item>
 					</div>
 					<div style="width: 50%;">
-						<el-form-item label="店长用户ID" prop="zzUserId">
+						<!-- <el-form-item label="店长用户ID" prop="zzUserId">
 							{{ formData.zzUserId || '--' }}
-						</el-form-item>
+						</el-form-item> -->
 						<el-form-item label="店长名称" prop="zzUserName">
 							{{ formData.zzUserName || '--' }}
 						</el-form-item>

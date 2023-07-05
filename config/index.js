@@ -18,8 +18,8 @@ module.exports = {
     proxyTable: {
 			'/api': {
 				// target:'http://192.168.0.117:81/samrtWorker',
-				target:'https://www.zhult.com/samrtWorker', // 接口的域名
-				// target:'http://192.168.0.63:8790/samrtWorker', // 接口的域名
+				// target:'https://www.zhult.com/samrtWorker', // 接口的域名
+				target:'http://192.168.0.61:8790/samrtWorker', // 接口的域名
 				// target: 'http://localhost:81',
 				// secure: false, // 如果是https，需要开启这个选项
 				changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
@@ -29,8 +29,8 @@ module.exports = {
 			},
 			'/auth': {
 				// target:'http://192.168.0.117:81/samrtWorker',
-				target:'https://www.zhult.com/samrtWorker', // 接口的域名
-				// target:'http://192.168.0.63:8790/samrtWorker', // 接口的域名
+				// target:'https://www.zhult.com/samrtWorker', // 接口的域名
+				target:'http://192.168.0.61:8790/samrtWorker', // 接口的域名
 				// target: 'http://localhost:81',
 				// secure: false, // 如果是https，需要开启这个选项
 				changeOrigin: true, // 如果接口跨域，需要进行这个参数配置

@@ -71,8 +71,8 @@ export default {
 		handleClose() {
 			this.visible = false
 		},
-		handleOpen(params = {}) {
-			this.listQuery.sfUserId = params.userId
+		handleOpen(params = {}, idKey = 'userId') {
+			this.listQuery.sfUserId = params[idKey]
 			this.getList()
 			// const loading = this.$elLoading('加载中')
 			this.visible = true
