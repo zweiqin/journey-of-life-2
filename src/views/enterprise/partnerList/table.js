@@ -59,7 +59,7 @@ export const columns = [
     align: 'center',
     field: 'zzUserServerCity',
     title: '服务区域',
-    width: 150,
+    // width: 150,
     slots: {
       default: 'zzUserServerCity',
     },
@@ -91,7 +91,7 @@ export const columns = [
     slots: {
       default: 'operate',
     },
-    width: 180,
+    width: 360,
   },
 ];
 
