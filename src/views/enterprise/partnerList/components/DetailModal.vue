@@ -19,17 +19,17 @@
 						style="width: 4px;margin-right: 8px;;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 					>
 					</div>
-					<span>合伙人信息</span>
+					<span>{{ detailType === 2 ? '团长信息' : '合伙人信息'}}</span>
 				</div>
 				<div style="display: flex;justify-content: space-between;">
 					<div style="width: 40%;">
 						<!-- <el-form-item label="师傅用户ID" prop="sfUserId">
 							{{ formData.sfUserId || '--' }}
 						</el-form-item> -->
-						<el-form-item label="师傅用户名称" prop="sfUserName">
+						<el-form-item :label="detailType == 2 ? '团长用户名称' : '师傅用户名称'" prop="sfUserName">
 							{{ formData.sfUserName || '--' }}
 						</el-form-item>
-						<el-form-item label="师傅手机号" prop="sfUserPhone">
+						<el-form-item :label="detailType == 2 ? '团长手机号' : '师傅手机号'" prop="sfUserPhone">
 							{{ formData.sfUserPhone || '--' }}
 						</el-form-item>
 						<el-form-item label="审核状态" prop="status">
@@ -39,7 +39,7 @@
 							<el-tag v-else-if="formData.status === 4" type="danger">审核不通过</el-tag>
 							<span v-else>--</span>
 						</el-form-item>
-						<el-form-item label="师傅主营区域" prop="sfUserWorkCity">
+						<el-form-item :label="detailType == 2 ? '团长主营区域' : '师傅主营区域'" prop="sfUserWorkCity">
 							<!-- {{ formData.sfUserWorkCity ? formData.sfUserWorkCity.replaceAll(',', '，\n') : '--' }} -->
 							<div v-if="formData.sfUserWorkCity">
 								<div v-for="i in formData.sfUserWorkCity.split(',')" :key="i">
@@ -112,7 +112,8 @@ export default {
 				isDelete: '',
 				createTime: '',
 				updateTime: ''
-			}
+			},
+			detailType: null
 		}
 	},
 	methods: {
@@ -120,6 +121,7 @@ export default {
 			this.visible = false
 		},
 		handleOpen(params = {}, type) {
+			this.detailType = type
 			this.modalOptions.title = type === 1 ? '合伙人详情' : type === 2 ? '团长详情' : '--'
 			this.formData = Object.assign(this.$options.data().formData, params)
 			if (params.id) {

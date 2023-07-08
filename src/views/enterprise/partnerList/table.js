@@ -119,6 +119,9 @@ export const commissionStatementColumn = [
     field: 'sfProportion',
     title: '师傅分佣比例',
     width: 100,
+    slots: {
+      default: 'sfProportion'
+    }
   },
   {
     align: 'center',

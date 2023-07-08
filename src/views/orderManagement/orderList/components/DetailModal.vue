@@ -212,6 +212,33 @@
 								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
 							>
 							</div>
+							<span>分佣信息</span>
+						</div>
+						<div style="display: flex;justify-content: space-between;">
+							<div style="width: 40%;">
+								<el-form-item label="分佣对象" prop="commissionName">
+									{{ formData.commissionName || '--' }}
+								</el-form-item>
+								<el-form-item label="分佣金额" prop="commissionPrice">
+									{{ formData.commissionPrice ? ('￥' + formData.commissionPrice) : '--' }}
+								</el-form-item>
+								
+								
+							</div>
+							<div style="width: 50%;">
+								<el-form-item label="分佣比例" prop="commissionProportion">
+									{{ formData.commissionProportion ? formData.commissionProportion * 100 + '%' : '--' }}
+								</el-form-item>
+								
+							</div>
+						</div>
+					</div>
+					<div style="margin-top: 35px;">
+						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
+							<div
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+							>
+							</div>
 							<span>订单状况</span>
 						</div>
 						<div style="display: flex;justify-content: space-between;">

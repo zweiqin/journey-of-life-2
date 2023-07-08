@@ -34,6 +34,9 @@
             <el-tag type="success" v-else-if="row.status === 2">已完成</el-tag>
             <span v-else>--</span>
           </template>
+          <template #sfProportion="{ row }">
+            <span>{{ row.sfProportion ? row.sfProportion * 100 : '--' }}%</span>
+          </template>
         </VxeTable>
       </div>
     </el-dialog>
