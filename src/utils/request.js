@@ -41,7 +41,7 @@ service.interceptors.response.use((response) => {
 			})
 		})
 		return Promise.reject('error')
-	} else if ((res.code === '20001' || res.code === '50002' || res.code === '20001') && res.msg.includes('登录')) {
+	} else if ((res.code === '50002') && res.msg.includes('登录')) {
 		MessageBox.alert('系统未登录，请重新登录', '错误', {
 			confirmButtonText: '确定',
 			type: 'error'
@@ -49,6 +49,12 @@ service.interceptors.response.use((response) => {
 			store.dispatch('FedLogOut').then(() => {
 				location.reload()
 			})
+		})
+		return Promise.reject('error')
+	} else if (res.code === '20001') {
+		MessageBox.alert(res.msg, '错误', {
+			confirmButtonText: '确定',
+			type: 'error'
 		})
 		return Promise.reject('error')
 	} else if (res.code === '502') {

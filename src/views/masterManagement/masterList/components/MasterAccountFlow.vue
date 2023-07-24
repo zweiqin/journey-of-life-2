@@ -12,7 +12,7 @@
           custom-field
           @update-fields="updateFields"
           @refresh="getList"
-          @download="toolsMixin_exportMethod($refs.vxeTable, '累计会员')"
+          @download="toolsMixin_exportMethod($refs.vxeTable, '师傅账户流水')"
         >
         </TableTools>
 
@@ -98,14 +98,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dailog-container {
-  position: relative;
-  z-index: 1002;
-  // /deep/ .el-dialog__wrapper {
-  // 	z-index: 888!important;
-  // }
-  // /deep/ .v-modal {
-  // 	z-index: 666!important;
-  // }
-}
+// .dailog-container {
+// 	position: relative;
+// 	z-index: 1002;
+// 	// /deep/ .el-dialog__wrapper {
+// 	// 	z-index: 888!important;
+// 	// }
+// 	// /deep/ .v-modal {
+// 	// 	z-index: 666!important;
+// 	// }
+// }
 </style>

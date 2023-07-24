@@ -61,12 +61,12 @@ export const columns = [
 		title: '第三方流水号',
 		minWidth: 150
 	},
-	{
-		align: 'center',
-		field: 'outTradeNo',
-		title: '余额',
-		width: 100
-	},
+	// {
+	// 	align: 'center',
+	// 	field: 'xxx',
+	// 	title: '余额',
+	// 	width: 100
+	// },
 	{
 		align: 'center',
 		field: 'bankChannel',

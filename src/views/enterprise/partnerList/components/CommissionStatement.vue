@@ -31,7 +31,7 @@
         >
           <template #status="{ row }">
             <el-tag v-if="row.status === 1" type="warning">未完成</el-tag>
-            <el-tag type="success" v-else-if="row.status === 2">已完成</el-tag>
+            <el-tag v-else-if="row.status === 2" type="success">已完成</el-tag>
             <span v-else>--</span>
           </template>
           <template #sfProportion="{ row }">
@@ -111,9 +111,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.dailog-container {
-  position: relative;
-  z-index: 1002;
-}
-</style>
+<style lang="scss" scoped></style>
