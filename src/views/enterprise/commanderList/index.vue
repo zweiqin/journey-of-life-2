@@ -86,9 +86,9 @@
         type="success"
         icon="el-icon-plus"
         style="border: 0"
-        @click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' }, 2)"
+        @click="$refs.AddCommander && $refs.AddCommander.show()"
       >
-        添加团长
+        指定团长
       </el-button>
     </TableTools>
 
@@ -117,6 +117,7 @@
         <el-tag v-else-if="row.status === 2">开始审核</el-tag>
         <el-tag v-else-if="row.status === 3" type="success">审核通过</el-tag>
         <el-tag v-else-if="row.status === 4" type="danger">审核不通过</el-tag>
+        <el-tag v-else-if="row.status === 5" type="danger">已取消</el-tag>
         <span v-else>--</span>
       </template>
       <template #sfUserWorkCity="{ row }">
@@ -170,6 +171,7 @@
       </template>
       <template #operate="{ row }">
         <el-button
+          :disabled="row.status < 3 || row.status == 5"
           v-permission="[`GET ${api.getPartnerInfo}`]"
           size="mini"
           type="text"
@@ -180,40 +182,72 @@
         </el-button>
 
         <el-button
+          :loading="isLoading"
+          size="mini"
+          :disabled="[3, 4].includes(row.status)"
+          :type="
+            [0, 1, 2].includes(row.status)
+              ? 'warn'
+              : row.status === 3
+              ? 'success'
+              : row.status === 4
+              ? 'danger'
+              : 'info'
+          "
+          style="color: #fff"
+          @click="handleExcamine(row)"
+        >
+          {{ row.status | mapStatus }}
+        </el-button>
+
+        <el-button
+          :disabled="row.status < 3 || row.status == 5"
           v-permission="[`POST ${api.saveOrDeleteWorker}`]"
           type="warning"
           size="mini"
           @click="
             $refs.MasterAccountFlow &&
-              $refs.MasterAccountFlow.handleOpen(row, 'sfUserId')
+              $refs.MasterAccountFlow.handleOpen(row, 'sfUserId', true)
           "
         >
           余额流水
         </el-button>
         <el-button
+          :disabled="row.status < 3 || row.status == 5"
           v-permission="[`POST ${api.saveOrDeleteWorker}`]"
           type="success"
           size="mini"
           @click="
             $refs.CommissionStatement &&
-              $refs.CommissionStatement.handleOpen(row, 'sfUserId')
+              $refs.CommissionStatement.handleOpen(row, 'sfUserId', true)
           "
         >
           佣金流水
         </el-button>
         <el-button
+          v-if="row.status === 3"
           v-permission="[`DELETE ${api.deleteByPartner}`]"
           type="danger"
           size="mini"
-          @click="handleDelete(row)"
+          @click="handleDelete(row.id, true)"
         >
           取消指定
+        </el-button>
+
+        <el-button
+          v-if="row.status === 5"
+          v-permission="[`DELETE ${api.deleteByPartner}`]"
+          type="primary"
+          size="mini"
+          @click="handleDelete(row.id)"
+        >
+          恢复团长
         </el-button>
       </template>
     </VxeTable>
 
     <!-- 新增编辑 -->
-    <EditModal ref="EditModal" @success="getList" />
+    <AddCommander ref="AddCommander" @success="getList" />
     <!-- 查看详情 -->
     <DetailModal ref="DetailModal" @success="getList" />
     <!-- 主营区域 -->
@@ -222,30 +256,51 @@
     <MasterAccountFlow ref="MasterAccountFlow" />
     <!-- 查看师傅佣金流水 -->
     <CommissionStatement ref="CommissionStatement" />
+    <!-- 指定团长 -->
+    <ExamineDialog @success="getList" ref="ExamineDialog"></ExamineDialog>
   </div>
 </template>
 
 <script>
-import { api, deleteByPartner } from '@/api/enterprise/communityMember';
+import {
+  api,
+  deleteByPartner,
+  examineSFApply,
+} from '@/api/enterprise/communityMember';
 import VxeTable from '@/components/VxeTable';
 import TableTools from '@/components/TableTools';
-import EditModal from '../partnerList/components/EditModal';
+
+import AddCommander from './components/AddCommander.vue';
 import DetailModal from '../partnerList/components/DetailModal';
 import DetailModalWC from '../partnerList/components/DetailModalWC';
 import { columns } from './table';
 import MasterAccountFlow from '@/views/masterManagement/masterList/components/MasterAccountFlow';
 import CommissionStatement from '../partnerList/components/CommissionStatement';
+import ExamineDialog from './components/ExamineDialog.vue';
 
 export default {
   name: 'CommanderList',
   components: {
     VxeTable,
     TableTools,
-    EditModal,
+    AddCommander,
     DetailModal,
     DetailModalWC,
     MasterAccountFlow,
     CommissionStatement,
+    ExamineDialog,
+  },
+  filters: {
+    mapStatus(status) {
+      return {
+        0: '未审核',
+        1: '开始审核',
+        2: '审核',
+        3: '审核通过',
+        4: '不通过',
+        5: '已取消指定',
+      }[status];
+    },
   },
   data() {
     return {
@@ -261,6 +316,7 @@ export default {
         type: 2,
         search: '',
       },
+      isLoading: false,
     };
   },
   computed: {},
@@ -278,11 +334,36 @@ export default {
     // handleEdit(row) {
     // 	this.$refs.EditModal && this.$refs.EditModal.handleOpen(row)
     // },
-    async handleDelete({ id }) {
-      await this.$elConfirm('确认取消指定?');
-      await deleteByPartner({ ids: [id].join(',') });
-      this.$elMessage('取消指定成功!');
+    async handleDelete(id, isDelete) {
+      await this.$elConfirm(isDelete ? '确认取消指定?' : '确认恢复该团长？');
+      await deleteByPartner({ id, status: isDelete ? 5 : 3 });
+      this.$elMessage(isDelete ? '取消指定成功!' : '团长恢复成功');
       this.getList();
+    },
+
+    // 审核
+    async handleExcamine(row) {
+      const { status, id } = row;
+      if (status == 2) {
+        this.$refs.ExamineDialog.show({
+          name: '你没得',
+          id,
+          onSuccess: this.getList,
+        });
+      } else if (status === 1) {
+        try {
+          this.isLoading = true;
+          await examineSFApply({
+            id: row.id,
+            status: 2,
+          });
+
+          this.$elMessage('开始审核成功');
+          this.getList();
+        } finally {
+          this.isLoading = false;
+        }
+      }
     },
   },
 };
@@ -330,6 +411,19 @@ export default {
   border-color: #11b95c;
   color: #ffffff;
   outline: none;
+}
+
+/deep/ .el-button--success {
+  &.is-disabled {
+    background-color: #42b6ac;
+
+    border-color: #42b6ac;
+    &:hover {
+      background-color: #42b6ac;
+
+      border-color: #42b6ac;
+    }
+  }
 }
 
 /deep/ .el-button--success:hover {

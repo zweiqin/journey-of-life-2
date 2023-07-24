@@ -3,9 +3,14 @@ import request from '@/utils/request';
 export const api = {
   savePartner: '/api/partner/savePartner',
   getPartnerList: '/api/partner/getPartnerList',
-  deleteByPartner: '/api/partner/deleteByPartner',
+  deleteByPartner: '/api/third/tz/operateTzIdentity',
   getPartnerInfo: '/api/partner/getPartnerInfo',
   getCommissionStatement: '/api/partner/getCommissionBySfUserIdList',
+  examineSFApply: '/api/third/tz/startAudit',
+  apponitCommander: '/api/third/tz/appointUserDoTz',
+  getSfList: '/api/third/tz/finUserInfoByKeyword',
+  getCities: '/worker/sysArea1/queryCity',
+  getCouns: '/worker/sysArea1/queryCoun',
 };
 
 // 指定合伙人
@@ -27,11 +32,11 @@ export function getPartnerList(data) {
 }
 
 // 取消指定
-export function deleteByPartner(params) {
+export function deleteByPartner(data) {
   return request({
     url: api.deleteByPartner,
-    method: 'DELETE',
-    params,
+    method: 'POST',
+    data,
   });
 }
 
@@ -50,5 +55,50 @@ export function getCommissionStatementList(params) {
     url: api.getCommissionStatement,
     method: 'GET',
     params,
+  });
+}
+
+// 团长审核
+export function examineSFApply(data) {
+  return request({
+    url: api.examineSFApply,
+    method: 'POST',
+    data,
+  });
+}
+
+// 指定团长
+export function apponitCommander(data) {
+  return request({
+    url: api.apponitCommander,
+    method: 'POST',
+    data,
+  });
+}
+
+// 获取用户
+export function getSfList(params) {
+  return request({
+    url: api.getSfList,
+    params,
+    method: 'GET',
+  });
+}
+
+// 获取市数据
+export function getCitiesData(data) {
+  return request({
+    url: api.getCities,
+    method: 'POST',
+    data,
+  });
+}
+
+// 获取镇的数据
+export function getCounsData(data) {
+  return request({
+    url: api.getCouns,
+    data,
+    method: 'POST',
   });
 }

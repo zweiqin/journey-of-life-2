@@ -86,13 +86,24 @@ export default {
         : (this.listQuery = { ...this.listQuery, pageNo: 1 });
     },
     handleClose() {
+      this.isCommander = false;
       this.visible = false;
     },
-    handleOpen(params = {}, idKey = 'sfUserId') {
+    handleOpen(params = {}, idKey = 'sfUserId', isCommander = false) {
       this.listQuery.sfUserId = params[idKey];
       this.excelName = params.sfUserName
         ? params.sfUserName + '师傅佣金流水'
         : '师傅佣金流水';
+
+      this.modalOptions.title = isCommander ? '团长佣金流水' : '师傅佣金流水';
+      this.columns = this.columns.map((item) => {
+        item.title = item.title.replaceAll(
+          isCommander ? '师傅' : '团长',
+          isCommander ? '团长' : '师傅'
+        );
+        return item;
+      });
+
       this.getList();
       this.visible = true;
     },

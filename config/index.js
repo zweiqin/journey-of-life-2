@@ -1,44 +1,48 @@
-'use strict'
+'use strict';
 // Template version: 1.2.6
 // see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
-function resolve (dir) {
-  return path.join(__dirname, dir)
+const path = require('path');
+function resolve(dir) {
+  return path.join(__dirname, dir);
 }
 module.exports = {
-  chainWebpack: config => {
-    config.resolve.alias
-      .set('@', resolve('src')) // key,storage.set('@@', resolve('src/components'))
+  chainWebpack: (config) => {
+    config.resolve.alias.set('@', resolve('src')); // key,storage.set('@@', resolve('src/components'))
   },
   dev: {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-			'/api': {
-				// target:'http://192.168.0.117:81/samrtWorker',
-				target:'https://www.zhult.com/samrtWorker', // 接口的域名
-				// target:'http://192.168.0.61:8790/samrtWorker', // 接口的域名
-				// target: 'http://localhost:81',
-				// secure: false, // 如果是https，需要开启这个选项
-				changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-				pathRewrite: {
-					'^/api': '/api'
-				}
-			},
-			'/auth': {
-				// target:'http://192.168.0.117:81/samrtWorker',
-				target:'https://www.zhult.com/samrtWorker', // 接口的域名
-				// target:'http://192.168.0.61:8790/samrtWorker', // 接口的域名
-				// target: 'http://localhost:81',
-				// secure: false, // 如果是https，需要开启这个选项
-				changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-				pathRewrite: {
-					'^/auth': '/auth'
-				}
-			}
-		},
+      '/api': {
+        // target:'http://192.168.0.117:81/samrtWorker',
+        target:'https://www.zhult.com/samrtWorker', // 接口的域名
+        // target: 'http://192.168.0.72:8790/samrtWorker', // 接口的域名
+        // target: 'https://www.zhult.com/test-samrtWorker',
+        // target: 'http://localhost:81',
+        // secure: false, // 如果是https，需要开启这个选项
+        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+        pathRewrite: {
+          '^/api': '/api',
+        },
+      },
+      '/auth': {
+        // target:'http://192.168.0.117:81/samrtWorker',
+        target:'https://www.zhult.com/samrtWorker', // 接口的域名
+        // target: 'http://192.168.0.72:8790/samrtWorker', // 接口的域名
+        // target: 'http://localhost:81',
+        // secure: false, // 如果是https，需要开启这个选项
+        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+        pathRewrite: {
+          '^/auth': '/auth',
+        },
+      },
+      '/worker': {
+        target: 'http://192.168.0.72:8790/samrtWorker', // 接口的域名
+        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+      },
+    },
     https: false,
     // Various Dev Server settings
 
@@ -73,7 +77,7 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false
+    cssSourceMap: false,
   },
 
   build: {
@@ -91,7 +95,8 @@ module.exports = {
      * then assetsPublicPath should be set to "/bar/".
      * In most cases please use '/' !!!
      */
-    assetsPublicPath: './',
+    // assetsPublicPath: './', // 正式环境
+    assetsPublicPath: '/test-zhanzhang-pc/',  // 测试环境
 
     /**
      * Source Maps
@@ -114,6 +119,6 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report || false,
 
     // `npm run build:prod --generate_report`
-    generateAnalyzerReport: process.env.npm_config_generate_report || false
-  }
-}
+    generateAnalyzerReport: process.env.npm_config_generate_report || false,
+  },
+};
