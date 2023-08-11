@@ -91,17 +91,17 @@ export const columns = [
 		formatter: ({ row }) => row.consigneeAddress + ' ' + row.consigneeAddressDetail,
 		width: 200
 	},
-	// {
-	// 	align: 'center',
-	// 	field: 'serverCode',
-	// 	title: '服务码',
-	// 	width: 80
-	// },
 	{
 		align: 'center',
 		field: 'createTime',
 		title: '下单时间',
 		width: 150
+	},
+	{
+		align: 'center',
+		field: 'serverCode',
+		title: '服务码',
+		width: 100
 	},
 	{
 		align: 'center',
