@@ -64,7 +64,7 @@ export default {
 		handleOpen(params = {}, type) {
 			this.formData.type = type || ''
 			this.getMasterList()
-			this.modalOptions.title = type === 1 ? '添加合伙人' : type === 2 ? '添加团长' : '---'
+			this.modalOptions.title = type === 1 ? '添加合伙人' : type === 2 ? '添加团长' : ''
 			this.visible = true
 			if (params.id) {
 				// this.getInfo(params.id)

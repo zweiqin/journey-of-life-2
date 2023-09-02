@@ -202,17 +202,6 @@ export const asyncRouterMap = [
 					noCache: true
 				}
 			},
-			// {
-			// 	path: 'masterManagement',
-			// 	alwaysShow: true,
-			// 	component: () => import('@/views/children'),
-			// 	redirect: 'noredirect',
-			// 	name: 'Children',
-			// 	meta: {
-			// 		title: '师傅管理',
-			// 		noCache: true
-			// 	},
-			// 	children: []}
 			{
 				path: 'customer',
 				component: () => import('@/views/enterprise/customer'),
@@ -248,6 +237,62 @@ export const asyncRouterMap = [
 					title: '团长列表',
 					noCache: true
 				}
+			},
+			{
+				path: 'goodsList',
+				component: () => import('@/views/nearbyMerchants/serviceList'),
+				name: 'GoodsList',
+				meta: {
+					title: '商品列表', // 用于区分服务列表
+					noCache: true
+				}
+			},
+			{
+				path: 'serviceList',
+				component: () => import('@/views/nearbyMerchants/serviceList'),
+				name: 'ServiceList',
+				meta: {
+					title: '服务列表', // 用于区分商品列表
+					noCache: true
+				}
+			},
+			{
+				path: 'goodsClassification',
+				component: () => import('@/views/nearbyMerchants/serviceClassification'),
+				name: 'GoodsClassification',
+				meta: {
+					title: '商品分类', // 用于区分服务分类
+					noCache: true
+				}
+			},
+			{
+				path: 'serviceClassification',
+				component: () => import('@/views/nearbyMerchants/serviceClassification'),
+				name: 'ServiceClassification',
+				meta: {
+					title: '服务分类', // 用于区分商品分类
+					noCache: true
+				}
+			},
+			{
+				path: 'commodityCreate',
+				component: () => import('@/views/nearbyMerchants/commodityCreate'),
+				name: 'CommodityCreate',
+				meta: {
+					title: '商品/服务上架',
+					noCache: true
+				},
+				hidden: true
+			},
+			{
+				path: 'commodityEdit',
+				component: () => import('@/views/nearbyMerchants/commodityEdit'),
+				name: 'CommodityEdit',
+				meta: {
+					title: '商品/服务编辑',
+					noCache: true
+				},
+				hidden: true
 			}
 		]
 	},
