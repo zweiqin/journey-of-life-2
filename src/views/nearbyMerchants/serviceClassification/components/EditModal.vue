@@ -11,7 +11,7 @@
 				<el-input v-model="formData.goodsTypeName" maxlength="30" show-word-limit placeholder="请输入分类名称" />
 			</el-form-item>
 			<el-form-item label="分类logo" prop="goodsTypeUrl">
-				<MyUpload v-model="formData.goodsTypeUrl" />
+				<MyUpload v-model="formData.goodsTypeUrl" name="pictureFile" res-errno="code" res-msg="msg" />
 			</el-form-item>
 			<el-form-item label="排序（值大优先）" prop="goodsTypeSort">
 				<el-input-number v-model="formData.goodsTypeSort" step-strictly :min="0" label="请输入排序"></el-input-number>

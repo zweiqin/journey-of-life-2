@@ -31,11 +31,15 @@
 								:label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}图片`"
 								prop="goodsLogo"
 							>
-								<MyUpload v-model="formData.goodsLogo" />
+								<MyUpload v-model="formData.goodsLogo" name="pictureFile" res-errno="code" res-msg="msg" />
 							</el-form-item>
 
 							<el-form-item label="轮播图" prop="goodsRotationChart">
-								<MyUpload v-model="formData.goodsRotationChart" :limit="3" multiple />
+								<MyUpload
+									v-model="formData.goodsRotationChart" :limit="3" multiple name="pictureFile"
+									res-errno="code"
+									res-msg="msg"
+								/>
 							</el-form-item>
 
 							<el-form-item label="价格" prop="goodsPrice">
@@ -140,7 +144,6 @@ export default {
 
 	methods: {
 		init() {
-			this.getGoodsTypeList()
 			const { id } = this.$route.query
 			this.formData.id = id
 			this.getInfo()
@@ -167,6 +170,7 @@ export default {
 				goodsSort: res.data.goodsSort,
 				goodsType: res.data.goodsType
 			})
+			this.getGoodsTypeList()
 		},
 		handleCancel() {
 			this.$router.back()
