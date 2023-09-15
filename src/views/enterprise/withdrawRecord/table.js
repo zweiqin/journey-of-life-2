@@ -120,7 +120,7 @@ export const columns = [
 		slots: {
 			default: 'orderStatus'
 		},
-		width: 80
+		width: 100
 	},
 	{
 		align: 'center',

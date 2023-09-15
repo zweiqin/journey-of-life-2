@@ -47,7 +47,7 @@
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);"
 		>
 			<template #amount="{ row }">
-				<span :style="{ color: row.orderStatus === 4 ? '#FC4023' : row.orderStatus === 3 ? '#3BB900' : '#000000' }">￥ {{ row.amount || row.amount === 0 ? row.amount : '--' }}</span>
+				<span :style="{ color: (row.orderStatus === 6) || (row.orderStatus === 7) ? '#FC4023' : row.orderStatus === 5 ? '#3BB900' : '#000000' }">￥ {{ row.amount || row.amount === 0 ? row.amount : '--' }}</span>
 			</template>
 			<template #bankChannel="{ row }">
 				<span v-if="row.bankChannel === 1">手动打款</span>
@@ -55,11 +55,13 @@
 				<span v-else>--</span>
 			</template>
 			<template #orderStatus="{ row }">
-				<span v-if="row.orderStatus === 0">未审核</span>
-				<span v-else-if="row.orderStatus === 1">通过</span>
-				<span v-else-if="row.orderStatus === 2">不通过</span>
-				<span v-else-if="row.orderStatus === 3" style="color: #3BB900;">已提现</span>
-				<span v-else-if="row.orderStatus === 4" style="color: #FC4023;">提现失败</span>
+				<span v-if="row.orderStatus === 1">待审核</span>
+				<span v-else-if="row.orderStatus === 2">审核中</span>
+				<span v-else-if="row.orderStatus === 3">审核通过</span>
+				<span v-else-if="row.orderStatus === 4">打款中</span>
+				<span v-else-if="row.orderStatus === 5" style="color: #3BB900;">打款成功</span>
+				<span v-else-if="row.orderStatus === 6" style="color: #FC4023;">审核不通过</span>
+				<span v-else-if="row.orderStatus === 7" style="color: #FC4023;">打款失败</span>
 				<span v-else style="color: #cccccc;">--</span>
 			</template>
 			<template #operate="{ row, $rowIndex }">
