@@ -50,7 +50,7 @@ import TableTools from '@/components/TableTools';
 import { commissionStatementColumn as columns } from '../table';
 
 export default {
-  name: 'MasterAccountFlow',
+  name: 'CommissionStatement',
   components: {
     VxeTable,
     TableTools,
