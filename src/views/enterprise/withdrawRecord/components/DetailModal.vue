@@ -20,7 +20,7 @@
 					{{ formData.createTime || '--' }}
 				</el-form-item>
 				<el-form-item label="提现金额" prop="amount">
-					<span :style="{ color: formData.orderStatus === 4 ? '#FC4023' : formData.orderStatus === 3 ? '#3BB900' : '#cccccc' }">￥ {{ formData.amount || formData.amount === 0 ? formData.amount : '--' }}</span>
+					<span :style="{ color: (formData.orderStatus === 6) || (formData.orderStatus === 7) ? '#FC4023' : formData.orderStatus === 5 ? '#3BB900' : '#cccccc' }">￥ {{ formData.amount || formData.amount === 0 ? formData.amount : '--' }}</span>
 				</el-form-item>
 				<el-form-item label="实际到账金额" prop="realAmount">
 					{{ formData.realAmount || '--' }}
@@ -61,11 +61,13 @@
 					<span v-else>--</span>
 				</el-form-item>
 				<el-form-item label="状态" prop="orderStatus">
-					<span v-if="formData.orderStatus === 0">未审核</span>
-					<span v-else-if="formData.orderStatus === 1">通过</span>
-					<span v-else-if="formData.orderStatus === 2">不通过</span>
-					<span v-else-if="formData.orderStatus === 3" style="color: #3BB900;">已提现</span>
-					<span v-else-if="formData.orderStatus === 4" style="color: #FC4023;">提现失败</span>
+					<span v-if="formData.orderStatus === 1">待审核</span>
+					<span v-else-if="formData.orderStatus === 2">审核中</span>
+					<span v-else-if="formData.orderStatus === 3">审核通过</span>
+					<span v-else-if="formData.orderStatus === 4">打款中</span>
+					<span v-else-if="formData.orderStatus === 5" style="color: #3BB900;">打款成功</span>
+					<span v-else-if="formData.orderStatus === 6" style="color: #FC4023;">审核不通过</span>
+					<span v-else-if="formData.orderStatus === 7" style="color: #FC4023;">打款失败</span>
 					<span v-else style="color: #cccccc;">--</span>
 				</el-form-item>
 			</div>

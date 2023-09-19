@@ -23,25 +23,45 @@
 						:active="formData.status == 2 ? 0 : formData.status == 0 ? 1 : formData.status == 1 ? 2 : Number(formData.status)"
 						finish-status="success" align-center
 					>
-						<el-step title="待报价" :class="{ 'is-ok': formData.status == 0 || formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 0 }">
+						<el-step
+							title="待报价"
+							:class="{ 'is-ok': formData.status == 0 || formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 0 }"
+						>
 							<template #description>
 								<el-input v-if="formData.status == 2" v-model="orderOffer" placeholder="填报价">
 									<el-button
 										slot="append" v-permission="[ `POST ${api.orderOfferSuccess}` ]"
-										style="width: 26px;padding: 0;" size="mini"
-										@click="handleOrderOffer({ orderNo: formData.orderNo })"
+										style="width: 26px;padding: 0;" size="mini" @click="handleOrderOffer({ orderNo: formData.orderNo })"
 									>
 										确定
 									</el-button>
 								</el-input>
 							</template>
 						</el-step>
-						<el-step title="待付款" :class="{ 'is-ok': formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 1 }"></el-step>
-						<el-step title="待接单" :class="{ 'is-ok': Number(formData.status) >= 3, 'is-on': formData.status == 3 }"></el-step>
-						<el-step title="待分配" :class="{ 'is-ok': Number(formData.status) >= 4, 'is-on': formData.status == 4 }"></el-step>
-						<el-step title="已分配" :class="{ 'is-ok': Number(formData.status) >= 5, 'is-on': formData.status == 5 }"></el-step>
-						<el-step title="待到场" :class="{ 'is-ok': Number(formData.status) == 31 || Number(formData.status) == 6, 'is-on': formData.status == 31 }"></el-step>
-						<el-step title="待完成" :class="{ 'is-ok': Number(formData.status) == 6, 'is-on': formData.status == 6 }"></el-step>
+						<el-step
+							title="待付款"
+							:class="{ 'is-ok': formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 1 }"
+						></el-step>
+						<el-step
+							title="待接单"
+							:class="{ 'is-ok': Number(formData.status) >= 3, 'is-on': formData.status == 3 }"
+						></el-step>
+						<el-step
+							title="待分配"
+							:class="{ 'is-ok': Number(formData.status) >= 4, 'is-on': formData.status == 4 }"
+						></el-step>
+						<el-step
+							title="已分配"
+							:class="{ 'is-ok': Number(formData.status) >= 5, 'is-on': formData.status == 5 }"
+						></el-step>
+						<el-step
+							title="待到场"
+							:class="{ 'is-ok': Number(formData.status) == 31 || Number(formData.status) == 6, 'is-on': formData.status == 31 }"
+						></el-step>
+						<el-step
+							title="待完成"
+							:class="{ 'is-ok': Number(formData.status) == 6, 'is-on': formData.status == 6 }"
+						></el-step>
 						<el-step title="已完成"></el-step>
 					</el-steps>
 				</div>
@@ -136,6 +156,56 @@
 							</div>
 						</div>
 					</div>
+					<div>
+						<div v-if="formData.jshopNameSimple || formData.jcontacts || formData.jcontactsTel" style="margin-top: 35px;">
+							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
+								<div
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								>
+								</div>
+								<span>加盟商门店信息</span>
+							</div>
+							<div style="display: flex;justify-content: space-between;">
+								<div style="width: 40%;">
+									<el-form-item label="加盟商门店简称" prop="jshopNameSimple">
+										{{ formData.jshopNameSimple || '--' }}
+									</el-form-item>
+									<el-form-item label="加盟商门店联系人" prop="jcontacts">
+										{{ formData.jcontacts || '--' }}
+									</el-form-item>
+								</div>
+								<div style="width: 50%;">
+									<el-form-item label="加盟商联系电话" prop="jcontactsTel">
+										{{ formData.jcontactsTel || '--' }}
+									</el-form-item>
+								</div>
+							</div>
+						</div>
+						<div v-if="formData.qshopNameSimple || formData.qcontacts || formData.qcontactsTel" style="margin-top: 35px;">
+							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
+								<div
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
+								>
+								</div>
+								<span>区域代理信息</span>
+							</div>
+							<div style="display: flex;justify-content: space-between;">
+								<div style="width: 40%;">
+									<el-form-item label="区域代理门店简称" prop="qshopNameSimple">
+										{{ formData.qshopNameSimple || '--' }}
+									</el-form-item>
+									<el-form-item label="区域代理门店联系人" prop="qcontacts">
+										{{ formData.qcontacts || '--' }}
+									</el-form-item>
+								</div>
+								<div style="width: 50%;">
+									<el-form-item label="区域代理联系电话" prop="qcontactsTel">
+										{{ formData.qcontactsTel || '--' }}
+									</el-form-item>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
@@ -171,11 +241,11 @@
 								<el-form-item label="订单所属店长id" prop="belongsToZzUserId">
 									{{ formData.belongsToZzUserId || '--' }}
 								</el-form-item>
+								<el-form-item label="服务码" prop="serverCode">
+									{{ formData.serverCode || '--' }}
+								</el-form-item>
 							</div>
 							<div style="width: 50%;">
-								<!-- <el-form-item label="服务码" prop="serverCode">
-									{{ formData.serverCode || '--' }}
-									</el-form-item> -->
 								<el-form-item label="师傅姓名" prop="masterName">
 									{{ formData.masterName || '--' }}
 								</el-form-item>
@@ -220,16 +290,13 @@
 									{{ formData.commissionName || '--' }}
 								</el-form-item>
 								<el-form-item label="分佣金额" prop="commissionPrice">
-									{{ formData.commissionPrice ? ('￥' + formData.commissionPrice) : '--' }}
+									{{ typeof formData.commissionPrice === 'number' ? '￥' + formData.commissionPrice : '--' }}
 								</el-form-item>
-								
-								
 							</div>
 							<div style="width: 50%;">
 								<el-form-item label="分佣比例" prop="commissionProportion">
-									{{ formData.commissionProportion ? formData.commissionProportion * 100 + '%' : '--' }}
+									{{ typeof formData.commissionProportion === 'number' ? formData.commissionProportion * 100 + '%' : '--' }}
 								</el-form-item>
-								
 							</div>
 						</div>
 					</div>
@@ -306,16 +373,20 @@
 										<span v-else>--</span>
 									</el-form-item>
 									<el-form-item label="超距费" prop="orderExpenseDetailsVo">
-										{{ formData.orderExpenseDetailsVo.exceedDistancePrice || '--' }}
+										{{ typeof formData.orderExpenseDetailsVo.exceedDistancePrice === 'number'
+											? formData.orderExpenseDetailsVo.exceedDistancePrice : '--' }}
 									</el-form-item>
 									<el-form-item label="上楼费" prop="orderExpenseDetailsVo">
-										{{ formData.orderExpenseDetailsVo.upstairsPrice || '--' }}
+										{{ typeof formData.orderExpenseDetailsVo.upstairsPrice === 'number'
+											? formData.orderExpenseDetailsVo.upstairsPrice : '--' }}
 									</el-form-item>
 									<el-form-item label="安装费" prop="orderExpenseDetailsVo">
-										{{ formData.orderExpenseDetailsVo.installAmount || '--' }}
+										{{ typeof formData.orderExpenseDetailsVo.installAmount === 'number'
+											? formData.orderExpenseDetailsVo.installAmount : '--' }}
 									</el-form-item>
 									<el-form-item label="总金额" prop="orderExpenseDetailsVo">
-										{{ formData.orderExpenseDetailsVo.sumPrice || '--' }}
+										{{ typeof formData.orderExpenseDetailsVo.sumPrice === 'number'
+											? formData.orderExpenseDetailsVo.sumPrice : '--' }}
 									</el-form-item>
 								</div>
 								<div style="width: 50%;">
@@ -325,16 +396,19 @@
 										<span v-else>--</span>
 									</el-form-item>
 									<el-form-item label="起步价" prop="orderExpenseDetailsVo">
-										{{ formData.orderExpenseDetailsVo.startPrice || '--' }}
+										{{ typeof formData.orderExpenseDetailsVo.startPrice === 'number'
+											? formData.orderExpenseDetailsVo.startPrice : '--' }}
 									</el-form-item>
 									<el-form-item label="超方费" prop="orderExpenseDetailsVo">
-										{{ formData.orderExpenseDetailsVo.exceedPartyPrice || '--' }}
+										{{ typeof formData.orderExpenseDetailsVo.exceedPartyPrice === 'number'
+											? formData.orderExpenseDetailsVo.exceedPartyPrice : '--' }}
 									</el-form-item>
 									<el-form-item label="优惠金额">
 										{{ (formData.orderExpenseDetailsVo.sumPrice - formData.orderExpenseDetailsVo.vipPrice) || '--' }}
 									</el-form-item>
 									<el-form-item label="会员价" prop="orderExpenseDetailsVo">
-										{{ formData.orderExpenseDetailsVo.vipPrice || '--' }}
+										{{ typeof formData.orderExpenseDetailsVo.vipPrice === 'number'
+											? formData.orderExpenseDetailsVo.vipPrice : '--' }}
 									</el-form-item>
 								</div>
 							</div>
@@ -342,8 +416,7 @@
 								<el-form-item label="实付金额" prop="actualPrice">
 									<!-- {{ '（订单费用-优惠或折扣）：' + formData.actualPrice || '--' }} -->
 									<span style="font-size: 24px;color: #F75A48;">
-										{{ formData.actualPrice ? '￥' + formData.actualPrice
-											: '--' }}
+										{{ typeof formData.actualPrice === 'number' ? '￥' + formData.actualPrice : '--' }}
 									</span>
 								</el-form-item>
 							</div>
@@ -355,7 +428,7 @@
 								</div>
 								<div style="width: 50%;">
 									<el-form-item label="师傅实际到账金额" prop="arrivalPrice">
-										{{ formData.arrivalPrice || '--' }}
+										{{ typeof formData.arrivalPrice === 'number' ? formData.arrivalPrice : '--' }}
 									</el-form-item>
 								</div>
 							</div>
@@ -399,6 +472,9 @@ export default {
 				consigneeFloor: '',
 				consigneeMobile: '',
 				consigneeName: '',
+				commissionName: '',
+				commissionPrice: '',
+				commissionProportion: '',
 				createTime: '',
 				createUserId: '',
 				deliveryType: '',
@@ -421,7 +497,13 @@ export default {
 				senderName: '',
 				signUrl: '',
 				status: '',
-				subscribeTime: ''
+				subscribeTime: '',
+				jshopNameSimple: '',
+				jcontacts: '',
+				jcontactsTel: '',
+				qshopNameSimple: '',
+				qcontacts: '',
+				qcontactsTel: ''
 			},
 			orderOffer: ''
 		}
@@ -452,8 +534,8 @@ export default {
 					orderExpenseDetailsVo: res.data.orderExpenseDetailsVo || {},
 					brokerage: res.data.brokerage || '',
 					orderType: res.data.orderType || '',
-					actualPrice: res.data.actualPrice || '',
-					arrivalPrice: res.data.arrivalPrice || '',
+					actualPrice: res.data.actualPrice,
+					arrivalPrice: res.data.arrivalPrice,
 					belongsToZzUserId: res.data.belongsToZzUserId || '',
 					cancelRemark: res.data.cancelRemark || '',
 					consigneeAddress: res.data.consigneeAddress || '',
@@ -461,6 +543,9 @@ export default {
 					consigneeFloor: res.data.consigneeFloor || '',
 					consigneeMobile: res.data.consigneeMobile || '',
 					consigneeName: res.data.consigneeName || '',
+					commissionName: res.data.commissionName || '',
+					commissionPrice: res.data.commissionPrice,
+					commissionProportion: res.data.consigneeName || '',
 					createTime: res.data.createTime || '',
 					createUserId: res.data.createUserId || '',
 					deliveryType: res.data.deliveryType || '',
@@ -474,7 +559,7 @@ export default {
 					orderGoodsList: res.data.orderGoodsList || '',
 					orderNo: res.data.orderNo || '',
 					paymentMethod: res.data.paymentMethod || '',
-					price: res.data.price || '',
+					price: res.data.price,
 					pricingType: res.data.pricingType || '',
 					remarks: res.data.remarks || '',
 					senderAddress: res.data.senderAddress || '',
@@ -483,7 +568,13 @@ export default {
 					senderName: res.data.senderName || '',
 					signUrl: res.data.signUrl || '',
 					status: res.data.status || '',
-					subscribeTime: res.data.subscribeTime || ''
+					subscribeTime: res.data.subscribeTime || '',
+					jshopNameSimple: res.data.jshopNameSimple || '',
+					jcontacts: res.data.jcontacts || '',
+					jcontactsTel: res.data.jcontactsTel || '',
+					qshopNameSimple: res.data.qshopNameSimple || '',
+					qcontacts: res.data.qcontacts || '',
+					qcontactsTel: res.data.qcontactsTel || ''
 				})
 			} finally {
 				loading.close()
@@ -525,13 +616,16 @@ export default {
 					}
 				}
 			}
-			.el-step__head.is-process, .el-step__head.is-wait {
+
+			.el-step__head.is-process,
+			.el-step__head.is-wait {
 				.el-step__line {
 					top: 6px;
 					height: 12px;
 					background: #EBECED;
 				}
 			}
+
 			.el-step__head.is-process {
 				.el-step__icon {
 					color: #FFFFFF;
@@ -539,11 +633,13 @@ export default {
 					border-color: #FFFFFF;
 				}
 			}
+
 			.el-step__main {
 				.el-step__title.is-success {
 					color: #303133;
 				}
 			}
+
 			.el-step__description {
 				padding: 2px;
 
@@ -552,14 +648,17 @@ export default {
 				}
 			}
 		}
+
 		.el-step.is-ok:not(.is-on) {
-		// .el-step.is-ok:nth-of-type(n) {
+
+			// .el-step.is-ok:nth-of-type(n) {
 			.el-step__head.is-success {
 				.el-step__line {
 					top: 6px;
 					height: 12px;
 					background: #071A2C;
 				}
+
 				.el-step__icon {
 					color: #FFFFFF;
 					background: #071A2C;
@@ -567,6 +666,7 @@ export default {
 				}
 			}
 		}
+
 		.el-step.is-ok.is-on {
 			.el-step__head.is-success {
 				.el-step__line {
@@ -574,6 +674,7 @@ export default {
 					height: 12px;
 					background: linear-gradient(90deg, #071A2C 0%, #2E6FAE 64%, #3CA1FF 100%);
 				}
+
 				.el-step__icon {
 					color: #FFFFFF;
 					background: #071A2C;

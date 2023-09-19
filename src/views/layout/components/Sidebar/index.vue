@@ -1,13 +1,8 @@
 <template>
 	<el-scrollbar wrap-class="scrollbar-wrapper">
 		<el-menu
-			:show-timeout="200"
-			:default-active="$route.path"
-			:collapse="isCollapse"
-			mode="vertical"
-			background-color="#304156"
-			text-color="#bfcbd9"
-			active-text-color="#409EFF"
+			:show-timeout="200" :default-active="$route.path" :collapse="isCollapse" mode="vertical"
+			background-color="#304156" text-color="#bfcbd9" active-text-color="#409EFF"
 		>
 			<SidebarItem v-for="route in menuList" :key="route.path" :item="route" :base-path="route.path" />
 		</el-menu>
@@ -31,18 +26,30 @@ export default {
 			return !this.sidebar.opened
 		},
 		menuList() {
-			const isAdmin = this.roles.includes('师傅')
-			const routers = XeUtils.mapTree(this.permission_routers, (item) => {
-				if (item._ROLES) {
-					if (item._ROLES.includes('USER')) {
-						item.hidden = isAdmin
+			let routers
+			if (this.roles.includes('店长')) {
+				routers = XeUtils.mapTree(this.permission_routers, (item) => {
+					if (item._ROLES) {
+						if (item._ROLES.includes('ADMIN')) {
+							item.hidden = false
+						} else {
+							item.hidden = true
+						}
 					}
-					if (item._ROLES.includes('ADMIN')) {
-						item.hidden = !isAdmin
+					return item
+				})
+			} else if (this.roles.includes('师傅')) {
+				routers = XeUtils.mapTree(this.permission_routers, (item) => {
+					if (item._ROLES) {
+						if (item._ROLES.includes('USER')) {
+							item.hidden = false
+						} else {
+							item.hidden = true
+						}
 					}
-				}
-				return item
-			})
+					return item
+				})
+			}
 			return routers
 		}
 	}
