@@ -22,6 +22,7 @@
         <div>师傅合伙人</div>
       </div>
     </div>
+
     <!-- 查询和其他操作 -->
     <div
       class="filter-container"
@@ -80,7 +81,7 @@
       @refresh="getList"
       @download="toolsMixin_exportMethod($refs.vxeTable, '师傅合伙人')"
     >
-      <el-button
+      <!-- <el-button
         v-permission="[`POST ${api.savePartner}`]"
         size="mini"
         type="success"
@@ -89,7 +90,7 @@
         @click="$refs.EditModal && $refs.EditModal.handleOpen({ id: '' }, 1)"
       >
         添加合伙人
-      </el-button>
+      </el-button> -->
     </TableTools>
 
     <!-- 客户管理列表 -->
@@ -102,6 +103,7 @@
       :columns="columns"
       page-alias="pageNo"
       size-alias="pageSize"
+      total-alias="total"
       :grid-options="{ rowConfig: { height: 60 } }"
       style="
         padding: 0 20px;
@@ -251,7 +253,7 @@ import CommissionStatement from './components/CommissionStatement';
 import EditPartnerTypeDialog from '@/views/enterprise/commanderList/components/EditPartnerTypeDialog.vue';
 
 export default {
-  name: 'PartnerList',
+  name: 'ShopPartnerList',
   components: {
     VxeTable,
     TableTools,
@@ -267,13 +269,13 @@ export default {
       api,
       columns,
       customColumnsConfig: {
-        localKey: 'partnerList',
+        localKey: 'shopPartnerList',
         columnsOptions: columns,
       },
       listQuery: {
         pageNo: 1,
         pageSize: 20,
-        type: 1,
+        type: 3,
         search: '',
       },
     };
@@ -299,6 +301,7 @@ export default {
       this.$elMessage('取消指定成功!');
       this.getList();
     },
+
     // 修改类型
     handleEditPartnerType(rowInfo) {
       this.$refs.EditPartnerTypeDialog.show(rowInfo);

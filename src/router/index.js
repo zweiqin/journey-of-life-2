@@ -230,6 +230,15 @@ export const asyncRouterMap = [
 				}
 			},
 			{
+				path: 'shopPartnerList',
+				component: () => import('@/views/enterprise/shopPartnerList'),
+				name: 'ShopPartnerList',
+				meta: {
+					title: '门店合伙人',
+					noCache: true
+				}
+			},
+			{
 				path: 'commanderList',
 				component: () => import('@/views/enterprise/commanderList'),
 				name: 'CommanderList',

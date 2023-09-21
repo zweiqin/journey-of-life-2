@@ -2,7 +2,7 @@
   <el-dialog
     title="指定团长"
     :visible.sync="addCommanderVisible"
-    width="30%"
+    width="40%"
     :before-close="handleBeforeClose"
   >
     <el-form :model="form" :rules="rules" ref="ruleForm" label-width="120px">
@@ -72,6 +72,24 @@
           >切换区域数据</el-button
         >
       </el-form-item>
+
+      <el-form-item label="类型" prop="userType">
+        <!-- <el-select
+          style="width: 300px"
+          v-model="form.userType"
+          placeholder="请选择类型"
+        >
+          <el-option label="师傅合伙人" :value="1"> </el-option>
+          <el-option label="团长" :value="2"> </el-option>
+          <el-option label="门店合伙人" :value="3"> </el-option>
+        </el-select> -->
+
+        <el-radio-group v-model="form.userType">
+          <el-radio :label="1">师傅合伙人</el-radio>
+          <el-radio :label="2">团长</el-radio>
+          <el-radio :label="3">门店合伙人</el-radio>
+        </el-radio-group>
+      </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="addCommanderVisible = false">取 消</el-button>
@@ -95,7 +113,7 @@ export default {
   data() {
     return {
       addCommanderVisible: false,
-      form: { userId: '', region: '', mobile: '', name: '' },
+      form: { userId: '', region: '', mobile: '', name: '', userType: 2 },
       isLoading: false,
       userList: [],
       cascaderProps: {
@@ -112,6 +130,7 @@ export default {
         region: [
           { required: true, message: '请设置团长的区域', trigger: 'blur' },
         ],
+        userType: [{ required: true, message: '请选择类型', trigger: 'blur' }],
       },
       isLoading: false,
     };
@@ -124,7 +143,7 @@ export default {
       this.dZserveCity = [];
       this.isDZServe = false;
       this.selectData = [];
-      this.form = { userId: '', region: '', mobile: '', name: '' };
+      this.form = { userId: '', region: '', mobile: '', name: '', userType: 2 };
       this.getDZBaseInfo();
     },
 
@@ -231,7 +250,6 @@ export default {
 
     // 确定
     handleConfirm() {
-      console.log(this.form);
       const _this = this;
       this.$refs.ruleForm.validate(async (valid) => {
         if (valid) {

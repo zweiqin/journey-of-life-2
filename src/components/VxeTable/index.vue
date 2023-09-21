@@ -474,7 +474,7 @@ export default {
 				currentPage: this.searchParams[this.pageAlias],
 				pageSize: this.searchParams[this.sizeAlias],
 				...pagination,
-				total: this.pageTotal || pagination.total
+				total: this.pageTotal * 1 || pagination.total * 1
 			},
 			on: {
 				'current-change': this.onPageChange,

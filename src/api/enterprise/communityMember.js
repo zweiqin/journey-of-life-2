@@ -11,6 +11,7 @@ export const api = {
   getSfList: '/api/third/tz/finUserInfoByKeyword',
   getCities: '/worker/sysArea1/queryCity',
   getCouns: '/worker/sysArea1/queryCoun',
+  editPartnerType: '/api/third/tz/updateUserType',
 };
 
 // 指定合伙人
@@ -100,5 +101,14 @@ export function getCounsData(data) {
     url: api.getCouns,
     data,
     method: 'POST',
+  });
+}
+
+// 修改合伙人类型
+export function editPartnerType(params) {
+  return request({
+    url: api.editPartnerType,
+    params,
+    method: 'get',
   });
 }
