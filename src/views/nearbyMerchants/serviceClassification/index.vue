@@ -164,7 +164,7 @@ export default {
 		},
 		async handleDelete(row) {
 			await this.$elConfirm('确认删除？')
-			await deleteByIdShopGoodsType({ id: row.id })
+			await deleteByIdShopGoodsType({ shopGoodsTypeId: row.id })
 			this.$elMessage('删除成功！')
 			this.getList()
 		}

@@ -43,28 +43,28 @@
 							</el-form-item>
 
 							<el-form-item label="价格" prop="goodsPrice">
-								<el-input v-model="formData.goodsPrice" type="number" clearable placeholder="请输入价格" />
+								<el-input v-model.number="formData.goodsPrice" type="number" clearable placeholder="请输入价格" />
 							</el-form-item>
 							<el-form-item label="优惠价" prop="preferentialPrice">
-								<el-input v-model="formData.preferentialPrice" type="number" clearable placeholder="请输入优惠价" />
+								<el-input v-model.number="formData.preferentialPrice" type="number" clearable placeholder="请输入优惠价" />
 							</el-form-item>
 
 							<el-form-item label="是否上架" prop="goodsUpper">
-								<el-switch v-model="formData.goodsUpper" :active-value="1" :inactive-value="0" />
+								<el-switch v-model.number="formData.goodsUpper" :active-value="1" :inactive-value="0" />
 							</el-form-item>
-							<el-form-item label="排序" prop="sortOrder">
-								<el-input v-model="formData.sortOrder" type="number" clearable placeholder="请输入排序" />
+							<el-form-item label="排序" prop="goodsSort">
+								<el-input v-model.number="formData.goodsSort" type="number" clearable placeholder="请输入排序" />
 							</el-form-item>
 
 							<el-form-item
 								:label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}详情`"
-								prop="detail"
+								prop="goodsInfo"
 							>
 								<div style="display:inline-block;">
-									<!-- <Editor v-model="formData.detail" :init="editorInit" /> -->
-									<Tinymce v-model="formData.detail" has-menubar :width="580" :height="300"></Tinymce>
+									<!-- <Editor v-model="formData.goodsInfo" :init="editorInit" /> -->
+									<Tinymce v-model="formData.goodsInfo" has-menubar :width="580" :height="300"></Tinymce>
 								</div>
-								<el-input v-model="formData.detail" style="display:none" />
+								<el-input v-model="formData.goodsInfo" style="display:none" />
 							</el-form-item>
 						</el-form>
 					</div>
@@ -105,7 +105,9 @@ export default {
 				preferentialPrice: '',
 				goodsUpper: '',
 				goodsSort: '',
-				goodsType: ''
+				goodsType: '',
+				goodsInfo: "",
+				shopId: ""
 			},
 			formRules: {
 				goodsName: [
@@ -164,11 +166,12 @@ export default {
 				goodsTypeId: res.data.goodsTypeId || '',
 				goodsLogo: res.data.goodsLogo || '',
 				goodsRotationChart: res.data.goodsRotationChart ? res.data.goodsRotationChart.split(',') : [],
-				goodsPrice: res.data.goodsPrice,
-				preferentialPrice: res.data.preferentialPrice,
+				goodsPrice: res.data.goodsPrice * 1,
+				preferentialPrice: res.data.preferentialPrice || undefined,
 				goodsUpper: res.data.goodsUpper,
-				goodsSort: res.data.goodsSort,
-				goodsType: res.data.goodsType
+				goodsSort: res.data.goodsSort || 1,
+				goodsType: res.data.goodsType,
+				shopId: res.data.shopId
 			})
 			this.getGoodsTypeList()
 		},
@@ -181,7 +184,7 @@ export default {
 			try {
 				await editShopGoods({
 					...this.formData,
-					goodsRotationChart: Array.isArray(this.formData.goodsRotationChart) ? this.formData.goodsRotationChart.join(',') : ''
+					goodsRotationChart: Array.isArray(this.formData.goodsRotationChart) ? this.formData.goodsRotationChart.map(item => item.resData).join(',') : ''
 				})
 				loading.close()
 				this.$elMessage('上传成功！')

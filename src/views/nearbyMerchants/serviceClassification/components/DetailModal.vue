@@ -75,7 +75,7 @@ export default {
 		async getInfo(id) {
 			const loading = this.$elLoading('加载中')
 			try {
-				const res = await getByIdShopGoodsTypeInfo({ id })
+				const res = await getByIdShopGoodsTypeInfo({shopGoodsTypeId: id })
 				this.formData = Object.assign(this.$options.data().formData, res.data, {
 					id: res.data.id || '',
 					shopId: res.data.shopId || '',

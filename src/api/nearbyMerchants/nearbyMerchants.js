@@ -42,29 +42,34 @@ export function editShopGoods(data) {
 }
 
 // 删除服务
-export function deleteByIdShopGoods(data) {
+export function deleteByIdShopGoods(params) {
 	return request({
 		url: api.deleteByIdShopGoods,
-		method: 'POST',
-		data
+		method: 'DELETE',
+		params
 	})
 }
 
 // 上下架服务
-export function upperShopGoods(data) {
+export function upperShopGoods({shopGoodsId}) {
+	const formData = new FormData()
+	formData.append('shopGoodsId', shopGoodsId)
 	return request({
 		url: api.upperShopGoods,
+		headers: {
+      'Content-Type': 'multipart/form-data;charset=UTF-8',
+		},
 		method: 'POST',
-		data
+		data: formData
 	})
 }
 
 // 服务详情
-export function getByIdShopGoodsInfo(data) {
+export function getByIdShopGoodsInfo(params) {
 	return request({
 		url: api.getByIdShopGoodsInfo,
-		method: 'POST',
-		data
+		method: 'GET',
+		params
 	})
 }
 

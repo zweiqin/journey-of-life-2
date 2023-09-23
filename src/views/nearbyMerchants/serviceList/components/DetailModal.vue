@@ -107,19 +107,19 @@ export default {
 		async getInfo(id) {
 			const loading = this.$elLoading('加载中')
 			try {
-				const res = await getByIdShopGoodsInfo({ id })
+				const res = await getByIdShopGoodsInfo({ shopGoodsId: id })
 				this.formData = Object.assign(this.$options.data().formData, res.data, {
 					id: res.data.id || '',
 					shopId: res.data.shopId || '',
 					goodsName: res.data.goodsName || '',
 					goodsTypeId: res.data.goodsTypeId,
 					goodsLogo: res.data.goodsLogo || '',
-					goodsRotationChart: res.data.goodsRotationChart || '',
+					goodsRotationChart: res.data.goodsRotationChart,
 					goodsPrice: res.data.goodsPrice,
-					preferentialPrice: res.data.preferentialPrice,
+					preferentialPrice: res.data.preferentialPrice || undefined,
 					serviceVolume: res.data.serviceVolume,
 					goodsUpper: res.data.goodsUpper,
-					goodsSort: res.data.goodsSort,
+					goodsSort: res.data.goodsSort || 1,
 					goodsType: res.data.goodsType,
 					createTime: res.data.createTime || '',
 					goodsInfo: res.data.goodsInfo || ''

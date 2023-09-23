@@ -87,13 +87,13 @@
 					编辑
 				</el-button>
 				<el-button
-					v-permission="[ `POST /admin${api.upperShopGoods}` ]" :disabled="!row.isOnSale" type="info" size="mini"
+					v-permission="[ `POST /admin${api.upperShopGoods}` ]" :disabled="row.goodsUpper == 0" type="info" size="mini"
 					@click="handleUpdate(row)"
 				>
 					下架
 				</el-button>
 				<el-button
-					v-permission="[ `POST /admin${api.upperShopGoods}` ]" :disabled="row.isOnSale" type="primary"
+					v-permission="[ `POST /admin${api.upperShopGoods}` ]" :disabled="row.goodsUpper == 1" type="primary"
 					size="mini" @click="handleUpdate(row)"
 				>
 					上架
@@ -198,7 +198,7 @@ export default {
 		},
 		async handleDelete(row) {
 			await this.$elConfirm('确认删除？')
-			await deleteByIdShopGoods({ id: row.id })
+			await deleteByIdShopGoods({ shopGoodsId: row.id })
 			this.$elMessage('删除成功！')
 			this.getList()
 		}
