@@ -43,10 +43,10 @@
 							</el-form-item>
 
 							<el-form-item label="价格" prop="goodsPrice">
-								<el-input v-model="formData.goodsPrice" type="number" clearable placeholder="请输入价格" />
+								<el-input v-model.number="formData.goodsPrice" type="number" clearable placeholder="请输入价格" />
 							</el-form-item>
 							<el-form-item label="优惠价" prop="preferentialPrice">
-								<el-input v-model="formData.preferentialPrice" type="number" clearable placeholder="请输入优惠价" />
+								<el-input v-model.number="formData.preferentialPrice" type="number" clearable placeholder="请输入优惠价" />
 							</el-form-item>
 
 							<el-form-item label="是否上架" prop="goodsUpper">
@@ -70,7 +70,6 @@
 					</div>
 				</div>
 			</el-card>
-
 		</div>
 
 		<div class="footer-container">
