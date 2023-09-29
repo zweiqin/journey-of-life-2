@@ -68,6 +68,18 @@ export const columns = [
 	},
 	{
 		align: 'center',
+		field: 'inventory',
+		title: '商品库存',
+		width: 100
+	},
+	{
+		align: 'center',
+		field: 'lockInventory',
+		title: '锁定库存',
+		width: 100
+	},
+	{
+		align: 'center',
 		field: 'serviceVolume',
 		title: '服务量销售量',
 		width: 100

@@ -347,6 +347,16 @@ export const asyncRouterMap = [
           noCache: true,
         },
       },
+
+      {
+        path: 'voucherGoods',
+        component: () => import('@/views/nearbyMerchants/voucherGoods'),
+        name: 'VoucherGoods',
+        meta: {
+          title: '代金券服务',
+          noCache: true,
+        },
+      },
     ],
   },
   {
@@ -378,6 +388,25 @@ export const asyncRouterMap = [
           title: '商品分类', // 用于区分服务分类
           noCache: true,
         },
+      },
+      {
+        path: 'voucherGoods',
+        component: () => import('@/views/nearbyMerchants/voucherGoods'),
+        name: 'VoucherGoods',
+        meta: {
+          title: '代金券商品',
+          noCache: true,
+        },
+      },
+      {
+        path: 'voucherGoodSave',
+        component: () => import('@/views/nearbyMerchants/VoucherGoodSave'),
+        name: 'VoucherGoodSave',
+        meta: {
+          title: '代金券商品/服务',
+          noCache: true,
+        },
+        hidden: true,
       },
     ],
   },
@@ -421,7 +450,6 @@ export const asyncRouterMap = [
           noCache: true,
         },
       },
-
       {
         path: 'nearbyMerchants',
         component: () => import('@/views/children'),

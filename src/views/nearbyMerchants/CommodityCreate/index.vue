@@ -12,34 +12,25 @@
 									<el-radio :label="2">服务</el-radio>
 								</el-radio-group>
 							</el-form-item>
-							<el-form-item
-								:label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}名称`"
-								prop="goodsName"
-							>
+							<el-form-item :label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}名称`"
+								prop="goodsName">
 								<el-input v-model="formData.goodsName" placeholder="请输入商品名称" maxlength="30" show-word-limit />
 							</el-form-item>
-							<el-form-item
-								:label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}分类`"
-								prop="goodsTypeId"
-							>
+							<el-form-item :label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}分类`"
+								prop="goodsTypeId">
 								<el-select v-model="formData.goodsTypeId" placeholder="请选择分类">
 									<el-option v-for="item in goodsTypeList" :key="item.id" :label="item.goodsTypeName" :value="item.id" />
 								</el-select>
 							</el-form-item>
 
-							<el-form-item
-								:label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}图片`"
-								prop="goodsLogo"
-							>
+							<el-form-item :label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}图片`"
+								prop="goodsLogo">
 								<MyUpload v-model="formData.goodsLogo" name="pictureFile" res-errno="code" res-msg="msg" />
 							</el-form-item>
 
 							<el-form-item label="轮播图" prop="goodsRotationChart">
-								<MyUpload
-									v-model="formData.goodsRotationChart" :limit="3" multiple name="pictureFile"
-									res-errno="code"
-									res-msg="msg"
-								/>
+								<MyUpload v-model="formData.goodsRotationChart" :limit="3" multiple name="pictureFile" res-errno="code"
+									res-msg="msg" />
 							</el-form-item>
 
 							<el-form-item label="价格" prop="goodsPrice">
@@ -49,6 +40,10 @@
 								<el-input v-model.number="formData.preferentialPrice" type="number" clearable placeholder="请输入优惠价" />
 							</el-form-item>
 
+							<el-form-item label="商品库存" prop="inventory">
+								<el-input v-model.number="formData.inventory" type="number" clearable placeholder="请输入优惠价" />
+							</el-form-item>
+
 							<el-form-item label="是否上架" prop="goodsUpper">
 								<el-switch v-model="formData.goodsUpper" :active-value="1" :inactive-value="0" />
 							</el-form-item>
@@ -56,10 +51,8 @@
 								<el-input v-model.number="formData.goodsSort" type="number" clearable placeholder="请输入排序" />
 							</el-form-item>
 
-							<el-form-item
-								:label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}详情`"
-								prop="goodsInfo"
-							>
+							<el-form-item :label="`${formData.goodsType === 1 ? '商品' : formData.goodsType === 2 ? '服务' : ''}详情`"
+								prop="goodsInfo">
 								<div style="display:inline-block;">
 									<!-- <Editor v-model="formData.goodsInfo" :init="editorInit" /> -->
 									<Tinymce v-model="formData.goodsInfo" has-menubar :width="580" :height="300"></Tinymce>
@@ -107,7 +100,8 @@ export default {
 				goodsUpper: '',
 				goodsSort: 1,
 				goodsType: '',
-				goodsInfo: ''
+				goodsInfo: '',
+				inventory: ''
 			},
 			formRules: {
 				goodsName: [
@@ -136,6 +130,9 @@ export default {
 				],
 				goodsType: [
 					{ required: true, message: '请选择商品类型' }
+				],
+				inventory: [
+					{ required: true, message: "请填写商品库存", type: 'number', trigger: 'blur' }
 				]
 			}
 			// editorInit: {
