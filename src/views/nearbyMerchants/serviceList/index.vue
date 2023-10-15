@@ -1,6 +1,5 @@
 <template>
 	<div class="app-container">
-
 		<div class="other-container">
 			<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
 				<div

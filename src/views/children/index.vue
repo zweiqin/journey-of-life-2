@@ -1,8 +1,8 @@
 <template>
 	<!-- <router-view /> -->
-	<keep-alive :include="cachedViews">
-		<!-- <router-view :key="key" /> -->
-		<router-view />
+	<keep-alive :include="cachedViews" :exclude="['CommodityCreate', 'CommodityEdit']">
+		<router-view :key="key" />
+		<!-- <router-view /> -->
 	</keep-alive>
 </template>
 
@@ -46,6 +46,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

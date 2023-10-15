@@ -41,7 +41,7 @@
 							</el-form-item>
 
 							<el-form-item label="商品库存" prop="inventory">
-								<el-input v-model.number="formData.inventory" type="number" clearable placeholder="请输入优惠价" />
+								<el-input v-model.number="formData.inventory" type="number" clearable placeholder="请输入商品库存" />
 							</el-form-item>
 
 							<el-form-item label="是否上架" prop="goodsUpper">
@@ -165,6 +165,7 @@ export default {
 			this.getGoodsTypeList()
 		},
 		async getGoodsTypeList() {
+			if (!this.formData.goodsType) return
 			const res = await queryShopGoodsTypeList({
 				pageNo: 1,
 				pageSize: 9999,

@@ -431,15 +431,15 @@ export const asyncRouterMap = [
           noCache: true,
         },
       },
-      {
-        path: 'wallet',
-        component: () => import('@/views/enterprise/wallet'),
-        name: 'Wallet',
-        meta: {
-          title: '钱包管理',
-          noCache: true,
-        },
-      },
+      // {
+      //   path: 'wallet',
+      //   component: () => import('@/views/enterprise/wallet'),
+      //   name: 'Wallet',
+      //   meta: {
+      //     title: '钱包管理',
+      //     noCache: true,
+      //   },
+      // },
 
       {
         path: 'employee',
@@ -480,17 +480,17 @@ export const asyncRouterMap = [
       },
     ],
   },
-  {
-    path: 'https://www.tuanfengkeji.cn/tfdata',
-    alwaysShow: false,
-    component: Layout,
-    noShowingChildren: true,
-    meta: {
-      title: '智慧看板',
-      icon: 'bulletin-board',
-      noCache: true,
-    },
-    children: [],
-  },
+  // {
+  //   path: 'https://www.tuanfengkeji.cn/tfdata',
+  //   alwaysShow: false,
+  //   component: Layout,
+  //   noShowingChildren: true,
+  //   meta: {
+  //     title: '智慧看板',
+  //     icon: 'bulletin-board',
+  //     noCache: true,
+  //   },
+  //   children: [],
+  // },
   { path: '*', redirect: '/404', hidden: true },
 ];
