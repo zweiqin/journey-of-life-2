@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog
-      title="修改类型"
+      title="修改身份"
       :visible.sync="editTypeVisible"
       width="30%"
       :before-close="handleBeforeClose"
@@ -10,6 +10,7 @@
         <el-radio :label="1">师傅合伙人</el-radio>
         <el-radio :label="2">团长</el-radio>
         <el-radio :label="3">门店合伙人</el-radio>
+        <el-radio :label="4">门店股东</el-radio>
       </el-radio-group>
 
       <span slot="footer" class="dialog-footer">

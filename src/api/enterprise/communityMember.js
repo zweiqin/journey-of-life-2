@@ -12,6 +12,7 @@ export const api = {
   getCities: '/worker/sysArea1/queryCity',
   getCouns: '/worker/sysArea1/queryCoun',
   editPartnerType: '/api/third/tz/updateUserType',
+  deleteAccountPartner: '/api/partner/deleteByPartner',
 };
 
 // 指定合伙人
@@ -38,6 +39,15 @@ export function deleteByPartner(data) {
     url: api.deleteByPartner,
     method: 'POST',
     data,
+  });
+}
+
+// 删除账号
+export function deleteAccountPartner(params) {
+  return request({
+    url: api.deleteAccountPartner,
+    method: 'DELETE',
+    params,
   });
 }
 

@@ -116,6 +116,16 @@ export const asyncRouterMap = [
     },
     children: [
       {
+        path: 'packageOrder',
+        component: () => import('@/views/orderManagement/packageOrder'),
+        name: 'PackageOrder',
+        meta: {
+          perms: [],
+          title: '套餐列表',
+          noCache: true,
+        },
+      },
+      {
         path: 'urbanDistribution',
         component: () => import('@/views/orderManagement/urbanDistribution'),
         name: 'UrbanDistribution',
@@ -196,46 +206,7 @@ export const asyncRouterMap = [
       },
     ],
   },
-  {
-    path: '/walletManagement',
-    alwaysShow: true,
-    component: Layout,
-    redirect: 'noredirect',
-    meta: {
-      title: '钱包',
-      icon: 'wallet',
-      noCache: true,
-    },
-    children: [
-      {
-        path: 'wallet',
-        component: () => import('@/views/enterprise/wallet'),
-        name: 'Wallet',
-        meta: {
-          title: '余额',
-          noCache: true,
-        },
-      },
-      {
-        path: 'withdrawRecord',
-        component: () => import('@/views/enterprise/withdrawRecord'),
-        name: 'WithdrawRecord',
-        meta: {
-          title: '提现记录',
-          noCache: true,
-        },
-      },
-      {
-        path: 'commissionManagement',
-        component: () => import('@/views/enterprise/commissionManagement'),
-        name: 'CommissionManagement',
-        meta: {
-          title: '佣金记录',
-          noCache: true,
-        },
-      },
-    ],
-  },
+
   {
     path: '/memberManagement',
     alwaysShow: true,
@@ -273,7 +244,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: 'noredirect',
     meta: {
-      title: '合伙管理',
+      title: '团队管理',
       icon: 'partnership',
       noCache: true,
     },
@@ -288,15 +259,6 @@ export const asyncRouterMap = [
         },
       },
       {
-        path: 'shopPartnerList',
-        component: () => import('@/views/enterprise/shopPartnerList'),
-        name: 'ShopPartnerList',
-        meta: {
-          title: '门店合伙人',
-          noCache: true,
-        },
-      },
-      {
         path: 'commanderList',
         component: () => import('@/views/enterprise/commanderList'),
         name: 'CommanderList',
@@ -306,8 +268,18 @@ export const asyncRouterMap = [
         },
       },
       {
+        path: 'shopPartnerList',
+        component: () => import('@/views/enterprise/shopPartnerList'),
+        name: 'ShopPartnerList',
+        meta: {
+          title: '门店合伙人',
+          noCache: true,
+        },
+      },
+      {
         path: 'shareholder',
-        component: () => import('@/views/partnershipManagement/shareholder'),
+        component: () =>
+          import('@/views/partnershipManagement/shareholderPartnerList'),
         name: 'Shareholder',
         meta: {
           title: '股东列表',
@@ -407,6 +379,47 @@ export const asyncRouterMap = [
           noCache: true,
         },
         hidden: true,
+      },
+    ],
+  },
+
+  {
+    path: '/walletManagement',
+    alwaysShow: true,
+    component: Layout,
+    redirect: 'noredirect',
+    meta: {
+      title: '钱包',
+      icon: 'wallet',
+      noCache: true,
+    },
+    children: [
+      {
+        path: 'wallet',
+        component: () => import('@/views/enterprise/wallet'),
+        name: 'Wallet',
+        meta: {
+          title: '余额',
+          noCache: true,
+        },
+      },
+      {
+        path: 'withdrawRecord',
+        component: () => import('@/views/enterprise/withdrawRecord'),
+        name: 'WithdrawRecord',
+        meta: {
+          title: '提现记录',
+          noCache: true,
+        },
+      },
+      {
+        path: 'commissionManagement',
+        component: () => import('@/views/enterprise/commissionManagement'),
+        name: 'CommissionManagement',
+        meta: {
+          title: '佣金记录',
+          noCache: true,
+        },
       },
     ],
   },

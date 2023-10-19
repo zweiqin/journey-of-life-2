@@ -88,6 +88,7 @@
           <el-radio :label="1">师傅合伙人</el-radio>
           <el-radio :label="2">团长</el-radio>
           <el-radio :label="3">门店合伙人</el-radio>
+          <el-radio :label="4">门店股东</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>

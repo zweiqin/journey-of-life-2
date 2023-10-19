@@ -202,12 +202,19 @@
         </el-button>
         <el-button
           v-permission="[`DELETE ${api.deleteByPartner}`]"
-          type="danger"
+          :type="row.status === 5 ? 'warning' : 'danger'"
           size="mini"
-          @click="handleDelete(row)"
+          @click="handleOperationAccount(row, row.status === 5 ? 3 : 5)"
         >
-          取消指定
+          {{ row.status === 5 ? '恢复身份' : '身份冻结' }}
         </el-button>
+
+        <el-button
+          @click="handleDeleteAccount(row)"
+          type="danger"
+          v-permission="[`DELETE ${api.deleteAccountPartner}`]"
+          >取消身份</el-button
+        >
 
         <el-button
           v-permission="[`DELETE ${api.editPartnerType}`]"
@@ -215,7 +222,7 @@
           size="mini"
           @click="handleEditPartnerType(row)"
         >
-          修改类型
+          修改身份
         </el-button>
       </template>
     </VxeTable>
@@ -239,7 +246,11 @@
 </template>
 
 <script>
-import { api, deleteByPartner } from '@/api/enterprise/communityMember';
+import {
+  api,
+  deleteByPartner,
+  deleteAccountPartner,
+} from '@/api/enterprise/communityMember';
 import VxeTable from '@/components/VxeTable';
 import TableTools from '@/components/TableTools';
 import EditModal from './components/EditModal';
@@ -293,15 +304,28 @@ export default {
     // handleEdit(row) {
     // 	this.$refs.EditModal && this.$refs.EditModal.handleOpen(row)
     // },
-    async handleDelete({ id }) {
-      await this.$elConfirm('确认取消指定?');
-      await deleteByPartner({ ids: [id].join(',') });
-      this.$elMessage('取消指定成功!');
+    async handleOperationAccount({ id }, status) {
+      await this.$elConfirm(status === 5 ? '确认冻结身份?' : '确认恢复身份？');
+      await deleteByPartner({ id, status });
+      this.$elMessage(status === 5 ? '身份冻结成功!' : '身份恢复成功！');
       this.getList();
     },
     // 修改类型
     handleEditPartnerType(rowInfo) {
+      if (rowInfo.status === 5) {
+        this.$elMessage('请先恢复该账号', 'warning');
+        return;
+      }
       this.$refs.EditPartnerTypeDialog.show(rowInfo);
+    },
+
+    async handleDeleteAccount({ id }) {
+      await this.$elConfirm(
+        '删除后将会取消该账号各个绑定关系，且不可逆，确认删除当前账号？'
+      );
+      await deleteAccountPartner({ ids: [id].join(',') });
+      this.$elMessage('删除成功');
+      this.getList();
     },
   },
 };

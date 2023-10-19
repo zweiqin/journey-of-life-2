@@ -19,7 +19,7 @@
             border-radius: 2px;
           "
         ></div>
-        <div>门店合伙人</div>
+        <div>股东列表</div>
       </div>
     </div>
 
@@ -202,6 +202,7 @@
         >
           佣金流水
         </el-button>
+
         <el-button
           v-permission="[`DELETE ${api.deleteByPartner}`]"
           :type="row.status === 5 ? 'warning' : 'danger'"
@@ -286,7 +287,7 @@ export default {
       listQuery: {
         pageNo: 1,
         pageSize: 20,
-        type: 3,
+        type: 4,
         search: '',
       },
     };
@@ -322,6 +323,7 @@ export default {
       this.$refs.EditPartnerTypeDialog.show(rowInfo);
     },
 
+    // 删除账号
     async handleDeleteAccount({ id }) {
       await this.$elConfirm(
         '删除后将会取消该账号各个绑定关系，且不可逆，确认删除当前账号？'
