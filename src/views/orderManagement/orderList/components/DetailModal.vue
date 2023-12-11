@@ -245,7 +245,7 @@
 							<div style="display: flex;">
 								<div class="serve-pane"
 									style="width: 150px; border: 1px solid #f3f3f3; border-radius: 5px; margin-right: 10px; cursor: pointer;"
-									v-for="item in extraInfo">
+									v-for="item in extraInfo" :key="item.id">
 									<div class="header"
 										style="display: flex; justify-content: space-between; padding: 10px; box-sizing: border-box;">
 										<div class="name">{{ item.serverName }}</div>
@@ -255,7 +255,7 @@
 									</div>
 
 									<div v-if="item.images.length" class="image-list" style="padding:0 10px 10px; box-sizing: border-box">
-										<el-image v-for="img in item.images"
+										<el-image :key="index" v-for="(img, index) in item.images"
 											style="width: 50px; height: 50px; margin: right 10px; border-radius: 5px; margin-right: 8px;" :src="img"
 											:preview-src-list="item.images">
 										</el-image>
