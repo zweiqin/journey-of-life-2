@@ -4,22 +4,17 @@
 		<div class="other-container">
 			<div style="display: flex;padding-bottom: 14px;font-size: 16px;font-weight: bold;">
 				<div
-					style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;"
-				>
+					style="width: 4px;height: 14px;margin-left: 6px;margin-right: 6px;background-color: #0519D4;border-radius: 2px;">
 				</div>
 				<div>订单列表</div>
 			</div>
 		</div>
 		<!-- 查询和其他操作 -->
-		<div
-			class="filter-container"
-			style="padding: 20px 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-bottom: 0;border-radius: 6px 6px 0 0;"
-		>
-			<el-input
-				v-model="listQuery.search" clearable class="filter-item"
+		<div class="filter-container"
+			style="padding: 20px 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-bottom: 0;border-radius: 6px 6px 0 0;">
+			<el-input v-model="listQuery.search" clearable class="filter-item"
 				style="width: 400px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入订单号码/手机号码/姓名等"
-				@keyup.enter.native="getList"
-			/>
+				@keyup.enter.native="getList" />
 			<!-- <el-select
 				v-model="listQuery.status" clearable class="filter-item"
 				style="width: 200px;"
@@ -33,27 +28,20 @@
 				<el-option label="已完成" :value="6" />
 				<el-option label="已取消" :value="7" />
 				</el-select> -->
-			<el-button
-				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="primary"
-				style="margin-left:10px;padding: 7px 22px;border: 0;" @click="getList"
-			>
+			<el-button v-permission="[`GET ${api.orderPagelist}`]" size="mini" class="filter-item" type="primary"
+				style="margin-left:10px;padding: 7px 22px;border: 0;" @click="getList">
 				查询
 			</el-button>
-			<el-button
-				v-permission="[ `GET ${api.orderPagelist}` ]" size="mini" class="filter-item" type="info"
-				plain
+			<el-button v-permission="[`GET ${api.orderPagelist}`]" size="mini" class="filter-item" type="info" plain
 				style="margin-left:10px;padding: 7px 22px;border: 0;"
-				@click="(listQuery.status = null) || (listQuery.search = '') || getList()"
-			>
+				@click="(listQuery.status = null) || (listQuery.search = '') || getList()">
 				重置
 			</el-button>
 		</div>
 
-		<TableTools
-			:custom-columns-config="customColumnsConfig" download custom-field
+		<TableTools :custom-columns-config="customColumnsConfig" download custom-field
 			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;"
-			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '订单管理')"
-		>
+			@update-fields="updateFields" @refresh="getList" @download="toolsMixin_exportMethod($refs.vxeTable, '订单管理')">
 			<el-radio-group v-model="listQuery.status" class="filter-item" size="mini" @input="getList">
 				<el-radio-button :label="null">全部</el-radio-button>
 				<el-radio-button :label="3">待分配</el-radio-button>
@@ -63,21 +51,17 @@
 				<el-radio-button :label="6">已完成</el-radio-button>
 				<el-radio-button :label="7">已取消</el-radio-button>
 			</el-radio-group>
-			<el-button
-				v-permission="[ `POST /admin${api.createOrder}` ]" size="mini" type="success" icon="el-icon-plus"
-				@click="$refs.EditModal && $refs.EditModal.handleOpen({ orderNo: '' }, 2)"
-			>
+			<el-button v-permission="[`POST /admin${api.createOrder}`]" size="mini" type="success" icon="el-icon-plus"
+				@click="$refs.EditModal && $refs.EditModal.handleOpen({ orderNo: '' }, 2)">
 				创建
 			</el-button>
 		</TableTools>
 
 		<!-- 订单管理列表 -->
-		<VxeTable
-			ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="POST"
+		<VxeTable ref="vxeTable" v-model="listQuery" :local-key="customColumnsConfig.localKey" api-method="POST"
 			:api-path="api.orderPagelist" :columns="columns" page-alias="pageNo" size-alias="pageSize"
 			:grid-options="{ rowConfig: { height: 60 }, tooltipConfig: { showAll: true, enterDelay: 800 } }"
-			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);"
-		>
+			style="padding: 0 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);">
 			<template #orderNo="{ row }">
 				<span style="color: #0519D4;">{{ row.orderNo || '--' }}</span>
 			</template>
@@ -86,7 +70,7 @@
 				<div>{{ row.senderMobile || '--' }}</div>
 			</template>
 			<template #consigneeName="{ row }">
-				<div>{{ row.consigneeName || '--' }}</div>
+				<div> <span class="biz-tag" v-if="row.bizType === 3">企业</span> {{ row.consigneeName || '--' }}</div>
 				<div>{{ row.consigneeMobile || '--' }}</div>
 			</template>
 			<!-- <template #createUserType="{ row }">
@@ -106,8 +90,7 @@
 			<template #installDate="{ row }">
 				<div
 					v-if="row.installDate && Date.now() - Date.parse(row.installDate) <= 3600000 && Date.now() - Date.parse(row.installDate) > 0"
-					style="width: 100%;"
-				>
+					style="width: 100%;">
 					<div style="width: 65%;margin-left: 25%;font-size: 12px;">
 						<div style="padding: 1px 10px;color: #FFFFFF;background-color: #fa5151;border-radius: 5px;">时间不足1h</div>
 						<div style="height: 4px;background-color: #fa5151;clip-path: polygon(0px 0px, 80% 0, 85% 4px, 75% 0);"></div>
@@ -194,41 +177,30 @@
 				<span v-else>--</span>
 				</template> -->
 			<template #operate="{ row }">
-				<el-button
-					v-permission="[ `POST ${api.getOrderInfo}` ]" size="mini" type="text" style="color: #2E8982;"
-					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)"
-				>
+				<el-button v-permission="[`POST ${api.getOrderInfo}`]" size="mini" type="text" style="color: #2E8982;"
+					@click="$refs.DetailModal && $refs.DetailModal.handleOpen(row)">
 					详情
 				</el-button>
-				<el-button
-					v-if="row.status == 2" v-permission="[ `POST ${api.orderOfferSuccess}` ]" size="mini" type="primary"
-					@click="$refs.OrderOffer && $refs.OrderOffer.handleOpen(row)"
-				>
+				<el-button v-if="row.status == 2" v-permission="[`POST ${api.orderOfferSuccess}`]" size="mini" type="primary"
+					@click="$refs.OrderOffer && $refs.OrderOffer.handleOpen(row)">
 					报价
 				</el-button>
 				<el-button
 					v-if="!(row.status == 2 || row.status == 0 || row.status == 1 || row.status == 3 || row.status == 7 || row.status == 8)"
-					v-permission="[ `POST ${api.createOrderExtra}` ]" type="warning" size="mini"
-					@click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)"
-				>
+					v-permission="[`POST ${api.createOrderExtra}`]" type="warning" size="mini"
+					@click="$refs.AdditionalAmount && $refs.AdditionalAmount.handleOpen(row)">
 					追加金额
 				</el-button>
-				<el-button
-					v-if="row.status == 1" v-permission="[ `POST ${api.updateByOrderNoStatus}` ]" type="danger" size="mini"
-					@click="handleUpdate(row)"
-				>
+				<el-button v-if="row.status == 1" v-permission="[`POST ${api.updateByOrderNoStatus}`]" type="danger" size="mini"
+					@click="handleUpdate(row)">
 					接单
 				</el-button>
-				<el-button
-					v-if="row.status == 3" v-permission="[ `POST ${api.updateByOrderNoStatus}` ]" type="primary"
-					size="mini" @click="$refs.Distribution && $refs.Distribution.handleOpen(row)"
-				>
+				<el-button v-if="row.status == 3" v-permission="[`POST ${api.updateByOrderNoStatus}`]" type="primary"
+					size="mini" @click="$refs.Distribution && $refs.Distribution.handleOpen(row)">
 					分配
 				</el-button>
-				<el-button
-					v-if="row.status == 4 || row.status == 5" v-permission="[ `POST ${api.replaceMaster}` ]" type="danger"
-					size="mini" @click="$refs.MasterReplace && $refs.MasterReplace.handleOpen(row)"
-				>
+				<el-button v-if="row.status == 4 || row.status == 5" v-permission="[`POST ${api.replaceMaster}`]" type="danger"
+					size="mini" @click="$refs.MasterReplace && $refs.MasterReplace.handleOpen(row)">
 					更换师傅
 				</el-button>
 			</template>
@@ -430,5 +402,16 @@ export default {
 			}
 		}
 	}
+}
+
+.biz-tag{
+	padding: 2px 5px;
+	border-radius: 4px;
+	background-color: #0519d4;
+	color: #fff;
+	font-size: 12px;
+	transform: scale(0.7);
+	display: inline-block;
+	margin-left: -4px;
 }
 </style>

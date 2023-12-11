@@ -1,67 +1,43 @@
 <template>
 	<el-dialog :visible.sync="visible" v-bind="modalOptions" center>
 		<div
-			style="position: relative;display: flex;flex-direction: column;justify-content: start;align-items: center;width: 100%;"
-		>
+			style="position: relative;display: flex;flex-direction: column;justify-content: start;align-items: center;width: 100%;">
 			<div style="position: sticky;top: 0;z-index: 1;width: 100%;padding-top: 25px;background-color: #ffffff;">
 				<div style="width: 88%;margin: 0 auto;">
-					<el-steps
-						v-if="formData.status === 7" :space="200" :active="1" finish-status="error"
-						process-status="error"
-						align-center
-					>
+					<el-steps v-if="formData.status === 7" :space="200" :active="1" finish-status="error" process-status="error"
+						align-center>
 						<el-step title="已取消"></el-step>
 					</el-steps>
-					<el-steps
-						v-else-if="formData.status === 8" :space="200" :active="1" finish-status="error"
-						process-status="error" align-center
-					>
+					<el-steps v-else-if="formData.status === 8" :space="200" :active="1" finish-status="error"
+						process-status="error" align-center>
 						<el-step title="异常"></el-step>
 					</el-steps>
-					<el-steps
-						v-else :space="200"
+					<el-steps v-else :space="200"
 						:active="formData.status == 2 ? 0 : formData.status == 0 ? 1 : formData.status == 1 ? 2 : Number(formData.status)"
-						finish-status="success" align-center
-					>
-						<el-step
-							title="待报价"
-							:class="{ 'is-ok': formData.status == 0 || formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 0 }"
-						>
+						finish-status="success" align-center>
+						<el-step title="待报价"
+							:class="{ 'is-ok': formData.status == 0 || formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 0 }">
 							<template #description>
 								<el-input v-if="formData.status == 2" v-model="orderOffer" placeholder="填报价">
-									<el-button
-										slot="append" v-permission="[ `POST ${api.orderOfferSuccess}` ]"
-										style="width: 26px;padding: 0;" size="mini" @click="handleOrderOffer({ orderNo: formData.orderNo })"
-									>
+									<el-button slot="append" v-permission="[`POST ${api.orderOfferSuccess}`]"
+										style="width: 26px;padding: 0;" size="mini" @click="handleOrderOffer({ orderNo: formData.orderNo })">
 										确定
 									</el-button>
 								</el-input>
 							</template>
 						</el-step>
-						<el-step
-							title="待付款"
-							:class="{ 'is-ok': formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 1 }"
-						></el-step>
-						<el-step
-							title="待接单"
-							:class="{ 'is-ok': Number(formData.status) >= 3, 'is-on': formData.status == 3 }"
-						></el-step>
-						<el-step
-							title="待分配"
-							:class="{ 'is-ok': Number(formData.status) >= 4, 'is-on': formData.status == 4 }"
-						></el-step>
-						<el-step
-							title="已分配"
-							:class="{ 'is-ok': Number(formData.status) >= 5, 'is-on': formData.status == 5 }"
-						></el-step>
-						<el-step
-							title="待到场"
-							:class="{ 'is-ok': Number(formData.status) == 31 || Number(formData.status) == 6, 'is-on': formData.status == 31 }"
-						></el-step>
-						<el-step
-							title="待完成"
-							:class="{ 'is-ok': Number(formData.status) == 6, 'is-on': formData.status == 6 }"
-						></el-step>
+						<el-step title="待付款"
+							:class="{ 'is-ok': formData.status == 1 || Number(formData.status) >= 3, 'is-on': formData.status == 1 }"></el-step>
+						<el-step title="待接单"
+							:class="{ 'is-ok': Number(formData.status) >= 3, 'is-on': formData.status == 3 }"></el-step>
+						<el-step title="待分配"
+							:class="{ 'is-ok': Number(formData.status) >= 4, 'is-on': formData.status == 4 }"></el-step>
+						<el-step title="已分配"
+							:class="{ 'is-ok': Number(formData.status) >= 5, 'is-on': formData.status == 5 }"></el-step>
+						<el-step title="待到场"
+							:class="{ 'is-ok': Number(formData.status) == 31 || Number(formData.status) == 6, 'is-on': formData.status == 31 }"></el-step>
+						<el-step title="待完成"
+							:class="{ 'is-ok': Number(formData.status) == 6, 'is-on': formData.status == 6 }"></el-step>
 						<el-step title="已完成"></el-step>
 					</el-steps>
 				</div>
@@ -86,8 +62,7 @@
 						<div style="width: 40%;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-								>
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 								</div>
 								<span>客户信息</span>
 							</div>
@@ -100,16 +75,12 @@
 								</el-form-item>
 							</div>
 							<div style="display: flex;flex-direction: column;">
-								<el-form-item
-									class="form-item-line" label="" label-width="0" prop="consigneeAddress"
-									style="white-space: nowrap;"
-								>
+								<el-form-item class="form-item-line" label="" label-width="0" prop="consigneeAddress"
+									style="white-space: nowrap;">
 									{{ formData.consigneeAddress || '--' }}
 								</el-form-item>
-								<el-form-item
-									class="form-item-line" label="" label-width="0" prop="consigneeAddressDetail"
-									style="margin-left: 1px;"
-								>
+								<el-form-item class="form-item-line" label="" label-width="0" prop="consigneeAddressDetail"
+									style="margin-left: 1px;">
 									{{ formData.consigneeAddressDetail || '--' }}
 								</el-form-item>
 							</div>
@@ -127,8 +98,7 @@
 						<div v-if="formData.deliveryType !== 4" style="width: 50%;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-								>
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 								</div>
 								<span>发货人信息</span>
 							</div>
@@ -141,16 +111,19 @@
 								</el-form-item>
 							</div>
 							<div style="display: flex;flex-direction: column;">
-								<el-form-item
-									class="form-item-line" label="" label-width="0" prop="senderAddress"
-									style="white-space: nowrap;"
-								>
+								<el-form-item class="form-item-line" label="" label-width="0" prop="senderAddress"
+									style="white-space: nowrap;">
 									{{ formData.senderAddress || '--' }}
 								</el-form-item>
-								<el-form-item
-									class="form-item-line" label="" label-width="0" prop="senderAddressDetail"
-									style="margin-left: 1px;"
-								>
+								<el-form-item class="form-item-line" label="" label-width="0" prop="senderAddressDetail"
+									style="margin-left: 1px;">
+									{{ formData.senderAddressDetail || '--' }}
+								</el-form-item>
+							</div>
+
+							<div>
+								<el-form-item class="form-item-line" label="" label-width="0" prop="senderAddressDetail"
+									style="margin-left: 1px;">
 									{{ formData.senderAddressDetail || '--' }}
 								</el-form-item>
 							</div>
@@ -160,8 +133,7 @@
 						<div v-if="formData.jshopNameSimple || formData.jcontacts || formData.jcontactsTel" style="margin-top: 35px;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-								>
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 								</div>
 								<span>加盟商门店信息</span>
 							</div>
@@ -184,8 +156,7 @@
 						<div v-if="formData.qshopNameSimple || formData.qcontacts || formData.qcontactsTel" style="margin-top: 35px;">
 							<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 								<div
-									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-								>
+									style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 								</div>
 								<span>区域代理信息</span>
 							</div>
@@ -209,8 +180,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-							>
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 							</div>
 							<span>订单信息</span>
 						</div>
@@ -244,6 +214,7 @@
 								<el-form-item label="服务码" prop="serverCode">
 									{{ formData.serverCode || '--' }}
 								</el-form-item>
+
 							</div>
 							<div style="width: 50%;">
 								<el-form-item label="师傅姓名" prop="masterName">
@@ -267,20 +238,41 @@
 								<el-form-item label="服务类型" prop="dictName">
 									{{ formData.dictName || '--' }}
 								</el-form-item>
-								<!-- <el-form-item label="订单Id" prop="id">
-									{{ formData.id || '--' }}
-									</el-form-item>
-									<el-form-item label="下单用户id" prop="createUserId">
-									{{ formData.createUserId || '--' }}
-									</el-form-item> -->
 							</div>
 						</div>
+
+						<el-form-item label="服务内容" v-if="extraInfo.length">
+							<div style="display: flex;">
+								<div class="serve-pane"
+									style="width: 150px; border: 1px solid #f3f3f3; border-radius: 5px; margin-right: 10px; cursor: pointer;"
+									v-for="item in extraInfo">
+									<div class="header"
+										style="display: flex; justify-content: space-between; padding: 10px; box-sizing: border-box;">
+										<div class="name">{{ item.serverName }}</div>
+										<div>
+											<span>{{ item.number }}{{ item.unit }}</span>
+										</div>
+									</div>
+
+									<div v-if="item.images.length" class="image-list" style="padding:0 10px 10px; box-sizing: border-box">
+										<el-image v-for="img in item.images"
+											style="width: 50px; height: 50px; margin: right 10px; border-radius: 5px; margin-right: 8px;" :src="img"
+											:preview-src-list="item.images">
+										</el-image>
+									</div>
+
+									<div v-else
+										style="padding:0 10px 10px; height: 50px; display: flex; align-items: center; justify-content: center; color: #ccc;">
+										暂未上传图片
+									</div>
+								</div>
+							</div>
+						</el-form-item>
 					</div>
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-							>
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 							</div>
 							<span>分佣信息</span>
 						</div>
@@ -295,7 +287,8 @@
 							</div>
 							<div style="width: 50%;">
 								<el-form-item label="分佣比例" prop="commissionProportion">
-									{{ typeof formData.commissionProportion === 'number' ? formData.commissionProportion * 100 + '%' : '--' }}
+									{{ typeof formData.commissionProportion === 'number' ? formData.commissionProportion * 100 + '%' : '--'
+									}}
 								</el-form-item>
 							</div>
 						</div>
@@ -303,8 +296,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-							>
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 							</div>
 							<span>订单状况</span>
 						</div>
@@ -312,21 +304,17 @@
 							<div style="width: 40%;">
 								<el-form-item label="签收图片" prop="signUrl">
 									<div v-if="formData.signUrl && formData.signUrl.split(',').length">
-										<el-image
-											v-for="(item, index) in formData.signUrl.split(',')" :key="index" :src="item"
+										<el-image v-for="(item, index) in formData.signUrl.split(',')" :key="index" :src="item"
 											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
-											:preview-src-list="[ formData.signUrl.split(',') ]"
-										/>
+											:preview-src-list="[formData.signUrl.split(',')]" />
 									</div>
 									<span v-else>--</span>
 								</el-form-item>
 								<el-form-item label="客户签名图片" prop="exceptionUrl">
 									<div v-if="formData.exceptionUrl && formData.exceptionUrl.split(',').length">
-										<el-image
-											v-for="(item, index) in formData.exceptionUrl.split(',')" :key="index" :src="item"
+										<el-image v-for="(item, index) in formData.exceptionUrl.split(',')" :key="index" :src="item"
 											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
-											:preview-src-list="[ formData.exceptionUrl.split(',') ]"
-										/>
+											:preview-src-list="[formData.exceptionUrl.split(',')]" />
 									</div>
 									<span v-else>--</span>
 								</el-form-item>
@@ -337,11 +325,9 @@
 							<div style="width: 50%;">
 								<el-form-item label="异常图片" prop="exceptionRemark">
 									<div v-if="formData.exceptionRemark && formData.exceptionRemark.split(',').length">
-										<el-image
-											v-for="(item, index) in formData.exceptionRemark.split(',')" :key="index" :src="item"
+										<el-image v-for="(item, index) in formData.exceptionRemark.split(',')" :key="index" :src="item"
 											style="width:80px; height:80px; margin-right: 10px;" fit="cover"
-											:preview-src-list="[ formData.exceptionRemark.split(',') ]"
-										/>
+											:preview-src-list="[formData.exceptionRemark.split(',')]" />
 									</div>
 									<span v-else>--</span>
 								</el-form-item>
@@ -359,8 +345,7 @@
 					<div style="margin-top: 35px;">
 						<div class="dialog-section-title" style="display: flex;margin-bottom: 15px;">
 							<div
-								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;"
-							>
+								style="width: 4px;margin-right: 8px;background-image: linear-gradient(#409EFF, #2E6FAE, #071A2C);border-radius: 1px;">
 							</div>
 							<span>结算信息</span>
 						</div>
@@ -505,7 +490,8 @@ export default {
 				qcontacts: '',
 				qcontactsTel: ''
 			},
-			orderOffer: ''
+			orderOffer: '',
+			extraInfo: []
 		}
 	},
 	methods: {
@@ -516,6 +502,8 @@ export default {
 			this.formData = Object.assign(this.$options.data().formData, params, {
 				orderExpenseDetailsVo: params.orderExpenseDetailsVo || {}
 			})
+
+
 			if (params.orderNo) {
 				this.getInfo(params.orderNo)
 			}
@@ -576,6 +564,10 @@ export default {
 					qcontacts: res.data.qcontacts || '',
 					qcontactsTel: res.data.qcontactsTel || ''
 				})
+
+				if (res.data.mdOrderInfo) {
+					this.extraInfo = JSON.parse(res.data.mdOrderInfo.extraInfo).serverInfo
+				}
 			} finally {
 				loading.close()
 			}
