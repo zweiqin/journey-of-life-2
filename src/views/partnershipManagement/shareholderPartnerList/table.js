@@ -17,19 +17,19 @@ export const columns = [
   {
     align: 'center',
     field: 'sfUserName',
-    title: '合伙人名称',
+    title: '股东姓名',
     width: 100,
   },
   {
     align: 'center',
     field: 'sfUserPhone',
-    title: '合伙人手机号',
+    title: '股东手机号',
     width: 100,
   },
   {
     align: 'left',
     field: 'sfUserWorkCity',
-    title: '主营区域',
+    title: '股东所在区域',
     // className: 'vxe-cell-two-row',
     showOverflow: 'tooltip',
     width: 150,
