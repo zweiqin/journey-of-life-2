@@ -1,18 +1,11 @@
 import request from '@/utils/request'
 
 // 密码登录方法
-export function loginByUsername(mobile, password, graphCode, typ, uuid) {
-	const data = {
-		mobile,
-		password,
-		graphCode,
-		typ,
-		uuid
-	}
+export function loginByUsername(params) {
 	return request({
-		url: '/auth/accountLogin',
-		method: 'post',
-		data
+		url: '/auth/mobileLogin',
+		method: 'get',
+		params
 	})
 }
 
@@ -50,5 +43,14 @@ export function getCodeImg() {
 	return request({
 		url: '/api/commonworker/verifyCode',
 		method: 'get'
+	})
+}
+
+// 获取手机验证码
+export const sendeQrCodeApi = phoneNumber => {
+	return request({
+		url: '/api/commonworker/sendVerificationCode',
+		data: { phoneNumber },
+		method: 'POST'
 	})
 }

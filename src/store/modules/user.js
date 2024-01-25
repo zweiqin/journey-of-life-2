@@ -63,13 +63,8 @@ const user = {
 	actions: {
 		// 密码登录
 		LoginByUsername({ commit }, userInfo) {
-			const username = userInfo.username.trim()
-			const password = userInfo.password
-			const code = userInfo.code
-			const uuid = userInfo.uuid
-			const typ = userInfo.typ
 			return new Promise((resolve, reject) => {
-				loginByUsername(username, password, code, typ, uuid).then((response) => {
+				loginByUsername(userInfo).then((response) => {
 					const token = response.data.password
 					commit('SET_TOKEN', token)
 
@@ -83,7 +78,7 @@ const user = {
 					commit('SET_INTRODUCTION', response.data.status === 1 ? '启用' : '禁用')
 					Vue.ls.set('user_information', {
 						roles: response.data.typ === 0 ? '店长' : '师傅',
-						perms: response.data.typ === 0 ? [ '*' ] : null,
+						perms: response.data.typ === 0 ? ['*'] : null,
 						name: response.data.name,
 						account: response.data.account,
 						typ: response.data.typ,
