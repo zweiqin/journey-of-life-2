@@ -41,7 +41,7 @@ export const columns = [
 		align: 'center',
 		fixed: 'left',
 		field: 'presenterVoucher',
-		title: '赠送代金卷',
+		title: '赠送代金卷金额',
 		width: ''
 	},
 	{
