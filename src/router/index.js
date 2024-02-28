@@ -19,11 +19,11 @@ import Layout from '@/views/layout/Layout'
 * redirect: noredirect           if `redirect:noredirect` will no redirect in the breadcrumb
 * name:'router-name'             the name is used by <keep-alive> (must set!!!)
 * meta : {
-    perms: ['GET /aaa','POST /bbb']     will control the page perms (you can set multiple perms)
-    title: 'title'               the name show in submenu and breadcrumb (recommend set)
-    icon: 'svg-name'             the icon show in the sidebar,
-    noCache: true                if true ,the page will no be cached(default is false)
-  }
+		perms: ['GET /aaa','POST /bbb']     will control the page perms (you can set multiple perms)
+		title: 'title'               the name show in submenu and breadcrumb (recommend set)
+		icon: 'svg-name'             the icon show in the sidebar,
+		noCache: true                if true ,the page will no be cached(default is false)
+	}
 **/
 
 export const constantRouterMap = [
@@ -444,6 +444,37 @@ export const asyncRouterMap = [
 			}
 		]
 	},
+	{
+		path: '/packages',
+		component: Layout,
+		alwaysShow: true,
+		redirect: 'vipList',
+		meta: {
+			title: '套餐',
+			icon: 'enterprise',
+			noCache: true
+		},
+		children: [
+			{
+				path: 'vipList',
+				component: () => import('@/views/packages/vipList'),
+				name: 'vipList',
+				meta: {
+					title: 'vip订单',
+					noCache: true
+				}
+			},
+			{
+				path: 'orderCancellation',
+				component: () => import('@/views/packages/orderCancellation'),
+				name: 'orderCancellation',
+				meta: {
+					title: '499订单核销',
+					noCache: true
+				}
+			}
+		]
+	},
 
 	{
 		path: '/enterprise',
@@ -514,37 +545,7 @@ export const asyncRouterMap = [
 			}
 		]
 	},
-	{
-		path: '/packages',
-		component: Layout,
-		alwaysShow: true,
-		redirect: 'vipList',
-		meta: {
-			title: '套餐',
-			icon: 'enterprise',
-			noCache: true
-		},
-		children: [
-			{
-				path: 'vipList',
-				component: () => import('@/views/packages/vipList'),
-				name: 'vipList',
-				meta: {
-					title: 'vip订单',
-					noCache: true
-				}
-			},
-			{
-				path: 'orderCancellation',
-				component: () => import('@/views/packages/orderCancellation'),
-				name: 'orderCancellation',
-				meta: {
-					title: '499订单核销',
-					noCache: true
-				}
-			}
-		]
-	},
+
 	// {
 	//   path: 'https://www.tuanfengkeji.cn/tfdata',
 	//   alwaysShow: false,

@@ -181,7 +181,7 @@ export default {
       listQuery: {
         phone: '',
         relationshipLevelId: '',
-        address: '广东省-佛山市-顺德区-龙江镇',
+        address: '',
         pageSize: 20,
       },
     };
@@ -213,6 +213,7 @@ export default {
           const addressComponent = res.regeocode.addressComponent;
           const { district, township, city, province } = addressComponent;
           _this.listQuery.address = `${province}-${city}-${district}-${township}`;
+          _this.getList();
         });
       });
     },
