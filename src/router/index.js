@@ -460,7 +460,7 @@ export const asyncRouterMap = [
 				component: () => import('@/views/packages/vipList'),
 				name: 'vipList',
 				meta: {
-					title: 'vip订单',
+					title: '会员',
 					noCache: true
 				}
 			},
