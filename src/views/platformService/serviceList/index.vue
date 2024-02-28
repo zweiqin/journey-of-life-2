@@ -58,7 +58,7 @@
 			<el-form :model="formData">
 				<el-form-item label="">
 					<div style="display:flex; justify-content: center;align-items: center;flex-direction: column;">
-						<el-input-number v-model.number="formData.bizConf" size="medium" :min="10"></el-input-number>
+						<el-input-number v-model.number="formData.bizConf.commissionRatio" size="medium" :min="10"></el-input-number>
 						<el-button type="primary" style="margin-top: 30px;width: 160px;height: 30px;" @click="editCommissionRatio">确定</el-button>
 					</div>
 				</el-form-item>
@@ -94,7 +94,9 @@ export default {
 			},
 			formData: {
 				serverInfoId: 1,
-				bizConf: 10
+				bizConf: {
+					commissionRatio: 10
+				}
 			},
 			showUpdataForm: false
 		}
@@ -114,26 +116,29 @@ export default {
 			meaning === 'keepPage' ? this.querList = { ...this.querList } : this.querList = { ...this.querList, pageNo: 1 }
 		},
 		updataCommissionRatio(row) {
+			this.showUpdataForm = true
+			this.formData.serverInfoId = row.id
+			this.formData.bizConf = {
+				commissionRatio: 10
+			}
 			// console.log(row);
-			queryListByServerInfoIds({
-				'serverInfoIds': [ row.id ]
-				// 'serverInfoIds': [14, 17, 20, 23, 25, 28, 30, 33, 34, 35, 36, 37]
-			}).then((res) => {
-				this.showUpdataForm = true
-				this.formData.serverInfoId = res.data[0].id
-				this.formData.bizConf = res.data[0].bizConf ? JSON.parse(res.data[0].bizConf).commissionRatio : 10
-				console.log(res)
-			})
-				.catch((err) => {
-					window.console.log('妈的', err)
-				})
+			// queryListByServerInfoIds({
+			// 	'serverInfoIds': [ row.id ]
+			// 	// 'serverInfoIds': [14, 17, 20, 23, 25, 28, 30, 33, 34, 35, 36, 37]
+			// }).then((res) => {
+			// 	this.showUpdataForm = true
+			// 	this.formData.id = row.id
+			// 	this.formData.bizConf = res.data[0].bizConf ? JSON.parse(res.data[0].bizConf).commissionRatio : 10
+			// 	console.log(res)
+			// })
+			// 	.catch((err) => {
+			// 		window.console.log('妈的', err)
+			// 	})
 		},
 		editCommissionRatio() {
 			editBizConf({
 				'serverInfoId': this.formData.serverInfoId,
-				'bizConf': JSON.stringify({
-					commissionRatio: this.formData.bizConf
-				})
+				'bizConf': JSON.stringify(this.formData.bizConf)
 			}).then((res) => {
 				this.$message({
 					message: '修改成功',

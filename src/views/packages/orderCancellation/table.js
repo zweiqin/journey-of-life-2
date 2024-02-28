@@ -47,6 +47,16 @@ export const columns = [
 	{
 		align: 'center',
 		field: '',
+		fixed: 'state',
+		title: '状态',
+		slots: {
+			default: 'state'
+		},
+		width: ''
+	},
+	{
+		align: 'center',
+		field: '',
 		fixed: 'right',
 		title: '操作',
 		className: 'small-padding fixed-width',
