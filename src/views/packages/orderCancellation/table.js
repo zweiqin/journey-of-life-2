@@ -39,6 +39,13 @@ export const columns = [
 	},
 	{
 		align: 'center',
+		fixed: 'left',
+		field: 'presenterVoucher',
+		title: '赠送代金卷',
+		width: ''
+	},
+	{
+		align: 'center',
 		field: '',
 		fixed: 'right',
 		title: '操作',

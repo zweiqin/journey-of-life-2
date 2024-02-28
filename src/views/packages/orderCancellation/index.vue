@@ -116,14 +116,18 @@
         border-bottom: 0;
         box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);
       "
-    >
-      <template #haldelFunction="{ row }">
-        <el-button size="mini" @click="hadelOrderCancellation(row)">
-          核销订单
-        </el-button>
-      </template>
-    </VxeTable>
-  </div>
+		>
+			<template #haldelFunction="{ row }">
+				<el-button
+					v-if="row.isLocality === 1"
+					size="mini"
+					@click="hadelOrderCancellation(row)"
+				>
+					核销订单
+				</el-button>
+			</template>
+		</VxeTable>
+	</div>
 </template>
 
 <script>
