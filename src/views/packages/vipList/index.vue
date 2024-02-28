@@ -100,6 +100,7 @@
       api-method="POST"
       :api-path="api.partnerPage"
       :columns="columns"
+      :isRequest="isRequest"
       page-alias="page"
       size-alias="pageSize"
       resAlias="list"
@@ -136,13 +137,26 @@
       <template #operate="{ row }">
         <el-button
           v-permission="[`POST /admin${api.partnerPage}`]"
+          :type="row.communityName ? 'success' : 'primary'"
           size="mini"
           @click="
             $refs.ApponitRef &&
-              $refs.ApponitRef.handleOpen({ buyerUserId: row.buyerUserId })
+              $refs.ApponitRef.handleOpen(
+                { buyerUserId: row.buyerUserId },
+                !!row.communityName
+              )
           "
         >
-          指定
+          {{ row.communityName ? '修改' : '指定' }}
+        </el-button>
+        <el-button
+          v-permission="[`POST /admin${api.partnerPage}`]"
+          type="danger"
+          :disabled="!row.communityName"
+          size="mini"
+          @click="handleRevoke(row)"
+        >
+          撤销
         </el-button>
       </template>
     </VxeTable>
@@ -153,7 +167,7 @@
 
 <script>
 import { jsonp } from 'vue-jsonp';
-import { api } from '@/api/packagesManagement';
+import { api, revoke } from '@/api/packagesManagement';
 import VxeTable from '@/components/VxeTable';
 import TableTools from '@/components/TableTools';
 import { columns } from './table';
@@ -178,6 +192,7 @@ export default {
         localKey: 'abnormalOrder',
         columnsOptions: columns,
       },
+      isRequest: false,
       listQuery: {
         phone: '',
         relationshipLevelId: '',
@@ -212,10 +227,25 @@ export default {
         }).then((res) => {
           const addressComponent = res.regeocode.addressComponent;
           const { district, township, city, province } = addressComponent;
+          _this.isRequest = true;
           _this.listQuery.address = `${province}-${city}-${district}-${township}`;
           _this.getList();
         });
       });
+    },
+    handleRevoke(row) {
+      const _this = this;
+      this.$confirm(`是否撤销【${row.wechatName}】的小区服务？`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(async () => {
+          await revoke({ buyerUserId: row.buyerUserId });
+          _this.$message.success('撤销成功');
+          _this.getList();
+        })
+        .catch(() => {});
     },
   },
 };
