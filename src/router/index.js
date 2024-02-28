@@ -465,11 +465,20 @@ export const asyncRouterMap = [
 				}
 			},
 			{
+				path: 'fullOrder',
+				component: () => import('@/views/packages/fullOrder'),
+				name: 'fullOrder',
+				meta: {
+					title: '全部订单',
+					noCache: true
+				}
+			},
+			{
 				path: 'orderCancellation',
 				component: () => import('@/views/packages/orderCancellation'),
 				name: 'orderCancellation',
 				meta: {
-					title: '499订单核销',
+					title: '订单核销',
 					noCache: true
 				}
 			}

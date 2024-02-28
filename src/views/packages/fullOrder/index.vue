@@ -53,7 +53,7 @@
 			</el-select>
 			<!-- <el-cascader class="filter-item" :props="cascaderProps"></el-cascader> -->
 			<el-button
-				v-permission="[ `GET ${api.parOneTnerOrder}` ]"
+				v-permission="[ `GET ${api.partnerOrder}` ]"
 				size="mini"
 				class="filter-item"
 				type="primary"
@@ -63,7 +63,7 @@
 				查找
 			</el-button>
 			<el-button
-				v-permission="[ `GET ${api.parOneTnerOrder}` ]"
+				v-permission="[ `GET ${api.partnerOrder}` ]"
 				size="mini"
 				class="filter-item"
 				type="info"
@@ -100,7 +100,7 @@
 			request-method="request2"
 			:local-key="customColumnsConfig.localKey"
 			api-method="POST"
-			:api-path="api.parOneTnerOrder"
+			:api-path="api.partnerOrder"
 			:columns="columns"
 			page-alias="page"
 			size-alias="pageSize"
@@ -118,14 +118,14 @@
         box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);
       "
 		>
-			<template #haldelFunction="{ row }">
+			<!-- <template #haldelFunction="{ row }">
 				<el-button
 					size="mini"
 					@click="hadelOrderCancellation(row)"
 				>
 					核销订单
 				</el-button>
-			</template>
+			</template> -->
 		</VxeTable>
 	</div>
 </template>

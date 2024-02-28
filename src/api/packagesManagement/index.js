@@ -6,6 +6,7 @@ export const api = {
   apponitComunity: '/cityCommunity/appoint',
   partnerOrder: 'communityTJ/partnerOrder',
   cancellationWrite: 'communityTJ/write',
+  parOneTnerOrder: '/communityTJ/parOneTnerOrder'
 };
 
 /**
