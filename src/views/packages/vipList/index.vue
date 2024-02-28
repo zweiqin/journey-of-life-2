@@ -102,8 +102,7 @@
       :columns="columns"
       page-alias="page"
       size-alias="pageSize"
-      resAlias="data"
-      :isPager="false"
+      resAlias="list"
       :grid-options="{
         rowConfig: { height: 60 },
         tooltipConfig: { showAll: true, enterDelay: 800 },
@@ -118,27 +117,59 @@
       "
     >
       <template #relationshipLevelId="{ row }">
-        <el-tag v-if="row.relationshipLevelId === 1" type="primary">会员</el-tag>
-        <el-tag v-else-if="row.relationshipLevelId === 2" type="warning">团长</el-tag>
+        <el-tag v-if="row.relationshipLevelId === 1" type="primary"
+          >会员</el-tag
+        >
+        <el-tag v-else-if="row.relationshipLevelId === 2" type="warning"
+          >团长</el-tag
+        >
         <el-tag type="success" v-else>合伙人</el-tag>
       </template>
+
+      <template #communityName="{ row }">
+        <el-tag type="success" v-if="row.communityName">{{
+          row.communityName
+        }}</el-tag>
+        <el-tag type="info" v-else>未指定</el-tag>
+      </template>
+
+      <template #operate="{ row }">
+        <el-button
+          v-permission="[`POST /admin${api.partnerPage}`]"
+          size="mini"
+          @click="
+            $refs.ApponitRef &&
+              $refs.ApponitRef.handleOpen({ buyerUserId: row.buyerUserId })
+          "
+        >
+          指定
+        </el-button>
+      </template>
     </VxeTable>
+
+    <Apponit @refresh="getList" ref="ApponitRef"></Apponit>
   </div>
 </template>
 
 <script>
+import { jsonp } from 'vue-jsonp';
 import { api } from '@/api/packagesManagement';
 import VxeTable from '@/components/VxeTable';
 import TableTools from '@/components/TableTools';
 import { columns } from './table';
+import Apponit from './components/Apponit.vue';
+import { getMasterInfoByUserId } from '@/api/baseInfo/baseInfo';
 
 export default {
   name: 'AbnormalOrder',
   components: {
     VxeTable,
     TableTools,
+    Apponit,
   },
-  mounted() {},
+  mounted() {
+    this.getSFInfo();
+  },
   data() {
     return {
       api,
@@ -164,6 +195,26 @@ export default {
       meaning === 'keepPage'
         ? (this.listQuery = { ...this.listQuery })
         : (this.listQuery = { ...this.listQuery, pageNo: 1 });
+    },
+    async getSFInfo() {
+      const _this = this;
+      const res = await getMasterInfoByUserId({
+        userId: this.$store.state.user.userId,
+      });
+      jsonp('https://restapi.amap.com/v3/geocode/geo', {
+        key: '5773f02930998e41b0de1d4e1bdbcaa9',
+        address: res.data.shopCity,
+      }).then((res) => {
+        const location = res.geocodes[0].location;
+        jsonp('https://restapi.amap.com/v3/geocode/regeo', {
+          key: '5773f02930998e41b0de1d4e1bdbcaa9',
+          location: `${location.split(',')[0]},${location.split(',')[1]}`,
+        }).then((res) => {
+          const addressComponent = res.regeocode.addressComponent;
+          const { district, township, city, province } = addressComponent;
+          _this.listQuery.address = `${province}-${city}-${district}-${township}`;
+        });
+      });
     },
   },
 };

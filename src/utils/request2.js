@@ -13,7 +13,6 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
 	(config) => {
-		console.log("草了", config);
 		return config
 	},
 	(error) => {
