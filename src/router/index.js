@@ -514,6 +514,37 @@ export const asyncRouterMap = [
 			}
 		]
 	},
+	{
+		path: '/packages',
+		component: Layout,
+		alwaysShow: true,
+		redirect: 'vipList',
+		meta: {
+			title: '套餐',
+			icon: 'enterprise',
+			noCache: true
+		},
+		children: [
+			{
+				path: 'vipList',
+				component: () => import('@/views/packages/vipList'),
+				name: 'vipList',
+				meta: {
+					title: 'vip订单',
+					noCache: true
+				}
+			},
+			{
+				path: 'orderCancellation',
+				component: () => import('@/views/packages/orderCancellation'),
+				name: 'orderCancellation',
+				meta: {
+					title: '499订单核销',
+					noCache: true
+				}
+			}
+		]
+	},
 	// {
 	//   path: 'https://www.tuanfengkeji.cn/tfdata',
 	//   alwaysShow: false,

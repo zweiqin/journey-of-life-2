@@ -9,6 +9,6 @@ module.exports = {
   // BASE_API: '"http://192.168.0.92:8790/samrtWorker"',
   BASE_TIPS_WS_API: '"wss://www.zhult.com/laoa-huozhu/webSocket/shequ20230309"',
   // BASE_TIPS_WS_API: '"ws://192.168.0.92:8781/laoa-huozhu/webSocket/shequ20230309"',
-  BASE_SHOWAPI: '"https://xxx"',
   BASE_COMMUNITY_API: '"/community"',
+  BASE_SHOWAPI: '"/tf"'
 }
