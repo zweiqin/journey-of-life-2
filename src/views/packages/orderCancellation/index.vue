@@ -119,6 +119,7 @@
 		>
 			<template #haldelFunction="{ row }">
 				<el-button
+					v-if="row.isLocality === 1"
 					size="mini"
 					@click="hadelOrderCancellation(row)"
 				>
