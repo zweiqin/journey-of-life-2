@@ -27,12 +27,12 @@
         ></el-autocomplete>
       </el-form-item>
 
-      <el-form-item label="用户状态" prop="type">
+      <!-- <el-form-item label="用户状态" prop="type">
         <el-radio-group v-model="formData.type">
           <el-radio :label="1">指定</el-radio>
           <el-radio :label="2">撤销</el-radio>
         </el-radio-group>
-      </el-form-item>
+      </el-form-item> -->
     </el-form>
 
     <span slot="footer" class="dialog-footer">
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { getByIdShopGoodsTypeInfo } from '@/api/nearbyMerchants/nearbyMerchants';
+import { getApponitInfo } from '@/api/packagesManagement';
 import {
   getAreaList,
   selectCommunity,
@@ -83,14 +83,14 @@ export default {
         communityName: '', //小区名称
         cityName: '', // 城市名称
         cityId: [], // 城市主键
-        buyerUserId: '用户ID', // 用户ID
-        type: 1, // 状态：1-设定 2-撤销
+        buyerUserId: '', // 用户ID
+        type: 1,
       },
 
       rules: {
         cityId: [{ required: true, message: '请选择区域', trigger: 'blur' }],
         communityName: [
-          { required: true, message: '请输入小区名称', trigger: 'blur' },
+          { required: true, message: '请输入小区名称', trigger: 'change' },
         ],
       },
     };
@@ -99,11 +99,9 @@ export default {
     handleClose() {
       this.visible = false;
     },
-    handleOpen(params = {}) {
+    handleOpen(params = {}, isEdt) {
       this.formData = Object.assign(this.$options.data().formData, params);
-      if (params.id) {
-        this.getInfo(params.id);
-      }
+      isEdt && this.getInfo();
       this.visible = true;
     },
     async handleQueryCommunity(queryString, cb) {
@@ -137,20 +135,12 @@ export default {
         this.isLoading = false;
       }
     },
-    async getInfo(id) {
+    async getInfo() {
       const loading = this.$elLoading('加载中');
       try {
-        const res = await getByIdShopGoodsTypeInfo({ shopGoodsTypeId: id });
-        this.formData = Object.assign(this.$options.data().formData, res.data, {
-          id: res.data.id || '',
-          shopId: res.data.shopId || '',
-          goodsTypeName: res.data.goodsTypeName || '',
-          goodsTypeUrl: res.data.goodsTypeUrl || '',
-          goodsTypeSort: res.data.goodsTypeSort,
-          typeCategory: res.data.typeCategory,
-          createTime: res.data.createTime || '',
-          updateTime: res.data.updateTime || '',
-        });
+        const res = await getApponitInfo({ userId: this.formData.buyerUserId });
+        this.formData.communityName = res.data.communityName;
+        this.formData.buyerUserId = res.data.buyerUserId;
       } finally {
         loading.close();
       }

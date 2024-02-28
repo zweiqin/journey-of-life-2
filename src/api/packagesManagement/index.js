@@ -6,7 +6,9 @@ export const api = {
   apponitComunity: '/cityCommunity/appoint',
   partnerOrder: 'communityTJ/partnerOrder',
   cancellationWrite: 'communityTJ/write',
-  parOneTnerOrder: '/communityTJ/parOneTnerOrder'
+  parOneTnerOrder: '/communityTJ/parOneTnerOrder',
+  userDetails:'/communityTJ/userDetails',
+  revoke: "/cityCommunity/revoke"
 };
 
 /**
@@ -63,5 +65,24 @@ export function apponitComunity(data) {
     url: api.apponitComunity,
     method: 'POST',
     data
+  })
+}
+
+
+// 获取详情
+export function getApponitInfo(params){
+  return request2({
+    url: api.userDetails,
+    method: 'GET',
+    params
+  })
+}
+
+// 撤销
+export function revoke(params){
+  return request2({
+    url: api.revoke,
+    method: 'GET',
+    params
   })
 }
