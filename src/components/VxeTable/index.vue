@@ -7,6 +7,7 @@ date：2021-7
 import empty from './image/no-data.png'
 import request from '@/utils/request'
 import request2 from '@/utils/request2'
+import request3 from '@/utils/request3'
 import client from '@/utils/request.js'
 import XEUtils from 'xe-utils'
 import { objDeepMerge } from '@/utils'
@@ -276,12 +277,19 @@ export default {
 						method: apiMethod,
 						[apiMethod.toUpperCase() === 'GET' ? 'params' : 'data']: this.searchParams
 					})
+				} else if (this.requestMethod === 'request3') {
+					res = await request3({
+						url: apiPath,
+						method: apiMethod,
+						[apiMethod.toUpperCase() === 'GET' ? 'params' : 'data']: this.searchParams
+					})
 				}
 
 				// const { apiFn } = this
 				// const res = await apiFn(this.searchParams)
 
 				const { data } = res
+        // console.log(data)
 				this.$emit('fetch-data', res)
 				let postData
 				let page
