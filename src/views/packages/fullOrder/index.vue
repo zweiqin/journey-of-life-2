@@ -22,6 +22,26 @@
 				<div>订单列表</div>
 			</div>
 		</div>
+		<el-card class="topCard">
+			<template #header>
+				<div class="clearfix">
+					<span class="leftText">财务数据</span>
+					<!-- <span class="leftTip">所有交易成功的金额，微信侧将收取6‰的交易手续费</span> -->
+					<!-- <el-button class="rightBtn" type="primary" @click="getMoney">提现</el-button> -->
+				</div>
+			</template>
+			<div class="cardLIst">
+				<div v-for="(item, index) in cardList" :key="index" class="cardItem">
+					<div class="cardDetal">
+						<div class="cardMoney">{{ cardNumber[item.key] }}</div>
+						<div class="cardText">
+							<span>{{ item.name }}</span>
+							<img src="@/assets/image/shuoming.png">
+						</div>
+					</div>
+				</div>
+			</div>
+		</el-card>
 		<!-- 查询和其他操作 -->
 		<div
 			class="filter-container"
@@ -120,19 +140,19 @@
 		>
 			<!-- <template #haldelFunction="{ row }">
 				<el-button
-					size="mini"
-					@click="hadelOrderCancellation(row)"
+				size="mini"
+				@click="hadelOrderCancellation(row)"
 				>
-					核销订单
+				核销订单
 				</el-button>
-			</template> -->
+				</template> -->
 		</VxeTable>
 	</div>
 </template>
 
 <script>
 import { jsonp } from 'vue-jsonp'
-import { api, cancellationWrite, getAreaList } from '@/api/packagesManagement'
+import { api, cancellationWrite, getAreaList, revenueStatistics } from '@/api/packagesManagement'
 import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
 import { columns } from './table'
@@ -173,6 +193,25 @@ export default {
 						return item
 					}))
 				}
+			},
+			cardList: [
+				{
+					key: 'commissionTotal',
+					name: '佣金总额'
+				},
+				{
+					key: 'orderNum',
+					name: '订单数量'
+				},
+				{
+					key: 'presenterTotal',
+					name: '赠送总额'
+				}
+			],
+			cardNumber: {
+				commissionTotal: 0,
+				orderNum: 0,
+				presenterTotal: 0
 			}
 		}
 	},
@@ -191,6 +230,15 @@ export default {
 			meaning === 'keepPage'
 				? this.listQuery = { ...this.listQuery }
 				: this.listQuery = { ...this.listQuery, pageNo: 1 }
+			revenueStatistics({
+				address: this.listQuery.address
+			}).then((res) => {
+				console.log(res)
+				this.cardNumber = res.data
+			})
+				.catch((err) => {
+					console.log(err)
+				})
 		},
 		async getSFInfo() {
 			const _this = this
@@ -247,4 +295,37 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.cardLIst {
+		padding: 10px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		.cardItem {
+			padding: 20px;
+		}
+
+		.cardDetal {
+			.cardMoney {
+				font-size: 40px;
+				font-weight: bold;
+				color: #ffae11;
+				margin-bottom: 20px;
+				text-align: center;
+			}
+
+			.cardText {
+				font-size: 18px;
+				display: flex;
+				color: #333333;
+
+				img {
+					width: 20px;
+					height: 20px;
+					margin-left: 6px;
+				}
+			}
+		}
+	}
+</style>
