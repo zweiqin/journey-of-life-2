@@ -118,8 +118,16 @@
         box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);
       "
 		>
+			<template #state="{ row }">
+				<el-tag :type="row.state ? 'danger' : ''">
+					{{
+						['待付款', '待发货', '待收货', '已完成', '已取消', '待成团', '待售后', '待核销', '待核销已付款', '已核销'][row.state - 1]
+					}}
+				</el-tag>
+			</template>
 			<template #haldelFunction="{ row }">
 				<el-button
+					v-if="row.state === 8 || row.state === 9"
 					size="mini"
 					@click="hadelOrderCancellation(row)"
 				>

@@ -8,7 +8,8 @@ export const api = {
   cancellationWrite: 'communityTJ/write',
   parOneTnerOrder: '/communityTJ/parOneTnerOrder',
   userDetails:'/communityTJ/userDetails',
-  revoke: "/cityCommunity/revoke"
+  revoke: "/cityCommunity/revoke",
+  revenueStatistics: '/communityTJ/revenueStatistics'
 };
 
 /**
@@ -36,6 +37,15 @@ export function getPartnerOrder(data) {
 export function cancellationWrite(data) {
   return request2({
     url: api.cancellationWrite,
+    method: 'POST',
+    data
+  })
+}
+
+// /communityTJ/revenueStatistics 收益统计
+export function revenueStatistics(data) {
+  return request2({
+    url: api.revenueStatistics,
     method: 'POST',
     data
   })
