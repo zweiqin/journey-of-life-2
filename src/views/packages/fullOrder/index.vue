@@ -231,7 +231,8 @@ export default {
 				? this.listQuery = { ...this.listQuery }
 				: this.listQuery = { ...this.listQuery, pageNo: 1 }
 			revenueStatistics({
-				address: this.listQuery.address
+				address: this.listQuery.address,
+				phone: JSON.parse(localStorage.getItem('user_information')).value.account
 			}).then((res) => {
 				console.log(res)
 				this.cardNumber = res.data

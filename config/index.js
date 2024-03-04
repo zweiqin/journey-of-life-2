@@ -16,8 +16,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target:'http://192.168.0.82:8790/samrtWorker',
-        // target:'https://www.zhult.com/samrtWorker', // 接口的域名
+        // target:'http://192.168.0.82:8790/samrtWorker',
+        target:'https://www.zhult.com/samrtWorker', // 接口的域名
         // target: 'http://192.168.0.73:8790/samrtWorker', // 接口的域名
         // target: 'https://www.zhult.com/test-samrtWorker',
         // target: 'http://localhost:81',
@@ -58,7 +58,8 @@ module.exports = {
       //   changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
       // },
       '/tf': {
-        target: 'http://192.168.0.91:9107',
+        // target: 'http://192.168.0.91:9107',
+        target: 'https://nsappapi.tuanfengkeji.cn',
         changeOrigin: true,
         pathRewrite: {
           '^/tf': '',
