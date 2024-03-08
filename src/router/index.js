@@ -81,6 +81,30 @@ export default new Router({
 
 export const asyncRouterMap = [
 	{
+		path: '/franchiseeManagement',
+		component: Layout,
+		alwaysShow: true,
+		redirect: 'noredirect',
+		meta: {
+			title: '加盟商管理',
+			icon: 'order',
+			noCache: true
+		},
+		children: [
+			{
+				path: 'FranchiseeList',
+				component: () => import('@/views/franchiseeManagement/franchiseeList'),
+				name: 'FranchiseeList',
+				// noShowingChildren: true,
+				meta: {
+					// perms: [ 'GET /admin/order/list' ],
+					title: '加盟商列表',
+					noCache: true
+				}
+			}
+		]
+	},
+	{ // ! ***
 		path: '/receivingManagement',
 		component: Layout,
 		// alwaysShow: true,
@@ -116,6 +140,16 @@ export const asyncRouterMap = [
 		},
 		children: [
 			{
+				path: 'OrderProfile',
+				component: () => import('@/views/orderManagement/OrderProfile'),
+				name: 'OrderProfile',
+				meta: {
+					perms: [],
+					title: '订单概况',
+					noCache: true
+				}
+			},
+			{
 				path: 'packageOrder',
 				component: () => import('@/views/orderManagement/packageOrder'),
 				name: 'PackageOrder',
@@ -126,46 +160,242 @@ export const asyncRouterMap = [
 				}
 			},
 			{
-				path: 'urbanDistribution',
-				component: () => import('@/views/orderManagement/urbanDistribution'),
-				name: 'UrbanDistribution',
+				path: '/orderMengments',
+				component: () => import('@/components/childRouterBlankPage'),
+				alwaysShow: true,
+				redirect: 'noredirect',
 				meta: {
-					title: '城市配送',
+					title: '服务订单管理',
+					icon: 'order',
 					noCache: true
-				}
+				},
+				children: [
+					{
+						path: 'urbanDistribution',
+						component: () => import('@/views/orderManagement/urbanDistribution'),
+						name: 'UrbanDistribution',
+						meta: {
+							title: '城市配送',
+							noCache: true
+						}
+					},
+					{
+						path: 'orderList',
+						component: () => import('@/views/orderManagement/orderList'),
+						name: 'OrderList',
+						meta: {
+							title: '维保订单',
+							noCache: true
+						}
+					},
+					{
+						path: 'abnormalOrder',
+						component: () => import('@/views/orderManagement/abnormalOrder'),
+						name: 'AbnormalOrder',
+						meta: {
+							perms: [],
+							title: '异常订单',
+							noCache: true
+						}
+					},
+					{
+						path: 'amountOrder',
+						component: () => import('@/views/orderManagement/amountOrder'),
+						name: 'AmountOrder',
+						meta: {
+							perms: [],
+							title: '追加金额订单',
+							noCache: true
+						}
+					}
+				]
 			},
 			{
-				path: 'orderList',
-				component: () => import('@/views/orderManagement/orderList'),
-				name: 'OrderList',
+				path: '/ActivityOrder',
+				component: () => import('@/components/childRouterBlankPage'),
+				alwaysShow: true,
+				redirect: 'noredirect',
 				meta: {
-					title: '维保订单',
+					title: '活动订单',
+					icon: 'order',
 					noCache: true
-				}
-			},
+				},
+				children: [
+					{
+						path: 'fullOrder',
+						component: () => import('@/views/packages/fullOrder'),
+						name: 'fullOrder',
+						meta: {
+							title: '活动订单管理',
+							noCache: true
+						}
+					},
+					{
+						path: 'orderCancellation',
+						component: () => import('@/views/packages/orderCancellation'),
+						name: 'orderCancellation',
+						meta: {
+							title: '订单核销',
+							noCache: true
+						}
+					}
+				]
+			}
+		]
+	},
+
+	// {
+	// 	path: '/memberManagement',
+	// 	alwaysShow: true,
+	// 	component: Layout,
+	// 	redirect: 'noredirect',
+	// 	meta: {
+	// 		title: '会员管理',
+	// 		icon: 'member',
+	// 		noCache: true
+	// 	},
+	// 	children: [
+	// 		{
+	// 			path: 'customer',
+	// 			component: () => import('@/views/enterprise/customer'),
+	// 			name: 'Customer',
+	// 			meta: {
+	// 				title: '私域客户',
+	// 				noCache: true
+	// 			}
+	// 		},
+	// 		{
+	// 			path: 'publicSphere',
+	// 			component: () => import('@/views/enterprise/publicSphere'),
+	// 			name: 'PublicSphere',
+	// 			meta: {
+	// 				title: '公域客户',
+	// 				noCache: true
+	// 			}
+	// 		}
+	// 	]
+	// },
+	{
+		path: '/partnershipManagement',
+		alwaysShow: true,
+		component: Layout,
+		redirect: 'noredirect',
+		meta: {
+			title: '团队管理',
+			icon: 'partnership',
+			noCache: true
+		},
+		children: [
 			{
-				path: 'abnormalOrder',
-				component: () => import('@/views/orderManagement/abnormalOrder'),
-				name: 'AbnormalOrder',
+				path: 'TeamProfile',
+				component: () => import('@/views/enterprise/TeamProfile'),
+				name: 'TeamProfile',
 				meta: {
 					perms: [],
-					title: '异常订单',
+					title: '团队概况',
 					noCache: true
 				}
 			},
 			{
-				path: 'amountOrder',
-				component: () => import('@/views/orderManagement/amountOrder'),
-				name: 'AmountOrder',
+				path: '/MembershipManagement',
+				component: () => import('@/components/childRouterBlankPage'),
+				alwaysShow: true,
+				redirect: 'noredirect',
 				meta: {
-					perms: [],
-					title: '追加金额订单',
+					title: '会员管理',
+					icon: 'order',
+					noCache: true
+				},
+				children: [
+					{
+						path: 'vipList',
+						component: () => import('@/views/packages/vipList'),
+						name: 'vipList',
+						meta: {
+							title: '会员指定',
+							noCache: true
+						}
+					},
+					{
+						path: 'customer',
+						component: () => import('@/views/enterprise/customer'),
+						name: 'Customer',
+						meta: {
+							title: '私域客户',
+							noCache: true
+						}
+					},
+					{
+						path: 'publicSphere',
+						component: () => import('@/views/enterprise/publicSphere'),
+						name: 'PublicSphere',
+						meta: {
+							title: '公域客户',
+							noCache: true
+						}
+					}
+				]
+			},
+			{
+				path: '/PartnershipManagement',
+				component: () => import('@/components/childRouterBlankPage'),
+				alwaysShow: true,
+				redirect: 'noredirect',
+				meta: {
+					title: '合伙人管理',
+					icon: 'order',
+					noCache: true
+				},
+				children: [
+					{
+						path: 'partnerList',
+						component: () => import('@/views/enterprise/partnerList'),
+						name: 'PartnerList',
+						meta: {
+							title: '师傅合伙人',
+							noCache: true
+						}
+					},
+					{
+						path: 'shopPartnerList',
+						component: () => import('@/views/enterprise/shopPartnerList'),
+						name: 'ShopPartnerList',
+						meta: {
+							title: '门店合伙人',
+							noCache: true
+						}
+					}
+				]
+			},
+			{
+				path: 'commanderList',
+				component: () => import('@/views/enterprise/commanderList'),
+				name: 'CommanderList',
+				meta: {
+					title: '团长管理',
+					noCache: true
+				}
+			},
+			{
+				path: 'shareholder',
+				component: () => import('@/views/partnershipManagement/shareholderPartnerList'),
+				name: 'Shareholder',
+				meta: {
+					title: '股东管理',
+					noCache: true
+				}
+			},
+			{
+				path: 'communityStoreManagement',
+				component: () => import('@/views/partnershipManagement/communityStoreManagement'),
+				name: 'communityStoreManagement',
+				meta: {
+					title: '小区店管理',
 					noCache: true
 				}
 			}
 		]
 	},
-
 	{
 		path: '/masterManagement',
 		alwaysShow: true,
@@ -177,6 +407,24 @@ export const asyncRouterMap = [
 			noCache: true
 		},
 		children: [
+			{
+				path: 'MastersProfile',
+				component: () => import('@/views/masterManagement/MastersProfile'),
+				name: 'MasterList',
+				meta: {
+					title: '师傅概况',
+					noCache: true
+				}
+			},
+			{
+				path: 'intermediaryManagement',
+				component: () => import('@/views/masterManagement/intermediaryManagement'),
+				name: 'intermediaryManagement',
+				meta: {
+					title: '公头管理',
+					noCache: true
+				}
+			},
 			{
 				path: 'masterList',
 				component: () => import('@/views/masterManagement/masterList'),
@@ -206,82 +454,50 @@ export const asyncRouterMap = [
 			}
 		]
 	},
-
 	{
-		path: '/memberManagement',
+		path: '/walletManagement',
 		alwaysShow: true,
 		component: Layout,
 		redirect: 'noredirect',
 		meta: {
-			title: '会员管理',
-			icon: 'member',
+			title: '财务管理',
+			icon: 'wallet',
 			noCache: true
 		},
 		children: [
 			{
-				path: 'customer',
-				component: () => import('@/views/enterprise/customer'),
-				name: 'Customer',
+				path: 'FinancialProfile',
+				component: () => import('@/views/enterprise/FinancialProfile'),
+				name: 'FinancialProfile',
 				meta: {
-					title: '私域客户',
+					title: '财务概况',
 					noCache: true
 				}
 			},
 			{
-				path: 'publicSphere',
-				component: () => import('@/views/enterprise/publicSphere'),
-				name: 'PublicSphere',
+				path: 'wallet',
+				component: () => import('@/views/enterprise/wallet'),
+				name: 'Wallet',
 				meta: {
-					title: '公域客户',
-					noCache: true
-				}
-			}
-		]
-	},
-	{
-		path: '/partnershipManagement',
-		alwaysShow: true,
-		component: Layout,
-		redirect: 'noredirect',
-		meta: {
-			title: '团队管理',
-			icon: 'partnership',
-			noCache: true
-		},
-		children: [
-			{
-				path: 'partnerList',
-				component: () => import('@/views/enterprise/partnerList'),
-				name: 'PartnerList',
-				meta: {
-					title: '师傅合伙人',
+					title: '余额',
 					noCache: true
 				}
 			},
 			{
-				path: 'commanderList',
-				component: () => import('@/views/enterprise/commanderList'),
-				name: 'CommanderList',
+				path: 'withdrawRecord',
+				component: () => import('@/views/enterprise/withdrawRecord'),
+				name: 'WithdrawRecord',
 				meta: {
-					title: '团长列表',
+					title: '提现记录',
 					noCache: true
 				}
 			},
 			{
-				path: 'shopPartnerList',
-				component: () => import('@/views/enterprise/shopPartnerList'),
-				name: 'ShopPartnerList',
+				path: 'commissionManagement',
+				component: () => import('@/views/enterprise/commissionManagement'),
+				name: 'CommissionManagement',
 				meta: {
-					title: '门店合伙人',
-					noCache: true
-				}
-			},
-			{
-				path: 'shareholder',
-				component: () => import('@/views/partnershipManagement/shareholderPartnerList'),
-				name: 'Shareholder',
-				meta: {
-					title: '股东列表',
+					title: '佣金记录',
 					noCache: true
 				}
 			}
@@ -293,7 +509,7 @@ export const asyncRouterMap = [
 		component: Layout,
 		redirect: 'noredirect',
 		meta: {
-			title: '门店服务',
+			title: '服务管理',
 			icon: 'brand-serve',
 			noCache: true
 		},
@@ -303,7 +519,7 @@ export const asyncRouterMap = [
 				component: () => import('@/views/nearbyMerchants/serviceList'),
 				name: 'ServiceList',
 				meta: {
-					title: '服务列表', // 用于区分商品列表
+					title: '门店服务列表', // 用于区分商品列表
 					noCache: true
 				}
 			},
@@ -317,7 +533,16 @@ export const asyncRouterMap = [
 					noCache: true
 				}
 			},
-
+			{
+				path: '/serviceList',
+				name: 'serviceList',
+				component: () => import('@/views/platformService/serviceList'),
+				meta: {
+					title: '平台服务列表', // !用于设置平台订单分佣
+					// icon: 'wallet',
+					noCache: true
+				}
+			},
 			{
 				path: 'voucherGoods',
 				component: () => import('@/views/nearbyMerchants/voucherGoods'),
@@ -380,105 +605,112 @@ export const asyncRouterMap = [
 		]
 	},
 
-	{
-		path: '/platformService',
+	// {
+	// 	path: '/platformService',
+	// 	component: Layout,
+	// 	alwaysShow: true,
+	// 	redirect: 'noredirect',
+	// 	meta: {
+	// 		title: '平台服务',
+	// 		icon: 'wallet',
+	// 		noCache: true
+	// 	},
+	// 	children: [
+	// 		{
+	// 			path: '/serviceList',
+	// 			name: 'serviceList',
+	// 			component: () => import('@/views/platformService/serviceList'),
+	// 			meta: {
+	// 				title: '平台服务列表',
+	// 				icon: 'wallet',
+	// 				noCache: true
+	// 			}
+	// 		}
+	// 	]
+	// },
+	// {
+	// 	path: '/packages',
+	// 	component: Layout,
+	// 	alwaysShow: true,
+	// 	redirect: 'vipList',
+	// 	meta: {
+	// 		title: '套餐',
+	// 		icon: 'enterprise',
+	// 		noCache: true
+	// 	},
+	// 	children: [
+	// 		{
+	// 			path: 'vipList',
+	// 			component: () => import('@/views/packages/vipList'),
+	// 			name: 'vipList',
+	// 			meta: {
+	// 				title: '会员',
+	// 				noCache: true
+	// 			}
+	// 		},
+	// 		{
+	// 			path: 'fullOrder',
+	// 			component: () => import('@/views/packages/fullOrder'),
+	// 			name: 'fullOrder',
+	// 			meta: {
+	// 				title: '全部订单',
+	// 				noCache: true
+	// 			}
+	// 		},
+	// 		{
+	// 			path: 'orderCancellation',
+	// 			component: () => import('@/views/packages/orderCancellation'),
+	// 			name: 'orderCancellation',
+	// 			meta: {
+	// 				title: '订单核销',
+	// 				noCache: true
+	// 			}
+	// 		}
+	// 	]
+	// },
+	{ // ! ***
+		path: '/BusinessDistrict',
 		component: Layout,
-		alwaysShow: true,
+		// alwaysShow: true,
 		redirect: 'noredirect',
 		meta: {
-			title: '平台服务',
-			icon: 'wallet',
+			title: '同城商圈',
+			icon: 'order',
 			noCache: true
 		},
 		children: [
 			{
-				path: '/serviceList',
-				name: 'serviceList',
-				component: () => import('@/views/platformService/serviceList'),
+				path: 'BusinessDistrict',
+				component: () => import('@/views/BusinessDistrict'),
+				name: 'BusinessDistrict',
+				// noShowingChildren: true,
 				meta: {
-					title: '服务列表',
-					icon: 'wallet',
+					// perms: [ 'GET /admin/order/list' ],
+					title: '同城商圈',
 					noCache: true
 				}
 			}
 		]
 	},
-
-	{
-		path: '/walletManagement',
-		alwaysShow: true,
+	{ // ! ***
+		path: '/CityMall',
 		component: Layout,
+		// alwaysShow: true,
 		redirect: 'noredirect',
 		meta: {
-			title: '钱包',
-			icon: 'wallet',
+			title: '社区商城',
+			icon: 'order',
 			noCache: true
 		},
 		children: [
 			{
-				path: 'wallet',
-				component: () => import('@/views/enterprise/wallet'),
-				name: 'Wallet',
+				path: 'CityMall',
+				component: () => import('@/views/CityMall'),
+				name: 'CityMall',
+				// noShowingChildren: true,
 				meta: {
-					title: '余额',
-					noCache: true
-				}
-			},
-			{
-				path: 'withdrawRecord',
-				component: () => import('@/views/enterprise/withdrawRecord'),
-				name: 'WithdrawRecord',
-				meta: {
-					title: '提现记录',
-					noCache: true
-				}
-			},
-			{
-				path: 'commissionManagement',
-				component: () => import('@/views/enterprise/commissionManagement'),
-				name: 'CommissionManagement',
-				meta: {
-					title: '佣金记录',
-					noCache: true
-				}
-			}
-		]
-	},
-	{
-		path: '/packages',
-		component: Layout,
-		alwaysShow: true,
-		redirect: 'vipList',
-		meta: {
-			title: '套餐',
-			icon: 'enterprise',
-			noCache: true
-		},
-		children: [
-			{
-				path: 'vipList',
-				component: () => import('@/views/packages/vipList'),
-				name: 'vipList',
-				meta: {
-					title: '会员',
-					noCache: true
-				}
-			},
-			{
-				path: 'fullOrder',
-				component: () => import('@/views/packages/fullOrder'),
-				name: 'fullOrder',
-				meta: {
-					title: '全部订单',
-					noCache: true
-				}
-			},
-			{
-				path: 'orderCancellation',
-				component: () => import('@/views/packages/orderCancellation'),
-				name: 'orderCancellation',
-				meta: {
-					title: '订单核销',
+					// perms: [ 'GET /admin/order/list' ],
+					title: '社区商城',
 					noCache: true
 				}
 			}
@@ -496,6 +728,15 @@ export const asyncRouterMap = [
 			noCache: true
 		},
 		children: [
+			{
+				path: 'OperationLog',
+				component: () => import('@/views/enterprise/OperationLog'),
+				name: 'OperationLog',
+				meta: {
+					title: '操作日志',
+					noCache: true
+				}
+			},
 			{
 				path: 'baseInfo',
 				component: () => import('@/views/enterprise/baseInfo'),
@@ -520,7 +761,7 @@ export const asyncRouterMap = [
 				component: () => import('@/views/enterprise/employee'),
 				name: 'Employee',
 				meta: {
-					title: '员工管理',
+					title: '子账号管理',
 					noCache: true
 				}
 			},

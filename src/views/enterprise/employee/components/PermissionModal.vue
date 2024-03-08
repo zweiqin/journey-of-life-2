@@ -62,7 +62,7 @@ export default {
 					let tempName
 					switch (item) {
 						case 1:
-							tempName = '首页统计'
+							tempName = '运营仪表盘'
 							break
 						case 2:
 							tempName = '接单管理'

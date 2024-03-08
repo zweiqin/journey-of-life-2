@@ -1,6 +1,6 @@
 export default {
 	route: {
-		'homepage': '首页统计',
+		'homepage': '运营仪表盘',
 		'introduction': '简述',
 		'documentation': '文档',
 		'guide': '引导页',
