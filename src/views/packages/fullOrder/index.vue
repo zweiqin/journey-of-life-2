@@ -96,7 +96,7 @@
 		</div>
 
 		<TableTools
-			:custom-columns-config="customColumnsConfig"
+			:custom-columns-config="cloumsConfig[tableName]"
 			download
 			custom-field
 			style="
@@ -110,69 +110,59 @@
 			@refresh="getList"
 			@download="toolsMixin_exportMethod($refs.vxeTable, '异常订单')"
 		>
+			<template #toolsLeft>
+				<div class="tabs">
+					<button class="tabItem" :class="{ active: tableName === 'fullOrderTable' }" type="button" @click="tableName = 'fullOrderTable'">活动订单</button>
+					<button class="tabItem" :class="{ active: tableName === 'orderCancellationTable' }" type="button" @click="tableName = 'orderCancellationTable'">订单订核销</button>
+				</div>
+			</template>
 		</TableTools>
-
-		<!-- 接单管理列表 -->
-		<VxeTable
-			ref="vxeTable"
-			v-model="listQuery"
-			:is-request="isRequest"
-			request-method="request2"
-			:local-key="customColumnsConfig.localKey"
-			api-method="POST"
-			:api-path="api.partnerOrder"
-			:columns="columns"
-			page-alias="page"
-			size-alias="pageSize"
-			res-alias="list"
-			:grid-options="{
-				rowConfig: { height: 60 },
-				tooltipConfig: { showAll: true, enterDelay: 800 }
-			}"
-			style="
-        padding: 0 20px;
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-top: 0;
-        border-bottom: 0;
-        box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);
-      "
-		>
-			<!-- <template #haldelFunction="{ row }">
-				<el-button
-				size="mini"
-				@click="hadelOrderCancellation(row)"
-				>
-				核销订单
-				</el-button>
-				</template> -->
-		</VxeTable>
+		<transition name="fade-transform" mode="out-in">
+			<keep-alive>
+				<component
+					:is="tableName" :list-query="listQuery" :is-request="isRequest"
+					:custom-columns-config="cloumsConfig[tableName]" :columns="cloumsConfig[tableName].columnsOptions"
+				></component>
+			</keep-alive>
+		</transition>
 	</div>
 </template>
 
 <script>
 import { jsonp } from 'vue-jsonp'
 import { api, cancellationWrite, getAreaList, revenueStatistics } from '@/api/packagesManagement'
-import VxeTable from '@/components/VxeTable'
 import TableTools from '@/components/TableTools'
-import { columns } from './table'
+
+import { fullOrderTableCloums } from './fullOrderTable'
+import { orderCancellationTableCloums } from './orderCancellationTable'
+
 import { getMasterInfoByUserId } from '@/api/baseInfo/baseInfo'
+
+import FullOrderTable from '../components/fullOrderTable'
+import OrderCancellationTable from '../components/orderCancellationTable'
 
 export default {
 	// eslint-disable-next-line vue/match-component-file-name
 	name: 'OrderCancellation',
 	components: {
-		VxeTable,
-		TableTools
+		TableTools,
+		FullOrderTable,
+		OrderCancellationTable
 	},
 	data() {
 		return {
 			api,
-			columns,
 			isRequest: false,
-			customColumnsConfig: {
-				localKey: 'abnormalOrder',
-				columnsOptions: columns
+			tableName: 'fullOrderTable',
+			cloumsConfig: {
+				fullOrderTable: {
+					localKey: 'fullOrderTable',
+					columnsOptions: fullOrderTableCloums
+				},
+				orderCancellationTable: {
+					localKey: 'orderCancellationTable',
+					columnsOptions: orderCancellationTableCloums
+				}
 			},
 			listQuery: {
 				phone: '',
@@ -226,6 +216,10 @@ export default {
 		updateFields(columns) {
 			this.columns = columns
 		},
+		tabsHandleClick(tabs, ev) {
+			// console.log(tabs, ev)
+			console.log(this.tableName)
+		},
 		getList(meaning) {
 			meaning === 'keepPage'
 				? this.listQuery = { ...this.listQuery }
@@ -262,41 +256,41 @@ export default {
 					_this.getList()
 				})
 			})
-		},
-		hadelOrderCancellation(row) {
-			// console.log(row)
-			this.$confirm('请确认订单已经核销完毕', '提示', {
-				confirmButtonText: '确定',
-				cancelButtonText: '取消',
-				type: 'warning'
-			})
-				.then(() => {
-					cancellationWrite({
-						orderId: row.orderId,
-						noticeId: '0'
-					})
-						.then((res) => {
-							this.$message({
-								type: 'success',
-								message: '核销成功!'
-							})
-						})
-						.catch((err) => {
-							this.$message.error('核销失败', err)
-						})
-				})
-				.catch(() => {
-					this.$message({
-						type: 'info',
-						message: '已取消核销'
-					})
-				})
 		}
 	}
 }
 </script>
 
 <style lang="scss" scoped>
+  .tabs {
+    /* margin-left: 20px; */
+    margin-bottom: 10px;
+    float: left;
+    width: auto;
+    display: flex;
+    align-items: center;
+    .tabItem {
+        color:#606266;
+        height: 30px;
+        width: 114px;
+        background: #FFFFFF;
+        /* border: none; */
+        border: 1px solid #B8C4D1;
+    }
+    .active {
+      color: #0088EA;
+    }
+    .tabItem:nth-of-type(1) {
+      border-right: none;
+    }
+    .tabItem:hover {
+      color: #0088EA;
+      transition: color 0.3s;
+      border-color: #badeff;
+      background-color: #e8f4ff;
+      transition: background-color 0.3s;
+    }
+  }
 	.cardLIst {
 		padding: 10px;
 		display: flex;

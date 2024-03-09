@@ -1,4 +1,4 @@
-export const columns = [
+export const orderCancellationTableCloums = [
 	// {
 	// 	type: 'checkbox'
 	// },
@@ -43,17 +43,27 @@ export const columns = [
 		field: 'presenterVoucher',
 		title: '赠送代金卷金额',
 		width: ''
+	},
+	{
+		align: 'center',
+		field: '',
+		fixed: 'state',
+		title: '状态',
+		slots: {
+			default: 'state'
+		},
+		width: ''
+	},
+	{
+		align: 'center',
+		field: '',
+		fixed: 'right',
+		title: '操作',
+		className: 'small-padding fixed-width',
+		showOverflow: 'tooltip',
+		slots: {
+			default: 'haldelFunction'
+		},
+		width: ''
 	}
-	// {
-	// 	align: 'center',
-	// 	field: '',
-	// 	fixed: 'right',
-	// 	title: '操作',
-	// 	className: 'small-padding fixed-width',
-	// 	showOverflow: 'tooltip',
-	// 	slots: {
-	// 		default: 'haldelFunction'
-	// 	},
-	// 	width: ''
-	// }
 ]

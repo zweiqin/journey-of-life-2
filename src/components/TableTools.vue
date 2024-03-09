@@ -1,13 +1,14 @@
 <template>
 	<div class="table-tools">
 		<div class="table-tools-left">
-			<slot />
+			<slot name="toolsLeft" />
 		</div>
 		<div class="table-tools-right">
 			<el-button v-if="refresh" icon="el-icon-refresh" @click="onRefresh">刷新</el-button>
 			<el-button v-if="download" icon="el-icon-download" @click="onDownload">导出</el-button>
 			<CustomColumn
-				v-if="customField" ref="customColumn" :is-request="false" @update-fields="updateFields"
+				v-if="customField"
+				ref="customColumn" :is-request="false" @update-fields="updateFields"
 				@submit="submitFields"
 			/>
 		</div>
@@ -120,8 +121,8 @@ export default {
 <style lang="scss" scoped>
 .table-tools {
 	position: relative;
-	display: flex;
-	justify-content: space-between;
+	/* display: flex; */
+	/* justify-content: space-between; */
 	padding-bottom: 8px;
 
 	&-left {
