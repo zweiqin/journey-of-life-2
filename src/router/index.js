@@ -104,30 +104,30 @@ export const asyncRouterMap = [
 			}
 		]
 	},
-	{ // ! ***
-		path: '/receivingManagement',
-		component: Layout,
-		// alwaysShow: true,
-		redirect: 'noredirect',
-		meta: {
-			title: '接单管理',
-			icon: 'order',
-			noCache: true
-		},
-		children: [
-			{
-				path: 'ReceivingList',
-				component: () => import('@/views/receivingManagement/receivingList'),
-				name: 'ReceivingList',
-				// noShowingChildren: true,
-				meta: {
-					// perms: [ 'GET /admin/order/list' ],
-					title: '接单管理',
-					noCache: true
-				}
-			}
-		]
-	},
+	// { // ! ***
+	// 	path: '/receivingManagement',
+	// 	component: Layout,
+	// 	// alwaysShow: true,
+	// 	redirect: 'noredirect',
+	// 	meta: {
+	// 		title: '接单管理',
+	// 		icon: 'order',
+	// 		noCache: true
+	// 	},
+	// 	children: [
+	// 		{
+	// 			path: 'ReceivingList',
+	// 			component: () => import('@/views/receivingManagement/receivingList'),
+	// 			name: 'ReceivingList',
+	// 			// noShowingChildren: true,
+	// 			meta: {
+	// 				// perms: [ 'GET /admin/order/list' ],
+	// 				title: '接单管理',
+	// 				noCache: true
+	// 			}
+	// 		}
+	// 	]
+	// },
 	{
 		path: '/orderManagement',
 		component: Layout,
@@ -150,6 +150,17 @@ export const asyncRouterMap = [
 				}
 			},
 			{
+				path: 'ReceivingList',
+				component: () => import('@/views/receivingManagement/receivingList'),
+				name: 'ReceivingList',
+				// noShowingChildren: true,
+				meta: {
+					// perms: [ 'GET /admin/order/list' ],
+					title: '接单管理',
+					noCache: true
+				}
+			},
+			{
 				path: 'packageOrder',
 				component: () => import('@/views/orderManagement/packageOrder'),
 				name: 'PackageOrder',
@@ -161,54 +172,54 @@ export const asyncRouterMap = [
 			},
 			{
 				path: '/orderMengments',
-				component: () => import('@/components/childRouterBlankPage'),
-				alwaysShow: true,
-				redirect: 'noredirect',
+				component: () => import('@/views/orderManagement/orderMengments'),
+				// alwaysShow: true,
+				// redirect: 'orderMengments',
 				meta: {
 					title: '服务订单管理',
-					icon: 'order',
+					// icon: 'order',
 					noCache: true
-				},
-				children: [
-					{
-						path: 'urbanDistribution',
-						component: () => import('@/views/orderManagement/urbanDistribution'),
-						name: 'UrbanDistribution',
-						meta: {
-							title: '城市配送',
-							noCache: true
-						}
-					},
-					{
-						path: 'orderList',
-						component: () => import('@/views/orderManagement/orderList'),
-						name: 'OrderList',
-						meta: {
-							title: '维保订单',
-							noCache: true
-						}
-					},
-					{
-						path: 'abnormalOrder',
-						component: () => import('@/views/orderManagement/abnormalOrder'),
-						name: 'AbnormalOrder',
-						meta: {
-							perms: [],
-							title: '异常订单',
-							noCache: true
-						}
-					},
-					{
-						path: 'amountOrder',
-						component: () => import('@/views/orderManagement/amountOrder'),
-						name: 'AmountOrder',
-						meta: {
-							perms: [],
-							title: '追加金额订单',
-							noCache: true
-						}
-					}
-				]
+				}
+				// children: [
+				// 	{
+				// 		path: 'urbanDistribution',
+				// 		component: () => import('@/views/orderManagement/urbanDistribution'),
+				// 		name: 'UrbanDistribution',
+				// 		meta: {
+				// 			title: '城市配送',
+				// 			noCache: true
+				// 		}
+				// 	},
+				// 	{
+				// 		path: 'orderList',
+				// 		component: () => import('@/views/orderManagement/orderList'),
+				// 		name: 'OrderList',
+				// 		meta: {
+				// 			title: '维保订单',
+				// 			noCache: true
+				// 		}
+				// 	},
+				// 	{
+				// 		path: 'abnormalOrder',
+				// 		component: () => import('@/views/orderManagement/abnormalOrder'),
+				// 		name: 'AbnormalOrder',
+				// 		meta: {
+				// 			perms: [],
+				// 			title: '异常订单',
+				// 			noCache: true
+				// 		}
+				// 	},
+				// 	{
+				// 		path: 'amountOrder',
+				// 		component: () => import('@/views/orderManagement/amountOrder'),
+				// 		name: 'AmountOrder',
+				// 		meta: {
+				// 			perms: [],
+				// 			title: '追加金额订单',
+				// 			noCache: true
+				// 		}
+				// 	}
+				// ]
 			},
 			{
 				path: '/ActivityOrder',
@@ -554,56 +565,56 @@ export const asyncRouterMap = [
 			}
 		]
 	},
-	{
-		path: '/storeGoods',
-		alwaysShow: true,
-		component: Layout,
-		redirect: 'noredirect',
-		meta: {
-			title: '门店商品',
-			icon: 'brand-goods',
-			noCache: true
-		},
-		children: [
-			{
-				path: 'goodsList',
-				component: () => import('@/views/nearbyMerchants/serviceList'),
-				name: 'GoodsList',
-				meta: {
-					title: '商品列表', // 用于区分服务列表
-					noCache: true
-				}
-			},
-			{
-				path: 'goodsClassification',
-				component: () => import('@/views/nearbyMerchants/serviceClassification'),
-				name: 'GoodsClassification',
-				meta: {
-					title: '商品分类', // 用于区分服务分类
-					noCache: true
-				}
-			},
-			{
-				path: 'voucherGoods',
-				component: () => import('@/views/nearbyMerchants/voucherGoods'),
-				name: 'VoucherGoods',
-				meta: {
-					title: '代金券商品',
-					noCache: true
-				}
-			},
-			{
-				path: 'voucherGoodSave',
-				component: () => import('@/views/nearbyMerchants/VoucherGoodSave'),
-				name: 'VoucherGoodSave',
-				meta: {
-					title: '代金券商品/服务',
-					noCache: true
-				},
-				hidden: true
-			}
-		]
-	},
+	// {
+	// 	path: '/storeGoods',
+	// 	alwaysShow: true,
+	// 	component: Layout,
+	// 	redirect: 'noredirect',
+	// 	meta: {
+	// 		title: '门店商品',
+	// 		icon: 'brand-goods',
+	// 		noCache: true
+	// 	},
+	// 	children: [
+	// 		{
+	// 			path: 'goodsList',
+	// 			component: () => import('@/views/nearbyMerchants/serviceList'),
+	// 			name: 'GoodsList',
+	// 			meta: {
+	// 				title: '商品列表', // 用于区分服务列表
+	// 				noCache: true
+	// 			}
+	// 		},
+	// 		{
+	// 			path: 'goodsClassification',
+	// 			component: () => import('@/views/nearbyMerchants/serviceClassification'),
+	// 			name: 'GoodsClassification',
+	// 			meta: {
+	// 				title: '商品分类', // 用于区分服务分类
+	// 				noCache: true
+	// 			}
+	// 		},
+	// 		{
+	// 			path: 'voucherGoods',
+	// 			component: () => import('@/views/nearbyMerchants/voucherGoods'),
+	// 			name: 'VoucherGoods',
+	// 			meta: {
+	// 				title: '代金券商品',
+	// 				noCache: true
+	// 			}
+	// 		},
+	// 		{
+	// 			path: 'voucherGoodSave',
+	// 			component: () => import('@/views/nearbyMerchants/VoucherGoodSave'),
+	// 			name: 'VoucherGoodSave',
+	// 			meta: {
+	// 				title: '代金券商品/服务',
+	// 				noCache: true
+	// 			},
+	// 			hidden: true
+	// 		}
+	// 	]
+	// },
 
 	// {
 	// 	path: '/platformService',
