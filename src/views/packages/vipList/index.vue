@@ -1,7 +1,7 @@
 <template>
 	<div class="app-container">
 		<div class="pageHeadDatas">
-			<PageHeadeDataBox v-for="(item) in 4" :datas="pageHeadData[item - 1]"></PageHeadeDataBox>
+			<PageHeadeDataBox v-for="(item, index) in pageHeadData" :key="index" :datas="pageHeadData[item]"></PageHeadeDataBox>
 		</div>
 		<div class="other-container">
 			<div

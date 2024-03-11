@@ -46,13 +46,14 @@ export default {
   max-height: 157px;
   border-radius: 10px;
   background-color: #fff;
+  letter-spacing: 2px;
   > img {
     width: 81.22px;
     height: 81.21px;
     border-radius: 38px;
   }
   .infomationBox {
-    margin-left: 32px;
+    margin-left: 20px;
     .dataNumber {
       font-family: Source Han Sans;
       font-size: 40px;
