@@ -1,7 +1,7 @@
 <template>
 	<div class="table-tools">
 		<div class="table-tools-left">
-			<slot name="toolsLeft" />
+			<slot />
 		</div>
 		<div class="table-tools-right">
 			<el-button v-if="refresh" icon="el-icon-refresh" @click="onRefresh">刷新</el-button>
@@ -121,8 +121,8 @@ export default {
 <style lang="scss" scoped>
 .table-tools {
 	position: relative;
-	/* display: flex; */
-	/* justify-content: space-between; */
+	display: flex;
+	justify-content: space-between;
 	padding-bottom: 8px;
 
 	&-left {

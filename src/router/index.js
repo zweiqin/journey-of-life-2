@@ -149,17 +149,16 @@ export const asyncRouterMap = [
 					noCache: true
 				}
 			},
-			{
-				path: 'ReceivingList',
-				component: () => import('@/views/receivingManagement/receivingList'),
-				name: 'ReceivingList',
-				// noShowingChildren: true,
-				meta: {
-					// perms: [ 'GET /admin/order/list' ],
-					title: '接单管理',
-					noCache: true
-				}
-			},
+			// {
+			// 	path: 'ReceivingList',
+			// 	component: () => import('@/views/receivingManagement/receivingList'),
+			// 	name: 'ReceivingList',
+			// 	meta: {
+			// 		// perms: [ 'GET /admin/order/list' ],
+			// 		title: '接单管理',
+			// 		noCache: true
+			// 	}
+			// },
 			{
 				path: 'packageOrder',
 				component: () => import('@/views/orderManagement/packageOrder'),
@@ -171,56 +170,66 @@ export const asyncRouterMap = [
 				}
 			},
 			{
-				path: '/orderMengments',
-				component: () => import('@/components/childRouterBlankPage'),
-				alwaysShow: true,
-				redirect: 'orderMengments',
+				path: '/allOrders',
+				component: () => import('@/views/orderManagement/allOrders'),
+				name: 'AllOrders',
 				meta: {
-					title: '服务订单管理',
-					// icon: 'order',
+					perms: [],
+					title: '全部订单',
 					noCache: true
-				},
-				children: [
-					{
-						path: 'urbanDistribution',
-						component: () => import('@/views/orderManagement/urbanDistribution'),
-						name: 'UrbanDistribution',
-						meta: {
-							title: '城市配送',
-							noCache: true
-						}
-					},
-					{
-						path: 'orderList',
-						component: () => import('@/views/orderManagement/orderList'),
-						name: 'OrderList',
-						meta: {
-							title: '维保订单',
-							noCache: true
-						}
-					},
-					{
-						path: 'abnormalOrder',
-						component: () => import('@/views/orderManagement/abnormalOrder'),
-						name: 'AbnormalOrder',
-						meta: {
-							perms: [],
-							title: '异常订单',
-							noCache: true
-						}
-					},
-					{
-						path: 'amountOrder',
-						component: () => import('@/views/orderManagement/amountOrder'),
-						name: 'AmountOrder',
-						meta: {
-							perms: [],
-							title: '追加金额订单',
-							noCache: true
-						}
-					}
-				]
+				}
 			},
+			// {
+			// 	path: '/orderMengments',
+			// 	component: () => import('@/components/childRouterBlankPage'),
+			// 	alwaysShow: true,
+			// 	redirect: 'orderMengments',
+			// 	meta: {
+			// 		title: '服务订单管理',
+			// 		// icon: 'order',
+			// 		noCache: true
+			// 	},
+			// 	children: [
+			// 		{
+			// 			path: 'urbanDistribution',
+			// 			component: () => import('@/views/orderManagement/urbanDistribution'),
+			// 			name: 'UrbanDistribution',
+			// 			meta: {
+			// 				title: '城市配送',
+			// 				noCache: true
+			// 			}
+			// 		},
+			// 		{
+			// 			path: 'orderList',
+			// 			component: () => import('@/views/orderManagement/orderList'),
+			// 			name: 'OrderList',
+			// 			meta: {
+			// 				title: '维保订单',
+			// 				noCache: true
+			// 			}
+			// 		},
+			// 		{
+			// 			path: 'abnormalOrder',
+			// 			component: () => import('@/views/orderManagement/abnormalOrder'),
+			// 			name: 'AbnormalOrder',
+			// 			meta: {
+			// 				perms: [],
+			// 				title: '异常订单',
+			// 				noCache: true
+			// 			}
+			// 		},
+			// 		{
+			// 			path: 'amountOrder',
+			// 			component: () => import('@/views/orderManagement/amountOrder'),
+			// 			name: 'AmountOrder',
+			// 			meta: {
+			// 				perms: [],
+			// 				title: '追加金额订单',
+			// 				noCache: true
+			// 			}
+			// 		}
+			// 	]
+			// },
 			{
 				path: '/ActivityOrder',
 				component: () => import('@/views/packages/fullOrder'),

@@ -282,7 +282,7 @@ export default {
 			api,
 			columns,
 			customColumnsConfig: {
-				localKey: 'orderList',
+				localKey: 'urbanDistribution',
 				columnsOptions: columns
 			},
 			listQuery: {

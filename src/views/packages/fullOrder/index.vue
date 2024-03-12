@@ -110,7 +110,7 @@
 			@refresh="getList"
 			@download="toolsMixin_exportMethod($refs.vxeTable, '异常订单')"
 		>
-			<template #toolsLeft>
+			<template>
 				<div class="tabs">
 					<button class="tabItem" :class="{ active: tableName === 'fullOrderTable' }" type="button" @click="tableName = 'fullOrderTable'">活动订单</button>
 					<button class="tabItem" :class="{ active: tableName === 'orderCancellationTable' }" type="button" @click="tableName = 'orderCancellationTable'">订单订核销</button>
