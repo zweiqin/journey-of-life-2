@@ -54,7 +54,7 @@
 			</template>
 		</VxeTable>
 
-		<el-dialog width="20%" title="修改分佣比例 (最小10%)" :visible.sync="showUpdataForm">
+		<el-dialog width="20%" title="修改分佣比例 (平台服务费收取10%)" :visible.sync="showUpdataForm">
 			<el-form :model="formData">
 				<el-form-item label="">
 					<div style="display:flex; justify-content: center;align-items: center;flex-direction: column;">

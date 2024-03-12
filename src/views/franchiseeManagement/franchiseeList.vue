@@ -3,16 +3,28 @@
 		<div class="pageHeadDatas">
 			<PageHeadeDataBox v-for="(item, index) in pageHeadData" :key="index" :datas="pageHeadData[index]"></PageHeadeDataBox>
 		</div>
+		<div class="echartsBox">
+			<div class="dataBox">
+				<div class="dataTltle">服务订单销量排行</div>
+				<RankingServiceOrders id="rankingServiceOrders"></RankingServiceOrders>
+			</div>
+			<div class="dataBox">
+				<div class="dataTltle">产品订单销售量排名</div>
+				<RankingServiceOrders id="productOrdeRanking"></RankingServiceOrders>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 import PageHeadeDataBox from '@/components/pageHeadeDataBox'
+import RankingServiceOrders from './components/rankingServiceOrders'
 export default {
 	// eslint-disable-next-line vue/match-component-file-name
 	name: 'FranchiseeList',
 	components: {
-		PageHeadeDataBox
+		PageHeadeDataBox,
+		RankingServiceOrders
 	},
 	data() {
 		return {
@@ -39,6 +51,29 @@ export default {
     gap: 22px;
     flex-wrap: wrap;
     margin-bottom: 30px;
+  }
+  .echartsBox {
+    width: 1666px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    .dataBox {
+      flex: 1;
+      max-width: 820px;
+      height: 490px;
+      background: #fff;
+      border-radius: 10px;
+      .dataTltle {
+        margin-top: 45px;
+        margin-left: 65px;
+        font-family: Source Han Sans;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 25px;
+        color: #000000;
+      }
+    }
   }
 }
 </style>
