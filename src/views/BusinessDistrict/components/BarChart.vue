@@ -15,7 +15,7 @@ export default {
 		},
 		styles: {
 			type: Object,
-			default: () => ({ width: '788.79px', height: '540px', marginTop: '10px' })
+			default: () => ({ width: '788.79px', height: '580px', marginTop: '10px' })
 		}
 	},
 	data() {
@@ -63,7 +63,7 @@ export default {
 					axisLine: {
 						show: false
 					},
-					data: ['师傅1', '师傅2', '师傅3', '师傅4', '师傅5', '师傅6', '师傅7', '师傅8', '师傅9', '师傅10']
+					data: ['No.1 商家A', 'No.2 商家A', 'No.3 商家A', 'No.4 商家A', 'No.5 商家A', 'No.6 商家A', 'No.7 商家A', 'No.8 商家A', 'No.9 商家A', 'No.10 商家A']
 				} ],
 				series: [
 					{

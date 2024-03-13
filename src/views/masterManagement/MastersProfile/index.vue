@@ -25,19 +25,24 @@
 				<BarChart id="ServiceRanking"></BarChart>
 			</div>
 		</div>
+		<div class="BarChartBox_two">
+			<BarchartTwo id="BarChartBox_two"></BarchartTwo>
+		</div>
 	</div>
 </template>
 
 <script>
 import TabNavs from './components/TabNavs'
 import BarChart from './components/BarChart'
+import BarchartTwo from './components/BarchartTwo'
 
 export default {
 	// eslint-disable-next-line vue/match-component-file-name
 	name: 'MastersProfile',
 	components: {
 		TabNavs,
-		BarChart
+		BarChart,
+		BarchartTwo
 	},
 	data() {
 		return {
@@ -122,6 +127,13 @@ export default {
         }
       }
     }
+  }
+  .BarChartBox_two {
+    margin-top: 20px;
+    width: 1673px;
+    height: 548px;
+    border-radius: 20px;
+    background: #FFFFFF;
   }
 }
 </style>
