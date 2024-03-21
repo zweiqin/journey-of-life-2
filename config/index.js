@@ -16,11 +16,9 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        // target:'http://192.168.0.82:8790/samrtWorker',
-        target:'https://www.zhult.com/samrtWorker', // 接口的域名
-        // target: 'http://192.168.0.73:8790/samrtWorker', // 接口的域名
-        // target: 'https://www.zhult.com/test-samrtWorker',
-        // target: 'http://localhost:81',
+        // target:'http://192.168.0.82:8790/samrtWorker', // 本地
+        target:'https://www.zhult.com/samrtWorker', // 线上接口的域名
+        // target: 'https://test.zhult.com/samrtWorker', // 测试
         // secure: false, // 如果是https，需要开启这个选项
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
         // pathRewrite: {
@@ -28,9 +26,9 @@ module.exports = {
         // },
       },
       '/auth': {
-        // target:'http://192.168.0.117:49/samrtWorker',
+        // target:'https://test.zhult.com/samrtWorker',
         target:'https://www.zhult.com/samrtWorker', // 接口的域名
-        // target: 'http://192.168.0.73:8790/samrtWorker', // 接口的域名
+        // target: 'http://192.168.0.82:8790/samrtWorker', // 接口的域名
         // target: 'http://localhost:81',
         // secure: false, // 如果是https，需要开启这个选项
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
@@ -39,8 +37,9 @@ module.exports = {
         },
       },
       '/worker': {
-        target:'https://www.zhult.com/samrtWorker', // 接口的域名
-        // target: 'http://192.168.0.73:8790/samrtWorker', // 接口的域名
+        target:'https://www.zhult.com/samrtWorker', // 线上接口的域名
+        // target: 'http://192.168.0.73:8790/samrtWorker', // 本地接口的域名
+        // target: 'https://test.zhult.com/samrtWorker', // 测试接口
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
       },
       '/community': { // !社区的接口配置, 在平台服务中有用到社区的服务列表接口
@@ -109,7 +108,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    // assetsSubDirectory: 'static',
+    assetsSubDirectory: 'static', // !测试
 
     /**
      * You can set by youself according to actual condition
@@ -118,8 +118,7 @@ module.exports = {
      * then assetsPublicPath should be set to "/bar/".
      * In most cases please use '/' !!!
      */
-    assetsPublicPath: './', // 正式环境
-    // assetsPublicPath: '/test-zhanzhang-pc/',  // 测试环境
+    assetsPublicPath: process.env.ASSETS_PUBLIC_PATH_CONFIG,
 
     /**
      * Source Maps

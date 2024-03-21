@@ -68,6 +68,13 @@ export const constantRouterMap = [
 				component: () => import('@/views/homepage/index'),
 				name: 'Homepage',
 				meta: { title: 'homepage', icon: 'home', noCache: true }
+			},
+			{
+				path: 'testPage', // 用于测试的页面
+				component: () => import('@/views/testPage/index'),
+				name: 'testPage',
+				hidden: true,
+				meta: { title: 'testPage', icon: 'home', noCache: true }
 			}
 		]
 	}
@@ -678,15 +685,15 @@ export const asyncRouterMap = [
 			noCache: true
 		},
 		children: [
-			{
-				path: 'OperationLog',
-				component: () => import('@/views/enterprise/OperationLog'),
-				name: 'OperationLog',
-				meta: {
-					title: '操作日志',
-					noCache: true
-				}
-			},
+			// { // !此处暂时隐藏
+			// 	path: 'OperationLog',
+			// 	component: () => import('@/views/enterprise/OperationLog'),
+			// 	name: 'OperationLog',
+			// 	meta: {
+			// 		title: '操作日志',
+			// 		noCache: true
+			// 	}
+			// },
 			{
 				path: 'baseInfo',
 				component: () => import('@/views/enterprise/baseInfo'),

@@ -5,5 +5,5 @@ module.exports = {
   BASE_API: '"https://www.zhult.com/samrtWorker"',
   BASE_TIPS_WS_API: '"wss://www.zhult.com/laoa-huozhu/webSocket/shequ20230309"',
   BASE_SHOWAPI: '"https://nsappapi.tuanfengkeji.cn"',
-  BASE_COMMUNITY_API: '"https://www.tuanfengkeji.cn:9527/dts-app-api"',
+  BASE_COMMUNITY_API: '"https://www.tuanfengkeji.cn:9527/dts-app-api"'
 }
