@@ -1,26 +1,29 @@
 export const columns = [
-	// {
-	// 	type: 'checkbox'
-	// },
+	{
+		type: 'checkbox',
+		fixed: 'left',
+		// align: 'center',
+		width: 40
+	},
 	{
 		align: 'center',
 		fixed: 'left',
 		field: 'id',
 		title: 'ID',
-		width: 100
+		width: 40
 	},
 	{
 		align: 'center',
-		fixed: 'left',
+		// fixed: 'left',
 		field: 'serverInfoName',
 		title: '服务详情名称',
-		width: 150
+		width: 122
 	},
 	{
 		align: 'center',
 		field: 'serverTypeName',
 		title: '所属分类',
-		width: 160
+		width: 116
 	},
 	{
 		align: 'center',
@@ -29,7 +32,7 @@ export const columns = [
 		slots: {
 			default: 'isArtificial'
 		},
-		width: 180
+		width: 125
 	},
 	{
 		align: 'center',
@@ -39,13 +42,13 @@ export const columns = [
 		slots: {
 			default: 'serverInfoUrl'
 		},
-		width: 160
+		width: 110
 	},
 	{
 		align: 'center',
 		field: 'serverIntroduction',
 		title: '服务内容介绍',
-		width: 200
+		width: 150
 	},
 	{
 		align: 'center',

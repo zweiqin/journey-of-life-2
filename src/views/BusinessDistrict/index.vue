@@ -5,7 +5,7 @@
 			<DataStrip :datas="datas"></DataStrip>
 			<div class="chartsBox">
 				<div class="chartsItem">
-					<p>代金卷使用金额比例</p>
+					<p>代金券使用金额比例</p>
 					<PieChart id="AmountRatio" :datas="[{ 'name': '1-100元', 'value': 31 }, { 'name': '101-500元', 'value': 55 }, { 'name': '501-1000元', 'value': 24 }]"></PieChart>
 				</div>
 				<div class="chartsItem">
@@ -38,11 +38,11 @@ export default {
 	data() {
 		return {
 			datas: {
-				name: '代金卷使用统计',
-				data: [{ name: '代金卷领取数量', num: 1000 },
-					{ name: '代金卷使用数量', num: 1000 },
-					{ name: '代金卷使用金额', num: 1000 },
-					{ name: '代金卷生产订单量', num: 1000 },
+				name: '代金券使用统计',
+				data: [{ name: '代金券领取数量', num: 1000 },
+					{ name: '代金券使用数量', num: 1000 },
+					{ name: '代金券使用金额', num: 1000 },
+					{ name: '代金券生产订单量', num: 1000 },
 					{ name: '代金券产生金额', num: 1000 }]
 			}
 		}

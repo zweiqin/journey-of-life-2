@@ -31,66 +31,46 @@ service.interceptors.request.use(
 service.interceptors.response.use((response) => {
 	const res = response.data
 	// console.log(res)
-	if (res.code === '501') {
-		MessageBox.alert('系统未登录，请重新登录', '错误', {
-			confirmButtonText: '确定',
-			type: 'error'
-		}).then(() => {
-			store.dispatch('FedLogOut').then(() => {
-				location.reload()
+	if (res.erron && res.erron === 780) {
+		Message({
+			message: '服务器内部错误' || 'Error',
+			type: 'error',
+			duration: 5 * 1000
+		})
+	} else {
+		// if the custom code is not 20000, it is judged as an error.
+		if (res.statusCode !== 20000) {
+			Message({
+				message: res.statusMsg || 'Error',
+				type: 'error',
+				duration: 5 * 1000
 			})
-		})
-		return Promise.reject('error')
-	} else if ((res.code === '50002') && res.msg.includes('登录')) {
-		MessageBox.alert('系统未登录，请重新登录', '错误', {
-			confirmButtonText: '确定',
-			type: 'error'
-		}).then(() => {
-			store.dispatch('FedLogOut').then(() => {
-				location.reload()
-			})
-		})
-		return Promise.reject('error')
-	} else if (res.code === '20001') {
-		MessageBox.alert(res.msg, '错误', {
-			confirmButtonText: '确定',
-			type: 'error'
-		})
-		return Promise.reject('error')
-	} else if (res.code === '502') {
-		MessageBox.alert('系统内部错误，请联系管理员维护', '错误', {
-			confirmButtonText: '确定',
-			type: 'error'
-		})
-		return Promise.reject('error')
-	} else if (res.code === '503') {
-		MessageBox.alert('请求业务目前未支持', '警告', {
-			confirmButtonText: '确定',
-			type: 'error'
-		})
-		return Promise.reject('error')
-	} else if (res.code === '504') {
-		MessageBox.alert('更新数据已经失效，请刷新页面重新操作', '警告', {
-			confirmButtonText: '确定',
-			type: 'error'
-		})
-		return Promise.reject('error')
-	} else if (res.code === '505') {
-		MessageBox.alert('更新失败，请再尝试一次', '警告', {
-			confirmButtonText: '确定',
-			type: 'error'
-		})
-		return Promise.reject('error')
-	} else if (res.code === '506') {
-		MessageBox.alert('没有操作权限，请联系管理员授权', '错误', {
-			confirmButtonText: '确定',
-			type: 'error'
-		})
-		return Promise.reject('error')
-	} else if (res.statusCode !== 20000) {
-		elMessage(res.msg, 'error')
-		// 非5xx的错误属于业务错误，留给具体页面处理
-		return Promise.reject(res)
+
+			// 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
+			if (
+				res.statusCode === 50008 ||
+        res.statusCode === 50012 ||
+        res.statusCode === 50014
+			) {
+				// to re-login
+				MessageBox.confirm(
+					'You have been logged out, you can cancel to stay on this page, or log in again',
+					'Confirm logout',
+					{
+						confirmButtonText: 'Re-Login',
+						cancelButtonText: 'Cancel',
+						type: 'warning'
+					}
+				).then(() => {
+					store.dispatch('user/resetToken').then(() => {
+						location.reload()
+					})
+				})
+			}
+			return Promise.reject(new Error(res.statusMsg || res.errmsg || 'Error'))
+			// return res;
+		}
+		return res
 	}
 	return res
 }, (error) => {

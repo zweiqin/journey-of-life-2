@@ -17,6 +17,8 @@ import { generateTitle } from '@/utils/i18n'
 import pathToRegexp from 'path-to-regexp'
 
 export default {
+	// eslint-disable-next-line vue/match-component-file-name
+	name: 'Breadcrumb',
 	data() {
 		return {
 			levelList: null
@@ -42,6 +44,7 @@ export default {
 					return true
 				}
 			})
+			// console.log(matched)
 			const first = matched[0]
 			if (first && first.name.trim().toLocaleLowerCase() !== 'Homepage'.toLocaleLowerCase()) {
 				matched = [ { path: '/homepage', meta: { title: 'homepage' } } ].concat(matched)

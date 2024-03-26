@@ -515,6 +515,7 @@ export const asyncRouterMap = [
 				path: 'serviceList',
 				component: () => import('@/views/nearbyMerchants/serviceList'),
 				name: 'ServiceList',
+				hidden: true,
 				meta: {
 					title: '门店服务列表', // 用于区分商品列表
 					noCache: true
@@ -525,6 +526,7 @@ export const asyncRouterMap = [
 				path: 'serviceClassification',
 				component: () => import('@/views/nearbyMerchants/serviceClassification'),
 				name: 'ServiceClassification',
+				hidden: true,
 				meta: {
 					title: '服务分类', // 用于区分商品分类
 					noCache: true
@@ -544,6 +546,7 @@ export const asyncRouterMap = [
 				path: 'voucherGoods',
 				component: () => import('@/views/nearbyMerchants/voucherGoods'),
 				name: 'VoucherGoods',
+				hidden: true,
 				meta: {
 					title: '代金券服务',
 					noCache: true
@@ -717,6 +720,15 @@ export const asyncRouterMap = [
 				path: 'employee',
 				component: () => import('@/views/enterprise/employee'),
 				name: 'Employee',
+				meta: {
+					title: '员工管理',
+					noCache: true
+				}
+			},
+			{
+				path: 'subaccount',
+				component: () => import('@/views/enterprise/subaccount'),
+				name: 'Subaccount',
 				meta: {
 					title: '子账号管理',
 					noCache: true

@@ -1,5 +1,7 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
 
+// !权限判断函数
+
 /**
  * 通过meta.perms判断是否与当前用户权限匹配
  * @param perms
@@ -50,10 +52,11 @@ const permission = {
 	},
 	actions: {
 		GenerateRoutes({ commit }, data) {
+			console.log(data)
 			return new Promise((resolve) => {
 				const { perms } = data
 				let accessedRouters
-				if (perms.includes('*')) {
+				if (perms.includes('*')) { // !超级管理员
 					accessedRouters = asyncRouterMap
 				} else {
 					accessedRouters = filterAsyncRouter(asyncRouterMap, perms)

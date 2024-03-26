@@ -43,8 +43,8 @@ module.exports = {
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
       },
       '/community': { // !社区的接口配置, 在平台服务中有用到社区的服务列表接口
-        // target:'http://192.168.0.117:81/samrtWorker',
-        target:'https://www.tuanfengkeji.cn:9527/dts-app-api', // 接口的域名
+        target:'https://test.tuanfengkeji.cn/dts-app-api', // 测试接口
+        // target:'https://www.tuanfengkeji.cn:9527/dts-app-api', // 线上接口
         // secure: false, // 如果是https，需要开启这个选项
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
         pathRewrite: {

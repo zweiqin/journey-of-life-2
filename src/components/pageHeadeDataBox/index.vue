@@ -1,6 +1,6 @@
 <template>
 	<div class="box-container">
-		<img v-if="datas.imgUrl === 'none'" src="@/assets/image/tuanfeng.png" alt="">
+		<img v-if="!datas.imgUrl" src="@/assets/image/tuanfeng.png" alt="">
 		<img v-else :src="datas.imgUrl" alt="">
 		<div class="infomationBox">
 			<div class="dataNumber">

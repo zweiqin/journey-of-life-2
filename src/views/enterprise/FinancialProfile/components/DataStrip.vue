@@ -2,7 +2,7 @@
 	<div class="DataStrip">
 		<slot name="LeftIcon">
 			<div class="LeftIcon">
-				<span>{{ datas.name }}</span>
+				<p>{{ datas.name }}</p>
 			</div>
 		</slot>
 		<div class="rightData">
@@ -44,14 +44,18 @@ export default {
   .LeftIcon {
     width: 169px;
     height: 120px;
+    display: flex;
+    align-items: center;
     background: url("../../../../assets/image/BlueTrapezoidal.png");
-    font-family: Source Han Sans;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 120px;
-    color: #FFFFFF;
-    > span {
+    > p {
       margin-left: 17%;
+      max-width: 100px;
+      height: 56px;
+      text-align: center;
+      font-family: Source Han Sans;
+      font-size: 20px;
+      font-weight: bold;
+      color: #FFFFFF;
     }
   }
   .rightData {

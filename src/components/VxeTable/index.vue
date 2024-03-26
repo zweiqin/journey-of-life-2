@@ -87,19 +87,23 @@ export default {
 		event: 'update:searchParams'
 	},
 	props: {
-		columns: {
+		setTableHeight: { // 设置表格高度 不给值则默认计算最大高度
+			type: [String, Number],
+			default: null
+		},
+		columns: { // !表格基本配置 用于配置每一列的数据格式或者插槽等等
 			type: Array,
 			default: () => []
 		},
-		tableData: {
+		tableData: { // 表格数据
 			type: Array,
 			default: () => []
 		},
-		isRequest: {
+		isRequest: { // 是否开启自动请求数据
 			type: Boolean,
 			default: true
 		},
-		requestMethod: {
+		requestMethod: { // 请求的方法
 			type: String,
 			default: 'request'
 		},
@@ -289,7 +293,7 @@ export default {
 				// const res = await apiFn(this.searchParams)
 
 				const { data } = res
-        // console.log(data)
+				// console.log(data)
 				this.$emit('fetch-data', res)
 				let postData
 				let page
@@ -389,7 +393,12 @@ export default {
 				const otherHeight = document.querySelector('.app-container>.other-container') ? document.querySelector('.app-container>.other-container').offsetHeight : 0
 				const toolsHeight = document.querySelector('.app-container>.table-tools') ? document.querySelector('.app-container>.table-tools').offsetHeight : 0
 				const height = navbarHeight + tabsHeight + searchHeight + pageHeight + otherHeight + toolsHeight
-				this.tableHeight = window.innerHeight - height
+				if (this.setTableHeight) {
+					this.tableHeight = this.setTableHeight
+				} else {
+					this.tableHeight = window.innerHeight - height
+				}
+				// console.log('tableHeight', this.tableHeight)
 			})
 		},
 		updateFooter() {

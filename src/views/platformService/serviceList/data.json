@@ -1,0 +1,759 @@
+[
+  {
+    "id": 1,
+    "serverNameOne": "家具服务",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:48:29",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 15,
+        "serverNameOne": null,
+        "pid": 1,
+        "serverNameTwo": "家具安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-10-29 09:20:43",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 16,
+        "serverNameOne": null,
+        "pid": 1,
+        "serverNameTwo": "家具维修",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-10-29 09:21:03",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 17,
+        "serverNameOne": null,
+        "pid": 1,
+        "serverNameTwo": "家具保养",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-10-29 09:24:23",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 18,
+        "serverNameOne": null,
+        "pid": 1,
+        "serverNameTwo": "家具清洗除螨",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-10-29 09:28:04",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 19,
+        "serverNameOne": null,
+        "pid": 1,
+        "serverNameTwo": "家具翻新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-10-29 09:28:07",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 20,
+        "serverNameOne": null,
+        "pid": 1,
+        "serverNameTwo": "家具拆旧回收",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-10-29 09:28:11",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "serverNameOne": "家电服务",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:48:39",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 53,
+        "serverNameOne": null,
+        "pid": 2,
+        "serverNameTwo": "家电安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:15:47",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 54,
+        "serverNameOne": null,
+        "pid": 2,
+        "serverNameTwo": "家电清洗",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:17:08",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 55,
+        "serverNameOne": null,
+        "pid": 2,
+        "serverNameTwo": "家电维修",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:17:08",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 56,
+        "serverNameOne": null,
+        "pid": 2,
+        "serverNameTwo": "家电拆旧回收",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:17:08",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "serverNameOne": "水电灯具",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:48:47",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 57,
+        "serverNameOne": null,
+        "pid": 3,
+        "serverNameTwo": "水电灯具安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:18:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 58,
+        "serverNameOne": null,
+        "pid": 3,
+        "serverNameTwo": "水管灯具清洗",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:18:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 59,
+        "serverNameOne": null,
+        "pid": 3,
+        "serverNameTwo": "水电灯具维修",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:18:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 60,
+        "serverNameOne": null,
+        "pid": 3,
+        "serverNameTwo": "电路灯具拆旧换新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:18:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "serverNameOne": "清洗保洁",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:48:50",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 61,
+        "serverNameOne": null,
+        "pid": 4,
+        "serverNameTwo": "家居保洁",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:21:33",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 62,
+        "serverNameOne": null,
+        "pid": 4,
+        "serverNameTwo": "家具清洗除螨",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:21:34",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 63,
+        "serverNameOne": null,
+        "pid": 4,
+        "serverNameTwo": "家电清洗",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:21:34",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 64,
+        "serverNameOne": null,
+        "pid": 4,
+        "serverNameTwo": "窗帘清洗",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:21:34",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 65,
+        "serverNameOne": null,
+        "pid": 4,
+        "serverNameTwo": "水管吊灯清洗",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:21:34",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "serverNameOne": "地面墙面",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:48:53",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 66,
+        "serverNameOne": null,
+        "pid": 5,
+        "serverNameTwo": "地面墙体安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:22:41",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 67,
+        "serverNameOne": null,
+        "pid": 5,
+        "serverNameTwo": "地面墙体维修",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:22:41",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 68,
+        "serverNameOne": null,
+        "pid": 5,
+        "serverNameTwo": "地面墙面保养",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:22:41",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 69,
+        "serverNameOne": null,
+        "pid": 5,
+        "serverNameTwo": "地面墙面翻新改色",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:22:41",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 70,
+        "serverNameOne": null,
+        "pid": 5,
+        "serverNameTwo": "地面墙面拆旧换新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:22:41",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "serverNameOne": "室内消杀",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:48:56",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 71,
+        "serverNameOne": null,
+        "pid": 6,
+        "serverNameTwo": "除五害",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:23:37",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "serverNameOne": "空气治理",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:49:02",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 72,
+        "serverNameOne": null,
+        "pid": 7,
+        "serverNameTwo": "除甲醛、除异味",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:23:58",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "serverNameOne": "门窗服务",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:49:18",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 73,
+        "serverNameOne": null,
+        "pid": 8,
+        "serverNameTwo": "门窗安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:24:54",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 74,
+        "serverNameOne": null,
+        "pid": 8,
+        "serverNameTwo": "门窗维修",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:24:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 75,
+        "serverNameOne": null,
+        "pid": 8,
+        "serverNameTwo": "门窗翻新改色",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:24:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 76,
+        "serverNameOne": null,
+        "pid": 8,
+        "serverNameTwo": "门窗拆旧换新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:24:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 77,
+        "serverNameOne": null,
+        "pid": 8,
+        "serverNameTwo": "应急开门服务",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:24:55",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "serverNameOne": "防水补漏",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:49:22",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 78,
+        "serverNameOne": null,
+        "pid": 9,
+        "serverNameTwo": "防水施工",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:25:49",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 79,
+        "serverNameOne": null,
+        "pid": 9,
+        "serverNameTwo": "补漏服务",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:25:49",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "serverNameOne": "厨卫洁具",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:49:26",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 80,
+        "serverNameOne": null,
+        "pid": 10,
+        "serverNameTwo": "厨卫洁具安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:26:46",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 81,
+        "serverNameOne": null,
+        "pid": 10,
+        "serverNameTwo": "水管疏通",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:26:46",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 82,
+        "serverNameOne": null,
+        "pid": 10,
+        "serverNameTwo": "厨卫洁具维修",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:26:46",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 83,
+        "serverNameOne": null,
+        "pid": 10,
+        "serverNameTwo": "厨卫洁具拆旧换新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:26:46",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "serverNameOne": "阳台服务",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:49:29",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 84,
+        "serverNameOne": null,
+        "pid": 11,
+        "serverNameTwo": "窗帘、晾衣架安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:27:30",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 85,
+        "serverNameOne": null,
+        "pid": 11,
+        "serverNameTwo": "窗帘、晾衣架维修",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:27:30",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 86,
+        "serverNameOne": null,
+        "pid": 11,
+        "serverNameTwo": "窗帘清洗",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:27:31",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      },
+      {
+        "id": 87,
+        "serverNameOne": null,
+        "pid": 11,
+        "serverNameTwo": "窗帘、晾衣架拆旧换新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:27:31",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "serverNameOne": "废品回收",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:49:34",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 89,
+        "serverNameOne": null,
+        "pid": 13,
+        "serverNameTwo": "废品回收服务",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:28:16",
+        "updateTime": "2022-11-09 11:02:21",
+        "children": null
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "serverNameOne": "工程服务",
+    "pid": 0,
+    "serverNameTwo": null,
+    "serverNameThree": null,
+    "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+    "serverThreeInfo": null,
+    "createTime": "2022-10-29 08:51:24",
+    "updateTime": "2022-11-09 11:02:21",
+    "children": [
+      {
+        "id": 90,
+        "serverNameOne": null,
+        "pid": 14,
+        "serverNameTwo": "批量家具安装",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:29:43",
+        "updateTime": "2022-11-12 03:05:59",
+        "children": null
+      },
+      {
+        "id": 91,
+        "serverNameOne": null,
+        "pid": 14,
+        "serverNameTwo": "批量家具清洗保养",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:29:43",
+        "updateTime": "2022-11-12 03:06:20",
+        "children": null
+      },
+      {
+        "id": 92,
+        "serverNameOne": null,
+        "pid": 14,
+        "serverNameTwo": "批量家具维修翻新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:29:43",
+        "updateTime": "2022-11-12 03:06:26",
+        "children": null
+      },
+      {
+        "id": 93,
+        "serverNameOne": null,
+        "pid": 14,
+        "serverNameTwo": "批量空调清洗",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:29:43",
+        "updateTime": "2022-11-12 03:06:39",
+        "children": null
+      },
+      {
+        "id": 94,
+        "serverNameOne": null,
+        "pid": 14,
+        "serverNameTwo": "批量地面墙面维修翻新",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:29:43",
+        "updateTime": "2022-11-12 03:06:49",
+        "children": null
+      },
+      {
+        "id": 95,
+        "serverNameOne": null,
+        "pid": 14,
+        "serverNameTwo": "批量室内消杀除五害",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:29:44",
+        "updateTime": "2022-11-12 03:06:58",
+        "children": null
+      },
+      {
+        "id": 96,
+        "serverNameOne": null,
+        "pid": 14,
+        "serverNameTwo": "批量保洁服务",
+        "serverNameThree": null,
+        "serverImageUrl": "\t\r\nhttps://www.tuanfengkeji.cn:9527/dts-admin-api/admin/storage/fetch/6gkjqax554r7cx3z527n.jpg",
+        "serverThreeInfo": null,
+        "createTime": "2022-11-06 09:29:44",
+        "updateTime": "2022-11-12 03:07:04",
+        "children": null
+      }
+    ]
+  }
+]

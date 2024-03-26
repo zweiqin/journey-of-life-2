@@ -8,26 +8,14 @@
 		>
 			<template v-for="(item, index) in dataConfig">
 				<!-- ['selection', 'index', 'expand'].includes(item.type) -->
-				<el-table-column v-if="['selection', 'index', 'expand'].includes(item.type)" v-bind="item" :key="index" :align="item.align || rowAlign" />
-				<el-table-column v-else-if="!['selection', 'index', 'expand'].includes(item.type) && item.prop" v-bind="item" :key="index" :align="item.align || rowAlign" />
-				<el-table-column v-else v-bind="item" :key="index" :align="item.align || rowAlign">
+				<el-table-column v-if="['selection', 'index', 'expand'].includes(item.type)" v-bind="item" :key="tableName + index" :align="item.align || rowAlign" />
+				<el-table-column v-else-if="!['selection', 'index', 'expand'].includes(item.type) && item.prop" v-bind="item" :key="tableName + index" :align="item.align || rowAlign" />
+				<el-table-column v-else v-bind="item" :key="tableName + index" :align="item.align || rowAlign">
 					<template slot-scope="scope">
 						<slot :name="item.slotName" :row-data="scope.row"></slot>
 					</template>
 				</el-table-column>
 			</template>
-			<!-- <el-table-column v-for="(item, index) in dataConfig" v-bind="item" :key="index" /> -->
-			<!-- <el-table-column
-				align="center"
-				label="序号"
-				type="index"
-				>
-				</el-table-column>
-				<el-table-column
-				label="企业名称"
-				prop="name"
-				>
-				</el-table-column> -->
 		</el-table>
 		<!-- <slot name="columItem">
 
@@ -39,6 +27,10 @@
 export default {
 	name: 'HorseRacLampList',
 	props: {
+		tableName: {
+			type: String,
+			default: 'horseRacLampList'
+		},
 		isScroll: { // 是否默认开启滚动
 			type: Boolean,
 			default: true
@@ -77,24 +69,11 @@ export default {
 		},
 		dataConfig: { // 表格每列数据的配置
 			type: Array,
-			default: () => [{ label: '序号', type: 'index' },
-				{ label: '名字', slotName: 'name' },
-				{ label: '年龄', prop: 'age' }]
+			default: () => [ { label: '序号', type: 'index' } ]
 		},
 		tableData: { // 表格数据
 			type: Array,
-			default: () => [{ value: 1, name: '草1', age: 20 },
-				{ value: 2, name: '草2', age: 18 },
-				{ value: 3, name: '草3', age: 11 },
-				4,
-				{ value: 5, name: '草5' },
-				6,
-				{ value: 7, name: '草7' },
-				8,
-				9,
-				{ value: 10, name: '草10' },
-				{ value: 11, name: '草11' },
-				{ value: 12, name: '草12' }]
+			default: () => []
 		},
 		isMouseoverStop: { // 是否移入时停止滚动
 			type: Boolean,
@@ -113,6 +92,9 @@ export default {
 	methods: {
 		mouseover() {
 			this.isMouseoverStop && clearInterval(this.timer)
+			const box = this.$el.querySelector('.el-table__body-wrapper')
+			// box.style.height = this.lineHeight * this.rowHeight + 'px'
+			box.style.overflowY = 'auto'
 		},
 		mouseout() {
 			this.isMouseoverStop && this.autoScroll(false)
@@ -123,7 +105,7 @@ export default {
 				// const t = 50
 				const box = this.$el.querySelector('.el-table__body-wrapper')
 				// box.style.height = this.lineHeight * this.rowHeight + 'px'
-
+				box.style.overflowY = 'hidden'
 				const content = this.$el.querySelector('.el-table__body')
 
 				const elRow = this.$el.querySelectorAll('.el-table__row')

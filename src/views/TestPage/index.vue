@@ -5,12 +5,12 @@
 				<div class="DataCardes">
 					<p class="cardTitle" style="margin-bottom: 10px">实时数据</p>
 					<div class="cardFader">
-						<CardItems v-for="item in 8"></CardItems>
+						<CardItems v-for="(item, index) in cardDatas" :key="index" :datas="item"></CardItems>
 					</div>
 				</div>
 				<div class="HorseRacLamp_list">
 					<p style="padding: 10px 20px;" class="cardTitle">新增会员情况</p>
-					<HorseRacLampList>
+					<HorseRacLampList table-name="newAddMember" :data-config="table1Config" :table-data="table1Data">
 						<template #name="row">
 							<span style="color: blue">{{ row.rowData.name }}</span>
 						</template>
@@ -40,7 +40,7 @@
 					<p>团长排名</p>
 					<TabNavs style="width: 248.57px; height: 32px;" :datas="['7天', '15天', '30天']"></TabNavs>
 				</div>
-				<HorseRacLampList height="420px">
+				<HorseRacLampList table-name="MasterRanking" :data-config="table2Config" :table-data="table2Data" height="420px">
 					<template #name="row">
 						<span style="color: blue">{{ row.rowData.name }}</span>
 					</template>
@@ -51,7 +51,7 @@
 					<p>合伙人排名</p>
 					<TabNavs style="width: 248.57px; height: 32px;" :datas="['7天', '15天', '30天']"></TabNavs>
 				</div>
-				<HorseRacLampList height="420px">
+				<HorseRacLampList :data-config="table3Config" :table-data="table3Data" table-name="PartnerRank" height="420px">
 					<template #name="row">
 						<span style="color: blue">{{ row.rowData.name }}</span>
 					</template>
@@ -62,7 +62,7 @@
 					<p>师傅接单排名</p>
 					<TabNavs style="width: 248.57px; height: 32px;" :datas="['7天', '15天', '30天']"></TabNavs>
 				</div>
-				<HorseRacLampList height="420px">
+				<HorseRacLampList :data-config="table4Config" :table-data="table4Data" table-name="OrderRanking" height="420px">
 					<template #name="row">
 						<span style="color: blue">{{ row.rowData.name }}</span>
 					</template>
@@ -97,8 +97,9 @@ import HorseRacLampList from './components/HorseRacLampList'
 import TabNavs from './components/TabNavs'
 import BarCharts from './components/BarCharts'
 import LineChart from './components/LineChart'
+import { table1Data, table1Config, table2Data, table2Config, table3Data, table3Config, table4Data, table4Config } from './data'
 
-import DtSrcoll from './components/DtSrcoll'
+// import DtSrcoll from './components/DtSrcoll'
 export default {
 	// eslint-disable-next-line vue/match-component-file-name
 	name: 'TestPage',
@@ -107,11 +108,19 @@ export default {
 		HorseRacLampList,
 		TabNavs,
 		BarCharts,
-		LineChart,
-		DtSrcoll
+		LineChart
+		// DtSrcoll
 	},
 	data() {
 		return {
+			table1Data,
+			table1Config,
+			table2Data,
+			table2Config,
+			table3Data,
+			table3Config,
+			table4Data,
+			table4Config,
 			menuData: [ // 表格内容
 				{
 					name: '班级',
@@ -142,7 +151,16 @@ export default {
 				{ group: '电工班9', bookNum: 3, sceneNum: 0, dutyRate: '88%', name: '小牛马9' },
 				{ group: '电工班10', bookNum: 3, sceneNum: 0, dutyRate: '88%', name: '小牛马10' },
 				{ group: '电工班11', bookNum: 3, sceneNum: 0, dutyRate: '88%', name: '小牛马11' }
-			]
+			],
+			cardDatas: [{ name: '今日累计订单数（笔）', num: 18000, rateIncrease: 15 },
+				{ name: '今日支付订单数（笔）', num: 18000, rateIncrease: 15 },
+				{ name: '今日订单金额（元）', num: 18000, rateIncrease: 15 },
+				{ name: '今日发放的代金券（张）', num: 18000, rateIncrease: 15 },
+				{ name: '今日新增会员（人）', num: 18000, rateIncrease: 15 },
+				{ name: '今日新增团长（人）', num: 18000, rateIncrease: 15 },
+				{ name: '今日新增合伙人（人）', num: 18000, rateIncrease: 15 },
+				{ name: '今日使用的代金券（张）', num: 18000, rateIncrease: 15 }]
+
 		}
 	}
 }

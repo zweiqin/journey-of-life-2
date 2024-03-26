@@ -113,7 +113,7 @@
 			<template>
 				<div class="tabs">
 					<button class="tabItem" :class="{ active: tableName === 'fullOrderTable' }" type="button" @click="tableName = 'fullOrderTable'">活动订单</button>
-					<button class="tabItem" :class="{ active: tableName === 'orderCancellationTable' }" type="button" @click="tableName = 'orderCancellationTable'">订单订核销</button>
+					<button class="tabItem" :class="{ active: tableName === 'orderCancellationTable' }" type="button" @click="tableName = 'orderCancellationTable'">订单核销</button>
 				</div>
 			</template>
 		</TableTools>

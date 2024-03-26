@@ -2,6 +2,7 @@
 	<div :style="{ height: 50 * $root.dw + 'px' }" class="navbar">
 		<div class="left-menu">
 			<Hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container" />
+			<ToggleShop class="ToggleShop-container"></ToggleShop>
 			<Breadcrumb class="breadcrumb-container" />
 		</div>
 		<div class="title">{{ title }}</div>
@@ -53,33 +54,35 @@
 					<!-- <img :src="img" class="user-avatar"> -->
 					<i class="el-icon-caret-bottom" />
 				</div>
-				<el-dropdown-menu slot="dropdown">
-					<router-link to="/">
-						<el-dropdown-item>
-							{{ $t('navbar.homepage') }}
-						</el-dropdown-item>
-					</router-link>
-					<!-- <el-dropdown-item divided>
-						<a target="_blank" href="https://github.com/qiguliuxing/dts-shop">
-						GitHub
-						</a>
-						</el-dropdown-item>
-						<el-dropdown-item>
-						<a target="_blank" href="https://gitee.com/qiguliuxing/dts-shop">
-						码云
-						</a>
-						</el-dropdown-item> -->
-					<!-- <el-dropdown-item divided>
-						<router-link to="/profile/password">
-						密码修改
+				<template #dropdown>
+					<el-dropdown-menu>
+						<router-link to="/">
+							<el-dropdown-item>
+								{{ $t('navbar.homepage') }}
+							</el-dropdown-item>
 						</router-link>
-						</el-dropdown-item> -->
-					<el-dropdown-item divided>
-						<span style="display:block;" @click="logout">
-							{{ $t('navbar.logOut') }}
-						</span>
-					</el-dropdown-item>
-				</el-dropdown-menu>
+						<!-- <el-dropdown-item divided>
+							<a target="_blank" href="https://github.com/qiguliuxing/dts-shop">
+							GitHub
+							</a>
+							</el-dropdown-item>
+							<el-dropdown-item>
+							<a target="_blank" href="https://gitee.com/qiguliuxing/dts-shop">
+							码云
+							</a>
+							</el-dropdown-item> -->
+						<!-- <el-dropdown-item divided>
+							<router-link to="/profile/password">
+							密码修改
+							</router-link>
+							</el-dropdown-item> -->
+						<el-dropdown-item divided>
+							<span style="display:block;" @click="logout">
+								{{ $t('navbar.logOut') }}
+							</span>
+						</el-dropdown-item>
+					</el-dropdown-menu>
+				</template>
 			</el-dropdown>
 		</div>
 
@@ -97,6 +100,7 @@ import Screenfull from '@/components/Screenfull'
 // import LangSelect from '@/components/LangSelect'
 // import ThemePicker from '@/components/ThemePicker'
 import EditModal from '../../orderManagement/orderList/components/EditModal'
+import ToggleShop from '@/components/ToggleShop'
 
 export default {
 	name: 'Navbar',
@@ -104,6 +108,7 @@ export default {
 		Breadcrumb,
 		Hamburger,
 		Screenfull,
+		ToggleShop,
 		// SizeSelect,
 		// LangSelect
 		// ThemePicker
@@ -163,7 +168,7 @@ export default {
 	.left-menu {
 		// background: #000;
 		height: 100%;
-		width: 25%;
+		width: 35%;
 		display: flex;
 		flex-direction: row;
 		justify-content: start;
@@ -171,16 +176,25 @@ export default {
 
 		.hamburger-container {
 			height: 100%;
-			width: 20%;
+			width: 10%;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
 		}
 
+    .ToggleShop-container {
+      height: 100%;
+      width: auto;
+      margin: 0px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
 		.breadcrumb-container {
 			// height: 100%;
-			width: 80%;
+			width: 60%;
 			// display: flex;
 			// flex-direction: row;
 			// justify-content: start;
