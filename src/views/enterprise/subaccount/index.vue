@@ -1,17 +1,10 @@
-// ⚡🌪🌪🌪🌪🌪🌪🌪⚡
-//    ⚡🌪🌪⭐🌪🌪⚡
-//     ⚡🌪🌪🌪🌪⚡
-//        ⚡🌪🌪🌪⚡
-//            🌩
-//         ╰🤡ﾉ   暴风星云烈
-//          ╭┴╮
 <template>
 	<div class="app-container">
 		<div class="mainBox one">
 			<div class="tabNavsBox">
 				<TabNavs
 					label="name"
-					:tab-datas="[{ name: '子账号管理', componentId: 'Subaccounts' }, { name: '角色管理', componentId: 'roleManagement' }]"
+					:tab-datas="[{ name: '子账号管理', componentId: 'Subaccounts' }, { name: '角色管理', componentId: 'RoleManagement' }]"
 					@NavClick="tabClick"
 				></TabNavs>
 			</div>
@@ -26,7 +19,7 @@
 
 <script>
 import TabNavs from './components/tabNavs'
-import Subaccounts from './components/subaccount'
+import Subaccounts from './components/subaccounts'
 import RoleManagement from './components/roleManagement'
 export default {
 	// eslint-disable-next-line vue/match-component-file-name

@@ -32,7 +32,7 @@
 				<el-button style="width: 100px;" size="medium" type="primary">
 					导出
 				</el-button>
-				<el-button style="width: 150px;" size="medium" type="info">
+				<el-button style="width: 150px;" size="medium" type="danger">
 					新建子账号
 				</el-button>
 			</div>
@@ -63,8 +63,10 @@
 <script>
 import VxeTable from '@/components/VxeTable'
 import columns from './subaccount'
+
 export default {
-	name: 'Subaccount',
+	// eslint-disable-next-line vue/match-component-file-name
+	name: 'Subaccounts',
 	components: {
 		VxeTable
 	},
@@ -80,7 +82,7 @@ export default {
 				name: ''
 			},
 			customColumnsConfig: {
-				localKey: 'subaccount',
+				localKey: 'subaccounts',
 				columnsOptions: columns
 			},
 			tableData: [ { account: 'dianzhang', name: '梁店长', phone: 13286520928, role: '店长', createTime: '2023-3-31' } ],
