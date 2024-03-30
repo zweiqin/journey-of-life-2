@@ -121,7 +121,10 @@
 				<!-- <span>{{ row.workCity.replaceAll(',', '，\n') }}</span> -->
 			</template>
 			<template #serverCity="{ row }">
-				<span>{{ row.serverCity ? JSON.parse(row.serverCity).map(item => item.join(' ')).join('，\n') : '--' }}</span>
+				<block v-if="row.serverCity">
+					<span>{{ JSON.parse(row.serverCity) > 0 && JSON.parse(row.serverCity).map(item => item.join(' ')).join('，\n') }}</span>
+				</block>
+				<span v-else>--</span>
 			</template>
 			<template #state="{ row }">
 				<span v-if="row.state === 0">有效</span>
