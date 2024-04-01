@@ -91,6 +91,7 @@ export const asyncRouterMap = [
 		path: '/franchiseeManagement',
 		component: Layout,
 		alwaysShow: true,
+		hidden: true,
 		redirect: 'noredirect',
 		meta: {
 			title: '加盟商管理',
@@ -149,6 +150,7 @@ export const asyncRouterMap = [
 			{
 				path: 'OrderProfile',
 				component: () => import('@/views/orderManagement/OrderProfile'),
+				hidden: true,
 				name: 'OrderProfile',
 				meta: {
 					perms: [],
@@ -285,6 +287,7 @@ export const asyncRouterMap = [
 				path: 'TeamProfile',
 				component: () => import('@/views/enterprise/TeamProfile'),
 				name: 'TeamProfile',
+				hidden: true,
 				meta: {
 					perms: [],
 					title: '团队概况',
@@ -385,6 +388,7 @@ export const asyncRouterMap = [
 			{
 				path: 'communityStoreManagement',
 				component: () => import('@/views/partnershipManagement/communityStoreManagement'),
+				hidden: true,
 				name: 'communityStoreManagement',
 				meta: {
 					title: '小区店管理',
@@ -407,6 +411,7 @@ export const asyncRouterMap = [
 			{
 				path: 'MastersProfile',
 				component: () => import('@/views/masterManagement/MastersProfile'),
+				hidden: true,
 				name: 'MastersProfile',
 				meta: {
 					title: '师傅概况',
@@ -416,6 +421,7 @@ export const asyncRouterMap = [
 			{
 				path: 'intermediaryManagement',
 				component: () => import('@/views/masterManagement/intermediaryManagement'),
+				hidden: true,
 				name: 'intermediaryManagement',
 				meta: {
 					title: '工头管理',
@@ -465,6 +471,7 @@ export const asyncRouterMap = [
 			{
 				path: 'FinancialProfile',
 				component: () => import('@/views/enterprise/FinancialProfile'),
+				hidden: true,
 				name: 'FinancialProfile',
 				meta: {
 					title: '财务概况',
@@ -633,6 +640,7 @@ export const asyncRouterMap = [
 		component: Layout,
 		// alwaysShow: true,
 		redirect: 'noredirect',
+		hidden: true,
 		meta: {
 			title: '同城商圈',
 			icon: 'order',
@@ -656,6 +664,7 @@ export const asyncRouterMap = [
 		path: '/CityMall',
 		component: Layout,
 		// alwaysShow: true,
+		hidden: true,
 		redirect: 'noredirect',
 		meta: {
 			title: '社区商城',
@@ -729,6 +738,7 @@ export const asyncRouterMap = [
 				path: 'subaccount',
 				component: () => import('@/views/enterprise/subaccount'),
 				name: 'Subaccount',
+				hidden: true,
 				meta: {
 					title: '子账号管理',
 					noCache: true

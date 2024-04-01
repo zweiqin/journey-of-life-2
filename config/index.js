@@ -16,8 +16,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        // target:'http://192.168.0.82:8790/samrtWorker', // 本地
-        target:'https://www.zhult.com/samrtWorker', // 线上接口的域名
+        target:'http://192.168.0.82:8790/samrtWorker', // 本地
+        // target:'https://www.zhult.com/samrtWorker', // 线上接口的域名
         // target: 'https://test.zhult.com/samrtWorker', // 测试
         // secure: false, // 如果是https，需要开启这个选项
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置

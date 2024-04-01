@@ -2,7 +2,7 @@
 	<div class="app-container">
 
 		<div class="other-container">
-			<div style="padding: 0 0 12px;">
+			<div style="padding: 0 0 12px;display: none;">
 				<div style="display: flex;justify-content: space-between;align-items: center;padding-bottom: 18px;">
 					<div
 						style="width: 24%;display: flex;align-items: center;padding: 24px 30px;background-color: #ffffff;border-radius: 8px;"

@@ -2,7 +2,7 @@
 	<el-dialog width="60%" title="修改分佣比例 (平台服务费收取10%)" :visible.sync="showUpdataForm">
 		<el-form style="margin-left: 20px;padding: 0px 10px;" :model="formData">
 			<el-form-item label="设置分佣比例：">
-				<el-input-number v-model.number="formData.bizConf.commissionRatio" size="medium" :min="10"></el-input-number>
+				<el-input-number v-model.number="formData.bizConf.commissionRatio" size="medium" :min="0"></el-input-number>
 			</el-form-item>
 			<el-form-item label="平台固定服务费：">
 				<span>10%  （平台服务费将以代金券形式转赠至订单用户）</span>
@@ -12,14 +12,14 @@
 			<span class="tips">*平台固定服务费为团蜂平台固定收取的比例，额外设置分佣比例为商家在服务订单中所获得的佣金，请谨慎填写！</span>
 			<span class="dialog-footer">
 				<el-button @click="showUpdataForm = false">取 消</el-button>
-				<el-button type="primary" @click="editCommissionRatio = false">确 定</el-button>
+				<el-button type="primary" @click="editCommissionRatio">确 定</el-button>
 			</span>
 		</template>
 	</el-dialog>
 </template>
 
 <script>
-import { editBizConf } from '@/api/platformService'
+import { editBizConf, queryListByServerInfoIds } from '@/api/platformService'
 
 export default {
 	// eslint-disable-next-line vue/match-component-file-name
@@ -30,10 +30,11 @@ export default {
 	data() {
 		return {
 			showUpdataForm: false,
+			platformCut: 10,
 			formData: {
 				serverInfoId: 1,
 				bizConf: {
-					commissionRatio: 10
+					commissionRatio: 0
 				}
 			}
 		}
@@ -42,14 +43,22 @@ export default {
 		show(id) {
 			this.showUpdataForm = true
 			this.formData.serverInfoId = id
+			queryListByServerInfoIds({
+				serverInfoIds: [ id ]
+			}).then((res) => {
+				console.log(res)
+			})
 			this.formData.bizConf = {
-				commissionRatio: 10
+				commissionRatio: 0
 			}
 		},
 		editCommissionRatio() {
+			const bizConf = JSON.stringify({
+				commissionRatio: this.formData.bizConf.commissionRatio + this.platformCut
+			})
 			editBizConf({
 				'serverInfoId': this.formData.serverInfoId,
-				'bizConf': JSON.stringify(this.formData.bizConf)
+				bizConf
 			}).then((res) => {
 				this.$message({
 					message: '修改成功',
