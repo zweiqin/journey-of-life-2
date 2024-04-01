@@ -4,8 +4,8 @@
 			<div class="treeCheckBox">
 				<p>服务分类</p>
 				<div class="BtnBox">
-					<el-button style="width: 120px;" size="medium" type="primary" disabled>新增分类</el-button>
-					<el-button style="width: 120px;" size="medium" type="danger" disabled>批量删除</el-button>
+					<!-- <el-button style="width: 120px;" size="medium" type="primary" disabled>新增分类</el-button>
+						<el-button style="width: 120px;" size="medium" type="danger" disabled>批量删除</el-button> -->
 					<el-button style="width: 120px;" size="medium" type="warning" @click="handleToggleTree();">{{ isToggle ? '收起' : '展开' }}全部</el-button>
 				</div>
 				<el-tree ref="treeRef" class="threeBox" :data="datas" :props="defaultProps" show-checkbox node-key="id" default-expand-all>
@@ -24,34 +24,34 @@
 					style="padding: 0px 20px;background-color: #ffffff;border: 1px solid #E2E8F0;border-radius: 6px 6px 0 0;"
 				>
 					<el-form :inline="true" class="from-inline">
-						<el-form-item label="一级类目">
+						<!-- <el-form-item label="一级类目">
+							<el-input
+							clearable class="filter-item"
+							style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入一级类目名称"
+							disabled @keyup.enter.native="getList"
+							/>
+							</el-form-item>
+							<el-form-item label="二级类目">
+							<el-input
+							clearable class="filter-item"
+							style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入二级类目名称"
+							disabled @keyup.enter.native="getList"
+							/>
+							</el-form-item> -->
+						<el-form-item label="类目">
 							<el-input
 								clearable class="filter-item"
-								style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入一级类目名称"
-								disabled @keyup.enter.native="getList"
-							/>
-						</el-form-item>
-						<el-form-item label="二级类目">
-							<el-input
-								clearable class="filter-item"
-								style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入二级类目名称"
-								disabled @keyup.enter.native="getList"
-							/>
-						</el-form-item>
-						<el-form-item label="三级类目">
-							<el-input
-								clearable class="filter-item"
-								style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="请输入三级类目名称"
-								disabled @keyup.enter.native="getList"
-							/>
-						</el-form-item>
-						<el-form-item label="报价模式">
-							<el-input
-								v-model="querList.search" clearable class="filter-item"
 								style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="输入需要搜索的分类"
 								@keyup.enter.native="getList"
 							/>
 						</el-form-item>
+						<!-- <el-form-item label="报价模式">
+							<el-input
+							v-model="querList.search" clearable class="filter-item"
+							style="width: 300px;border: 1px solid #64748B;border-radius: 4px;" placeholder="选择报价模式"
+							disabled @keyup.enter.native="getList"
+							/>
+							</el-form-item> -->
 						<el-form-item>
 							<el-button
 								size="mini" class="filter-item" type="primary"
@@ -70,21 +70,21 @@
 						</el-form-item>
 					</el-form>
 				</div>
-				<div class="ButtonGroup">
+				<!-- <div class="ButtonGroup">
 					<div class="btn-left">
-						<el-button size="medium" type="primary" disabled>添加服务</el-button>
-						<el-button size="medium" type="success" disabled>批量上架</el-button>
-						<el-button size="medium" type="danger" disabled>批量下架</el-button>
+					<el-button size="medium" type="primary" disabled>添加服务</el-button>
+					<el-button size="medium" type="success" disabled>批量上架</el-button>
+					<el-button size="medium" type="danger" disabled>批量下架</el-button>
 					</div>
 					<div class="btn-right">
-						<el-button size="medium" type="primary" disabled>批量设置服务价格</el-button>
-						<el-button size="medium" type="primary" disabled>批量修改分佣比例</el-button>
+					<el-button size="medium" type="primary" disabled>批量设置服务价格</el-button>
+					<el-button size="medium" type="primary" disabled>批量修改分佣比例</el-button>
 					</div>
-				</div>
+					</div> -->
 				<!-- 服务列表 api-path="/third/community/serverTypeList"此接口为待确定开开发的接口，待完善后切换，目前依旧采用老版本的接口 -->
 				<VxeTable
 					ref="vxeTable" v-model="querList"
-					set-table-height="565" :show-index="false" :local-key="customColumnsConfig.localKey" api-method="POST"
+					set-table-height="685" :show-index="false" :local-key="customColumnsConfig.localKey" api-method="POST"
 					res-alias="records" request-method="request3" api-path="/third/community/serverInfoList"
 					:columns="columns" page-alias="pageNo" size-alias="pageSize" :grid-options="{ rowConfig: { height: 50 } }"
 					style="height: auto; padding: 10px 0px;background-color: #ffffff;border: 1px solid #E2E8F0;border-top: 0;border-bottom: 0;box-shadow: 0px 10px 15px -3px rgba(15, 23, 42, 0.08);"
